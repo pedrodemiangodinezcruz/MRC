@@ -29,16 +29,16 @@ namespace MRC.Controllers
                     tipoRiesgo, iff,io, riesgoFraude, probabilidad, impacto from dbo.Riesgo";*/
             string query = @"
                    SELECT Id, idRiesgo, macroProceso, proceso, subProceso, descripcion, causa, consecuencia
-                    , tipoEvento, tipoRiesgo, iff, ic, ios, riesgoFraude, probabilidad, impacto FROM dbo.Riesgo"; 
-             DataTable table = new DataTable();
+                    , tipoEvento, tipoRiesgo, iff, ic, ios, riesgoFraude, probabilidad, impacto FROM dbo.Riesgo";
+            DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;
-            using (SqlConnection  myCon = new SqlConnection(sqlDataSource))
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
-                myCon.Open(); 
+                myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myReader = myCommand.ExecuteReader(); 
+                    myReader = myCommand.ExecuteReader();
                     table.Load(myReader); ;
 
                     myReader.Close();
@@ -135,6 +135,33 @@ namespace MRC.Controllers
             }
 
             return new JsonResult("Riesgo editado exitosamente");
+        }
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+
+            string query = @"
+                    delete from  dbo.Riesgo
+                    where Id = " + id + @"
+                    ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Riesgo eliminado exitosamente");
         }
     }
 }
