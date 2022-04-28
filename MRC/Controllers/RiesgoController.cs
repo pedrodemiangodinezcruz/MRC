@@ -114,7 +114,7 @@ namespace MRC.Controllers
                     ,ios = '" + riesgo.Ios + @"'
                     ,riesgoFraude = '" + riesgo.RiesgoFraude + @"'
                     ,probabilidad = '" + riesgo.Probabilidad + @"'
-                    ,impacto '" + riesgo.Impacto + @"'
+                    ,impacto = '" + riesgo.Impacto + @"'
                     where Id = " + riesgo.Id + @"
                     ";
 
