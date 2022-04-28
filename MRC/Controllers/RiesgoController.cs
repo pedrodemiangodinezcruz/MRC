@@ -75,10 +75,6 @@ namespace MRC.Controllers
                         ,'" + riesgo.Impacto + @"'
                        )
                     ";
-            /*string query = @"
-                   insert into dbo.Riesgo (idRiesgo, macroProceso ) values 
-                     ('" + riesgo.IdRiesgo + riesgo.MacroProceso + @"')
-                    ";*/
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
@@ -97,6 +93,48 @@ namespace MRC.Controllers
             }
 
             return new JsonResult("Riesgo añadido exitosamente");
+        }
+        [HttpPut]
+        public JsonResult Put(Riesgo riesgo)
+        {
+
+            string query = @"
+                    update  dbo.Riesgo set
+                    idRiesgo = '" + riesgo.IdRiesgo + @"'
+                    ,macroProceso = '" + riesgo.MacroProceso + @"'
+                    ,proceso = '" + riesgo.Proceso + @"'
+                    ,subProceso = '" + riesgo.SubProceso + @"'
+                    ,descripcion =  '" + riesgo.Descripcion + @"'
+                    ,causa =  '" + riesgo.Causa + @"'
+                    ,consecuencia = '" + riesgo.Consecuencia + @"'
+                    ,tipoEvento = '" + riesgo.TipoEvento + @"'
+                    ,tipoRiesgo = '" + riesgo.TipoRiesgo + @"'
+                    ,iff = '" + riesgo.Iff + @"'
+                    ,ic = '" + riesgo.Ic + @"'
+                    ,ios = '" + riesgo.Ios + @"'
+                    ,riesgoFraude = '" + riesgo.RiesgoFraude + @"'
+                    ,probabilidad = '" + riesgo.Probabilidad + @"'
+                    ,impacto '" + riesgo.Impacto + @"'
+                    where Id = " + riesgo.Id + @"
+                    ";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Riesgo editado exitosamente");
         }
     }
 }
