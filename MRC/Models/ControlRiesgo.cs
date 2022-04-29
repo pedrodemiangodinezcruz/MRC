@@ -7,31 +7,31 @@ namespace MRC.Models
 {
     public class ControlRiesgo
     {
-        public int controlID { get; set; }
-        public string macroProceso { get; set; }
-        public string proceso { get; set; }
-        public string subProceso { get; set; }
-        public string idControl { get; set; }
-        public string general { get; set; }
-        public string descripcion { get; set; }
-        public string evidencia { get; set; }
-        public string segregacion { get; set; }
-        public string tipoControl { get; set; }
-        public string naturalezaAdecuada { get; set; }
-        public string naturalezaControl{ get; set; }
-        public string tipoAdecuado { get; set; }
-        public string frecuenciaControl { get; set; }
-        public string frecuenciaAdecuada { get; set; }
-        public string responsable { get; set; }
-        public string responsabilidadControl { get; set; }
-        public string generacionEvidencia { get; set; }
-        public string controlClave { get; set; }
-        public string controlFraude { get; set; }
-        public int cobertura { get; set; }
-        public string estrategia { get; set; }
-        public string responsableTratamiento { get; set; }
-        public string descripcionTratamiento { get; set; }
-        public string causasAdjuntas { get; set; }
-        public string observaciones { get; set; }
+        public int ControlID { get; set; }
+        public string MacroProceso { get; set; }
+        public string Proceso { get; set; }
+        public string SubProceso { get; set; }
+        public string IdControl { get; set; }
+        public string General { get; set; }
+        public string Descripcion { get; set; }
+        public string Evidencia { get; set; }
+        public string Segregacion { get; set; }
+        public string TipoControl { get; set; }
+        public string NaturalezaAdecuada { get; set; }
+        public string NaturalezaControl{ get; set; }
+        public string TipoAdecuado { get; set; }
+        public string FrecuenciaControl { get; set; }
+        public string FrecuenciaAdecuada { get; set; }
+        public string Responsable { get; set; }
+        public string ResponsabilidadControl { get; set; }
+        public string GeneracionEvidencia { get; set; }
+        public string ControlClave { get; set; }
+        public string ControlFraude { get; set; }
+        public int Cobertura { get; set; }
+        public string Estrategia { get; set; }
+        public string ResponsableTratamiento { get; set; }
+        public string DescripcionTratamiento { get; set; }
+        public string CausasAdjuntas { get; set; }
+        public string Observaciones { get; set; }
     }
 }
