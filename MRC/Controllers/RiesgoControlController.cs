@@ -62,9 +62,10 @@ namespace MRC.Controllers
                     controlClave, controlFraude, cobertura, estrategia, responsableTratamiento,
                     descripcionTratamiento, causasAdjuntas, observaciones) values 
                      (
-                        ,'" + controlRiesgo.MacroProceso + @"'
+                        '" + controlRiesgo.MacroProceso + @"'
                         ,'" + controlRiesgo.Proceso + @"'
                         ,'" + controlRiesgo.SubProceso + @"'
+                        ,'" + controlRiesgo.IdControl + @"'
                         ,'" + controlRiesgo.Descripcion + @"'
                         ,'" + controlRiesgo.General + @"'
                         ,'" + controlRiesgo.Evidencia + @"'
@@ -116,8 +117,9 @@ namespace MRC.Controllers
                         macroProceso = '" + controlRiesgo.MacroProceso + @"'
                         ,proceso ='" + controlRiesgo.Proceso + @"'
                         ,subProceso ='" + controlRiesgo.SubProceso + @"'
-                        ,descripcion ='" + controlRiesgo.Descripcion + @"'
+                        ,idControl ='" + controlRiesgo.IdControl + @"'
                         ,general ='" + controlRiesgo.General + @"'
+                        ,descripcion ='" + controlRiesgo.Descripcion + @"'
                         ,evidencia ='" + controlRiesgo.Evidencia + @"'
                         ,segregacion ='" + controlRiesgo.Segregacion + @"'
                         ,tipoControl ='" + controlRiesgo.TipoControl + @"'
@@ -137,6 +139,7 @@ namespace MRC.Controllers
                         ,descripcionTratamiento ='" + controlRiesgo.DescripcionTratamiento + @"'
                         ,causasAdjuntas='" + controlRiesgo.CausasAdjuntas + @"'
                         ,observaciones ='" + controlRiesgo.Observaciones + @"'
+                        where Id = " + controlRiesgo.Id + @"
                     ";
 
             DataTable table = new DataTable();
