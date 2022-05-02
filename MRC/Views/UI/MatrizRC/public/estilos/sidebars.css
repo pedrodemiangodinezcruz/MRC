@@ -1,0 +1,48 @@
+li:hover{
+    background-color: #0d6efd !important;
+    border-radius: .25rem;
+}
+/*Especificaciones ventanas modales (formularios)*/
+
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 60vw !important;
+    margin: 1.75rem auto;
+}
+}
+.d-flex{
+    
+    width: 20vw; 
+    height: auto;
+}
+.dropdown-menu-dark {
+    color: white;
+}
+.dropdown-item {
+    color: white !important;
+}
+/* Propueta colores mas blancos
+li:hover{
+    background-color: #0d6efd !important;
+    border-radius: .25rem;
+}
+
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 60vw !important;
+    margin: 1.75rem auto;
+}
+}
+.d-flex{
+    background-color: #66b3ff;
+    width: 20vw; 
+    height: auto;
+}
+.dropdown-menu-dark {
+    background-color: #1a8cff !important;
+    color: white;
+}
+.dropdown-item {
+    color: white !important;
+}
+*/

@@ -1,0 +1,810 @@
+<!--Referencias a estilos (Bootstrap y diseño de las tablas)-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="/estilos/header.css" rel="stylesheet">
+<link href="/estilos/tablas.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700" media="all">
+<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+<!--Inclución de header y sidebar-->
+<%- include('header', {seccion: "instructivo" }) %>
+  <%- include('sidebar') %>
+    <div class="col">
+      <table class="table table-bordered" id="1">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" viewBox="0 0 16 16" id="tabla1">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td class="morado">Proceso</td>
+            <td>Registro Manual</td>
+            <td>Nombre del proceso (se repite en todas las celdas de la columna)</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td class="morado">Subproceso</td>
+            <td>Registro Manual</td>
+            <td>Subproceso al que pertenece</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td class="morado">Objetivo</td>
+            <td>Registro manual</td>
+            <td>Objetivo del proceso</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td class="naranja">ID Riesgo</td>
+            <td>Registro manual</td>
+            <td>Estructura del ID del riesgo:<br>
+              * Letra "R" (riesgo)<br>
+              * Guión (-)<br>
+              * Primera letra proceso<br>
+              * Consecutivo a 3 dígitos</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td class="naranja">Descripción del riesgo</td>
+            <td>Registro Manual</td>
+            <td>Efecto de la incertidumbre sobre la consecución de los objetivos del Grupo. La estructura sugerida para
+              la redacción de un riesgo es:<br>
+              * Sustantivo<br>
+              * Verbo en participio<br>
+              * Adjetivo, adverbio o complemento circunstancial negativo<br>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td class="naranja">Causa</td>
+            <td>Registro manual</td>
+            <td>Causa raiz que origina el riesgo en caso de materialización.</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td class="naranja">Consecuencia</td>
+            <td>Registro manual</td>
+            <td>Efecto probable o esperado de la materialización del riesgo.</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="2" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="tabla2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="tabla3" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado" colspan="2">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">8</th>
+            <td colspan="2" class="naranja">Tipo de evento</td>
+            <td>Lista despegable</td>
+            <td>El tipo de evento se selecciona con base en el tipo de riesgo identificado.</td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td colspan="2" class="naranja">Tipo de riesgo</td>
+            <td>Celda Formulada</td>
+            <td>Tipo de riesgo correspondiente al evento. De acuerdo a la tipología del riesgo, puede ser:<br>
+              a) Estratégico<br>
+              b) Financiero<br>
+              c) Cumplimiento<br>
+              d) Fraude<br>
+              e) Operacional</td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td rowspan="3" style="text-align: center; vertical-align: middle;" class="naranja">Importancia relativa
+            </td>
+            <td class="naranja">IF</td>
+            <td>Lista desplegable</td>
+            <td>Impacto financiero. Implica recursos económicos de tipo monetario, haciendo referencia a la
+              incertidumbre producida en el rendimiento de una inversión, una decisión de los accionistas, los
+              resultados de la propia operación del Grupo, o las condiciones del mercado. Alternativas de selección:<br>
+              * Muy Alto<br>
+              * Alto<br>
+              * Medio<br>
+              * Bajo<br>
+              * Muy Bajo<br>
+              * N/A (No aplica)</td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td class="naranja">IC</td>
+            <td>Lista desplegable</td>
+            <td>Impacto sobre clientes. Implica pérdida potencial de clientes derivada del deterioro de su reputación o
+              debido a una percepción negativa de la imagen de la institución. Alternativas de selección:<br>
+              * Muy Alto<br>
+              * Alto<br>
+              * Medio<br>
+              * Bajo<br>
+              * Muy Bajo<br>
+              * N/A (No aplica)</td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td class="naranja">IO</td>
+            <td>Lista desplegable</td>
+            <td>Impacto Operacional. Derivado de deficiencias en los procesos operativos relacionados con eficacia,
+              eficiencia, productividad o nivel de servicio. Se considera en este rubro a las deficiencia de las
+              Tecnologías de la Información, los recursos humanos y cualquier evento externo o interno adverso,
+              relacionado con la operación del Grupo. Alternativas de selección:<br>
+              * Muy Alto<br>
+              * Alto<br>
+              * Medio<br>
+              * Bajo<br>
+              * Muy Bajo<br>
+              * N/A (No aplica)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="3" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" viewBox="0 0 16 16" id="ir-tabla-4">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">13</th>
+            <td class="naranja">Riesgo de Fraude</td>
+            <td>Lista desplegable</td>
+            <td>Riesgo relacionado con probable malversación de información, desvío de recursos, conductas éticas no
+              apropiadas, conflicto de intereses. Alternativas de selección:<br>
+              * Sí<br>
+              * No</td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td class="naranja">Impacto</td>
+            <td>Lista desplegable</td>
+            <td>Impacto identificado por las áreas, que puede ser:<br>
+              * Catastrófico<br>
+              * Crítico<br>
+              * Importante<br>
+              * Débil<br>
+              * Marginal<br>
+              En caso de identificar "Riesgo de fraude" como "Sí", el impacto debe ser "Muy Alto".</td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td class="naranja">Probabilidad</td>
+            <td>Lista Desplegable</td>
+            <td>Probabilidad identificada por las áreas, que puede ser:<br>
+              * Muy Alto<br>
+              * Alto<br>
+              * Medio<br>
+              * Bajo<br>
+              * Muy Bajo</td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td class="naranja">Nivel Riesgo Inherente</td>
+            <td class="fris">Celda formulada</td>
+            <td>Severidad del Riesgo Inherente, en términos de la combinación entre probabilidad e impacto.</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="4" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla3" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" viewBox="0 0 16 16" id="ir-tabla-5">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">17</th>
+            <td class="azul-marino">ID del Control</td>
+            <td>Registro Manual</td>
+            <td>Estructura del ID del control:<br>
+              * Letra "C" (control)<br>
+              * Guión (-)<br>
+              * Consecutivo a 3 dígitos<br>
+              En el caso de que no se haya identificado un control, colocar "C-N".</td>
+          </tr>
+          <tr>
+            <th scope="row">18</th>
+            <td class="azul-marino">General/Proceso</td>
+            <td>Registro manual</td>
+            <td>Indicador de la aplicabilidad y alcance del control:<br>
+              * General<br>
+              * Proceso</td>
+          </tr>
+          <tr>
+            <th scope="row">19</th>
+            <td class="azul-marino">Objetivo de Control</td>
+            <td>Registro manual</td>
+            <td>Un control es una actividad que está estrechamente relacionada con el objetivo del proceso, y que mitiga
+              en mayor o menor medida el riesgo, atancando su causa raíz. En su redacción, el evaluador debe asegurar la
+              presencia de los atributos de un control:<br>
+              a) Segregación de funciones<br>
+              b) Documentación<br>
+              c) Tipo de Control (Oportunidad)<br>
+              d) Naturaleza de Control (Automatización)<br>
+              e) Frecuencia<br>
+              f) Responsable<br>
+              g) Evidencia generada</td>
+          </tr>
+          <tr>
+            <th scope="row">20</th>
+            <td class="azul-marino">Descripción del Control</td>
+            <td>Registro manual</td>
+            <td>"Un control es una actividad que está estrechamente relacionada con el objetivo del proceso, y que
+              mitiga en mayor o menor medida el riesgo, atancando su causa raíz. En su redacción, el evaluador debe
+              asegurar la presencia de los atributos de un control:<br>
+              a) Segregación de funciones<br>
+              b) Documentación<br>
+              c) Tipo de Control (Oportunidad)<br>
+              d) Naturaleza de Control (Automatización)<br>
+              e) Frecuencia<br>
+              f) Responsable<br>
+              g) Evidencia generada"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="5" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla4" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-6" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" colspan="2" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">21</th>
+            <td colspan="2" class="azul-marino">Evidencia del control</td>
+            <td>Registro manual</td>
+            <td>Documento o entregable que se genera al aplicar el control.</td>
+          </tr>
+          <tr>
+            <th scope="row">22</th>
+            <td rowspan="3" style="text-align: center; vertical-align: middle;" class="azul-marino">Componente COSO</td>
+            <td class="azul-marino">AmC</td>
+            <td>Lista desplegable</td>
+            <td>Evaluación de Riesgos: Relacionado con la evaluación de la probabilidad e impacto de los riesgos como
+              base para determinar cómo deben ser gestionados. Alternativas de selección:<br>
+              * Sí<br>
+              * No<br>
+              * N/A (No aplica)</td>
+          </tr>
+          <tr>
+            <th scope="row">23</th>
+            <td class="azul-marino">ER</td>
+            <td>Lista desplegable</td>
+            <td>Evaluación de Riesgos: Relacionado con la evaluación de la probabilidad e impacto de los riesgos como
+              base para determinar cómo deben ser gestionados. Alternativas de selección:<br>
+              * Sí<br>
+              * No<br>
+              * N/A (No aplica)</td>
+          </tr>
+          <tr>
+            <th scope="row">24</th>
+            <td class="azul-marino">AC</td>
+            <td>Lista desplegable</td>
+            <td>Actividades de Control: Contribuye a la mitigación de riesgos hasta niveles aceptables para la
+              consecución de objetivos. Alternativas de selección:<br>
+              * Sí<br>
+              * No<br>
+              * N/A (No aplica)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="6" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla5" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-7" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" colspan="2" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">25</th>
+            <td rowspan="2" style="text-align: center; vertical-align: middle;" class="azul-marino">Componente COSO</td>
+            <td class="azul-marino">I y C</td>
+            <td>Lista desplegable</td>
+            <td>Información y Comunicación: Relacionado con el proceso continuo de proporcionar, compartir y obtener la
+              información necesaria interna /externa y hacia todos los niveles de la organización. Alternativas de
+              selección:<br>
+              * Sí<br>
+              * No<br>
+              * N/A (No aplica)</td>
+          </tr>
+          <tr>
+            <th scope="row">26</th>
+            <td class="azul-marino">M</td>
+            <td>Lista desplegable</td>
+            <td>Monitoreo: Relacionado con la verificación del cumplimiento del adecuado funcionamiento de los controles
+              con base a la normatividad interna y externa. Alternativas de selección:<br>
+              * Sí<br>
+              * No<br>
+              * N/A (No aplica)</td>
+          </tr>
+          <tr>
+            <th scope="row">27</th>
+            <td colspan="2" class="verde">1. Segregación de funciones</td>
+            <td>Lista desplegable</td>
+            <td>Se evalúa si la actividad se encuentra correctamente distribuida y existen validaciones independientes
+              y/o de un rango superior. Alternativas de selección:<br>
+              * Sí<br>
+              * No</td>
+          </tr>
+          <tr>
+            <th scope="row">28</th>
+            <td colspan="2" class="verde">2. Documentación (Política, procedimiento, manual, etc.)</td>
+            <td>Lista desplegable</td>
+            <td>Se evalúa si el control se encuentra documentado en políticas o algún documento interno. Alternativas de
+              selección:<br>
+              * Sí<br>
+              * No</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="7" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla6" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-8" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">29</th>
+            <td style="text-align: center; vertical-align: middle;" class="azul-marino">Naturaleza del control</td>
+            <td>Lista desplegable</td>
+            <td>Clasificación del control por la oportunidad de su presencia respecto al riesgo. Alternativas de
+              selección:<br>
+              * Preventivo<br>
+              * Detectivo<br>
+              * No existe control</td>
+          </tr>
+          <tr>
+            <th scope="row">30</th>
+            <td class="verde">3. Naturaleza de Control</td>
+            <td>Lista desplegable</td>
+            <td>Se evalúa si la naturaleza de control es la adecuada, siendo "Preventivo" la naturaleza ideal, de
+              acuerdo a las tablas. Alternativas de selección:<br>
+              * Sí<br>
+              * No</td>
+          </tr>
+          <tr>
+            <th scope="row">31</th>
+            <td class="azul-marino">Tipo de control</td>
+            <td>Lista desplegable</td>
+            <td>Clasificación del control por la automatización de la actividad. Alternativas de selección:<br>
+              * Automático<br>
+              * Semi automático<br>
+              * Manual<br>
+              * No existe control</td>
+          </tr>
+          <tr>
+            <th scope="row">32</th>
+            <td class="verde">4. Tipo de Control</td>
+            <td>Lista desplegable</td>
+            <td>Clasificación del control por la automatización de la actividad. Alternativas de selección:<br>
+              * Automático<br>
+              * Semi automático<br>
+              * Manual<br>
+              * No existe control</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-bordered" id="8" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla7" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-9" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">33</th>
+            <td style="text-align: center; vertical-align: middle;" class="azul-marino">Frecuencia de Control</td>
+            <td>Lista desplegable</td>
+            <td>Se detalla la frecuencia del control. Alternativas de selección:<br>
+              * Diario<br>
+              * Semanal<br>
+              * Quincenal<br>
+              * Mensual<br>
+              * Bimestral<br>
+              * Trimestral<br>
+              * Semestral<br>
+              * Anual<br>
+              * Esporádico<br>
+              * Por evento</td>
+          </tr>
+          <tr>
+            <th scope="row">34</th>
+            <td class="verde">5. Frecuencia adecuada</td>
+            <td>Lista desplegable</td>
+            <td>Se evalúa si la frecuencia de ejecución del control es adecuada y va acorde con el riesgo y la
+              actividad. Alternativas de selección:<br>
+              * Sí<br>
+              * No</td>
+          </tr>
+          <tr>
+            <th scope="row">35</th>
+            <td class="azul-marino">Responsable de Control</td>
+            <td>Registro Manual</td>
+            <td>Debe indicarse el puesto de la persona que ejecuta el control (singular). En el caso de controles
+              automáticos se debe incluir el nombre del sistema en el que se ejecuta el control (se excluye Excel y
+              aquellos en los que interviene una persona para su ejecución).</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="9" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla8" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-10" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">36</th>
+            <td class="verde">6. Responsabilidad del Control</td>
+            <td>Lista desplegable</td>
+            <td>"Se evalúa si la persona que ejecuta el control corresponde a quien debería efectuarlo considerando el
+              tipo de operaciones y la responsabilidad de la posición. Alternativas de selección:<br>
+              * Sí<br>
+              * No"
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">37</th>
+            <td class="verde">7. Generación de evidencia</td>
+            <td>Lista desplegable</td>
+            <td>"Se evalúa la existencia de evidencia documental (archivos, validaciones, programación, etc.).
+              Alternativas de selección:<br>
+              * Sí<br>
+              * No"
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">38</th>
+            <td class="bg-success" style="color: white;">Diseño del Control</td>
+            <td>Celda formulada</td>
+            <td>"Para considerarse un control ""Efectivo"" en cuanto a diseño debe cumplir forzosamente los siguientes 5
+              atributos de control:<br>
+              1. Segregación de funciones<br>
+              2. Documentación<br>
+              5. Frecuencia adecuada<br>
+              6. Responsabilidad del control<br>
+              7. Generación de evidencia<br>
+              Los atributos ""3. Tipo de control"" y ""4. Naturaleza del control"", contribuyen al cálculo de la
+              calificación del control, pero no a la conclusión del diseño del control."
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="10" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla9" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-trece" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">39</th>
+            <td class="azul-marino">Control Clave</td>
+            <td>Lista desplegable</td>
+            <td>"Se identifica un control como Clave a criterio del evaluador, siempre y cuando cumpla con al menos uno
+              de los siguientes atributos o características:<br>
+              a) Es indispensable para cubrir el objetivo del proceso<br>
+              b) En caso de falla, ningún otro control podría compensar su ausencia<br>
+              c) Tiene cobertura sobre la mayor parte del riesgo, o sobre más de un riesgo<br>
+              d) Es ejecutado por un nivel gerencial (con la adecuada segregación de funciones)<br>
+              e) Es parte de los controles nivel entidad o administra un objetivo de negocio crítico<br>
+              f) Proporciona garantía sobre errores materiales en los Estados Financieros<br>
+              Alternativas de selección:<br>
+              * Sí<br>
+              * No"
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">40</th>
+            <td class="azul-marino">Control diseñado para mitigar fraude</td>
+            <td>Lista desplegable</td>
+            <td>"Se establece si el control que se esta evaluando mitiga el riesgo de fraude. Alternativas de
+              selección:<br>
+              * Sí<br>
+              * No"
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">41</th>
+            <td class="azul-marino">Estrategia de monitoreo</td>
+            <td class="gris">Celda formulada</td>
+            <td>"Implica la estrategia que se tomará en pruebas de funcionalidad como resultado de la evaluación del
+              control:<br>
+              Criterios:<br>
+              * Control No Clave + Diseño Efectivo = Hasta Recorrido.<br>
+              * Control No Clave + Diseño No Efectivo= Hasta que concluya plan de acción.<br>
+              * Control Clave + Diseño Efectivo = Prueba de Funcionalidad<br>
+              * Control Clave + Diseño No Efectivo = Hasta que concluya plan de acción."<br>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">42</th>
+            <td class="azul-marino">Diseño de prueba</td>
+            <td>Registro manual</td>
+            <td>Indicar elementos del control a probar (Referencia al plan de pruebas).</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="13" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabladiez" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-short" id="ir-tabla-14" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">43</th>
+            <td class="azul-marino">Evaluación de funcionalidad del control</td>
+            <td>Lista desplegable</td>
+            <td>"Resultado de la evaluación de la funcionalidad del control. Alternativas de selección:<br>
+              * Efectivo<br>
+              * No efectivo<br>
+              * No probado<br>
+              NOTA: De acuerdo a la metodología del Grupo, las pruebas de funcionalidad no pueden ser realizadas sobre
+              controles que en su diseño fueron no efectivos o que requieren mejora. En estos casos, de colocar un
+              resultado de pruebas de funcionalidad la celda resalta el error en automático."
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">44</th>
+            <td class="azul-marino">Calificación del control (0% a 99%)</td>
+            <td class="gris">Celda formulada</td>
+            <td>Valor numérico del desempeño del control, conformado por su diseño y funcionalidad.</td>
+          </tr>
+          <tr>
+            <th scope="row">45</th>
+            <td class="azul-marino">Cobertura individual por Control</td>
+            <td>Registro Manual</td>
+            <td>"Porcentaje de "contribución"" de cada control individual a la mitigación del riesgo, determinado a
+              partir de la alieación a las causas. Se sugiere la siguiente escala como referencia, aunque se puede
+              colocar cualquier porcentaje del 0% al 100%. La actividad de control está, respecto a las causas del
+              riesgo:<br>
+              No alineada..............................0%<br>
+              Muy poco alineada.................20%<br>
+              Poco alineada........................40%<br>
+              Medianamente alineada.........60%<br>
+              Muy alineada..........................80%<br>
+              Totalmente alineada.............100%<br>
+              En caso de que la contribución esté repartida entre 2 o más controles, distribuir el porcentaje de
+              cobertura, sin exceder el 100% en la sumatoria. Se recomienda, para este caso, colocar con mayor peso:
+              <br><br>
+              * Controles automáticos<br>
+              * Revisiones por parte de órganos de gobierno<br>
+              * Controles Nivel Entidad"
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">46</th>
+            <td class="azul-marino">Cobertura ponderada por control (Calificación x cobertura)</td>
+            <td class="gris">Celda formulada</td>
+            <td>Producto de la combinación de la Calificación del control con la Cobertura individual de cada control.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" id="14" style="display: none;">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">#<br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-short" id="regresar-tabla13" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+              </svg>
+            </th>
+            <th scope="col" class="encabezado">Concepto</th>
+            <th scope="col" class="encabezado">Tipo</th>
+            <th scope="col" class="encabezado">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">47</th>
+            <td class="azul-marino">Cobertura del conjunto de controles</td>
+            <td rowspan="2" class="gris">Celda formulada</td>
+            <td rowspan="2">"Sumatoria de las Coberturas ponderadas por control.<br>
+              a) Total……………………….De 80% a 99%<br>
+              b) Alto……………………...…De 60% a 80%<br>
+              c) Medio……………………...De 40% a 60%<br>
+              d) Bajo…………………..…...De 20% a 40%<br>
+              e) Ausencia de control……...De 0% a 20%"
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">48</th>
+            <td class="azul-marino">Nivel de cobertura del conjunto de controles</td>
+          </tr>
+          <tr>
+            <th scope="row">49</th>
+            <td class="naranja">Gravedad Riesgo Residual</td>
+            <td class="gris">Celda formulada</td>
+            <td>Considera la gravedad del Riesgo Inherente, atenuada por la Cobertura del conjunto de controles.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">50</th>
+            <td class="naranja">Tratamiento del Riesgo</td>
+            <td>Lista desplegable</td>
+            <td>"Alternativa de respuesta ante el riesgo, determinada por el dueño del proceso, la cual puede ser:<br>
+              a) Reducir<br>
+              b) Transferir<br>
+              c) Evitar<br>
+              d) Aceptar"<br>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">51</th>
+            <td class="morado">Observaciones</td>
+            <td>Registro manual</td>
+            <td>En esta sección se documentan las sugerencias del área de Control Interno para el fortalecimiento de
+              controles y administración del riesgo.</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--Divs de referencia para usar un mismo archivo javascript (Ideal: usar dos arvhics tipo js)-->
+      <div id="ir-tabla-11"></div>
+      <div id="ir-tabla-12"></div>
+      <div id="ir-tabla-13"></div>
+      <div id="regresar-tablita"></div>
+      <div id="regresar-tabla10"></div>
+      <div id="regresar-tabla11"></div>
+    </div>
+    <!--Cierre de tag div abierta en el side bar para poner el contenido en una solo columna-->
+    </div>
+
+    <!--Sript manejador de mostrar y ocultar tablas-->
+    <script src="/js/mostrar-tablas.js"></script>

@@ -1,0 +1,1116 @@
+<!--Referencias a estilos (Bootstrap, JQuery y diseño de las tablas)-->
+<link href="/estilos/sidebars.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!-- Modal para llenado de riesgo -->
+<div class="modal fade" id="modalRiesgo" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para añadir un Riesgo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col">
+              <!--Cambiar esto por los macros, proceos y subproceso de la bd-->
+              <p class="text-center fw-bold">Macroproceso adjunto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="macroproceso" name="macroproceso" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Concepto al Producto">Concepto al Producto</option>
+                  <option value="Compra al Pago">Compra al Pago</option>
+                  <option value="Demanda al Abasto">Demanda al Abasto</option>
+                  <option value="Pedido al Cobro">Pedido al Cobro</option>
+                  <option value=">Mantenimiento a la Liquidación">Mantenimiento a la Liquidación</option>
+                  <option value="Inversión a la Desinversión">Inversión a la Desinversión</option>
+                  <option value="Finanzas a la Administración">Finanzas a la Administración</option>
+                  <option value="Contratación al Retiro">Contratación al Retiro</option>
+                  <option value="Procesos Criticos fuera de Macros">Procesos Criticos fuera de Macros</option>
+                </select>
+                <label for="floatingSelect">Seleccione un macroproceso
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <!--Cambiar esto por los macros, proceos y subproceso de la bd-->
+              <p class="text-center fw-bold">Proceso adjunto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="proceso" name="proceso" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Definición y Clarificación de las Necesidades del Cliente">Definición y Clarificación
+                    de las Necesidades del Cliente</option>
+                  <option value="Conceptualización">Conceptualización</option>
+                  <option value="Desarrollo">Desarrollo</option>
+                  <option value="Producción y Soporte">Producción y Soporte</option>
+                  <option value="Requerimientos y Selección de Proveedores">Requerimientos y Selección de Proveedores
+                  </option>
+                  <option value="Orden de Compra">Orden de Compra</option>
+                  <option value="Recepción de Bienes y Servicios">Recepción de Bienes y Servicios</option>
+                  <option value="Administración de Cuentas por Pagar">Administración de Cuentas por Pagar</option>
+                  <option value="Pronóstico de la demanda y abastecimiento">Pronóstico de la demanda y abastecimiento
+                  </option>
+                  <option value="Planeación y programación de la producción">Planeación y programación de la producción
+                  </option>
+                  <option value="Solicitud de reserva de recursos">Solicitud de reserva de recursos</option>
+                  <option value="Producción y aseguramiento de Calidad  ">Producción y aseguramiento de Calidad
+                  </option>
+                  <option value="Administración de inventarios">Administración de inventarios</option>
+                  <option value="Órdenes de Venta">Órdenes de Venta</option>
+                  <option value="Distribución del Producto (Packing, Picking)">Distribución del Producto (Packing,
+                    Picking)</option>
+                  <option value="Facturación">Facturación</option>
+                  <option value="Administración de la Cuenta por Cobra">Administración de la Cuenta por Cobra</option>
+                  <option value="Planes de Mantenimiento">Planes de Mantenimiento</option>
+                  <option value="Identificación de Trabajo">Identificación de Trabajo</option>
+                  <option value="Planeación y Ejecución de Trabajos">Planeación y Ejecución de Trabajos</option>
+                  <option value="Administración de Liquidación de Trabajos">Administración de Liquidación de Trabajos
+                  </option>
+                  <option value="Detección de Necesidad y Solicitud de inversiones">Detección de Necesidad y Solicitud
+                    de inversiones</option>
+                  <option value="Desinversión de Activos Fijos">Desinversión de Activos Fijos</option>
+                  <option value="Cierre de Activos Fijos">Cierre de Activos Fijos</option>
+                  <option value="Definición de Estructura y Planes Financieros">Definición de Estructura y Planes
+                    Financieros</option>
+                  <option value="Registro y Contabilización">Registro y Contabilización</option>
+                  <option value="Cierres Financieros">Cierres Financieros</option>
+                  <option value="Reporte de Resultados">Reporte de Resultados</option>
+                  <option value="Soporte y Cumplimiento">Soporte y Cumplimiento</option>
+                  <option value="Atracción de Talento">Atracción de Talento</option>
+                  <option value="Desarrollo de Talento">Desarrollo de Talento</option>
+                  <option value="Administración de personal">Administración de personal</option>
+                  <option value="Planeación, Compensaciones y Beneficios">Planeación, Compensaciones y Beneficios
+                  </option>
+                  <option value="Retiro">Retiro</option>
+                  <option value="Procesos Críticos fuera de Macros">Procesos Críticos fuera de Macros</option>
+                </select>
+                <label for="floatingSelect">Seleccione un proceso</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <!--Cambiar esto por los macros, proceos y subproceso de la bd-->
+              <p class="text-center fw-bold">Subproceso adjunto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="subproceso" name="subproceso" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="RFQ Recibido y Confirmado">RFQ Recibido y Confirmado</option>
+                  <option value="Cotización Interna de Nuevos Proyectos">Cotización Interna de Nuevos Proyectos</option>
+                  <option value="Realización del Estudio de Factibilidad">Realización del Estudio de Factibilidad
+                  </option>
+                  <option value="Conceptualización del Estudio de PCRS">Conceptualización del Estudio de PCRS</option>
+                  <option value=">Entrega de Cotización al Cliente">Entrega de Cotización al Cliente</option>
+                  <option value="Aceptación de Cotización por Parte del Cliente ">Aceptación de Cotización por Parte del
+                    Cliente </option>
+                  <option value="Definición de SE- TEAM y PL">Definición de SE- TEAM y PL</option>
+                  <option value="Creación y Administración del Presupuesto">Creación y Administración del Presupuesto
+                  </option>
+                  <option value="Quality Gate 2">Quality Gate 2</option>
+                  <option value="Revisión Técnica Finalizada">Revisión Técnica Finalizada</option>
+                  <option value="Realización de Simulaciones CAX">Realización de Simulaciones CAX</option>
+                  <option value="Concepto de Logística y Empaque">Concepto de Logística y Empaque</option>
+                  <option value="Definición de Concepto Técnico">Definición de Concepto Técnico</option>
+                  <option value="Selección de Proveedores para Nuevos Proyectos">Selección de Proveedores para Nuevos
+                    Proyectos</option>
+                  <option value="Quality Gate 3">Quality Gate 3</option>
+                  <option value="Congelar Diseño del Producto">Congelar Diseño del Producto</option>
+                  <option value="Quality Gate 4">Quality Gate 4</option>
+                  <option value="Aprobación de Diseño de Herramentales de Serie">Aprobación de Diseño de Herramentales
+                    de Serie</option>
+                  <option value="Aprobación de Herramentales de Serie">Aprobación de Herramentales de Serie</option>
+                  <option value="Aprobación del proceso PPAP">Aprobación del proceso PPAP</option>
+                  <option value="Emisión de Reporte QCD">Emisión de Reporte QCD</option>
+                  <option value="Quality Gate 5">Quality Gate 5</option>
+                  <option value="Análisis de Rentabilidad del Producto">Análisis de Rentabilidad del Producto</option>
+                  <option value="Aseguramiento de Calidad de Proveedores">Aseguramiento de Calidad de Proveedores
+                  </option>
+                  <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+                  <option value="Revisión del Costo y Actualización de la Cotización">Revisión del Costo y Actualización
+                    de la Cotización</option>
+                  <option value="Evaluación de Quality Gates">Evaluación de Quality Gates</option>
+                  <option value="Quality Gate 6">Quality Gate 6</option>
+                  <option value="Requerimientos">Requerimientos</option>
+                  <option value="Cotizaciones">Cotizaciones</option>
+                  <option value="Autorización de Solicitudes de Pedido">Autorización de Solicitudes de Pedido</option>
+                  <option value="Selección y Alta de Proveedores">Selección y Alta de Proveedores</option>
+                  <option value="Trámites de Agentes Aduanales y/o Comercio Exterior">Trámites de Agentes Aduanales y/o
+                    Comercio Exterior</option>
+                  <option value="Elaboración y Seguimiento al Presupuesto de Compra">Elaboración y Seguimiento al
+                    Presupuesto de Compra</option>
+                  <option value="Creación / Actualización de Datos Maestros de Compras">Creación / Actualización de
+                    Datos Maestros de Compras</option>
+                  <option value="Mantenimiento de Precios">Mantenimiento de Precios</option>
+                  <option value="Definición de Estrategias">Definición de Estrategias</option>
+                  <option value="Actualización de Sistemas de Comercio Exterior">Actualización de Sistemas de Comercio
+                    Exterior</option>
+                  <option value="Reporte Programas de Fomento">Reporte Programas de Fomento</option>
+                  <option value="Creación y Liberación de Documentos de Compra">Creación y Liberación de Documentos de
+                    Compra</option>
+                  <option value="Tránsito de Entrada Nacional e Importación">Tránsito de Entrada Nacional e Importación
+                  </option>
+                  <option value="Proceso Maquila">Proceso Maquila</option>
+                  <option value="Aviso de Opción para la Determinación del Seguro Global de Transporte">Aviso de Opción
+                    para la Determinación del Seguro Global de Transporte</option>
+                  <option value="Pedimentos Virtuales - Importación">Pedimentos Virtuales - Importación</option>
+                  <option value="Recibo de Material y Servicios">Recibo de Material y Servicios</option>
+                  <option value="Inspección Recibo y Laboratorio de Pruebas">Inspección Recibo y Laboratorio de Pruebas
+                  </option>
+                  <option value="Gestión de Materiales en Cuarentena">Gestión de Materiales en Cuarentena</option>
+                  <option value="Evaluación de Desempeño de Proveedores">Evaluación de Desempeño de Proveedores</option>
+                  <option value="Seguimiento a Proveedores">Seguimiento a Proveedores</option>
+                  <option value="Verificación de Facturas">Verificación de Facturas</option>
+                  <option value="Propuesta de Pagos">Propuesta de Pagos</option>
+                  <option value="Realización de Pagos">Realización de Pagos</option>
+                  <option value="Trámite de Cuentas de Gastos y Archivo Aduanero">Trámite de Cuentas de Gastos y Archivo
+                    Aduanero</option>
+                  <option value="Devolución a Proveedores y Cargos">Devolución a Proveedores y Cargos</option>
+                  <option value="Elaboración de Proyección y Presupuesto anual de Ventas">Elaboración de Proyección y
+                    Presupuesto anual de Ventas</option>
+                  <option value="Análisis de la variación de requerimientos ">Análisis de la variación de requerimientos
+                  </option>
+                  <option value="Desarrollo del Sistema Logístico">Desarrollo del Sistema Logístico</option>
+                  <option value="Planeación de la Producción corto plazo ">Planeación de la Producción corto plazo
+                  </option>
+                  <option value="Planeación y Reabastecimiento de Materiales mediano plazo">Planeación y
+                    Reabastecimiento de Materiales mediano plazo</option>
+                  <option value="Planeación y Reabastecimiento de Materiales largo plazo">Planeación y Reabastecimiento
+                    de Materiales largo plazo</option>
+                  <option value="Gestión de Liberación de Procesos">Gestión de Liberación de Procesos</option>
+                  <option value="Gestión del Control del Proceso">Gestión del Control del Proceso</option>
+                  <option value="Gestión del Proceso de Medición del Producto">Gestión del Proceso de Medición del
+                    Producto</option>
+                  <option value="Ejecución del Plan de Producción">Ejecución del Plan de Producción</option>
+                  <option value="Tratamiento de Material de Retorno">Tratamiento de Material de Retorno</option>
+                  <option value="Gestión de Ingeniería de Procesos (Documentación)">Gestión de Ingeniería de Procesos
+                    (Documentación)</option>
+                  <option value="Gestión de Certificación 100% y Retrabajos">Gestión de Certificación 100% y Retrabajos
+                  </option>
+                  <option value="Surtimiento Producción MP/COMP/EMP/WIP">Surtimiento Producción MP/COMP/EMP/WIP</option>
+                  <option value="Surtimiento de Químicos y Material Indirecto">Surtimiento de Químicos y Material
+                    Indirecto</option>
+                  <option value="Notificación de Material">Notificación de Material</option>
+                  <option value="Almacenamiento y disposición de residuos">Almacenamiento y disposición de residuos
+                  </option>
+                  <option value="Recolección Scrap">Recolección Scrap</option>
+                  <option value="Inventarios Físicos">Inventarios Físicos</option>
+                  <option value="Ejecución de reportes">Ejecución de reportes</option>
+                  <option value="Recepción y Carga de Requerimientos">Recepción y Carga de Requerimientos</option>
+                  <option value="Cálculo de Origen">Cálculo de Origen</option>
+                  <option value="Tráfico">Tráfico</option>
+                  <option value="Embarques">Embarques</option>
+                  <option value="Facturación No Productivo / Intercompañías">Facturación No Productivo / Intercompañías
+                  </option>
+                  <option value="Atención Cliente">Atención Cliente</option>
+                  <option value="Solicitud de notas de crédito y cargo">Solicitud de notas de crédito y cargo</option>
+                  <option value="Devolución de Material">Devolución de Material</option>
+                  <option value="Gestión de Garantías">Gestión de Garantías</option>
+                  <option value="Pedimentos Virtuales - Exportación">Pedimentos Virtuales - Exportación</option>
+                  <option value="Aplicación y Gestión de Cobranza">Aplicación y Gestión de Cobranza</option>
+                  <option value="Gestión de Datos Maestros de Mantenimiento">Gestión de Datos Maestros de Mantenimiento
+                  </option>
+                  <option value="Talleres TPM">Talleres TPM</option>
+                  <option value="Tratamiento de Planes de acciones correctivas">Tratamiento de Planes de acciones
+                    correctivas</option>
+                  <option value="Gestión de Avisos">Gestión de Avisos</option>
+                  <option value="Gestión de Mantenimiento">Gestión de Mantenimiento</option>
+                  <option value="Gestión de Herramientas de corte">Gestión de Herramientas de corte</option>
+                  <option value="Cierre de Mantenimiento">Cierre de Mantenimiento</option>
+                  <option value="Gestión de Ingeniería de Procesos y Desarrollo de Planta">Gestión de Ingeniería de
+                    Procesos y Desarrollo de Planta</option>
+                  <option value="Gestión de Instrumentos de Medición">Gestión de Instrumentos de Medición</option>
+                  <option value="Ejecución de Reportes de Mantenimiento">Ejecución de Reportes de Mantenimiento</option>
+                  <option value="Necesidad de Inversión">Necesidad de Inversión</option>
+                  <option value="Gestión de Alta para Activo Fijo">Gestión de Alta para Activo Fijo</option>
+                  <option value="Capitalización de Activo Fijo">Capitalización de Activo Fijo</option>
+                  <option value="Inventario Cíclico de Activo Fijo">Inventario Cíclico de Activo Fijo</option>
+                  <option value="Seguimiento a Presupuesto y Suplementos de Inversiones">Seguimiento a Presupuesto y
+                    Suplementos de Inversiones</option>
+                  <option value="Bajas de Activos Fijos">Bajas de Activos Fijos</option>
+                  <option value="Traspasos de Activos Fijos en la misma Sociedad">Traspasos de Activos Fijos en la misma
+                    Sociedad</option>
+                  <option value="Cierre (Mensual, Anual) de Activo Fijo">Cierre (Mensual, Anual) de Activo Fijo</option>
+                  <option value="Definición de estructuras organizativas">Definición de estructuras organizativas
+                  </option>
+                  <option value="Preparación de presupuesto anual">Preparación de presupuesto anual</option>
+                  <option value="Determinación de tarifas y cálculo del costo">Determinación de tarifas y cálculo del
+                    costo</option>
+                  <option value="Pólizas de diario">Pólizas de diario</option>
+                  <option value="Conciliaciones bancarias">Conciliaciones bancarias</option>
+                  <option value="Gestión de gastos de viaje">Gestión de gastos de viaje</option>
+                  <option value="Cierre de mes Finanzas">Cierre de mes Finanzas</option>
+                  <option value="Cierre de mes costos">Cierre de mes costos</option>
+                  <option value="Consolidación Financiera">Consolidación Financiera</option>
+                  <option value="Generación de reportes mensual y anual">Generación de reportes mensual y anual</option>
+                  <option value="Determinación de pago de impuestos y requerimientos legales">Determinación de pago de
+                    impuestos y requerimientos legales</option>
+                  <option value="Atracción y Selección de Talento">Atracción y Selección de Talento</option>
+                  <option value="Capacitación y Adiestramiento">Capacitación y Adiestramiento</option>
+                  <option value="Evaluación del Desempeño del personal">Evaluación del Desempeño del personal</option>
+                  <option value="Plan de Desarrollo">Plan de Desarrollo</option>
+                  <option value="Movimientos de personal">Movimientos de personal</option>
+                  <option value="Atención al personal">Atención al personal</option>
+                  <option value="Incidencias">Incidencias</option>
+                  <option value="Puntualidad y Asistencia del Personal">Puntualidad y Asistencia del Personal</option>
+                  <option value="Gestión del Clima Organizacional">Gestión del Clima Organizacional</option>
+                  <option value="Comunicación Organizacional">Comunicación Organizacional</option>
+                  <option value="Salud ocupacional">Salud ocupacional</option>
+                  <option value="Administración de Comedor">Administración de Comedor</option>
+                  <option value="Cálculo de Nómina">Cálculo de Nómina</option>
+                  <option value="Nóminas Especiales">Nóminas Especiales</option>
+                  <option value="Obligaciones patronales">Obligaciones patronales</option>
+                  <option value="Contabilización y Pago de Nómina">Contabilización y Pago de Nómina</option>
+                  <option value="Planeación de la Organización">Planeación de la Organización</option>
+                  <option value="Remuneraciones">Remuneraciones</option>
+                  <option value="Control de Vehículos">Control de Vehículos</option>
+                  <option value="Transferencia de Personal al Extranjero">Transferencia de Personal al Extranjero
+                  </option>
+                  <option value="Retiro">Retiro</option>
+                  <option value="Gobierno Corporativo">Gobierno Corporativo</option>
+                  <option value="Planeación Estratégica">Planeación Estratégica</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Seguridad Patrimonial">Seguridad Patrimonial</option>
+                  <option value="TI">TI</option>
+                  <option value="CTO">CTO</option>
+                  <option value="Gestión de Riesgos">Gestión de Riesgos</option>
+                  <option value="Segregación de Funciones SAP (SOD SAP)">Segregación de Funciones SAP (SOD SAP)</option>
+                  <option value="Compliance">Compliance</option>
+                  <option value="Bocar US (RH, Finanzas, Compras)">Bocar US (RH, Finanzas, Compras)</option>
+                  <option value="HSE">HSE</option>
+                </select>
+                <label for="floatingSelect">Seleccione un subproceso</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bolder">ID del Riesgo</p>
+              <div class="form-floating">
+                <input type="text" class="form-control" name="idRiesgo" placeholder="ID Riesgo">
+                <label for="floatingInput">ID Riesgo</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="descripción" placeholder="Descripción del Riesgo">
+                <label for="floatingInput">Descripción del Riesgo</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="causa" placeholder="Causa">
+                <label for="floatingInput">Causa</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="consecuencia" placeholder="Consecuencia">
+                <label for="floatingInput">Consecuencia</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">Tipo de Evento</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="tipoEvento" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Eficiencia,Calidad y Productividad">Eficiencia,Calidad y Productividad</option>
+                  <option value="Fraude Interno">Fraude Interno</option>
+                  <option value="Gobierno, Político y Económico">Gobierno, Político y Económico</option>
+                  <option value="Información Contable y Financiera">Información Contable y Financiera</option>
+                  <option value=">Modelo de Negocios y Estrategias">Modelo de Negocios y Estrategias</option>
+                  <option value="Segregación de funciones">Segregación de funciones</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Tipo de Riesgo</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="tipoRiesgo" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Estratégico">Estratégico</option>
+                  <option value="Financiero">Financiero</option>
+                  <option value="Fraude">Fraude</option>
+                  <option value="Operacional">Operacional</option>
+                  <option value="Tecnologico">Tecnologico</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+          </div>
+          <p class="text-center fw-bolder fs-5">Importancia relativa</p>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">IF</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="if" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Muy Alto">Muy Alto</option>
+                  <option value="Alto">Alto</option>
+                  <option value="Medio">Medio</option>
+                  <option value="Bajo">Bajo</option>
+                  <option value="Muy Bajo">Muy Bajo</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">IC</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="ic" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Muy Alto">Muy Alto</option>
+                  <option value="Alto">Alto</option>
+                  <option value="Medio">Medio</option>
+                  <option value="Bajo">Bajo</option>
+                  <option value="Muy Bajo">Muy Bajo</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">IO</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="io" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Muy Alto">Muy Alto</option>
+                  <option value="Alto">Alto</option>
+                  <option value="Medio">Medio</option>
+                  <option value="Bajo">Bajo</option>
+                  <option value="Muy Bajo">Muy Bajo</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">Riesgo de Fraude</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="riesgoFraude" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Probabilidad</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="probabilidad" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Alta">Alta</option>
+                  <option value="Media">Media</option>
+                  <option value="Baja">Baja</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Impacto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="riesgoFraude" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Crítico">Crítico</option>
+                  <option value="Importante">Importante</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <form action="/registro">
+          <button type="submit" class="btn btn-primary">Añadir Riesgo</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal para llenado de control de riesgo -->
+<div class="modal fade" id="modalControl" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="modalRiesgoLabel">Llene los campos para añadir un control de riesgo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col">
+              <!--Cambiar esto por los macros, proceos y subproceso de la bd-->
+              <p class="text-center fw-bold">Macro proceso adjunto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="macroproceso" name="macroproceso" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Concepto al Producto">Concepto al Producto</option>
+                  <option value="Compra al Pago">Compra al Pago</option>
+                  <option value="Demanda al Abasto">Demanda al Abasto</option>
+                  <option value="Pedido al Cobro">Pedido al Cobro</option>
+                  <option value=">Mantenimiento a la Liquidación">Mantenimiento a la Liquidación</option>
+                  <option value="Inversión a la Desinversión">Inversión a la Desinversión</option>
+                  <option value="Finanzas a la Administración">Finanzas a la Administración</option>
+                  <option value="Contratación al Retiro">Contratación al Retiro</option>
+                  <option value="Procesos Criticos fuera de Macros">Procesos Criticos fuera de Macros</option>
+                </select>
+                <label for="floatingSelect">Seleccione un macro proceso</label>
+              </div>
+            </div>
+            <div class="col">
+              <!--Cambiar esto por los macros, procesos y subproceso de la bd-->
+              <p class="text-center fw-bold">Proceso adjunto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="proceso" name="proceso" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Definición y Clarificación de las Necesidades del Cliente">Definición y Clarificación
+                    de las Necesidades del Cliente</option>
+                  <option value="Conceptualización">Conceptualización</option>
+                  <option value="Desarrollo">Desarrollo</option>
+                  <option value="Producción y Soporte">Producción y Soporte</option>
+                  <option value="Requerimientos y Selección de Proveedores">Requerimientos y Selección de Proveedores
+                  </option>
+                  <option value="Orden de Compra">Orden de Compra</option>
+                  <option value="Recepción de Bienes y Servicios">Recepción de Bienes y Servicios</option>
+                  <option value="Administración de Cuentas por Pagar">Administración de Cuentas por Pagar</option>
+                  <option value="Pronóstico de la demanda y abastecimiento">Pronóstico de la demanda y abastecimiento
+                  </option>
+                  <option value="Planeación y programación de la producción">Planeación y programación de la producción
+                  </option>
+                  <option value="Solicitud de reserva de recursos">Solicitud de reserva de recursos</option>
+                  <option value="Producción y aseguramiento de Calidad  ">Producción y aseguramiento de Calidad
+                  </option>
+                  <option value="Administración de inventarios">Administración de inventarios</option>
+                  <option value="Órdenes de Venta">Órdenes de Venta</option>
+                  <option value="Distribución del Producto (Packing, Picking)">Distribución del Producto (Packing,
+                    Picking)</option>
+                  <option value="Facturación">Facturación</option>
+                  <option value="Administración de la Cuenta por Cobra">Administración de la Cuenta por Cobra</option>
+                  <option value="Planes de Mantenimiento">Planes de Mantenimiento</option>
+                  <option value="Identificación de Trabajo">Identificación de Trabajo</option>
+                  <option value="Planeación y Ejecución de Trabajos">Planeación y Ejecución de Trabajos</option>
+                  <option value="Administración de Liquidación de Trabajos">Administración de Liquidación de Trabajos
+                  </option>
+                  <option value="Detección de Necesidad y Solicitud de inversiones">Detección de Necesidad y Solicitud
+                    de inversiones</option>
+                  <option value="Desinversión de Activos Fijos">Desinversión de Activos Fijos</option>
+                  <option value="Cierre de Activos Fijos">Cierre de Activos Fijos</option>
+                  <option value="Definición de Estructura y Planes Financieros">Definición de Estructura y Planes
+                    Financieros</option>
+                  <option value="Registro y Contabilización">Registro y Contabilización</option>
+                  <option value="Cierres Financieros">Cierres Financieros</option>
+                  <option value="Reporte de Resultados">Reporte de Resultados</option>
+                  <option value="Soporte y Cumplimiento">Soporte y Cumplimiento</option>
+                  <option value="Atracción de Talento">Atracción de Talento</option>
+                  <option value="Desarrollo de Talento">Desarrollo de Talento</option>
+                  <option value="Administración de personal">Administración de personal</option>
+                  <option value="Planeación, Compensaciones y Beneficios">Planeación, Compensaciones y Beneficios
+                  </option>
+                  <option value="Retiro">Retiro</option>
+                  <option value="Procesos Críticos fuera de Macros">Procesos Críticos fuera de Macros</option>
+                </select>
+                <label for="floatingSelect">Seleccione un proceso</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <!--Cambiar esto por los macros, proceos y subproceso de la bd-->
+              <p class="text-center fw-bold">Subproceso adjunto</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="subproceso" name="subproceso" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="RFQ Recibido y Confirmado">RFQ Recibido y Confirmado</option>
+                  <option value="Cotización Interna de Nuevos Proyectos">Cotización Interna de Nuevos Proyectos</option>
+                  <option value="Realización del Estudio de Factibilidad">Realización del Estudio de Factibilidad
+                  </option>
+                  <option value="Conceptualización del Estudio de PCRS">Conceptualización del Estudio de PCRS</option>
+                  <option value=">Entrega de Cotización al Cliente">Entrega de Cotización al Cliente</option>
+                  <option value="Aceptación de Cotización por Parte del Cliente ">Aceptación de Cotización por Parte del
+                    Cliente </option>
+                  <option value="Definición de SE- TEAM y PL">Definición de SE- TEAM y PL</option>
+                  <option value="Creación y Administración del Presupuesto">Creación y Administración del Presupuesto
+                  </option>
+                  <option value="Quality Gate 2">Quality Gate 2</option>
+                  <option value="Revisión Técnica Finalizada">Revisión Técnica Finalizada</option>
+                  <option value="Realización de Simulaciones CAX">Realización de Simulaciones CAX</option>
+                  <option value="Concepto de Logística y Empaque">Concepto de Logística y Empaque</option>
+                  <option value="Definición de Concepto Técnico">Definición de Concepto Técnico</option>
+                  <option value="Selección de Proveedores para Nuevos Proyectos">Selección de Proveedores para Nuevos
+                    Proyectos</option>
+                  <option value="Quality Gate 3">Quality Gate 3</option>
+                  <option value="Congelar Diseño del Producto">Congelar Diseño del Producto</option>
+                  <option value="Quality Gate 4">Quality Gate 4</option>
+                  <option value="Aprobación de Diseño de Herramentales de Serie">Aprobación de Diseño de Herramentales
+                    de Serie</option>
+                  <option value="Aprobación de Herramentales de Serie">Aprobación de Herramentales de Serie</option>
+                  <option value="Aprobación del proceso PPAP">Aprobación del proceso PPAP</option>
+                  <option value="Emisión de Reporte QCD">Emisión de Reporte QCD</option>
+                  <option value="Quality Gate 5">Quality Gate 5</option>
+                  <option value="Análisis de Rentabilidad del Producto">Análisis de Rentabilidad del Producto</option>
+                  <option value="Aseguramiento de Calidad de Proveedores">Aseguramiento de Calidad de Proveedores
+                  </option>
+                  <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+                  <option value="Revisión del Costo y Actualización de la Cotización">Revisión del Costo y Actualización
+                    de la Cotización</option>
+                  <option value="Evaluación de Quality Gates">Evaluación de Quality Gates</option>
+                  <option value="Quality Gate 6">Quality Gate 6</option>
+                  <option value="Requerimientos">Requerimientos</option>
+                  <option value="Cotizaciones">Cotizaciones</option>
+                  <option value="Autorización de Solicitudes de Pedido">Autorización de Solicitudes de Pedido</option>
+                  <option value="Selección y Alta de Proveedores">Selección y Alta de Proveedores</option>
+                  <option value="Trámites de Agentes Aduanales y/o Comercio Exterior">Trámites de Agentes Aduanales y/o
+                    Comercio Exterior</option>
+                  <option value="Elaboración y Seguimiento al Presupuesto de Compra">Elaboración y Seguimiento al
+                    Presupuesto de Compra</option>
+                  <option value="Creación / Actualización de Datos Maestros de Compras">Creación / Actualización de
+                    Datos Maestros de Compras</option>
+                  <option value="Mantenimiento de Precios">Mantenimiento de Precios</option>
+                  <option value="Definición de Estrategias">Definición de Estrategias</option>
+                  <option value="Actualización de Sistemas de Comercio Exterior">Actualización de Sistemas de Comercio
+                    Exterior</option>
+                  <option value="Reporte Programas de Fomento">Reporte Programas de Fomento</option>
+                  <option value="Creación y Liberación de Documentos de Compra">Creación y Liberación de Documentos de
+                    Compra</option>
+                  <option value="Tránsito de Entrada Nacional e Importación">Tránsito de Entrada Nacional e Importación
+                  </option>
+                  <option value="Proceso Maquila">Proceso Maquila</option>
+                  <option value="Aviso de Opción para la Determinación del Seguro Global de Transporte">Aviso de Opción
+                    para la Determinación del Seguro Global de Transporte</option>
+                  <option value="Pedimentos Virtuales - Importación">Pedimentos Virtuales - Importación</option>
+                  <option value="Recibo de Material y Servicios">Recibo de Material y Servicios</option>
+                  <option value="Inspección Recibo y Laboratorio de Pruebas">Inspección Recibo y Laboratorio de Pruebas
+                  </option>
+                  <option value="Gestión de Materiales en Cuarentena">Gestión de Materiales en Cuarentena</option>
+                  <option value="Evaluación de Desempeño de Proveedores">Evaluación de Desempeño de Proveedores</option>
+                  <option value="Seguimiento a Proveedores">Seguimiento a Proveedores</option>
+                  <option value="Verificación de Facturas">Verificación de Facturas</option>
+                  <option value="Propuesta de Pagos">Propuesta de Pagos</option>
+                  <option value="Realización de Pagos">Realización de Pagos</option>
+                  <option value="Trámite de Cuentas de Gastos y Archivo Aduanero">Trámite de Cuentas de Gastos y Archivo
+                    Aduanero</option>
+                  <option value="Devolución a Proveedores y Cargos">Devolución a Proveedores y Cargos</option>
+                  <option value="Elaboración de Proyección y Presupuesto anual de Ventas">Elaboración de Proyección y
+                    Presupuesto anual de Ventas</option>
+                  <option value="Análisis de la variación de requerimientos ">Análisis de la variación de requerimientos
+                  </option>
+                  <option value="Desarrollo del Sistema Logístico">Desarrollo del Sistema Logístico</option>
+                  <option value="Planeación de la Producción corto plazo ">Planeación de la Producción corto plazo
+                  </option>
+                  <option value="Planeación y Reabastecimiento de Materiales mediano plazo">Planeación y
+                    Reabastecimiento de Materiales mediano plazo</option>
+                  <option value="Planeación y Reabastecimiento de Materiales largo plazo">Planeación y Reabastecimiento
+                    de Materiales largo plazo</option>
+                  <option value="Gestión de Liberación de Procesos">Gestión de Liberación de Procesos</option>
+                  <option value="Gestión del Control del Proceso">Gestión del Control del Proceso</option>
+                  <option value="Gestión del Proceso de Medición del Producto">Gestión del Proceso de Medición del
+                    Producto</option>
+                  <option value="Ejecución del Plan de Producción">Ejecución del Plan de Producción</option>
+                  <option value="Tratamiento de Material de Retorno">Tratamiento de Material de Retorno</option>
+                  <option value="Gestión de Ingeniería de Procesos (Documentación)">Gestión de Ingeniería de Procesos
+                    (Documentación)</option>
+                  <option value="Gestión de Certificación 100% y Retrabajos">Gestión de Certificación 100% y Retrabajos
+                  </option>
+                  <option value="Surtimiento Producción MP/COMP/EMP/WIP">Surtimiento Producción MP/COMP/EMP/WIP</option>
+                  <option value="Surtimiento de Químicos y Material Indirecto">Surtimiento de Químicos y Material
+                    Indirecto</option>
+                  <option value="Notificación de Material">Notificación de Material</option>
+                  <option value="Almacenamiento y disposición de residuos">Almacenamiento y disposición de residuos
+                  </option>
+                  <option value="Recolección Scrap">Recolección Scrap</option>
+                  <option value="Inventarios Físicos">Inventarios Físicos</option>
+                  <option value="Ejecución de reportes">Ejecución de reportes</option>
+                  <option value="Recepción y Carga de Requerimientos">Recepción y Carga de Requerimientos</option>
+                  <option value="Cálculo de Origen">Cálculo de Origen</option>
+                  <option value="Tráfico">Tráfico</option>
+                  <option value="Embarques">Embarques</option>
+                  <option value="Facturación No Productivo / Intercompañías">Facturación No Productivo / Intercompañías
+                  </option>
+                  <option value="Atención Cliente">Atención Cliente</option>
+                  <option value="Solicitud de notas de crédito y cargo">Solicitud de notas de crédito y cargo</option>
+                  <option value="Devolución de Material">Devolución de Material</option>
+                  <option value="Gestión de Garantías">Gestión de Garantías</option>
+                  <option value="Pedimentos Virtuales - Exportación">Pedimentos Virtuales - Exportación</option>
+                  <option value="Aplicación y Gestión de Cobranza">Aplicación y Gestión de Cobranza</option>
+                  <option value="Gestión de Datos Maestros de Mantenimiento">Gestión de Datos Maestros de Mantenimiento
+                  </option>
+                  <option value="Talleres TPM">Talleres TPM</option>
+                  <option value="Tratamiento de Planes de acciones correctivas">Tratamiento de Planes de acciones
+                    correctivas</option>
+                  <option value="Gestión de Avisos">Gestión de Avisos</option>
+                  <option value="Gestión de Mantenimiento">Gestión de Mantenimiento</option>
+                  <option value="Gestión de Herramientas de corte">Gestión de Herramientas de corte</option>
+                  <option value="Cierre de Mantenimiento">Cierre de Mantenimiento</option>
+                  <option value="Gestión de Ingeniería de Procesos y Desarrollo de Planta">Gestión de Ingeniería de
+                    Procesos y Desarrollo de Planta</option>
+                  <option value="Gestión de Instrumentos de Medición">Gestión de Instrumentos de Medición</option>
+                  <option value="Ejecución de Reportes de Mantenimiento">Ejecución de Reportes de Mantenimiento</option>
+                  <option value="Necesidad de Inversión">Necesidad de Inversión</option>
+                  <option value="Gestión de Alta para Activo Fijo">Gestión de Alta para Activo Fijo</option>
+                  <option value="Capitalización de Activo Fijo">Capitalización de Activo Fijo</option>
+                  <option value="Inventario Cíclico de Activo Fijo">Inventario Cíclico de Activo Fijo</option>
+                  <option value="Seguimiento a Presupuesto y Suplementos de Inversiones">Seguimiento a Presupuesto y
+                    Suplementos de Inversiones</option>
+                  <option value="Bajas de Activos Fijos">Bajas de Activos Fijos</option>
+                  <option value="Traspasos de Activos Fijos en la misma Sociedad">Traspasos de Activos Fijos en la misma
+                    Sociedad</option>
+                  <option value="Cierre (Mensual, Anual) de Activo Fijo">Cierre (Mensual, Anual) de Activo Fijo</option>
+                  <option value="Definición de estructuras organizativas">Definición de estructuras organizativas
+                  </option>
+                  <option value="Preparación de presupuesto anual">Preparación de presupuesto anual</option>
+                  <option value="Determinación de tarifas y cálculo del costo">Determinación de tarifas y cálculo del
+                    costo</option>
+                  <option value="Pólizas de diario">Pólizas de diario</option>
+                  <option value="Conciliaciones bancarias">Conciliaciones bancarias</option>
+                  <option value="Gestión de gastos de viaje">Gestión de gastos de viaje</option>
+                  <option value="Cierre de mes Finanzas">Cierre de mes Finanzas</option>
+                  <option value="Cierre de mes costos">Cierre de mes costos</option>
+                  <option value="Consolidación Financiera">Consolidación Financiera</option>
+                  <option value="Generación de reportes mensual y anual">Generación de reportes mensual y anual</option>
+                  <option value="Determinación de pago de impuestos y requerimientos legales">Determinación de pago de
+                    impuestos y requerimientos legales</option>
+                  <option value="Atracción y Selección de Talento">Atracción y Selección de Talento</option>
+                  <option value="Capacitación y Adiestramiento">Capacitación y Adiestramiento</option>
+                  <option value="Evaluación del Desempeño del personal">Evaluación del Desempeño del personal</option>
+                  <option value="Plan de Desarrollo">Plan de Desarrollo</option>
+                  <option value="Movimientos de personal">Movimientos de personal</option>
+                  <option value="Atención al personal">Atención al personal</option>
+                  <option value="Incidencias">Incidencias</option>
+                  <option value="Puntualidad y Asistencia del Personal">Puntualidad y Asistencia del Personal</option>
+                  <option value="Gestión del Clima Organizacional">Gestión del Clima Organizacional</option>
+                  <option value="Comunicación Organizacional">Comunicación Organizacional</option>
+                  <option value="Salud ocupacional">Salud ocupacional</option>
+                  <option value="Administración de Comedor">Administración de Comedor</option>
+                  <option value="Cálculo de Nómina">Cálculo de Nómina</option>
+                  <option value="Nóminas Especiales">Nóminas Especiales</option>
+                  <option value="Obligaciones patronales">Obligaciones patronales</option>
+                  <option value="Contabilización y Pago de Nómina">Contabilización y Pago de Nómina</option>
+                  <option value="Planeación de la Organización">Planeación de la Organización</option>
+                  <option value="Remuneraciones">Remuneraciones</option>
+                  <option value="Control de Vehículos">Control de Vehículos</option>
+                  <option value="Transferencia de Personal al Extranjero">Transferencia de Personal al Extranjero
+                  </option>
+                  <option value="Retiro">Retiro</option>
+                  <option value="Gobierno Corporativo">Gobierno Corporativo</option>
+                  <option value="Planeación Estratégica">Planeación Estratégica</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Seguridad Patrimonial">Seguridad Patrimonial</option>
+                  <option value="TI">TI</option>
+                  <option value="CTO">CTO</option>
+                  <option value="Gestión de Riesgos">Gestión de Riesgos</option>
+                  <option value="Segregación de Funciones SAP (SOD SAP)">Segregación de Funciones SAP (SOD SAP)</option>
+                  <option value="Compliance">Compliance</option>
+                  <option value="Bocar US (RH, Finanzas, Compras)">Bocar US (RH, Finanzas, Compras)</option>
+                  <option value="HSE">HSE</option>
+                </select>
+                <label for="floatingSelect">Seleccione un subproceso</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">ID del Control</p>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="idControl" placeholder="ID del Control">
+                <label for="floatingInput">ID del Control</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">General/Proceso</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="probabilidad" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="General">General</option>
+                  <option value="Proceso">Proceso</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Descripción del Control</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="evidencia" placeholder="Evidencia del Control">
+                <label for="floatingInput">Evidencia del Control</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">Segregación de Funciones</p><br>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="segregacionFunciones" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Documentación (Política, manual, procedimiento, etc.)</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="documentacion" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+            <div class="col">
+              <br>
+              <p class="text-center fw-bold">Tipo de Control</p><br>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="tipoControl" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Preventivo">Preventivo</option>
+                  <option value="Detectivo">Detectivo</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+            <div class="col">
+              <br>
+              <p class="text-center fw-bold">Naturaleza adecuada</p><br>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="naturaleza" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">Naturaleza de Control</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="naturalezaControl" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Manual">Manual</option>
+                  <option value="Automático">Automático</option>
+                  <option value="Semi-automático">Semi-automático</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Tipo Adecuado</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="tipoAdecuado" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Frecuencia de Control</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="frecuenciaControl" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Anual">Anual</option>
+                  <option value="Por Evento">Por evento</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Frecuencia adecuada</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="frecuenciaControlAdecuada" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">Responsable del Control</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="responsableControl" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Área de Finanzas">Área de Finanzas</option>
+                  <option value="Controlador de Gestión">Controlador de Gestión</option>
+                  <option value="Controlador de Gestión Divisional">Controlador de Gestión Divisional</option>
+                  <option value="Controlador de Gestión Divisional/Gerente de contabiliadad y Finanzas">Controlador de
+                    Gestión Divisional/Gerente de contabiliadad y Finanzas</option>
+                  <option value="Coordinador de Planeación Financiera">Coordinador de Planeación Financiera</option>
+                  <option value="Director de Finanzas y Administración Grupo">Director de Finanzas y Administración
+                    Grupo</option>
+                  <option value="Gerente de Finanzas y Contabilidad">Gerente de Finanzas y Contabilidad</option>
+                  <option value="Jefe de planeación Financiera">Jefe de planeación Financiera</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Responsabilidad del Control</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="responsabilidadControl" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Generación de Evidencia</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="generadoEvidencia" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-center fw-bold">Control clave</p><br>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="controlClave" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Control diseñado para mitigar fraude</p>
+              <div class="form-floating mb-3">
+                <select class="form-select" name="diseñoMitigado" aria-label="Default select example">
+                  <option selected>...</option>
+                  <option value="Sí">Sí</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="floatingSelect">Seleccione una opción</label>
+              </div>
+            </div>
+            <div class="col">
+              <p class="text-center fw-bold">Cobertura individual por Control (%)</p>
+              <div class="mb-3" style="display: inline-flex;">
+                <button type="button" class="cantidad-menos btn btn-danger btn-number" data-type="minus" data-field="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-dash-square" viewBox="0 0 16 16">
+                    <path
+                      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                  </svg>
+                </button>
+                <input type="text" maxlength="2" id="cantidad" name="coberturaControl" class="form-control input-number"
+                  value="50" min="1" max="100" pattern="[0-9]{2}">
+                <button type="button" class="cantidad-mas btn btn-success btn-number" data-type="plus" data-field="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square" viewBox="0 0 16 16">
+                    <path
+                      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="estrategiaRiesgo"
+                  placeholder="Estrategia de tratamiento del Riesgo ">
+                <label for="floatingInput">Estrategia de tratamiento del Riesgo </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="fw-bold">Responsable(s) del tratamiento del riesgo</p>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="responsable" placeholder="Escriba el/los responsables">
+                <label for="floatingInput">Escriba el/los responsables</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <p class="fw-bold">Descripción/Notas sore el tratamiento del riesgo</p>
+            <div class="mb-3">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <p class="fw-bold">Causas adjuntas</p>
+            <div class="mb-3">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <p class="fw-bold">Observaciones</p>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <form action="/registroControl">
+          <button type="submit" class="btn btn-primary">Añadir Control de Riesgo</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Side bar sección-->
+<div class="row">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+    <a href="/" class="flex-column text-decoration-none text-white text-center">
+      <span class="fs-4 text-center">Matriz de riesgos y controles</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+
+      <li>
+        <a href="/metodologia" class="nav-link text-white" id="tablas">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+          </svg>
+          Tablas Metodología
+        </a>
+      </li>
+      <li>
+        <a href="/matriz" class="nav-link text-white" id="matriz">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-file-bar-graph" viewBox="0 0 16 16">
+            <path
+              d="M4.5 12a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1z" />
+            <path
+              d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+          </svg>
+          Matriz de R&C
+        </a>
+      </li>
+      <li>
+      <li>
+        <a href="/causas" class="nav-link text-white" id="causas">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg>
+          Causas
+        </a>
+      </li>
+      <li>
+        <a href="/criterios" class="nav-link text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
+          </svg>
+          Criterios
+        </a>
+      </li>
+      <li>
+        <a href="/mapaRiesgo" class="nav-link text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map-fill"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z" />
+          </svg>
+          Mapa de Riesgo Inherente
+        </a>
+      </li>
+      <li>
+        <a href="mapaResidual" class="nav-link text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
+          </svg>
+          Mapa de Riesgo Residual
+        </a>
+      </li>
+      <li>
+        <a href="estadisticas" class="nav-link text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z" />
+          </svg>
+          Estadisticas Riesgo & Control
+        </a>
+      </li>
+      <li>
+        <a href="pareto" class="nav-link text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-bar-chart-steps" viewBox="0 0 16 16">
+            <path
+              d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0zM2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z" />
+          </svg>
+          Pareto de Causas y Riesgos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/instructivo" class="nav-link text-white" aria-current="page">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book"
+            viewBox="0 0 16 16">
+            <path
+              d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+          </svg>
+          Instructivo
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="flex-column text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>Granados, Edgar</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRiesgo">
+            Agregar Riesgo
+          </button></li>
+        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalControl">
+            Agregar Control
+          </button></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--Script para funcionalidad de botones en los formularios-->
+  <script src="/js/formulario.js"></script>
+  <!--Script para funcionalidad de los selects de los proceso adjuntos-->
+  <script src="/js/selectsProcesos.js"></script>

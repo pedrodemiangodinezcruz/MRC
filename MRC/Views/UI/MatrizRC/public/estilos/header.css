@@ -1,0 +1,15 @@
+.mb-4 {
+    margin-bottom: 0rem!important;
+}
+.container{
+    width: 100vw !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    max-width: 100%;
+    margin-bottom: 10px !important;
+}
+#icono{
+    width: 16vw;
+    height: 8vh;
+}
+
