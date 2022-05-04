@@ -83,3 +83,8 @@ a {
 #botonGuardar{
     display: none;
 }
+#infoSeccion{
+	float: right; 
+	width: 80.7%; 
+	
+}

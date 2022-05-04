@@ -1,1 +1,96 @@
-<p>pareto works!</p>
+<head>
+<!--Modulos Highcharts-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/pareto.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+
+    <!--Tabla y pastel de riesgo inherente empieza-->
+    <div class="col" id="infoSeccion">
+      <p class="text-center fw-bold">Macroproceso adjunto</p>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="seleccionProceso" name="macroproceso" aria-label="Default select example"
+          onchange="location = this.value;">
+          <option selected>...</option>
+          <option value="/productoPareto">Concepto al Producto</option>
+          <option value="/compraPareto">Compra al Pago</option>
+          <option value="/abastoPareto">Demanda al Abasto</option>
+          <option value="/pedidoPareto">Pedido al Cobro</option>
+          <option value="/mantenimientoPareto">Mantenimiento a la Liquidación</option>
+          <option value="/inversionPareto">Inversión a la Desinversión</option>
+          <option value="finanzasPareto">Finanzas a la Administración</option>
+          <option value="/contratacionPareto">Contratación al Retiro</option>
+          <option value="/procesosPareto">Procesos Criticos fuera de Macros</option>
+        </select>
+        <label for="floatingSelect">Seleccione el macroproceso al que guste ver su pareto adjunto
+        </label>
+      </div>
+      <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+          <strong style="margin-left: 45%;">CAUSAS</strong>
+        </p>
+      </figure>
+    </div>
+<script>
+	Highcharts.chart('container', {
+    chart: {
+        renderTo: 'container',
+        type: 'column'
+    },
+    title: {
+        text: 'Restaurants Complaints'
+    },
+    tooltip: {
+        shared: true
+    },
+    xAxis: {
+        categories: [
+            'Overpriced',
+            'Small portions',
+            'Wait time',
+            'Food is tasteless',
+            'No atmosphere',
+            'Not clean',
+            'Too noisy',
+            'Unfriendly staff'
+        ],
+        crosshair: true
+    },
+    yAxis: [{
+        title: {
+            text: ''
+        }
+    }, {
+        title: {
+            text: ''
+        },
+        minPadding: 0,
+        maxPadding: 0,
+        max: 100,
+        min: 0,
+        opposite: true,
+        labels: {
+            format: "{value}%"
+        }
+    }],
+    series: [{
+        type: 'pareto',
+        name: 'Pareto',
+        yAxis: 1,
+        zIndex: 10,
+        baseSeries: 1,
+        tooltip: {
+            valueDecimals: 2,
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Complaints',
+        type: 'column',
+        zIndex: 2,
+        data: [755, 222, 151, 86, 72, 51, 36, 10]
+    }]
+});
+</script>

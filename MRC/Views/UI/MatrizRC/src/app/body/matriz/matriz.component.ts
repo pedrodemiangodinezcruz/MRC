@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class MatrizComponent {
 
 	myScriptElement: HTMLScriptElement;
-	//myScriptElementJQuery: HTMLScriptElement;
+	
     constructor() { 
 	this.myScriptElement = document.createElement('script');
 	this.myScriptElement.src = '../../assets/js/matriz.js';
