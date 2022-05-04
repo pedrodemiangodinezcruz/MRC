@@ -36,13 +36,13 @@
 
             ],
             "scripts": [
+				"src/assets/js/jquery.min.js",
 				"src/assets/js/formulario.js",
 				"src/assets/js/jquery-3.6.0.min.js",
 				"src/assets/js/matriz.js",
 				"src/assets/js/mostrar-tablas.js",
 				"src/assets/js/mostrarEstadisticas.js",
 				"src/assets/js/selectsProcesos.js"
-
 			]
 			
           },

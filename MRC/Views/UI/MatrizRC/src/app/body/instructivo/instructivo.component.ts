@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-metodologia',
-  templateUrl: './metodologia.component.html',
-  styleUrls: ['./metodologia.component.css']
+  selector: 'app-instructivo',
+  templateUrl: './instructivo.component.html',
+  styleUrls: ['./instructivo.component.css']
 })
-
-export class MetodologiaComponent {
+export class InstructivoComponent  {
 	myScriptElement: HTMLScriptElement;
-    constructor() { 
+	constructor() { 
 	this.myScriptElement = document.createElement('script');
 	this.myScriptElement.src = '../../assets/js/mostrar-tablas.js';
 	document.body.appendChild(this.myScriptElement);
-  
 	}
+ 
+
 }
