@@ -7,90 +7,94 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 
-    <!--Tabla y pastel de riesgo inherente empieza-->
-    <div class="col" id="infoSeccion">
-      <p class="text-center fw-bold">Macroproceso adjunto</p>
-      <div class="form-floating mb-3">
-        <select class="form-select" id="seleccionProceso" name="macroproceso" aria-label="Default select example"
-          onchange="location = this.value;">
-          <option selected>...</option>
-          <option value="/productoPareto">Concepto al Producto</option>
-          <option value="/compraPareto">Compra al Pago</option>
-          <option value="/abastoPareto">Demanda al Abasto</option>
-          <option value="/pedidoPareto">Pedido al Cobro</option>
-          <option value="/mantenimientoPareto">Mantenimiento a la Liquidación</option>
-          <option value="/inversionPareto">Inversión a la Desinversión</option>
-          <option value="finanzasPareto">Finanzas a la Administración</option>
-          <option value="/contratacionPareto">Contratación al Retiro</option>
-          <option value="/procesosPareto">Procesos Criticos fuera de Macros</option>
-        </select>
-        <label for="floatingSelect">Seleccione el macroproceso al que guste ver su pareto adjunto
-        </label>
-      </div>
-      <figure class="highcharts-figure">
-        <div id="container"></div>
-        <p class="highcharts-description">
-          <strong style="margin-left: 45%;">CAUSAS</strong>
-        </p>
-      </figure>
-    </div>
-<script>
+<div class="col" id="infoSeccion">
+	<p class="text-center fw-bold">Macroproceso adjunto</p>
+	<div class="form-floating mb-3">
+	  <select class="form-select" id="seleccionProceso" name="macroproceso" aria-label="Default select example"
+		onchange="location = this.value;">
+		<option selected>...</option>
+		<option value="/productoPareto">Concepto al Producto</option>
+		<option value="/compraPareto">Compra al Pago</option>
+		<option value="/abastoPareto">Demanda al Abasto</option>
+		<option value="/pedidoPareto">Pedido al Cobro</option>
+		<option value="/mantenimientoPareto">Mantenimiento a la Liquidación</option>
+		<option value="/inversionPareto">Inversión a la Desinversión</option>
+		<option value="finanzasPareto">Finanzas a la Administración</option>
+		<option value="/contratacionPareto">Contratación al Retiro</option>
+		<option value="/procesosPareto">Procesos Criticos fuera de Macros</option>
+	  </select>
+	  <label for="floatingSelect">Seleccione el macroproceso al que guste ver su pareto adjunto
+	  </label>
+	</div>
+	<figure class="highcharts-figure">
+	  <div id="container"></div>
+	  <p class="highcharts-description">
+		<strong style="margin-left: 45%;">CAUSAS</strong>
+	  </p>
+	</figure>
+  </div>
+  <!--Script de la libreria highcharts; manejador del gráfico-->
+  <script>
 	Highcharts.chart('container', {
-    chart: {
-        renderTo: 'container',
-        type: 'column'
-    },
-    title: {
-        text: 'Restaurants Complaints'
-    },
-    tooltip: {
-        shared: true
-    },
-    xAxis: {
-        categories: [
-            'Overpriced',
-            'Small portions',
-            'Wait time',
-            'Food is tasteless',
-            'No atmosphere',
-            'Not clean',
-            'Too noisy',
-            'Unfriendly staff'
-        ],
-        crosshair: true
-    },
-    yAxis: [{
-        title: {
-            text: ''
-        }
-    }, {
-        title: {
-            text: ''
-        },
-        minPadding: 0,
-        maxPadding: 0,
-        max: 100,
-        min: 0,
-        opposite: true,
-        labels: {
-            format: "{value}%"
-        }
-    }],
-    series: [{
-        type: 'pareto',
-        name: 'Pareto',
-        yAxis: 1,
-        zIndex: 10,
-        baseSeries: 1,
-        tooltip: {
-            valueDecimals: 2,
-            valueSuffix: '%'
-        }
-    }, {
-        name: 'Complaints',
-        type: 'column',
-        zIndex: 2,
-        data: [755, 222, 151, 86, 72, 51, 36, 10]
-    }]
-});
-</script>
+	  chart: {
+		renderTo: 'container',
+		type: 'column'
+	  },
+	  title: {
+		text: 'Pareto del macroproceso de <%= proceso %>'
+	  },
+	  tooltip: {
+		shared: true
+	  },
+	  xAxis: {
+		categories: [
+		  'Información incorrecta, incompleta o no confiable desde su origen externo a este proceso',
+		  'Ejecución de procesos manuales / Sistemas no alineados a las necesidades de la operación',
+		  'Falta de capacitación, perfil inadecuado, falta de lineamientos en políticas y procedimientos',
+		  'Falta de supervisión y segregación de funciones en la aprobación de los estados financieros',
+		  'Saldos de cuentas contables presentados incorrectamente en los estados financieros',
+		  'Cambios en las Normas de Información Financiera Mexicanas (NIFs) no implemntados adecuadamente',
+		  'Inadecuada segregación de funciones',
+		  'Ausencia de un inventario y una matriz de riesgo de la información clasificada, incluyendo los estados financieros proyectados o consolidados en físico, digitalizados, en correos electrónicos o carpetas compartidas',
+		  'Falta de actualización de las políticas de seguridad de la información:* Copias de seguridad * Cifrado de datos * Dispositivos externos * Acceso remoto y bloqueo * Permisos para crear, modificar y eliminar datos',
+		  'Objetivos o metas no alineados a la estrategia del grupo, o poco realistas',
+		  'Sobreestimación / subestimación de activos/ingresos * Diferencias en tiempo * Valuación indebida de activos * Revelaciones indebidas * Diferencias en tiempo * Ingresos sobreestimados / subestimados * Pasivos y gastos sobreestimados / ocultos',
+		  'Sobreestimación / subestimación de activos / ingresos * Diferencias en tiempo * Valuación indebida de activos * Revelaciones indebidas * Diferencias en tiempo * Ingresos sobreestimados / subestimados * Pasivos y gastos sobreestimados / ocultos',
+		],
+		crosshair: true
+	  },
+	  yAxis: [{
+		title: {
+		  text: 'Frecuencia'
+		}
+	  }, {
+		title: {
+		  text: 'Frecuencía Acumulada'
+		},
+		minPadding: 0,
+		maxPadding: 0,
+		max: 100,
+		min: 0,
+		opposite: true,
+		labels: {
+		  format: "{value}%"
+		}
+	  }],
+	  series: [{
+		type: 'pareto',
+		name: 'Pareto',
+		yAxis: 1,
+		zIndex: 10,
+		baseSeries: 1,
+		tooltip: {
+		  valueDecimals: 2,
+		  valueSuffix: '%'
+		}
+	  }, {
+		name: 'Frecuencia',
+		type: 'column',
+		zIndex: 2,
+		data: [21, 7, 4, 3, 3, 1, 1, 1, 1, 1, 1, 1]
+	  }]
+	});
+  </script>
