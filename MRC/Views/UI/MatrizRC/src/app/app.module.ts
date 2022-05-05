@@ -22,6 +22,7 @@ import { MapaRiesgoComponent } from './body/mapa-riesgo/mapa-riesgo.component';
 import { ParetoComponent } from './body/pareto/pareto.component';
 import { InstructivoComponent } from './body/instructivo/instructivo.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

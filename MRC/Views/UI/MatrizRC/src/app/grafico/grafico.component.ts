@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 declare var require: any;
@@ -15,11 +15,11 @@ exporting(Highcharts);
 accessibility(Highcharts);
 
 @Component({
-  selector: 'app-pareto',
-  templateUrl: './pareto.component.html',
-  styleUrls: ['./pareto.component.css']
+  selector: 'app-grafico',
+  templateUrl: './grafico.component.html',
+  styleUrls: ['./grafico.component.css']
 })
-export class ParetoComponent implements OnInit {
+export class GraficoComponent implements OnInit {
 
 	public options: any = {
         chart: {
@@ -91,3 +91,4 @@ export class ParetoComponent implements OnInit {
 	  }
 	}
 
+*/
