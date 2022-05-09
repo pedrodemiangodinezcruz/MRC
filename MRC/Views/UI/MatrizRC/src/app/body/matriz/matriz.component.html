@@ -14,6 +14,7 @@
 		</svg>
 <!--Inclución de header y sidebar-->
 		<div id="infoSeccion">
+			
 			<table class="table table-bordered" id="alineada">
 				<thead id="alineada">
 					<tr>
@@ -96,58 +97,79 @@
 						<th class="naranja">Estrategia</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td class="editable">7.1 Finanzas de la Administración</td>
-						<td class="editable">7.1 Definición de Estructura y Planes Financieros</td>
-						<td class="editable">7.1.2 Preparación de presupuesto anual</td>
-						<td class="editable">R-M7-01</td>
-						<td class="editable">Errores u omisiones en la estimación de premisas macroeconómicas para
-							presupuesto</td>
-						<td class="editable">Información incorrecta, incompleta o no confiable desde su origen externo a
-							este proceso</td>
-						<td class="editable">Errores en el proceso de generación de información finanicera</td>
-						<td class="editable">Gobierno, Político y Económico</td>
-						<td class="formulado">Estratégico</td>
-						<td class="editable">Medio</td>
-						<td class="editable">Bajo</td>
-						<td class="editable">Bajo</td>
-						<td class="editable">No</td>
-						<td class="editable">Bajo</td>
-						<td class="editable">Crítico</td>
+				<tbody *ngFor="let controlItem of ControlList">
+					<tr *ngFor="let riesgoItem of RiesgoList">
+					
+						<td class="editable">{{riesgoItem.macroProceso}}</td>
+						<td class="editable">{{riesgoItem.proceso}}</td>
+						<td class="editable">{{riesgoItem.subProceso}}</td>
+						<td class="editable">{{riesgoItem.idRiesgo}}</td>
+						<td class="editable">{{riesgoItem.descripcion}}</td>
+						<td class="editable">{{riesgoItem.causa}}</td>
+						<td class="editable">{{riesgoItem.consecuencia}}</td>
+						<td class="editable">{{riesgoItem.tipoEvento}}</td>
+						<td class="formulado">{{riesgoItem.tipoRiesgo}}</td>
+						<td class="editable">{{riesgoItem.iff}}</td>
+						<td class="editable">{{riesgoItem.ic}}</td>
+						<td class="editable">{{riesgoItem.ios}}</td>
+						<td class="editable">{{riesgoItem.riesgoFraude}}</td>
+						<td class="editable">{{riesgoItem.probabilidad}}</td>
+						<td class="editable">{{riesgoItem.impacto}}</td>
 						<td class="formulado">A</td>
-						<td class="editable">C-M7-001</td>
-						<td class="editable">Proceso</td>
-						<td class="editable">El Gerente de Finanzas y Contabilidad, Gerente de Tesorería</td>
-						<td class="editable">Aprobación vía correo electrónico de las premisas macroeconómicas</td>
-						<td class="editable">Sí</td>
-						<td class="editable">No</td>
-						<td class="editable">Preventivo</td>
-						<td class="editable">Sí</td>
-						<td class="editable">Manual</td>
-						<td class="editable">Sí</td>
-						<td class="editable">Anual</td>
-						<td class="editable">Sí</td>
-						<td class="editable">Jefe de Planeción Financiera</td>
-						<td class="editable">Sí</td>
-						<td class="editable">No</td>
-						<td class="formulado">No Efectivo</td>
-						<td class="editable">Sí</td>
-						<td class="editable">No</td>
-						<td class="formulado">Hasta que concluya plan de acción</td>
-						<td class="editable">En blanco</td>
-						<td class="editable">No probado</td>
+						<td class="editabl
+						e">{{controlItem.Id}}</td>
+						<td class="editabl
+						e">{{controlItem.proceso}}</td>
+						<td class="editabl
+						e">{{controlItem.descripcion}}</td>
+						<td class="editabl
+						e">{{controlItem.evidencia}}</td>
+						<td class="editabl
+						e">{{controlItem.segregacion}}</td>
+						<td class="editable">Documentación</td>
+						<td class="editabl
+						e">{{controlItem.tipoControl}}</td>
+						<td class="editabl
+						e">{{controlItem.naturalezaAdecuada}}</td>
+						<td class="editabl
+						e">{{controlItem.naturalezaControl}}</td>
+						<td class="editabl
+						e">{{controlItem.tipoAdecuado}}</td>
+						<td class="editabl
+						e">{{controlItem.frecuenciaControl}}</td>
+						<td class="editabl
+						e">{{controlItem.frecuenciaAdecuada}}</td>
+						<td class="editabl
+						e">{{controlItem.responsable}}</td>
+						<td class="editabl
+						e">{{controlItem.responsabilidadControl}}</td>
+						<td class="editabl
+						e">{{controlItem.generacionEvidencia}}</td>
+						<td class="formulado">Diseño del control</td>
+						<td class="editabl
+						e">{{controlItem.controlClave}}</td>
+						<td class="editabl
+						e">{{controlItem.controlFraude}}</td>
+						<td class="formulad
+						o">{{controlItem.estrategia}}</td>
+						<td class="editabl
+						e">{{controlItem.descripcionTratamiento}}</td>
+						<td class="editabl
+						e">{{controlItem.causasAdjuntas}}</td>
 						<td class="formulado">48%</td>
-						<td class="editable">40%</td>
+						<td class="editabl
+						e">{{controlItem.cobertura}}</td>
 						<td class="formulado">19%</td>
 						<td class="formulado">48%</td>
 						<td class="formulado">Medio</td>
-						<td class="editable">M</td>
-						<td class="editable">En blanco</td>
-						<td class="editable">Se sugiere formalizar que la evidencia sea una confirmación vía correo
-							electrónico.</td>
+						<td class="editabl
+						e">{{controlItem.observaciones}}</td>
+						<td class="editabl
+						e">{{controlItem.tipoAdecuado}}</td>
+						<td class="editabl
+						e">{{controlItem.responsableTratamiento}}</td>
 						<th scope="col">
-							<a id="botonEditar">
+							<a>
 								<button type="button" class="btn btn-success" id="botonEditar">Editar Riesgo
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 										class="bi bi-pencil-square" viewBox="0 0 16 16">
