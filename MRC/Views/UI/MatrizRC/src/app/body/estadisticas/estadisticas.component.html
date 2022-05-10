@@ -58,10 +58,7 @@
 			</tr>
 		</tbody>
 	</table>
-
-	<figure class="highcharts-figure">
-		<div id="container"></div>
-	</figure>
+		<div id="container"class="infoSeccion"></div>
 </div>
 </div>
 
@@ -119,62 +116,7 @@
 	</figure>
 </div>
 </div>
-<script>
 
-	// Insertar colores desde verde a rojo ver si este metodo me sirve depsues para asignar los colores :)
-	var pieColors = (function () {
-		var colors = ['rgb(0,176,80)', 'rgb(128,216,40)', 'rgb(255,255,0)', 'rgb(255,128,0)', 'rgb(255,0,0)'];
-		return colors;
-	}());
-
-	// Build the chart
-	Highcharts.chart('container2', {
-		chart: {
-			plotBackgroundColor: null,
-			plotBorderWidth: null,
-			plotShadow: false,
-			type: 'pie'
-		},
-		title: {
-			text: 'Diagrama de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
-		},
-		tooltip: {
-			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		},
-		accessibility: {
-			point: {
-				valueSuffix: '%'
-			}
-		},
-		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				colors: ['rgb(0,176,80)', 'rgb(128,216,40)', 'rgb(255,255,0)', 'rgb(255,128,0)', 'rgb(255,0,0)'],
-				dataLabels: {
-					enabled: true,
-					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-					distance: -50,
-					filter: {
-						property: 'percentage',
-						operator: '>',
-						value: 4
-					}
-				}
-			}
-		},
-		series: [{
-			name: 'Porcentaje',
-			data: [
-				{ name: 'Total', y: 46.41 },
-				{ name: 'Alto', y: 13.84 },
-				{ name: 'Medio', y: 9.85 },
-				{ name: 'Bajo', y: 15.23 },
-				{ name: 'Ausencia de control', y: 14.67 }
-			]
-		}]
-	});
-</script>
 
 <!--Tabla y pastel de riesgo residual empieza-->
 <div class="col" id="infoSeccion"  *ngIf="residual">
