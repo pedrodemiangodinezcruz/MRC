@@ -16,6 +16,7 @@ namespace MRC.Models
         public string Descripcion { get; set; }
         public string Evidencia { get; set; }
         public string Segregacion { get; set; }
+        public string Documentacion { get; set; }
         public string TipoControl { get; set; }
         public string NaturalezaAdecuada { get; set; }
         public string NaturalezaControl{ get; set; }

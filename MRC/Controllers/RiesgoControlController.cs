@@ -27,7 +27,7 @@ namespace MRC.Controllers
 
             string query = @"
                    SELECT Id, macroProceso, proceso, subProceso, idControl, general, descripcion
-                    , evidencia, segregacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
+                    , evidencia, segregacion, documentacion tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, controlClave,
                     controlFraude, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
                     causasAdjuntas, observaciones FROM dbo.controlRiesgo";
@@ -56,7 +56,7 @@ namespace MRC.Controllers
 
             string query = @"
                    insert into dbo.controlRiesgo (macroProceso, proceso
-                    ,subProceso, idControl, general, descripcion, evidencia, segregacion,
+                    ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
                     tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia,
                     controlClave, controlFraude, cobertura, estrategia, responsableTratamiento,
@@ -70,6 +70,7 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.General + @"'
                         ,'" + controlRiesgo.Evidencia + @"'
                         ,'" + controlRiesgo.Segregacion + @"'
+                        ,'" + controlRiesgo.Documentacion + @"'
                         ,'" + controlRiesgo.TipoControl + @"'
                         ,'" + controlRiesgo.NaturalezaAdecuada + @"'
                         ,'" + controlRiesgo.NaturalezaControl + @"'
@@ -122,6 +123,7 @@ namespace MRC.Controllers
                         ,descripcion ='" + controlRiesgo.Descripcion + @"'
                         ,evidencia ='" + controlRiesgo.Evidencia + @"'
                         ,segregacion ='" + controlRiesgo.Segregacion + @"'
+                        ,documentacion ='" + controlRiesgo.Documentacion + @"'
                         ,tipoControl ='" + controlRiesgo.TipoControl + @"'
                         ,naturalezaAdecuada ='" + controlRiesgo.NaturalezaAdecuada + @"'
                         ,naturalezaControl ='" + controlRiesgo.NaturalezaControl + @"'
@@ -151,7 +153,7 @@ namespace MRC.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
+                    table.Load(myReader);
 
                     myReader.Close();
                     myCon.Close();
