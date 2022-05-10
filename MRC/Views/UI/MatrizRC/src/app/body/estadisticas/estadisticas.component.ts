@@ -24,92 +24,177 @@ export class EstadisticasComponent implements OnInit {
 	riesgoInherente: boolean = true;
 	residual: boolean = false;
 	cobertura: boolean = false;
+	
+	public inherentePastel: any = {
+
+		// Build the chart
+
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false,
+				type: 'pie'
+			},
+			title: {
+				text: 'Diagrama de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			accessibility: {
+				point: {
+					valueSuffix: '%'
+				}
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					colors: ['rgb(255,0,0)', 'rgb(255,128,0)', 'rgb(255,255,0)', 'rgb(128,216,40)', 'rgb(0,176,80)'],
+					dataLabels: {
+						enabled: true,
+						format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+						distance: -50,
+						filter: {
+							property: 'percentage',
+							operator: '>',
+							value: 4
+						}
+					}
+				}
+			},
+			series: [{
+				name: 'Porcentaje',
+				data: [
+					{ name: 'MA', y: 46.41 },
+					{ name: 'A', y: 13.84 },
+					{ name: 'M', y: 9.85 },
+					{ name: 'B', y: 15.23 },
+					{ name: 'MB', y: 14.67 }
+				]
+			}]
+      
+	};
+	public coberturaPastel: any = {
+
+		// Build the chart
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+		},
+		title: {
+			text: 'Diagrama 2 de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%'
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				colors: ['rgb(255,0,0)', 'rgb(255,128,0)', 'rgb(255,255,0)', 'rgb(128,216,40)', 'rgb(0,176,80)'],
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+					distance: -50,
+					filter: {
+						property: 'percentage',
+						operator: '>',
+						value: 4
+					}
+				}
+			}
+		},
+		series: [{
+			name: 'Porcentaje',
+			data: [
+				{ name: 'MMMM', y: 46.41 },
+				{ name: 'A', y: 13.84 },
+				{ name: 'M', y: 9.85 },
+				{ name: 'B', y: 15.23 },
+				{ name: 'MB', y: 14.67 }
+			]
+		}]
+	};
+	public residualPastel:any = {
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+		},
+		title: {
+			text: 'Diagrama 3 de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%'
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				colors: ['rgb(0,176,80)', 'rgb(128,216,40)', 'rgb(255,255,0)', 'rgb(255,128,0)', 'rgb(255,0,0)'],
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+					distance: -50,
+					filter: {
+						property: 'percentage',
+						operator: '>',
+						value: 4
+					}
+				}
+			}
+		},
+		series: [{
+			name: 'Porcentaje',
+			data: [
+				{ name: 'Total', y: 46.41 },
+				{ name: 'Alto', y: 13.84 },
+				{ name: 'Medio', y: 9.85 },
+				{ name: 'Bajo', y: 15.23 },
+				{ name: 'Ausencia de control', y: 14.67 }
+			]
+		}]
+	};
 
 	irCobertura(){
 		this.riesgoInherente = !this.riesgoInherente;
 		this.cobertura = !this.cobertura;
+		Highcharts.chart('container', this.coberturaPastel);
 	}
 	regresarInherente(){
 		this.riesgoInherente = !this.riesgoInherente;
 		this.cobertura = !this.cobertura;
+		Highcharts.chart('container', this.inherentePastel);
 	}
 	irResidual(){
 		this.cobertura = false;
 		this.residual = true;
+		Highcharts.chart('container', this.residualPastel);
 	}
 	regresarCobertura(){
 		this.residual = false;
 		this.cobertura = true;
-		
+		Highcharts.chart('container', this.coberturaPastel);
 	}
 	
-	public options: any = {
-        chart: {
-          renderTo: 'container',
-          type: 'column'
-        },
-        title: {
-          text: 'Pareto del macroproceso de <%= proceso %>'
-        },
-        tooltip: {
-          shared: true
-        },
-        xAxis: {
-          categories: [
-            'Información incorrecta, incompleta o no confiable desde su origen externo a este proceso',
-            'Ejecución de procesos manuales / Sistemas no alineados a las necesidades de la operación',
-            'Falta de capacitación, perfil inadecuado, falta de lineamientos en políticas y procedimientos',
-            'Falta de supervisión y segregación de funciones en la aprobación de los estados financieros',
-            'Saldos de cuentas contables presentados incorrectamente en los estados financieros',
-            'Cambios en las Normas de Información Financiera Mexicanas (NIFs) no implemntados adecuadamente',
-            'Inadecuada segregación de funciones',
-            'Ausencia de un inventario y una matriz de riesgo de la información clasificada, incluyendo los estados financieros proyectados o consolidados en físico, digitalizados, en correos electrónicos o carpetas compartidas',
-            'Falta de actualización de las políticas de seguridad de la información:* Copias de seguridad * Cifrado de datos * Dispositivos externos * Acceso remoto y bloqueo * Permisos para crear, modificar y eliminar datos',
-            'Objetivos o metas no alineados a la estrategia del grupo, o poco realistas',
-            'Sobreestimación / subestimación de activos/ingresos * Diferencias en tiempo * Valuación indebida de activos * Revelaciones indebidas * Diferencias en tiempo * Ingresos sobreestimados / subestimados * Pasivos y gastos sobreestimados / ocultos',
-            'Sobreestimación / subestimación de activos / ingresos * Diferencias en tiempo * Valuación indebida de activos * Revelaciones indebidas * Diferencias en tiempo * Ingresos sobreestimados / subestimados * Pasivos y gastos sobreestimados / ocultos',
-          ],
-          crosshair: true
-        },
-        yAxis: [{
-          title: {
-            text: 'Frecuencia'
-          }
-        }, {
-          title: {
-            text: 'Frecuencía Acumulada'
-          },
-          minPadding: 0,
-          maxPadding: 0,
-          max: 100,
-          min: 0,
-          opposite: true,
-          labels: {
-            format: "{value}%"
-          }
-        }],
-        series: [{
-          type: 'pareto',
-          name: 'Pareto',
-          yAxis: 1,
-          zIndex: 10,
-          baseSeries: 1,
-          tooltip: {
-            valueDecimals: 2,
-            valueSuffix: '%'
-          }
-        }, {
-          name: 'Frecuencia',
-          type: 'column',
-          zIndex: 2,
-          data: [21, 7, 4, 3, 3, 1, 1, 1, 1, 1, 1, 1]
-        }]
-      
-	};
-
   constructor() { }
 
   ngOnInit(): void {
+	Highcharts.chart('container', this.inherentePastel);
   }
 
 }

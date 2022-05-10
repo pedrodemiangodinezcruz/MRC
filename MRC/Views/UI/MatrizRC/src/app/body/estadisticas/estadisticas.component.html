@@ -1,5 +1,5 @@
+<!--Tabla y pastel de nivel de riesgo Inherente empieza-->
 <div class="col" id="infoSeccion" *ngIf="riesgoInherente">
-<div class="col" id="riesgoInherente">
 	<table class="table table-bordered" style="text-align: center;">
 		<thead>
 			<tr>
@@ -58,13 +58,16 @@
 			</tr>
 		</tbody>
 	</table>
-		<div id="container"class="infoSeccion"></div>
+	<figure class="highcharts-figure">
+		<div id="container"></div>
+	</figure>
 </div>
-</div>
+
+
+	
 
 <!--Tabla y pastel de nivel de coberetura empieza-->
 <div class="col" id="infoSeccion"  *ngIf="cobertura">
-<div class="col" id="controles">
 	<table class="table table-bordered" style="text-align: center;">
 		<thead>
 			<tr>
@@ -110,17 +113,20 @@
 			</tr>
 		</tbody>
 	</table>
-
 	<figure class="highcharts-figure">
-		<div id="container2" style="align-content: center; align-items: center;"></div>
+		<div id="container"></div>
 	</figure>
 </div>
-</div>
 
+
+
+
+<div class="col" id="infoSeccion" class="text-center">
+	<div id="container"></div>
+</div>
 
 <!--Tabla y pastel de riesgo residual empieza-->
 <div class="col" id="infoSeccion"  *ngIf="residual">
-<div class="col" id="riesgoResidual">
 	<table class="table table-bordered" style="text-align: center;">
 		<thead>
 			<tr>
@@ -160,9 +166,8 @@
 			</tr>
 		</tbody>
 	</table>
-
 	<figure class="highcharts-figure">
-		<div id="container3"></div>
+		<div id="container"></div>
 	</figure>
-</div>
+
 </div>
