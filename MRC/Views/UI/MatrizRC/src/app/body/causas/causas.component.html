@@ -76,9 +76,9 @@
             <tbody>
               <tr>
                 <td>R-M7-01</td>
-                <td class="editable">Crítico</td>
+                <td [attr.contenteditable]="contenteditable">Crítico</td>
                 <td>
-                    <button type="button" id="botonEditar" class="btn btn-success">Editar Causa
+                    <button type="button" class="btn btn-success" (click)="editarRiesgo()" *ngIf="ocultarBoton" >Editar Causa
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -89,7 +89,7 @@
                     </button>
 			
 				<a href="/edicionRiesgo" >
-					<button type="button" class="btn btn-primary" id="botonGuardar">Guardar Causa
+					<button type="button" class="btn btn-primary" *ngIf="mostarBoton" >Guardar Causa
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-trash3" viewBox="0 0 16 16">
 							<path

@@ -14,7 +14,6 @@ export class MatrizComponent {
 	ocultarBoton: boolean = true;
 	mostarBoton: boolean = false;
 	contenteditable = false;
-	editable: string = '';
 	esFomulado: boolean = false;
 	
 

@@ -1,1 +1,226 @@
-<p>estadisticas works!</p>
+<div class="col" id="infoSeccion" *ngIf="riesgoInherente">
+<div class="col" id="riesgoInherente">
+	<table class="table table-bordered" style="text-align: center;">
+		<thead>
+			<tr>
+				<th scope="col" colspan="6" class="anaranjado" style="text-align: left;">Riesgo Inherente</th>
+			</tr>
+			<tr>
+				<th>
+					<div class="form-floating mb-3">
+						<select class="form-select" id="seleccionProceso" name="macroproceso"
+							aria-label="Default select example" onchange="location = this.value;">
+							<option selected>...</option>
+							<option value="/productoEstadisticas">Concepto al Producto</option>
+							<option value="/compraEstadisticas">Compra al Pago</option>
+							<option value="/abastoEstadisticas">Demanda al Abasto</option>
+							<option value="/pedidoEstadisticas">Pedido al Cobro</option>
+							<option value="/mantenimientoEstadisticas">Mantenimiento a la Liquidación</option>
+							<option value="/inversionEstadisticas">Inversión a la Desinversión</option>
+							<option value="finanzasEstadisticas">Finanzas a la Administración</option>
+							<option value="/contratacionEstadisticas">Contratación al Retiro</option>
+							<option value="/procesosEstadisticas">Procesos Criticos fuera de Macros</option>
+						</select>
+						<label for="floatingSelect">Seleccione el macroproceso al que guste ver su gráfico
+							adjunto
+						</label>
+					</div>
+				</th>
+				<th scope="col" style="text-align: center; vertical-align: middle;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+						class="bi bi-arrow-right-short" viewBox="0 0 16 16" (click)="irCobertura()" >
+						<path fill-rule="evenodd"
+							d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+					</svg>
+			</tr>
+			<th class="naranja">Nivel de Riesgo</th>
+			<th class="naranja">Frecuencia</th>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">MA</th>
+				<td>3</td>
+			<tr>
+				<th scope="row">A</th>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th scope="row">M</th>
+				<td>8</td>
+			</tr>
+			<tr>
+				<th scope="row">B</th>
+				<td>0</td>
+			</tr>
+			<tr>
+				<th scope="row">MB</th>
+				<td>0</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<figure class="highcharts-figure">
+		<div id="container"></div>
+	</figure>
+</div>
+</div>
+
+<!--Tabla y pastel de nivel de coberetura empieza-->
+<div class="col" id="infoSeccion"  *ngIf="cobertura">
+<div class="col" id="controles">
+	<table class="table table-bordered" style="text-align: center;">
+		<thead>
+			<tr>
+				<th scope="col" colspan="6" class="azul-marino" style="text-align: left;">NIVEL DE COBERTURA DEL
+					CONJUNTO DE CONTROLES</th>
+			</tr>
+			<tr>
+				<th scope="col" colspan="6" style="text-align: center;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+						class="bi bi-arrow-left-short" (click)="regresarInherente()"  viewBox="0 0 16 16">
+						<path fill-rule="evenodd"
+							d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+						class="bi bi-arrow-right-short" viewBox="0 0 16 16" (click)="irResidual()" >
+						<path fill-rule="evenodd"
+							d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+					</svg>
+				</th>
+			</tr>
+			<th class="azul-marino">Cobertura del Conjunto de Controles</th>
+			<th class="azul-marino">Frecuencia</th>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">Total</th>
+				<td>0</td>
+			<tr>
+				<th scope="row">Alto</th>
+				<td>0</td>
+			</tr>
+			<tr>
+				<th scope="row">Medio</th>
+				<td>14</td>
+			</tr>
+			<tr>
+				<th scope="row">Bajo</th>
+				<td>0</td>
+			</tr>
+			<tr>
+				<th scope="row">Ausencia de Control</th>
+				<td>0</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<figure class="highcharts-figure">
+		<div id="container2" style="align-content: center; align-items: center;"></div>
+	</figure>
+</div>
+</div>
+<script>
+
+	// Insertar colores desde verde a rojo ver si este metodo me sirve depsues para asignar los colores :)
+	var pieColors = (function () {
+		var colors = ['rgb(0,176,80)', 'rgb(128,216,40)', 'rgb(255,255,0)', 'rgb(255,128,0)', 'rgb(255,0,0)'];
+		return colors;
+	}());
+
+	// Build the chart
+	Highcharts.chart('container2', {
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+		},
+		title: {
+			text: 'Diagrama de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%'
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				colors: ['rgb(0,176,80)', 'rgb(128,216,40)', 'rgb(255,255,0)', 'rgb(255,128,0)', 'rgb(255,0,0)'],
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+					distance: -50,
+					filter: {
+						property: 'percentage',
+						operator: '>',
+						value: 4
+					}
+				}
+			}
+		},
+		series: [{
+			name: 'Porcentaje',
+			data: [
+				{ name: 'Total', y: 46.41 },
+				{ name: 'Alto', y: 13.84 },
+				{ name: 'Medio', y: 9.85 },
+				{ name: 'Bajo', y: 15.23 },
+				{ name: 'Ausencia de control', y: 14.67 }
+			]
+		}]
+	});
+</script>
+
+<!--Tabla y pastel de riesgo residual empieza-->
+<div class="col" id="infoSeccion"  *ngIf="residual">
+<div class="col" id="riesgoResidual">
+	<table class="table table-bordered" style="text-align: center;">
+		<thead>
+			<tr>
+				<th scope="col" colspan="6" class="verde" style="text-align: left;">RIESGO RESIDUAL</th>
+			</tr>
+			<tr>
+				<th scope="col" colspan="6" style="text-align: center;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"  (click)="regresarCobertura()"
+						class="bi bi-arrow-left-short"  viewBox="0 0 16 16">
+						<path fill-rule="evenodd"
+							d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+					</svg>
+				</th>
+			</tr>
+			<th class="verde">Gravedad</th>
+			<th class="verde">Frecuencia</th>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">MA</th>
+				<td>0</td>
+			<tr>
+				<th scope="row">A</th>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th scope="row">M</th>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th scope="row">B</th>
+				<td>8</td>
+			</tr>
+			<tr>
+				<th scope="row">MB</th>
+				<td>0</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<figure class="highcharts-figure">
+		<div id="container3"></div>
+	</figure>
+</div>
+</div>

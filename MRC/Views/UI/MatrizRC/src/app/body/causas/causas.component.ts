@@ -8,6 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class CausasComponent {
 
 	myScriptElement: HTMLScriptElement;
+	ocultarBoton: boolean = true;
+	mostarBoton: boolean = false;
+	contenteditable = false;
+	
+	editarRiesgo() {
+		this.ocultarBoton= !this.ocultarBoton;
+		this.mostarBoton= !this.mostarBoton;
+		this.contenteditable= !this.contenteditable;
+
+	  }
 	
     constructor() { 
 	this.myScriptElement = document.createElement('script');
