@@ -194,6 +194,7 @@ export class EstadisticasComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+	this.riesgoInherente = true;
 	Highcharts.chart('container', this.inherentePastel);
   }
 
