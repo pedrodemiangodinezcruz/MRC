@@ -2,24 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 declare function getPointCategoryName(point: any, dimension: any): any;
 
-
 @Component({
   selector: 'app-mapa-residual',
   templateUrl: './mapa-residual.component.html',
   styleUrls: ['./mapa-residual.component.css']
 })
 export class MapaResidualComponent implements OnInit {
+	getPointCategoryName(point: any, dimension: any) {
+		var series = point.series,
+		  isY = dimension === 'y',
+		  axis = series[isY ? 'yAxis' : 'xAxis'];
+		return axis.categories[point[isY ? 'y' : 'x']];
+	  }
 
-	
-/*
   public chartOptions: any = {
     chart: {
       type: 'heatmap',
-      marginTop: 40,
+      marginTop: 60,
       marginBottom: 90,
-      plotBorderWidth: 1
-    },
+      plotBorderWidth: 1,
+	  
 
+    },
 
     title: {
       text: '<strong>MAPA DE CALOR - RIESGO RESIDUAL</strong>'
@@ -67,9 +71,9 @@ export class MapaResidualComponent implements OnInit {
     },
 
     tooltip: {
-      formatter: function (): any {
-        return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
-          this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
+      formatter: function (point: any): any {
+        //return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
+          //this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
       }
     },
 
@@ -87,13 +91,13 @@ export class MapaResidualComponent implements OnInit {
     responsive: {
       rules: [{
         condition: {
-          maxWidth: 500
+          maxWidth: 800
         },
         chartOptions: {
           yAxis: {
             labels: {
-              formatter: function (): any {
-                return this.value.charAt(0);
+              formatter: function format (value: any): any {
+                //return this.value.charAt(0);
               }
             }
           }
@@ -102,12 +106,12 @@ export class MapaResidualComponent implements OnInit {
     }
 
   };
-*/
+
 	
 constructor() { }
 	
 	  ngOnInit(){
-		//Highcharts.chart('container', this.chartOptions);
+		Highcharts.chart('container', this.chartOptions);
 	  }
 }
 
