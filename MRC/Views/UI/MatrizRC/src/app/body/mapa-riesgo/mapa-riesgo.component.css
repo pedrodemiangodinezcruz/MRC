@@ -1,6 +1,6 @@
 .highcharts-figure,
 .highcharts-data-table table {
-    width: 85%;
+    width: 45vw;
     margin: 1em auto;
 	margin-left: 5vw !important;
 }

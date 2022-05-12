@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import {Macroproceso} from './macroproceso';
+
 
 declare var require: any;
-
 let pareto = require('highcharts/modules/pareto');
 let exporting = require('highcharts/modules/exporting');
 let exportdata = require('highcharts/modules/export-data');
 let accessibility = require('highcharts/modules/accessibility');
+
+var Macro: string;
 
 
 pareto(Highcharts);
@@ -19,15 +22,18 @@ accessibility(Highcharts);
   templateUrl: './pareto.component.html',
   styleUrls: ['./pareto.component.css']
 })
-export class ParetoComponent implements OnInit {
 
+export class ParetoComponent implements OnInit {
+	macroproceso:Macroproceso[] | undefined;
+	
 	public options: any = {
+		Macro : "Jaun",
         chart: {
           renderTo: 'container',
           type: 'column'
         },
         title: {
-          text: 'Pareto del macroproceso de <%= proceso %>'
+          text: 'Pareto del macroproceso de: '  + Macro 
         },
         tooltip: {
           shared: true
@@ -84,9 +90,22 @@ export class ParetoComponent implements OnInit {
         }]
       
 	};
-	  constructor() { }
+	  constructor() { 
+		
+	  }
 	
 	  ngOnInit(){
+		this.macroproceso =[
+			{Nombre: "Concepto al Producto"},
+			{Nombre: "Compra al Pago"},
+			{Nombre: "Demanda al Abasto"},
+			{Nombre: "Pedido al Cobro"},
+			{Nombre: "Mantenimiento a la Liquidación"},
+			{Nombre: "Inversión a la Desinversión"},
+			{Nombre: "Finanzas a la Administración"},
+			{Nombre: "Contratación al Retiro"},
+			{Nombre: "Procesos Criticos fuera de Macros"}
+		];
 		Highcharts.chart('container', this.options);
 	  }
 	}
