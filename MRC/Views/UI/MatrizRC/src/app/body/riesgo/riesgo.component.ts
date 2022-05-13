@@ -11,20 +11,21 @@ export class RiesgoComponent implements OnInit {
 
   constructor(private service: SharedService) { }
   @Input() riesgo:any;
-  macroProceso: string="";
-  proceso: string="";
-  idRiesgo: string="";
-  descripcion: string="";
-  causa: string="";
-  consecuencia: string="";
-  tipoEvento: string="";
-  tipoRiesgo: string="";
-  iff: string="";
-  icc: string="";
-  ios: string="";
-  riesgoFraude: string="";
-  probabilidad: any;
-  impacto: string="";
+  macroProceso:  string = "";
+  proceso:  string = "";
+  subproceso:  string = "";
+  idRiesgo:  string = "";
+  descripcion:  string = "";
+  causa:  string = "";
+  consecuencia:  string = "";
+  tipoEvento:  string = "";
+  tipoRiesgo:  string = "";
+  iff:  string = "";
+  icc:  string = "";
+  ios:  string = "";
+  riesgoFraude:  string = "";
+  probabilidad:  string = "";
+  impacto:  string = "";
 
   ngOnInit(): void {
 	this.macroProceso = this.macroProceso;

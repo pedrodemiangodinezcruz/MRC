@@ -24,7 +24,7 @@
 		<!--Cambiar esto por los macros, proceos y subproceso de la bd-->
 		<p class="text-center fw-bold">Proceso adjunto</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" id="proceso" name="proceso" aria-label="Default select example">
+		  <select class="form-select" id="proceso" name="proceso"  [(ngModel)]="proceso" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Definición y Clarificación de las Necesidades del Cliente">Definición y Clarificación
 			  de las Necesidades del Cliente</option>
@@ -81,7 +81,7 @@
 		<!--Cambiar esto por los macros, proceos y subproceso de la bd-->
 		<p class="text-center fw-bold">Subproceso adjunto</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" id="subproceso" name="subproceso" aria-label="Default select example">
+		  <select class="form-select" id="subproceso"  [(ngModel)]="subproceso" name="subproceso" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="RFQ Recibido y Confirmado">RFQ Recibido y Confirmado</option>
 			<option value="Cotización Interna de Nuevos Proyectos">Cotización Interna de Nuevos Proyectos</option>
@@ -272,7 +272,7 @@
 	  <div class="col">
 		<p class="text-center fw-bolder">ID del Riesgo</p>
 		<div class="form-floating">
-		  <input type="text"[(ngModel)]="idRiesgo" class="form-control" name="idRiesgo" placeholder="ID Riesgo">
+		  <input type="text" [(ngModel)]="idRiesgo" class="form-control" name="idRiesgo" placeholder="ID Riesgo">
 		  <label for="floatingInput">ID Riesgo</label>
 		</div>
 	  </div>
@@ -280,7 +280,7 @@
 	<div class="row">
 	  <div class="col">
 		<div class="form-floating mb-3">
-		  <input type="text" class="form-control" name="descripción" placeholder="Descripción del Riesgo">
+		  <input type="text" class="form-control" [(ngModel)]="descripcion" name="descripción" placeholder="Descripción del Riesgo">
 		  <label for="floatingInput">Descripción del Riesgo</label>
 		</div>
 	  </div>

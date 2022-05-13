@@ -98,7 +98,8 @@ export class MatrizComponent implements OnInit {
 		this.riesgo = item;
 		this.ActivarEdicionRiesgo = true;
 	}
-	updateRiesgo() {
+	updateRiesgo(item: any) {
+		console.log(item);
 		var val = {
 			idRiesgo: this.idRiesgo,
 			macroProceso: this.macroProceso,
@@ -118,6 +119,13 @@ export class MatrizComponent implements OnInit {
 		this.service.editarRiesgo(val).subscribe(res => {
 			alert(res.toString());
 		});
+	}
+	elimarRiesgo(item:any){
+		console.log(item);
+		this.service.borrarRiesgo(item.id).subscribe(data => {
+			alert(data.toString());
+			this.refreshRiesgoList();
+		})
 	}
 
 	refreshRiesgoList() {
