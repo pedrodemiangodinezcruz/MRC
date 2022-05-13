@@ -22,6 +22,8 @@ import { MapaResidualComponent } from './body/mapa-residual/mapa-residual.compon
 import { MapaRiesgoComponent } from './body/mapa-riesgo/mapa-riesgo.component';
 import { ParetoComponent } from './body/pareto/pareto.component';
 import { InstructivoComponent } from './body/instructivo/instructivo.component';
+import { RiesgoComponent } from './body/riesgo/riesgo.component';
+import { ControlRiesgoComponent } from './body/control-riesgo/control-riesgo.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { InstructivoComponent } from './body/instructivo/instructivo.component';
     MapaResidualComponent,
     MapaRiesgoComponent,
     ParetoComponent,
-    InstructivoComponent
+    InstructivoComponent,
+    RiesgoComponent,
+    ControlRiesgoComponent
   ],
   imports: [
     BrowserModule,

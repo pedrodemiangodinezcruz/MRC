@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core'; import { withLatestFrom } from 'rxjs';
 import { SharedService } from 'src/app/shared.service';
 
-
-
 @Component({
 	selector: 'app-matriz',
 	templateUrl: './matriz.component.html',
@@ -26,12 +24,17 @@ export class MatrizComponent implements OnInit {
 	guardarRiesgo() {
 		this.mostarBoton = this.mostarBoton;
 	}
-
+//Show es matriz
+//app-edit es riesgo
 
 	constructor(private service: SharedService) {
 
 	}
-	riesgo: any;
+
+	RiesgoList: any = [];
+	ControlList: any = [];
+	@Input() riesgo:any;
+	ActivarEdicionRiesgo: boolean = false;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
 	idRiesgo: string | undefined;
@@ -47,8 +50,6 @@ export class MatrizComponent implements OnInit {
 	probabilidad: number | undefined;
 	impacto: string | undefined;
 
-	RiesgoList: any = [];
-	ControlList: any = [];
 
 	ngOnInit(): void {
 		this.refreshRiesgoList();
@@ -67,6 +68,7 @@ export class MatrizComponent implements OnInit {
 		this.riesgoFraude = this.riesgoFraude;
 		this.probabilidad = this.probabilidad;
 		this.impacto = this.impacto;
+ 
 	}
 	addClick() {
 		this.riesgo = {
@@ -86,37 +88,38 @@ export class MatrizComponent implements OnInit {
 			impacto: ""
 		}
 	}
+	closeClick() {
+		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
+		this.refreshRiesgoList();
+	}
+	
+
+	editClick(item: any) {
+		this.riesgo = item;
+		this.ActivarEdicionRiesgo = true;
+	}
 	updateRiesgo() {
-		var val ={
-			macroProceso:this.macroProceso,
-			proceso:this.proceso,
-			idRiesgo:this.idRiesgo,
-		descripcion:this.descripcion,
-		causa:this.causa,
-		consecuencia:this.consecuencia,
-		tipoEvento:this.tipoEvento,
-		tipoRiesgo:this.tipoRiesgo,
-		iff:this.iff,
-		icc:this.icc,
-		ios:this.ios,
-		riesgoFraude:this.riesgoFraude,
-		probabilidad:this.probabilidad,
-		impacto :this.impacto
+		var val = {
+			idRiesgo: this.idRiesgo,
+			macroProceso: this.macroProceso,
+			proceso: this.proceso,
+			descripcion: this.descripcion,
+			causa: this.causa,
+			consecuencia: this.consecuencia,
+			tipoEvento: this.tipoEvento,
+			tipoRiesgo: this.tipoRiesgo,
+			iff: this.iff,
+			icc: this.icc,
+			ios: this.ios,
+			riesgoFraude: this.riesgoFraude,
+			probabilidad: this.probabilidad,
+			impacto: this.impacto
 		};
-		this.service.añadirRiesgo(val).subscribe(res=>{
+		this.service.editarRiesgo(val).subscribe(res => {
 			alert(res.toString());
 		});
 	}
-	
-	editClick(riesgoItem: any) {
-		this.riesgo = riesgoItem;
-	}
 
-/*
-	editClick(riesgo) {
-		this.riesgo =  riesgoItem;
-	}
-*/
 	refreshRiesgoList() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
