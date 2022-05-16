@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';;
 import * as Highcharts from 'highcharts';
 import { SharedService } from 'src/app/shared.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
