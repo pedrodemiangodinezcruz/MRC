@@ -95,6 +95,7 @@ export class MatrizComponent implements OnInit {
 	
 
 	editClick(item: any){
+		this.ActivarEdicionRiesgo = true;
 		this.riesgo=item;
 	  }
 	

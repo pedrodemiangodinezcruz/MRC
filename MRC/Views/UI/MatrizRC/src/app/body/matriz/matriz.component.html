@@ -147,8 +147,8 @@
 				<th scope="col">
 					<a>
 						<!--(click)="editarRiesgo()" para lo gray y set editable :´(-->
-						<button type="button"  class="btn btn-success" data-bs-toggle="modal"
-						data-bs-target="#modalEdicionRiesgo"  (click)="editClick(riesgoItem)" *ngIf="ocultarBoton"  data-backdrop="static" data-keyboard="false">Editar Riesgo
+						<button type="button"  class="btn btn-success" (click)="editClick(riesgoItem)" *ngIf="ocultarBoton" data-bs-toggle="modal"
+						data-bs-target="#modalEdicionRiesgo" data-backdrop="static" data-keyboard="false">Editar Riesgo
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-pencil-square" viewBox="0 0 16 16">
 								<path

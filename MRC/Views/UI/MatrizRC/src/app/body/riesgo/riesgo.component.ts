@@ -15,7 +15,7 @@ export class RiesgoComponent implements OnInit {
   DepartmentName:string = "";
   macroProceso:  string = "";
   proceso:  string = "";
-  subproceso:  string = "";
+  subProceso:  string = "";
   idRiesgo:  string = "";
   descripcion:  string = "";
   causa:  string = "";
@@ -23,7 +23,7 @@ export class RiesgoComponent implements OnInit {
   tipoEvento:  string = "";
   tipoRiesgo:  string = "";
   iff:  string = "";
-  icc:  string = "";
+  ic:  string = "";
   ios:  string = "";
   riesgoFraude:  string = "";
   probabilidad:  string = "";
@@ -32,6 +32,7 @@ export class RiesgoComponent implements OnInit {
   ngOnInit(): void {
 	this.macroProceso = this.riesgo.macroProceso;
 	this.proceso = this.riesgo.proceso;
+	this.subProceso = this.riesgo.subProceso;
 	this.idRiesgo = this.riesgo.idRiesgo;
 	this.descripcion = this.riesgo.descripcion;
 	this.causa = this.riesgo.causa;
@@ -39,7 +40,7 @@ export class RiesgoComponent implements OnInit {
 	this.tipoEvento = this.riesgo.tipoEvento;
 	this.tipoRiesgo = this.riesgo.tipoRiesgo;
 	this.iff = this.riesgo.iff;
-	this.icc = this.riesgo.icc;
+	this.ic = this.riesgo.ic;
 	this.ios = this.riesgo.ios;
 	this.riesgoFraude = this.riesgo.riesgoFraude;
 	this.probabilidad = this.riesgo.probabilidad;
@@ -47,7 +48,7 @@ export class RiesgoComponent implements OnInit {
 	console.log(this.riesgo.impacto);
   }
 
-  anadirRiesgo() {
+ /* anadirRiesgo() {
 	var val = {
 		idRiesgo: this.idRiesgo,
 		macroProceso: this.macroProceso,
@@ -58,7 +59,7 @@ export class RiesgoComponent implements OnInit {
 		tipoEvento: this.tipoEvento,
 		tipoRiesgo: this.tipoRiesgo,
 		iff: this.iff,
-		icc: this.icc,
+		ic: this.ic,
 		ios: this.ios,
 		riesgoFraude: this.riesgoFraude,
 		probabilidad: this.probabilidad,
@@ -67,7 +68,7 @@ export class RiesgoComponent implements OnInit {
 	this.service.anadirRiesgo(val).subscribe(res => {
 		alert(res.toString());
 	});
-}
+}*/
 updateRiesgo() {
 	var val = {
 		idRiesgo: this.idRiesgo,
@@ -79,7 +80,7 @@ updateRiesgo() {
 		tipoEvento: this.tipoEvento,
 		tipoRiesgo: this.tipoRiesgo,
 		iff: this.iff,
-		icc: this.icc,
+		icc: this.ic,
 		ios: this.ios,
 		riesgoFraude: this.riesgoFraude,
 		probabilidad: this.probabilidad,

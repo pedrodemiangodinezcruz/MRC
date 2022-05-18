@@ -1,4 +1,4 @@
-<form>
+
 	<div class="row">
 	  <div class="col">
 		<!--Cambiar esto por los macros, procesos y subprocesos de la bd-->
@@ -81,7 +81,7 @@
 		<!--Cambiar esto por los macros, proceos y subproceso de la bd-->
 		<p class="text-center fw-bold">Subproceso adjunto</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" id="subproceso"  [(ngModel)]="subproceso" name="subproceso" aria-label="Default select example">
+		  <select class="form-select" id="subproceso"  [(ngModel)]="subProceso" name="subproceso" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="RFQ Recibido y Confirmado">RFQ Recibido y Confirmado</option>
 			<option value="Cotización Interna de Nuevos Proyectos">Cotización Interna de Nuevos Proyectos</option>
@@ -351,7 +351,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">IC</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" [(ngModel)]="icc"  name="ic" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="ic"  name="icc" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Muy Alto">Muy Alto</option>
 			<option value="Alto">Alto</option>
@@ -404,7 +404,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">Impacto</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" [(ngModel)]="riesgoFraude" name="riesgoFraude" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="impacto" name="impacto" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Crítico">Crítico</option>
 			<option value="Importante">Importante</option>
@@ -413,5 +413,5 @@
 		</div>
 	  </div>
 	</div>
-  </form>
+
 
