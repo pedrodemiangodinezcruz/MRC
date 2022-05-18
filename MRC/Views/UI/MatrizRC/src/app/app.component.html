@@ -15,7 +15,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <app-riesgo></app-riesgo>
+        <app-riesgo [riesgo]="riesgo" *ngIf="ActivarAltaRiesgo"></app-riesgo>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>

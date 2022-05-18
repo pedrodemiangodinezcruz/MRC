@@ -1,7 +1,7 @@
 <form>
 	<div class="row">
 	  <div class="col">
-		<!--Cambiar esto por los macros, proceos y subproceso de la bd-->
+		<!--Cambiar esto por los macros, procesos y subprocesos de la bd-->
 		<p class="text-center fw-bold">Macroproceso adjunto</p>
 		<div class="form-floating mb-3">
 		  <select class="form-select" id="macroproceso" [(ngModel)]="macroProceso"  name="macroproceso" aria-label="Default select example">
@@ -296,7 +296,7 @@
 	<div class="row">
 	  <div class="col">
 		<div class="form-floating mb-3">
-		  <input type="text" class="form-control" name="consecuencia" placeholder="Consecuencia">
+		  <input type="text" class="form-control" name="consecuencia" [(ngModel)]="causa"  placeholder="Consecuencia">
 		  <label for="floatingInput">Consecuencia</label>
 		</div>
 	  </div>
@@ -305,7 +305,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">Tipo de Evento</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="tipoEvento" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="tipoEvento"  name="tipoEvento" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Eficiencia,Calidad y Productividad">Eficiencia,Calidad y Productividad</option>
 			<option value="Fraude Interno">Fraude Interno</option>
@@ -320,7 +320,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">Tipo de Riesgo</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="tipoRiesgo" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="tipoRiesgo"  name="tipoRiesgo" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Estratégico">Estratégico</option>
 			<option value="Financiero">Financiero</option>
@@ -337,7 +337,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">IF</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="if" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="iff"  name="if" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Muy Alto">Muy Alto</option>
 			<option value="Alto">Alto</option>
@@ -351,7 +351,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">IC</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="ic" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="icc"  name="ic" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Muy Alto">Muy Alto</option>
 			<option value="Alto">Alto</option>
@@ -365,7 +365,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">IO</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="io" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="ios"  name="io" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Muy Alto">Muy Alto</option>
 			<option value="Alto">Alto</option>
@@ -381,7 +381,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">Riesgo de Fraude</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="riesgoFraude" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="riesgoFraude"  name="riesgoFraude" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Sí">Sí</option>
 			<option value="No">No</option>
@@ -392,7 +392,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">Probabilidad</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="probabilidad" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="probabilidad"  name="probabilidad" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Alta">Alta</option>
 			<option value="Media">Media</option>
@@ -404,7 +404,7 @@
 	  <div class="col">
 		<p class="text-center fw-bold">Impacto</p>
 		<div class="form-floating mb-3">
-		  <select class="form-select" name="riesgoFraude" aria-label="Default select example">
+		  <select class="form-select" [(ngModel)]="riesgoFraude" name="riesgoFraude" aria-label="Default select example">
 			<option selected>...</option>
 			<option value="Crítico">Crítico</option>
 			<option value="Importante">Importante</option>

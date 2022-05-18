@@ -25,7 +25,7 @@
 				<th scope="col" colspan="10" class="azul-marino">CONTROL</th>
 				<th scope="col" colspan="2" class="anaranjado">RIESGO RESIDUAL</th>
 				<th scope="col" class="gris">COMENTARIOS</th>
-				<th scope="col" class="bg-light" colspan="2" rowspan="4">Opciones</th>
+				<th scope="col" class="bg-light" colspan="2" rowspan="2">Opciones</th>
 			</tr>
 			<tr>
 				<th scope="col" colspan="8"></th>
@@ -94,6 +94,7 @@
 				<td class="naranja">IC</td>
 				<td class="naranja">IO</td>
 				<th class="naranja">Estrategia</th>
+				<th><button type="submit" colspan="2" rowspan="2" class="btn btn-primary" (click)="addClick">Añadir Riesgo</button></th>
 			</tr>
 		</thead>
 		<tbody *ngFor="let controlItem of ControlList">
@@ -170,7 +171,7 @@
 				<th scope="col">
 			
 					<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-						data-bs-target="#eliminar">Eliminar Riesgo
+						data-bs-target="#eliminar"  (click)="elimarRiesgo(riesgoItem)" >Eliminar Riesgo
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-trash3" viewBox="0 0 16 16">
 							<path
@@ -185,7 +186,7 @@
 	
 </div>
 
-	<!-- Modal para llenado de riesgo -->
+	<!-- Modal para la edicion de riesgo -->
 <div class="modal fade" id="modalEdicionRiesgo" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
@@ -197,7 +198,7 @@
 			<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo" ></app-riesgo>
 		</div>
 		<div class="modal-footer" >
-		  <button type="submit" class="btn btn-primary">Editar Riesgo</button>
+		  <button type="submit"   class="btn btn-primary">Editar Riesgo</button>
 		  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click) ="closeClick()">Cerrar</button>
 		</div>
 	  </div>

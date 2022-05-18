@@ -10,11 +10,14 @@ import { SharedService } from 'src/app/shared.service';
 export class AppComponent implements OnInit {
   title = 'MatrizRC';
  
-  constructor(private service: SharedService) {}
+  constructor(private service:SharedService) {}
 
-@Input() riesgo:any;
+  @Input() riesgo:any;
+  //riesgo:any;
+  ActivarAltaRiesgo: boolean = false;
   macroProceso: string | undefined;
   proceso: string | undefined;
+  subproceso: string | undefined;
   idRiesgo: string | undefined;
   descripcion: string | undefined;
   causa: string | undefined;
@@ -31,6 +34,7 @@ export class AppComponent implements OnInit {
 ngOnInit(): void {
 	this.macroProceso = this.macroProceso;
 	this.proceso = this.proceso;
+	this.subproceso = this.subproceso;
 	this.idRiesgo = this.idRiesgo;
 	this.descripcion = this.descripcion;
 	this.causa = this.causa;
@@ -47,6 +51,7 @@ ngOnInit(): void {
 
 }
   addClick() {
+	this.ActivarAltaRiesgo = true;
 	this.riesgo = {
 		macroProceso: "",
 		proceso: "",
@@ -66,20 +71,20 @@ ngOnInit(): void {
 }
 anadirRiesgo() {
 	var val = {
-		idRiesgo: this.idRiesgo,
-		macroProceso: this.macroProceso,
-		proceso: this.proceso,
-		descripcion: this.descripcion,
-		causa: this.causa,
-		consecuencia: this.consecuencia,
-		tipoEvento: this.tipoEvento,
-		tipoRiesgo: this.tipoRiesgo,
-		iff: this.iff,
-		icc: this.icc,
-		ios: this.ios,
-		riesgoFraude: this.riesgoFraude,
-		probabilidad: this.probabilidad,
-		impacto: this.impacto
+		idRiesgo: this.riesgo.idRiesgo,
+		macroProceso: this.riesgo.macroProceso,
+		proceso: this.riesgo.proceso,
+		descripcion: this.riesgo.descripcion,
+		causa: this.riesgo.causa,
+		consecuencia: this.riesgo.consecuencia,
+		tipoEvento: this.riesgo.tipoEvento,
+		tipoRiesgo: this.riesgo.tipoRiesgo,
+		iff: this.riesgo.iff,
+		icc: this.riesgo.icc,
+		ios: this.riesgo.ios,
+		riesgoFraude: this.riesgo.riesgoFraude,
+		probabilidad: this.riesgo.probabilidad,
+		impacto: this.riesgo.impacto
 	};
 	this.service.anadirRiesgo(val).subscribe(res => {
 		alert(res.toString());

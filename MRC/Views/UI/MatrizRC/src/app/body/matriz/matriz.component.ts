@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core'; import { withLatestFrom } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core'; import { withLatestFrom } from 'rxjs';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -54,20 +54,20 @@ export class MatrizComponent implements OnInit {
 	ngOnInit(): void {
 		this.refreshRiesgoList();
 		this.refreshControlList();
-		this.macroProceso = this.macroProceso;
-		this.proceso = this.proceso;
-		this.idRiesgo = this.idRiesgo;
-		this.descripcion = this.descripcion;
-		this.causa = this.causa;
-		this.consecuencia = this.consecuencia;
-		this.tipoEvento = this.tipoEvento;
-		this.tipoRiesgo = this.tipoRiesgo;
-		this.iff = this.iff;
-		this.icc = this.icc;
-		this.ios = this.ios;
-		this.riesgoFraude = this.riesgoFraude;
-		this.probabilidad = this.probabilidad;
-		this.impacto = this.impacto;
+		this.macroProceso = this.riesgo.macroProceso;
+		this.proceso = this.riesgo.proceso;
+		this.idRiesgo = this.riesgo.idRiesgo;
+		this.descripcion = this.riesgo.descripcion;
+		this.causa = this.riesgo.causa;
+		this.consecuencia = this.riesgo.consecuencia;
+		this.tipoEvento = this.riesgo.tipoEvento;
+		this.tipoRiesgo = this.riesgo.tipoRiesgo;
+		this.iff = this.riesgo.iff;
+		this.icc = this.riesgo.icc;
+		this.ios = this.riesgo.ios;
+		this.riesgoFraude = this.riesgo.riesgoFraude;
+		this.probabilidad = this.riesgo.probabilidad;
+		this.impacto = this.riesgo.impacto;
  
 	}
 	addClick() {
@@ -94,35 +94,13 @@ export class MatrizComponent implements OnInit {
 	}
 	
 
-	editClick(item: any) {
-		this.riesgo = item;
-		this.ActivarEdicionRiesgo = true;
-	}
-	updateRiesgo(item: any) {
-		console.log(item);
-		var val = {
-			idRiesgo: this.idRiesgo,
-			macroProceso: this.macroProceso,
-			proceso: this.proceso,
-			descripcion: this.descripcion,
-			causa: this.causa,
-			consecuencia: this.consecuencia,
-			tipoEvento: this.tipoEvento,
-			tipoRiesgo: this.tipoRiesgo,
-			iff: this.iff,
-			icc: this.icc,
-			ios: this.ios,
-			riesgoFraude: this.riesgoFraude,
-			probabilidad: this.probabilidad,
-			impacto: this.impacto
-		};
-		this.service.editarRiesgo(val).subscribe(res => {
-			alert(res.toString());
-		});
-	}
+	editClick(item: any){
+		this.riesgo=item;
+	  }
+	
 	elimarRiesgo(item:any){
 		console.log(item);
-		this.service.borrarRiesgo(item.id).subscribe(data => {
+		this.service.borrarRiesgo(item.idRiesgo).subscribe(data => {
 			alert(data.toString());
 			this.refreshRiesgoList();
 		})
