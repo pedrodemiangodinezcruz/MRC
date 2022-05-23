@@ -15,7 +15,7 @@ export class SharedService {
 	}
 
 	anadirRiesgo(val: any) {
-		return this.http.get<any>(this.APIUrl + '/Riesgo', val)
+		return this.http.post<any>(this.APIUrl + '/Riesgo', val)
 	}
 	editarRiesgo(val: any) {
 		return this.http.put<any>(this.APIUrl + '/Riesgo', val)
@@ -28,7 +28,7 @@ export class SharedService {
 	}
 
 	anadirControl(val: any) {
-		return this.http.get<any>(this.APIUrl + '/RiesgoControl', val)
+		return this.http.post<any>(this.APIUrl + '/RiesgoControl', val)
 	}
 	editarControl(val: any) {
 		return this.http.put<any>(this.APIUrl + '/RiesgoControl', val)

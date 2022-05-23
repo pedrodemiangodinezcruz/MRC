@@ -12,7 +12,10 @@ export class AppComponent implements OnInit {
  
   constructor(private service:SharedService) {}
 
-  @Input() riesgo:any;
+	RiesgoList: any = [];
+	ControlList: any = [];
+
+@Input() riesgo:any;
   //riesgo:any;
   ActivarAltaRiesgo: boolean = false;
   macroProceso: string | undefined;
@@ -32,6 +35,7 @@ export class AppComponent implements OnInit {
   impacto: string | undefined;
 
 ngOnInit(): void {
+	this.refreshRiesgoList();
 	this.macroProceso = this.riesgo.macroProceso;
 	this.proceso = this.riesgo.proceso;
 	this.subproceso = this.riesgo.subproceso;
@@ -46,13 +50,14 @@ ngOnInit(): void {
 	this.ios = this.riesgo.ios;
 	this.riesgoFraude = this.riesgo.riesgoFraude;
 	this.probabilidad = this.riesgo.probabilidad;
-	this.impacto = this.riesgo.impacto;
-	console.log(this.riesgo.impacto);
+	this.impacto = this.riesgo.impacto;   
+	console.log(this.idRiesgo);
 
 }
   addClick() {
 	this.ActivarAltaRiesgo = true;
 	this.riesgo = {
+		Anadir: 0,
 		macroProceso: "",
 		proceso: "",
 		idRiesgo: "",
@@ -91,5 +96,12 @@ anadirRiesgo() {
 		console.log(res.toString());
 	});
 }
+
+refreshRiesgoList(){
+    this.service.getRiesgoList().subscribe(data=>{
+      this.RiesgoList=data;
+    });
+  }
+
 
 }

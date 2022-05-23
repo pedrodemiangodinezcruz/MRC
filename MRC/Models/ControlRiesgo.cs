@@ -8,6 +8,7 @@ namespace MRC.Models
     public class ControlRiesgo
     {
         public int Id { get; set; }
+        public string IdRiesgoAsociado { get; set; }
         public string MacroProceso { get; set; }
         public string Proceso { get; set; }
         public string SubProceso { get; set; }

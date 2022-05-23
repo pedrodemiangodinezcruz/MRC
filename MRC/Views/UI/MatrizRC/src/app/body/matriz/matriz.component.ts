@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'; import { withLatestFrom } from 'rxjs';
 import { SharedService } from 'src/app/shared.service';
 
+
 @Component({
 	selector: 'app-matriz',
 	templateUrl: './matriz.component.html',
@@ -12,7 +13,7 @@ export class MatrizComponent implements OnInit {
 	mostarBoton: boolean = false;
 	contenteditable = false;
 	esFomulado: boolean = false;
-
+	
 
 	editarRiesgo() {
 		this.ocultarBoton = !this.ocultarBoton;
@@ -34,6 +35,7 @@ export class MatrizComponent implements OnInit {
 	RiesgoList: any = [];
 	ControlList: any = [];
 	@Input() riesgo:any;
+	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
@@ -53,7 +55,7 @@ export class MatrizComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.refreshRiesgoList();
-		this.refreshControlList();
+		//this.refreshControlList(idRiesgoComp);
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
 		this.idRiesgo = this.riesgo.idRiesgo;
@@ -68,10 +70,14 @@ export class MatrizComponent implements OnInit {
 		this.riesgoFraude = this.riesgo.riesgoFraude;
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
+		console.log(this.riesgo.idRiesgo);
  
 	}
+
 	addClick() {
+		this.ActivarAltaRiesgo = true;
 		this.riesgo = {
+			Anadir:0,
 			macroProceso: "",
 			proceso: "",
 			idRiesgo: "",
@@ -84,9 +90,32 @@ export class MatrizComponent implements OnInit {
 			icc: "",
 			ios: "",
 			riesgoFraude: "",
-			probabilidad: "",
+			probabilidad: 0,
 			impacto: ""
 		}
+	}
+
+	anadirRiesgo() {
+		var val = {
+			idRiesgo: this.idRiesgo,
+			macroProceso: this.macroProceso,
+			proceso: this.proceso,
+			descripcion: this.descripcion,
+			causa: this.causa,
+			consecuencia: this.consecuencia,
+			tipoEvento: this.tipoEvento,
+			tipoRiesgo: this.tipoRiesgo,
+			iff: this.iff,
+			icc: this.icc,
+			ios: this.ios,
+			riesgoFraude: this.riesgoFraude,
+			probabilidad: this.probabilidad,
+			impacto: this.impacto
+		};
+		this.service.anadirRiesgo(val).subscribe(res => {
+			alert(res.toString());
+			console.log(res.toString());
+		});
 	}
 	closeClick() {
 		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
@@ -111,12 +140,27 @@ export class MatrizComponent implements OnInit {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			console.log(this.RiesgoList);
+			this.service.getControlesList().subscribe(datos => {
+				this.ControlList = datos;
+				console.log(this.ControlList);
+			for (let i = 0; i < this.ControlList.length; i++){ 
+				//console.log(this.RiesgoList[i].idRiesgo);
+				var idRiesgoComp = this.RiesgoList[i].idRiesgo;
+				if(idRiesgoComp == this.ControlList[i].IdRiesgoAsociado){
+					console.log(this.ControlList[i].IdRiesgoAsociado);
+					console.log("id Riesgo y controlIDRiesgo iguales")
+					}
+		}
+		});
 		});
 	}
 	refreshControlList() {
 		this.service.getControlesList().subscribe(datos => {
 			this.ControlList = datos;
 			console.log(this.ControlList);
+			for (let i = 0; i < this.ControlList.length; i++){ 
+				
+			}
 		});
 	}
 

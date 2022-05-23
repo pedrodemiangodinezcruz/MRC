@@ -26,7 +26,7 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   SELECT Id, macroProceso, proceso, subProceso, idControl, general, descripcion
+                   SELECT Id, IdRiesgoAsociado, macroProceso, proceso, subProceso, idControl, general, descripcion
                     , evidencia, segregacion, documentacion tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, controlClave,
                     controlFraude, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
@@ -55,14 +55,15 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   insert into dbo.controlRiesgo (macroProceso, proceso
+                   insert into dbo.controlRiesgo (IdRiesgoAsociado, macroProceso, proceso
                     ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
                     tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia,
                     controlClave, controlFraude, cobertura, estrategia, responsableTratamiento,
                     descripcionTratamiento, causasAdjuntas, observaciones) values 
                      (
-                        '" + controlRiesgo.MacroProceso + @"'
+                        '" + controlRiesgo.IdRiesgoAsociado + @"'
+                        ,'" + controlRiesgo.MacroProceso + @"'
                         ,'" + controlRiesgo.Proceso + @"'
                         ,'" + controlRiesgo.SubProceso + @"'
                         ,'" + controlRiesgo.IdControl + @"'
@@ -115,7 +116,8 @@ namespace MRC.Controllers
 
             string query = @"
                     update  dbo.controlRiesgo set
-                        macroProceso = '" + controlRiesgo.MacroProceso + @"'
+                        idRiesgoAsociado = '" + controlRiesgo.IdRiesgoAsociado + @"'
+                        ,macroProceso = '" + controlRiesgo.MacroProceso + @"'
                         ,proceso ='" + controlRiesgo.Proceso + @"'
                         ,subProceso ='" + controlRiesgo.SubProceso + @"'
                         ,idControl ='" + controlRiesgo.IdControl + @"'

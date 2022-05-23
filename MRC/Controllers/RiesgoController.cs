@@ -24,9 +24,7 @@ namespace MRC.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            /*string query = @"
-                    select idRiesgo, macroProceso, proceso,subProceso, descripcion, causa, consecuencia, tipoEvento,
-                    tipoRiesgo, iff,io, riesgoFraude, probabilidad, impacto from dbo.Riesgo";*/
+            
             string query = @"
                    SELECT Id, idRiesgo, macroProceso, proceso, subProceso, descripcion, causa, consecuencia
                     , tipoEvento, tipoRiesgo, iff, ic, ios, riesgoFraude, probabilidad, impacto FROM dbo.Riesgo";
@@ -52,7 +50,7 @@ namespace MRC.Controllers
         [HttpPost]
         public JsonResult Post(Riesgo riesgo)
         {
-
+            
             string query = @"
                    insert into dbo.Riesgo (idRiesgo, macroProceso, proceso
                     ,subProceso, descripcion, causa, consecuencia, tipoEvento, tipoRiesgo,

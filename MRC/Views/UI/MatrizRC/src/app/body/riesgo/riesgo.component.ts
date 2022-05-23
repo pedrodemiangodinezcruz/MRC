@@ -9,10 +9,10 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class RiesgoComponent implements OnInit {
 
+
   constructor(private service: SharedService) { }
   @Input() riesgo:any;
-  DepartmentId:string = "";
-  DepartmentName:string = "";
+  Anadir: number = 0;
   macroProceso:  string = "";
   proceso:  string = "";
   subProceso:  string = "";
@@ -30,6 +30,7 @@ export class RiesgoComponent implements OnInit {
   impacto:  string = "";
 
   ngOnInit(): void {
+	this.Anadir = this.riesgo.Anadir;
 	this.macroProceso = this.riesgo.macroProceso;
 	this.proceso = this.riesgo.proceso;
 	this.subProceso = this.riesgo.subProceso;
@@ -45,10 +46,10 @@ export class RiesgoComponent implements OnInit {
 	this.riesgoFraude = this.riesgo.riesgoFraude;
 	this.probabilidad = this.riesgo.probabilidad;
 	this.impacto = this.riesgo.impacto;
-	console.log(this.riesgo.impacto);
+	console.log(this.idRiesgo);
   }
 
- /* anadirRiesgo() {
+ anadirRiesgo() {
 	var val = {
 		idRiesgo: this.idRiesgo,
 		macroProceso: this.macroProceso,
@@ -65,10 +66,13 @@ export class RiesgoComponent implements OnInit {
 		probabilidad: this.probabilidad,
 		impacto: this.impacto
 	};
+	console.log(this.idRiesgo);
+	console.log(val);
 	this.service.anadirRiesgo(val).subscribe(res => {
 		alert(res.toString());
 	});
-}*/
+}
+
 updateRiesgo() {
 	var val = {
 		idRiesgo: this.idRiesgo,
@@ -86,6 +90,8 @@ updateRiesgo() {
 		probabilidad: this.probabilidad,
 		impacto: this.impacto
 	};
+	console.log(this.idRiesgo);
+	console.log(val);
 	this.service.editarRiesgo(val).subscribe(res => {
 		alert(res.toString());
 	});
