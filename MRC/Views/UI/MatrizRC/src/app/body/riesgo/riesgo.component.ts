@@ -12,8 +12,10 @@ export class RiesgoComponent implements OnInit {
 
   constructor(private service: SharedService) { }
   @Input() riesgo:any;
+  RiesgoList: any = [];
   Anadir: number = 0;
   Id: number = 0;
+  ActivarModal: boolean = false;
   macroProceso:  string = "";
   proceso:  string = "";
   subProceso:  string = "";
@@ -102,5 +104,20 @@ updateRiesgo() {
 	this.service.editarRiesgo(val).subscribe(res => {
 		alert(res.toString());
 	});
+	this.refreshRiesgoList();
 }
+
+closeClick(){
+    this.ActivarModal = false;
+    this.refreshRiesgoList();
+  }
+  refreshRiesgoList() {
+	this.service.getRiesgoList().subscribe(data => {
+		this.RiesgoList = data;
+		console.log("Lista de riesgos");
+		console.log(this.RiesgoList);
+		
+	});
+}
+
 }

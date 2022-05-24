@@ -146,24 +146,7 @@ export class MatrizComponent implements OnInit {
 			this.RiesgoList = data;
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
-			/*console.log(this.RiesgoList);
-			this.service.getControlesList().subscribe(datos => {
-				this.ControlList = datos;
-				//console.log(this.ControlList);
-			for (let i = 0; i < this.ControlList.length; i++){ 
-				//console.log(this.RiesgoList[i].idRiesgo);
-				var idRiesgoReferencia = this.RiesgoList[i].idRiesgo;
-				if(idRiesgoReferencia == this.ControlList[i].IdRiesgoAsociado){
-					console.log(this.ControlList[i].IdRiesgoAsociado);
-					console.log("id Riesgo y control IdRiesgoAsociado iguales");
-					//this.RiesgoList = data;
-					}
-					else{
-						console.log("No coinciden los riesgos");
-						//this.RiesgoList = [];
-					}
-		}
-		});*/
+			
 		});
 	}
 	refreshControlList() {

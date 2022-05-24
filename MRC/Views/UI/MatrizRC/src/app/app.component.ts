@@ -96,6 +96,10 @@ anadirRiesgo() {
 		console.log(res.toString());
 	});
 }
+closeClick(){
+    
+    this.refreshRiesgoList();
+  }
 
 refreshRiesgoList(){
     this.service.getRiesgoList().subscribe(data=>{
