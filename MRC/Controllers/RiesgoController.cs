@@ -134,13 +134,13 @@ namespace MRC.Controllers
 
             return new JsonResult("Riesgo editado exitosamente");
         }
-        [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        [HttpDelete("{Id}")]
+        public JsonResult Delete(int Id)
         {
 
             string query = @"
                     delete from  dbo.Riesgo
-                    where Id = " + id + @"
+                    where Id = " + Id + @"
                     ";
 
             DataTable table = new DataTable();

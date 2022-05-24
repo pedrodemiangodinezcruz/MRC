@@ -109,13 +109,15 @@
 				<td class="naranja">IC</td>
 				<td class="naranja">IO</td>
 				<th class="naranja">Estrategia</th>
-				<th><button type="button" rowspan="2" colspan="2" data-bs-toggle="modal" class="btn btn-primary" (click)="addClick()" data-bs-target="#modalRiesgo">
+				<th scope="col" rowspan="2" colspan="2" ><button type="button"  data-bs-toggle="modal" class="btn btn-primary" (click)="addClick()" data-bs-target="#modalRiesgo">
 					Agregar Riesgo
 				  </button></th>
 			</tr>
 		</thead>
-		<tbody  *ngFor="let controlItem of ControlList">		
-			<tr *ngFor="let riesgoItem of RiesgoList">
+		<ng-container  *ngFor="let controlItem of ControlList">
+			<ng-container *ngFor="let riesgoItem of RiesgoList";>
+		<tbody>		
+			<tr >
 				<script>
 					if (controlItem.idRiesgoAsociado = riesgoItem.idRiesgo){
 								console.log("hola");
@@ -165,9 +167,8 @@
 				<td [className]="esFomulado ? 'formulado' : 'inactivo'">Alta</td>
 				<td [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
 				<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
-				<th scope="col">
-					<a>
-						<!--(click)="editarRiesgo()" para lo gray y set editable :´(-->
+				<td scope="col">
+						<!--(click)="editarRiesgo()" para lo gray y set editable-->
 						<button type="button"  class="btn btn-success" (click)="editClick(riesgoItem)" *ngIf="ocultarBoton" data-bs-toggle="modal"
 						data-bs-target="#modalEdicionRiesgo" data-backdrop="static" data-keyboard="false">Editar Riesgo
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -178,34 +179,25 @@
 									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 							</svg>
 						</button>
-					</a>
-					<a href="/edicionRiesgo">
-						<button type="button" class="btn btn-primary" *ngIf="mostarBoton" >Guardar Riesgo
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-								class="bi bi-trash3" viewBox="0 0 16 16">
-								<path
-									d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-							</svg>
-						</button>
-					</a>
-				</th>
-				<th scope="col">
-			
+				</td>
+				<td scope="col">
 					<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-						data-bs-target="#eliminar"  (click)="elimarRiesgo(riesgoItem)" >Eliminar Riesgo
+						data-bs-target="#eliminar">Eliminar Riesgo
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-trash3" viewBox="0 0 16 16">
 							<path
 								d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
 						</svg>
 					</button>
-				</th>
+				</td>
 			</tr>
 
 			<script>
 			}
 			</script>
 		</tbody>
+		</ng-container>
+	</ng-container>
 	</table>
 	
 </div>
@@ -352,13 +344,15 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-outline-primary"
 												data-bs-dismiss="modal">Cerrar</button>
-												<button type="button" class="btn btn-danger" (click)="elimarRiesgo(RiesgoList)" >Eliminar
+												<tr *ngFor="let riesgoItem of RiesgoList">
+												<button type="button" class="btn btn-danger"  (click)="elimarRiesgo(riesgoItem)" >Eliminar
 													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 													fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
 													<path
 														d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
 												</svg>
 											</button>
+										</tr>
 										</div>
 									</div>
 								</div>

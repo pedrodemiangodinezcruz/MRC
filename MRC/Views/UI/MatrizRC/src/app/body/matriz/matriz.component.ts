@@ -28,15 +28,14 @@ export class MatrizComponent implements OnInit {
 //Show es matriz
 //app-edit es riesgo
 
-	constructor(private service: SharedService) {
-
-	}
+	constructor(private service: SharedService) { }
 
 	RiesgoList: any = [];
 	ControlList: any = [];
-	@Input() riesgo:any;
+	riesgo:any;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
+	Id: string | undefined;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
 	idRiesgo: string | undefined;
@@ -56,6 +55,7 @@ export class MatrizComponent implements OnInit {
 	ngOnInit(): void {
 		this.refreshRiesgoList();
 		//this.refreshControlList(idRiesgoComp);
+		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
 		this.idRiesgo = this.riesgo.idRiesgo;
@@ -78,6 +78,7 @@ export class MatrizComponent implements OnInit {
 		this.ActivarAltaRiesgo = true;
 		this.riesgo = {
 			Anadir:0,
+			Id: 0,
 			macroProceso: "",
 			proceso: "",
 			idRiesgo: "",
@@ -94,9 +95,20 @@ export class MatrizComponent implements OnInit {
 			impacto: ""
 		}
 	}
+	closeClick() {
+		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
+		this.refreshRiesgoList();
+	}
+	
+
+	editClick(item: any){
+		this.ActivarEdicionRiesgo = true;
+		this.riesgo=item;
+	  }
 
 	anadirRiesgo() {
 		var val = {
+			Id: this.Id,
 			idRiesgo: this.idRiesgo,
 			macroProceso: this.macroProceso,
 			proceso: this.proceso,
@@ -117,20 +129,12 @@ export class MatrizComponent implements OnInit {
 			console.log(res.toString());
 		});
 	}
-	closeClick() {
-		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
-		this.refreshRiesgoList();
-	}
-	
 
-	editClick(item: any){
-		this.ActivarEdicionRiesgo = true;
-		this.riesgo=item;
-	  }
 	
 	elimarRiesgo(item:any){
 		console.log(item);
-		this.service.borrarRiesgo(item.idRiesgo).subscribe(data => {
+		console.log("ID BD del riesgo a eliminar " + item.Id);
+		this.service.borrarRiesgo(item.Id).subscribe(data => {
 			alert(data.toString());
 			this.refreshRiesgoList();
 		})
@@ -139,16 +143,21 @@ export class MatrizComponent implements OnInit {
 	refreshRiesgoList() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
-			console.log(this.RiesgoList);
+			//console.log(this.RiesgoList);
 			this.service.getControlesList().subscribe(datos => {
 				this.ControlList = datos;
-				console.log(this.ControlList);
+				//console.log(this.ControlList);
 			for (let i = 0; i < this.ControlList.length; i++){ 
 				//console.log(this.RiesgoList[i].idRiesgo);
-				var idRiesgoComp = this.RiesgoList[i].idRiesgo;
-				if(idRiesgoComp == this.ControlList[i].IdRiesgoAsociado){
+				var idRiesgoReferencia = this.RiesgoList[i].idRiesgo;
+				if(idRiesgoReferencia == this.ControlList[i].IdRiesgoAsociado){
 					console.log(this.ControlList[i].IdRiesgoAsociado);
-					console.log("id Riesgo y controlIDRiesgo iguales")
+					console.log("id Riesgo y control IdRiesgoAsociado iguales");
+					//this.RiesgoList = data;
+					}
+					else{
+						console.log("No coinciden los riesgos");
+						//this.RiesgoList = [];
 					}
 		}
 		});

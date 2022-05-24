@@ -13,6 +13,7 @@ export class RiesgoComponent implements OnInit {
   constructor(private service: SharedService) { }
   @Input() riesgo:any;
   Anadir: number = 0;
+  Id: number = 0;
   macroProceso:  string = "";
   proceso:  string = "";
   subProceso:  string = "";
@@ -30,6 +31,7 @@ export class RiesgoComponent implements OnInit {
   impacto:  string = "";
 
   ngOnInit(): void {
+	this.Id = this.riesgo.Id;
 	this.Anadir = this.riesgo.Anadir;
 	this.macroProceso = this.riesgo.macroProceso;
 	this.proceso = this.riesgo.proceso;
@@ -46,7 +48,8 @@ export class RiesgoComponent implements OnInit {
 	this.riesgoFraude = this.riesgo.riesgoFraude;
 	this.probabilidad = this.riesgo.probabilidad;
 	this.impacto = this.riesgo.impacto;
-	console.log(this.idRiesgo);
+	console.log("Id Riesgo a cambiar" + this.idRiesgo);
+	console.log("Id Riesgo BD " + this.Id);
   }
 
  anadirRiesgo() {
@@ -54,6 +57,7 @@ export class RiesgoComponent implements OnInit {
 		idRiesgo: this.idRiesgo,
 		macroProceso: this.macroProceso,
 		proceso: this.proceso,
+		subProceso: this.subProceso,
 		descripcion: this.descripcion,
 		causa: this.causa,
 		consecuencia: this.consecuencia,
@@ -75,22 +79,25 @@ export class RiesgoComponent implements OnInit {
 
 updateRiesgo() {
 	var val = {
+		Id : this.Id,
 		idRiesgo: this.idRiesgo,
 		macroProceso: this.macroProceso,
 		proceso: this.proceso,
+		subProceso: this.subProceso,
 		descripcion: this.descripcion,
 		causa: this.causa,
 		consecuencia: this.consecuencia,
 		tipoEvento: this.tipoEvento,
 		tipoRiesgo: this.tipoRiesgo,
 		iff: this.iff,
-		icc: this.ic,
+		ic: this.ic,
 		ios: this.ios,
 		riesgoFraude: this.riesgoFraude,
 		probabilidad: this.probabilidad,
 		impacto: this.impacto
 	};
 	console.log(this.idRiesgo);
+	console.log("Id a cambiar" + this.Id);
 	console.log(val);
 	this.service.editarRiesgo(val).subscribe(res => {
 		alert(res.toString());
