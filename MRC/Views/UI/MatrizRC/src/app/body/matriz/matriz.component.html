@@ -117,9 +117,9 @@
 		<ng-container  *ngFor="let controlItem of ControlList">
 			<ng-container *ngFor="let riesgoItem of RiesgoList";>
 		<tbody>		
-			<tr >
+			<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
 				<script>
-					if (controlItem.idRiesgoAsociado = riesgoItem.idRiesgo){
+					if (controlItem.IdRiesgoAsociado = riesgoItem.idRiesgo){
 								console.log("hola");
 					</script>
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
