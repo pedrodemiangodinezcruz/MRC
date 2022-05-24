@@ -114,14 +114,10 @@
 				  </button></th>
 			</tr>
 		</thead>
+		<tbody>	
 		<ng-container  *ngFor="let controlItem of ControlList">
-			<ng-container *ngFor="let riesgoItem of RiesgoList";>
-		<tbody>		
+			<ng-container *ngFor="let riesgoItem of RiesgoList";>	
 			<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
-				<script>
-					if (controlItem.IdRiesgoAsociado = riesgoItem.idRiesgo){
-								console.log("hola");
-					</script>
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
@@ -138,7 +134,7 @@
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.probabilidad}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
 				<td [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.Id}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
@@ -170,7 +166,7 @@
 				<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
 						<button type="button"  class="btn btn-success" (click)="editClick(riesgoItem)" *ngIf="ocultarBoton" data-bs-toggle="modal"
-						data-bs-target="#modalEdicionRiesgo" data-backdrop="static" data-keyboard="false">Editar Riesgo
+						[attr.data-bs-target]="'#' + controlItem.IdRiesgoAsociado" data-backdrop="static" data-keyboard="false">Editar Riesgo
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-pencil-square" viewBox="0 0 16 16">
 								<path
@@ -191,19 +187,8 @@
 					</button>
 				</td>
 			</tr>
-
-			<script>
-			}
-			</script>
-		</tbody>
-		</ng-container>
-	</ng-container>
-	</table>
-	
-</div>
-
-	<!-- Modal para la edicion de riesgo -->
-<div class="modal fade" id="modalEdicionRiesgo" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+				<!-- Modal para la edicion de riesgo -->
+<div class="modal fade" [attr.id]="'' + controlItem.IdRiesgoAsociado" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -217,6 +202,14 @@
 	  </div>
 	</div>
   </div>
+		</ng-container>
+	</ng-container>
+</tbody>
+	</table>
+	
+</div>
+
+
 
 		<!--Modales de alta de riesgo y control
 		<% if (registro=='riesgoAlta' ) { %>

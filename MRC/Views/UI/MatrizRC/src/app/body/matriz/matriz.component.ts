@@ -13,7 +13,7 @@ export class MatrizComponent implements OnInit {
 	mostarBoton: boolean = false;
 	contenteditable = false;
 	esFomulado: boolean = false;
-	
+
 
 	editarRiesgo() {
 		this.ocultarBoton = !this.ocultarBoton;
@@ -25,14 +25,14 @@ export class MatrizComponent implements OnInit {
 	guardarRiesgo() {
 		this.mostarBoton = this.mostarBoton;
 	}
-//Show es matriz
-//app-edit es riesgo
+	//Show es matriz
+	//app-edit es riesgo
 
 	constructor(private service: SharedService) { }
 
 	RiesgoList: any = [];
 	ControlList: any = [];
-	riesgo:any;
+	riesgo: any;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -71,13 +71,13 @@ export class MatrizComponent implements OnInit {
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
 		console.log(this.riesgo.idRiesgo);
- 
+
 	}
 
 	addClick() {
 		this.ActivarAltaRiesgo = true;
 		this.riesgo = {
-			Anadir:0,
+			Anadir: 0,
 			Id: 0,
 			macroProceso: "",
 			proceso: "",
@@ -99,12 +99,13 @@ export class MatrizComponent implements OnInit {
 		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
 		this.refreshRiesgoList();
 	}
-	
 
-	editClick(item: any){
+
+	editClick(item: any) {
+		this.riesgo = item;
 		this.ActivarEdicionRiesgo = true;
-		this.riesgo=item;
-	  }
+		console.log(item.idRiesgo)
+	}
 
 	anadirRiesgo() {
 		var val = {
@@ -130,8 +131,8 @@ export class MatrizComponent implements OnInit {
 		});
 	}
 
-	
-	elimarRiesgo(item:any){
+
+	elimarRiesgo(item: any) {
 		console.log(item);
 		console.log("ID BD del riesgo a eliminar " + item.Id);
 		this.service.borrarRiesgo(item.Id).subscribe(data => {
