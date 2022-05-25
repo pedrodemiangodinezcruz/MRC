@@ -75,24 +75,14 @@ ngOnInit(): void {
 		probabilidad: 0,
 		impacto: ""
 	}
+	console.log(this.riesgo.Anadir)
+}
+addControl() {
 	this.ActivarAltaControl = true;
 	this.control = {
 		Anadir: 0,
-		macroProceso: "",
-		proceso: "",
-		idRiesgo: "",
-		descripcion: "",
-		causa: "",
-		consecuencia: "",
-		tipoEvento: "",
-		tipoRiesgo: "",
-		iff: "",
-		icc: "",
-		ios: "",
-		riesgoFraude: "",
-		probabilidad: 0,
-		impacto: ""
 	}
+	console.log(this.control.Anadir)
 }
 
 anadirRiesgo() {

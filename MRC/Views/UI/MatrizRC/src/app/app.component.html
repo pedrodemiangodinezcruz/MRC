@@ -30,7 +30,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<app-control-riesgo></app-control-riesgo>
+				<app-control-riesgo [control]="control" *ngIf="ActivarAltaControl"></app-control-riesgo>
 			</div>
 			
 		</div>
@@ -160,7 +160,8 @@
 						data-bs-target="#modalRiesgo">
 						Agregar Riesgo
 					</button></li>
-				<li><button type="button" class="dropdown-item" data-bs-toggle="modal" (click)="addClick()" data-bs-target="#modalControl">
+				<li><button type="button" class="dropdown-item" data-bs-toggle="modal" (click)="addControl()"
+					 data-bs-target="#modalControl">
 						Agregar Control
 					</button></li>
 				<li>
