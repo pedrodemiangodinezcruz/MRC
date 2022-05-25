@@ -1,4 +1,4 @@
-<!--Icono de paloma verde y triangulo warning-->
+<!--Iconos de paloma verde y triangulo warning-->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 	<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
 		<path
@@ -14,18 +14,18 @@
 <!-- Modal para llenado de riesgo -->
 <div class="modal fade" id="modalRiesgo" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 	<div class="modal-dialog">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para añadir un Riesgo</h5>
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para añadir un Riesgo</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<app-riesgo [riesgo]="riesgo" *ngIf="ActivarAltaRiesgo"></app-riesgo>
+			</div>
+
 		</div>
-		<div class="modal-body">
-		  <app-riesgo [riesgo]="riesgo" *ngIf="ActivarAltaRiesgo"></app-riesgo>
-		</div>
-		
-	  </div>
 	</div>
-  </div>
+</div>
 <!--Inclución de header y sidebar-->
 <div id="infoSeccion">
 
@@ -109,120 +109,126 @@
 				<td class="naranja">IC</td>
 				<td class="naranja">IO</td>
 				<th class="naranja">Estrategia</th>
-				<th scope="col" rowspan="2" colspan="2" ><button type="button"  data-bs-toggle="modal" class="btn btn-primary" (click)="addClick()" data-bs-target="#modalRiesgo">
-					Agregar Riesgo
-				  </button></th>
+				<th scope="col" rowspan="2" colspan="2"><button type="button" data-bs-toggle="modal"
+						class="btn btn-primary" (click)="addClick()" data-bs-target="#modalRiesgo">
+						Agregar Riesgo
+					</button></th>
 			</tr>
 		</thead>
-		<tbody>	
-		<ng-container  *ngFor="let controlItem of ControlList">
-			<ng-container *ngFor="let riesgoItem of RiesgoList">	
-			<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.causa}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.iff}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.ic}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.probabilidad}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
-				<td  [attr.contenteditable]="contenteditable">Documentación</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.tipoControl}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.naturalezaAdecuada}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.naturalezaControl}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.frecuenciaControl}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.frecuenciaAdecuada}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">Diseño del control</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategia}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
-				<td  [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">19%</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">Medio</td>
-				<td [className]="esFomulado ? 'formulado' : 'inactivo'">Alta</td>
-				<td [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
-				<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
-				<td scope="col">
-						<!--(click)="editarRiesgo()" para lo gray y set editable-->
-						<button type="button"  class="btn btn-success" (click)="editClick(riesgoItem)" *ngIf="ocultarBoton" data-bs-toggle="modal"
-						[attr.data-bs-target]="'#' + controlItem.IdRiesgoAsociado" data-backdrop="static" data-keyboard="false">Editar Riesgo
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-								class="bi bi-pencil-square" viewBox="0 0 16 16">
-								<path
-									d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-								<path fill-rule="evenodd"
-									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-							</svg>
-						</button>
-				</td>
-				<td scope="col">
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-						data-bs-target="#eliminar">Eliminar Riesgo
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-							class="bi bi-trash3" viewBox="0 0 16 16">
-							<path
-								d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-						</svg>
-					</button>
-				</td>
-			</tr>
-				<!-- Modal para la edicion de riesgo -->
-<div class="modal fade" [attr.id]="'' + controlItem.IdRiesgoAsociado" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para editar el riesgo seleccionado </h5>
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-		</div>
-		<div class="modal-body">
-			<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo" ></app-riesgo>
-		</div>
-	  </div>
-	</div>
-  </div>
-		</ng-container>
-	</ng-container>
-</tbody>
+		<tbody>
+			<ng-container *ngFor="let controlItem of ControlList">
+				<ng-container *ngFor="let riesgoItem of RiesgoList">
+					<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.causa}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.iff}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.ic}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.probabilidad}}</td>
+						<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
+						<td [attr.contenteditable]="contenteditable">Documentación</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.tipoControl}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.naturalezaAdecuada}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.naturalezaControl}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.frecuenciaControl}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.frecuenciaAdecuada}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">Diseño del control</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategia}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">19%</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">Medio</td>
+						<td [className]="esFomulado ? 'formulado' : 'inactivo'">Alta</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
+						<td scope="col">
+							<!--(click)="editarRiesgo()" para lo gray y set editable-->
+							<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"
+								*ngIf="ocultarBoton" data-bs-toggle="modal"
+								[attr.data-bs-target]="'#' + controlItem.IdRiesgoAsociado" data-backdrop="static"
+								data-keyboard="false">Editar Riesgo
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-pencil-square" viewBox="0 0 16 16">
+									<path
+										d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+									<path fill-rule="evenodd"
+										d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+								</svg>
+							</button>
+						</td>
+						<td scope="col">
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+								data-bs-target="#eliminar">Eliminar Riesgo
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+									class="bi bi-trash3" viewBox="0 0 16 16">
+									<path
+										d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+								</svg>
+							</button>
+						</td>
+					</tr>
+					<!-- Modal para la edicion de riesgo -->
+					<div class="modal fade" [attr.id]="'' + controlItem.IdRiesgoAsociado" tabindex="-1"
+						aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
+										editar el riesgo seleccionado </h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo"></app-riesgo>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ng-container>
+			</ng-container>
+		</tbody>
 	</table>
-	
+
 </div>
 
 
-	<!--Modales de alta de riesgo y edicion -->
+<!--Modales de alta de riesgo y edicion -->
 <div class="modal" id="altaRiesgo">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Estatus de solicitud</h5>
 				<a href="/matriz">
-				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
-			</a>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</a>
 			</div>
 			<div class="modal-body">
 				<div class="col-12 alert alert-success  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-						aria-label="Success:" style="float: left;">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+						style="float: left;">
 						<use xlink:href="#check-circle-fill" />
 					</svg>
 					<div>
@@ -231,8 +237,7 @@
 				</div>
 				<div class="modal-footer">
 					<a href="/matriz">
-					<button type="button"  class="btn btn-outline-primary"
-						data-bs-dismiss="modal">Ok</button>
+						<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ok</button>
 					</a>
 				</div>
 			</div>
@@ -246,14 +251,14 @@
 			<div class="modal-header">
 				<h5 class="modal-title">Estatus de solicitud</h5>
 				<a href="/matriz">
-				<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
-					aria-label="Close"></button>
-					</a>
+					<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</a>
 			</div>
 			<div class="modal-body">
 				<div class="col-12 alert alert-success  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-						aria-label="Success:" style="float: left;">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+						style="float: left;">
 						<use xlink:href="#check-circle-fill" />
 					</svg>
 					<div>
@@ -263,83 +268,44 @@
 			</div>
 			<div class="modal-footer">
 				<a href="/matriz">
-				<button type="button" class="btn btn-outline-primary"
-					data-bs-dismiss="modal">Ok</button>
+					<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ok</button>
 				</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-					
-							<!--Modal apra verificar si esta seguro de eliminar un riesgo-->
-							<div class="modal" id="eliminar">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Advertencia</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal"
-												aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-											<div class="col-12 alert alert-danger  align-items-center" role="alert">
-												<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-													aria-label="Danger:" style="float: left;">
-													<use xlink:href="#exclamation-triangle-fill" />
-												</svg>
-												<div>
-													¿Estas seguro de querer eliminar este riesgo y su control adjunto?
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-outline-primary"
-												data-bs-dismiss="modal">Cerrar</button>
-												<tr *ngFor="let riesgoItem of RiesgoList">
-												<button type="button" class="btn btn-danger"  (click)="elimarRiesgo(riesgoItem)" >Eliminar
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-													fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-													<path
-														d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-												</svg>
-											</button>
-										</tr>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--<% if (eliminacionRiesgo=='verdadero' ) { %>-->
-								<script>
-									jQuery(document).ready(function (e) {
-										$('#altaControl').modal('show');
 
-									});
-								</script>
-								<div class="modal" id="altaControl">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title">Estatus de solicitud</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal"
-													aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
-												<div class="col-12 alert alert-success  align-items-center"
-													role="alert">
-													<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-														aria-label="Success:" style="float: left;">
-														<use xlink:href="#check-circle-fill" />
-													</svg>
-													<div>
-														Riesgo, eliminado exitosamente
-													</div>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-outline-primary"
-													data-bs-dismiss="modal">Cerrar</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--<% } %> -->
+<!--Modal apra verificar si esta seguro de eliminar un riesgo-->
+<div class="modal" id="eliminar">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Advertencia</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-danger  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
+						style="float: left;">
+						<use xlink:href="#exclamation-triangle-fill" />
+					</svg>
+					<div>
+						¿Estas seguro de querer eliminar este riesgo y su control adjunto?
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cerrar</button>
+				<ng-container *ngFor="let riesgoItem of RiesgoList">
+					<button type="button" class="btn btn-danger"  (click)="eliminarRiesgo(RiesgoList)" >Eliminar
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+						<path
+							d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+					</svg>
+				</button>
+			</ng-container>
+		</div>
+	</div>
+</div>

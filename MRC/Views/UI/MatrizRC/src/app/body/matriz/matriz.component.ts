@@ -132,7 +132,7 @@ export class MatrizComponent implements OnInit {
 	}
 
 
-	elimarRiesgo(item: any) {
+	eliminarRiesgo(item: any) {
 		console.log(item);
 		console.log("ID BD del riesgo a eliminar " + item.Id);
 		this.service.borrarRiesgo(item.Id).subscribe(data => {
