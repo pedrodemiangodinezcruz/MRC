@@ -116,7 +116,7 @@
 		</thead>
 		<tbody>	
 		<ng-container  *ngFor="let controlItem of ControlList">
-			<ng-container *ngFor="let riesgoItem of RiesgoList";>	
+			<ng-container *ngFor="let riesgoItem of RiesgoList">	
 			<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
 				<td  [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
@@ -209,7 +209,67 @@
 </div>
 
 
+	<!--Modales de alta de riesgo y edicion -->
+<div class="modal" id="altaRiesgo">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/matriz">
+				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+			</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Riesgo, dado de alta exitosamente
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="/matriz">
+					<button type="button"  class="btn btn-outline-primary"
+						data-bs-dismiss="modal">Ok</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+<div class="modal" id="editarRiesgo">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/matriz">
+				<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+					</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Riesgo, editado exitosamente
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="/matriz">
+				<button type="button" class="btn btn-outline-primary"
+					data-bs-dismiss="modal">Ok</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
 		<!--Modales de alta de riesgo y control
 		<% if (registro=='riesgoAlta' ) { %>
 			<script>
@@ -217,31 +277,7 @@
 					$('#altaRiesgo').modal('show');
 				});
 			</script>
-			<div class="modal" id="altaRiesgo">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Estatus de solicitud</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="col-12 alert alert-success  align-items-center" role="alert">
-								<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-									aria-label="Success:" style="float: left;">
-									<use xlink:href="#check-circle-fill" />
-								</svg>
-								<div>
-									Riesgo, dado de alta exitosamente
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-primary"
-									data-bs-dismiss="modal">Cerrar</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 
 			<!--Modal para la alerta de un control dado de alta exitosamente
 			<% } if (registro=='controlAlta' ) { %>

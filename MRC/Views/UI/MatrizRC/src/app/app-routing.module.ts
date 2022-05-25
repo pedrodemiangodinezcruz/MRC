@@ -9,12 +9,14 @@ import { EstadisticasComponent } from './body/estadisticas/estadisticas.componen
 import { MapaRiesgoComponent } from './body/mapa-riesgo/mapa-riesgo.component';
 import { ParetoComponent } from './body/pareto/pareto.component';
 import { CausasComponent } from './body/causas/causas.component';
+import { ControlesComponent } from './body/controles/controles.component';
 import { InstructivoComponent } from './body/instructivo/instructivo.component';
 
 const routes: Routes = [
 {path: 'metodologia', component: MetodologiaComponent},
 {path: 'matriz', component: MatrizComponent},
 {path: 'causas', component: CausasComponent},
+{path: 'controles', component: ControlesComponent},
 {path: 'criterios', component: CriteriosComponent},
 {path: 'estadisticas', component: EstadisticasComponent},
 {path: 'mapaResidual', component: MapaResidualComponent},

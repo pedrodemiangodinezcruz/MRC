@@ -1,22 +1,41 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
-  selector: 'app-control-riesgo',
-  templateUrl: './control-riesgo.component.html',
-  styleUrls: ['./control-riesgo.component.css']
+	selector: 'app-controles',
+	templateUrl: './controles.component.html',
+	styleUrls: ['./controles.component.css']
 })
-export class ControlRiesgoComponent implements OnInit {
+export class ControlesComponent implements OnInit {
+
+	ocultarBoton: boolean = true;
+	mostarBoton: boolean = false;
+	contenteditable = false;
+	esFomulado: boolean = false;
+
+
+	editarControl() {
+		this.ocultarBoton = !this.ocultarBoton;
+		this.mostarBoton = !this.mostarBoton;
+		this.contenteditable = !this.contenteditable;
+		this.esFomulado = !this.esFomulado;
+
+	}
+	guardarControl() {
+		this.mostarBoton = this.mostarBoton;
+	}
+	//Show es matriz
+	//app-edit es control
 
 	constructor(private service: SharedService) { }
-	@Input() control:any;
+
 	ControlList: any = [];
-	Anadir: number = 0;
-	Id: number = 0;
-	ActivarModal: boolean = false;
-	macroProceso:  string = "";
-	proceso:  string = "";
-	subProceso:  string = "";
+	control: any;
+	ActivarAltaRiesgo: boolean = false;
+	ActivarEdicionRiesgo: boolean = false;
+	Id: string | undefined;
+	macroProceso: string | undefined;
+	proceso: string | undefined;
 	idRiesgoAsociado: string | undefined;
 	idControl: string | undefined;
 	general: string | undefined;
@@ -40,7 +59,8 @@ export class ControlRiesgoComponent implements OnInit {
 	descripcionTratamiento: string | undefined;
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
-  
+
+
 	ngOnInit(): void {
 		this.refreshControlList();
 		this.Id = this.control.Id;
@@ -69,10 +89,55 @@ export class ControlRiesgoComponent implements OnInit {
 		this.descripcionTratamiento= this.control.descripcionTratamiento;
 		this.causasAdjuntas= this.control.causasAdjuntas;
 		this.observaciones= this.control.observaciones;
-	  console.log("Id Riesgo a cambiar" + this.control.idControl);
-	  console.log("Id Riesgo BD " + this.control.Id);
+
+		console.log(this.control.idControl);
+
 	}
-  
+
+	addClick() {
+		this.ActivarAltaRiesgo = true;
+		this.control = {
+			Anadir: 0,
+			Id: "",
+	macroProceso: "",
+	proceso: "",
+	idRiesgoAsociado: "",
+	idControl: "",
+	general: "",
+	descripcion: "",
+	evidencia: "",
+	segregacion: "",
+	documentacion: "",
+	tipoControl: "",
+	naturalezaControl: "",
+	tipoAdecuado: "",
+	frecuenciaControl: "",
+	frecuenciaAdecuada: "",
+	responsable: "",
+	responsabilidadControl: "",
+	generacionEvidencia: "",
+	controlClave: "",
+	controlFraude: "",
+	cobertura: "",
+	estrategia: "",
+	responsableTratamiento: "",
+	descripcionTratamiento: "",
+	causasAdjuntas: "",
+	observaciones: ""
+		}
+	}
+	closeClick() {
+		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
+		this.refreshControlList();
+	}
+
+
+	editClick(item: any) {
+		this.control = item;
+		this.ActivarEdicionRiesgo = true;
+		console.log(item.idControl)
+	}
+
 	anadirControl() {
 		var val = {
 			Id: this.Id,
@@ -108,51 +173,16 @@ export class ControlRiesgoComponent implements OnInit {
 		});
 	}
 
-  
-  updateControl() {
-	  var val = {
-		Id: this.Id,
-		macroProceso : this.macroProceso,
-		proceso : this.proceso,
-		idRiesgoAsociado : this.idRiesgoAsociado,
-		idControl : this.idControl,
-		general : this.general,
-		descripcion : this.descripcion,
-		evidencia : this.evidencia,
-		segregacion : this.segregacion,
-		documentacion : this.documentacion,
-		tipoControl : this.tipoControl,
-		naturalezaControl : this.naturalezaControl,
-		tipoAdecuado: this.tipoAdecuado,
-		frecuenciaControl: this.frecuenciaControl,
-		frecuenciaAdecuada : this.frecuenciaAdecuada,
-		responsable: this.responsable,
-		responsabilidadControl: this.responsabilidadControl,
-		generacionEvidencia: this.generacionEvidencia,
-		controlClave: this.controlClave,
-		controlFraude: this.controlFraude,
-		cobertura:this.cobertura,
-		estrategia: this.estrategia,
-		responsableTratamiento: this.responsableTratamiento,
-		descripcionTratamiento: this.descripcionTratamiento,
-		causasAdjuntas: this.causasAdjuntas,
-		observaciones: this.observaciones,
-	  };
-	  console.log(this.idControl);
-	  console.log("Id a cambiar" + this.Id);
-	  console.log(val);
-	  this.service.editarRiesgo(val).subscribe(res => {
-		  alert(res.toString());
-		  //Aqui esta iba comentada
-	  });
-	  this.refreshControlList();
-  }
-  
-  closeClick(){
-	  this.ActivarModal = false;
-	  this.refreshControlList();
-	  //this.ngOnInit();
+
+	eliminarControl(item: any) {
+		console.log(item);
+		console.log("ID BD del control a eliminar " + item.Id);
+		this.service.borrarRiesgo(item.Id).subscribe(data => {
+			alert(data.toString());
+			this.refreshControlList();
+		})
 	}
+
 	refreshControlList() {
 		this.service.getControlesList().subscribe(datos => {
 			this.ControlList = datos;
@@ -160,5 +190,5 @@ export class ControlRiesgoComponent implements OnInit {
 			console.log(this.ControlList);
 		});
 	}
-  }
-  
+
+}

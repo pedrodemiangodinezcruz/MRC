@@ -1,0 +1,131 @@
+<div id="infoSeccion">
+
+	<table class="table table-bordered" id="alineada">
+		<thead id="alineada">
+			<tr>
+			<tr>
+				<th scope="col" colspan="4" class="azul-marino">CONTROL</th>
+				<th scope="col" colspan="12" class="verde">EVALUACIÓN DE CONTROLES</th>
+				<th scope="col" colspan="10" class="azul-marino">CONTROL</th>
+				<th scope="col" class="gris">COMENTARIOS</th>
+				<th scope="col" class="bg-light" colspan="2" rowspan="2">Opciones</th>
+			</tr>
+			<tr>
+				<th scope="col" colspan="15"></th>
+				<th scope="col" class="gris">Formulado</th>
+				<th scope="col" colspan="2"></th>
+				<th scope="col" class="gris">Formulado</th>
+				<th scope="col" colspan="2"></th>
+				<th scope="col" class="gris">Formulado</th>
+				<th scope="col"></th>
+				<th scope="col" colspan="3" class="gris">Formulado</th>
+				<th scope="col" colspan="2"></th>
+			</tr>
+			<tr>
+				<th scope="col" class="azul-marino" rowspan="2">ID del Control</th>
+				<th scope="col" class="azul-marino" rowspan="2">General/Proceso</th>
+				<th scope="col" class="azul-marino" rowspan="2">Descripción del Control</th>
+				<th scope="col" class="azul-marino" rowspan="2">Evidencia del Control</th>
+				<th scope="col" class="verde" rowspan="2">1. Segregación de Funciones</th>
+				<th scope="col" class="verde" rowspan="2">2. Documentación (Política, procedimiento, manual,
+					etc.)</th>
+				<th scope="col" class="azul-marino" rowspan="2">Tipo de Control</th>
+				<th scope="col" class="verde" rowspan="2">3. Naturaleza Adecuada</th>
+				<th scope="col" class="azul-marino" rowspan="2">Naturaleza de Control</th>
+				<th scope="col" class="verde" rowspan="2">4. Tipo Adecuado</th>
+				<th scope="col" class="azul-marino" rowspan="2">Frecuencia de Control</th>
+				<th scope="col" class="verde" rowspan="2">5. Frecuencia Adecuada</th>
+				<th scope="col" class="azul-marino" rowspan="2">Responsable del Control</th>
+				<th scope="col" class="verde" rowspan="2">6. Responsabilidad del Control</th>
+				<th scope="col" class="verde" rowspan="2">7. Generación de evidencia</th>
+				<th scope="col" class="bg-success" style="color: white;" rowspan="2">Diseño del Control</th>
+				<th scope="col" class="azul-marino" rowspan="2">Control clave</th>
+				<th scope="col" class="azul-marino" rowspan="2">Control diseñado para mitigar fraude</th>
+				<th scope="col" class="azul-marino" rowspan="2">Estrategia de monitoreo</th>
+				<th scope="col" class="azul-marino" rowspan="2">Diseño de prueba</th>
+				<th scope="col" class="azul-marino" rowspan="2">Evaluación de funcionalidad del control</th>
+				<th scope="col" class="azul-marino" rowspan="2">Calificación del Control (0% a 99%)</th>
+				<th scope="col" class="azul-marino" rowspan="2">Cobertura individual por Control</th>
+				<th scope="col" class="azul-marino" rowspan="2">Cobertura Ponderada por Control (Calificación x
+					Cobertura)</th>
+				<th scope="col" class="azul-marino" rowspan="2">Coberture Total de los Controles</th>
+				<th scope="col" class="azul-marino" rowspan="2">Nivel de Cobertura Total de los Controles</th>
+				<th scope="col" class="morado" rowspan="2">Observaciones</th>
+			</tr>
+			<tr>
+				<th scope="col" rowspan="2" colspan="2" ><button type="button"  data-bs-toggle="modal" class="btn btn-primary" (click)="addClick()" data-bs-target="#modalRiesgo">
+					Agregar Control
+				  </button></th>
+			</tr>
+		</thead>
+		<tbody>	
+		<ng-container  *ngFor="let controlItem of ControlList">
+			<tr>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
+				<td  [attr.contenteditable]="contenteditable">Documentación</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.tipoControl}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.naturalezaAdecuada}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.naturalezaControl}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.frecuenciaControl}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.frecuenciaAdecuada}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
+				<td [className]="esFomulado ? 'formulado' : 'inactivo'">Diseño del control</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
+				<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategia}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
+				<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
+				<td  [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
+				<td [className]="esFomulado ? 'formulado' : 'inactivo'">19%</td>
+				<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
+				<td [className]="esFomulado ? 'formulado' : 'inactivo'">Medio</td>
+				<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
+				<td scope="col">
+						<!--(click)="editarRiesgo()" para lo gray y set editable-->
+						<button type="button"  class="btn btn-success" (click)="editClick(controlItem)" *ngIf="ocultarBoton" data-bs-toggle="modal"
+						[attr.data-bs-target]="'#' + controlItem.IdRiesgoAsociado" data-backdrop="static" data-keyboard="false">Editar Control
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-pencil-square" viewBox="0 0 16 16">
+								<path
+									d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+								<path fill-rule="evenodd"
+									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+							</svg>
+						</button>
+				</td>
+				<td scope="col">
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+						data-bs-target="#eliminar">Eliminar Control
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-trash3" viewBox="0 0 16 16">
+							<path
+								d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+						</svg>
+					</button>
+				</td>
+			</tr>
+				<!-- Modal para la edicion de control -->
+<div class="modal fade" [attr.id]="'' + controlItem.idControl" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para editar el control seleccionado </h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+		</div>
+		<div class="modal-body">
+			<app-control-riesgo [control]="control" *ngIf="ActivarEdicionRiesgo" ></app-control-riesgo>
+		</div>
+	  </div>
+	</div>
+  </div>
+		</ng-container>
+</tbody>
+	</table>

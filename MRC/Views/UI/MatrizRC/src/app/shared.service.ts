@@ -13,6 +13,7 @@ export class SharedService {
 	getRiesgoList(): Observable<any[]> {
 		return this.http.get<any>(this.APIUrl + '/Riesgo')
 	}
+	//Aquí ver como poner otro metodo get para los gráficos.
 
 	anadirRiesgo(val: any) {
 		return this.http.post<any>(this.APIUrl + '/Riesgo', val)

@@ -75,7 +75,7 @@ export class RiesgoComponent implements OnInit {
 	console.log(this.idRiesgo);
 	console.log(val);
 	this.service.anadirRiesgo(val).subscribe(res => {
-		alert(res.toString());
+		//alert(res.toString());
 	});
 }
 
@@ -102,7 +102,7 @@ updateRiesgo() {
 	console.log("Id a cambiar" + this.Id);
 	console.log(val);
 	this.service.editarRiesgo(val).subscribe(res => {
-		alert(res.toString());
+		//alert(res.toString());
 	});
 	this.refreshRiesgoList();
 }
@@ -110,6 +110,7 @@ updateRiesgo() {
 closeClick(){
     this.ActivarModal = false;
     this.refreshRiesgoList();
+	//this.ngOnInit();
   }
   refreshRiesgoList() {
 	this.service.getRiesgoList().subscribe(data => {

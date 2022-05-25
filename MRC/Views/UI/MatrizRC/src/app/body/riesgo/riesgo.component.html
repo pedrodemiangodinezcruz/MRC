@@ -415,7 +415,7 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeClick()">Cerrar</button>
-		  <button type="submit" class="btn btn-primary"   *ngIf="riesgo.Anadir == 0" (click)="anadirRiesgo()">Añadir Riesgo</button>
-		  <button type="submit" class="btn btn-primary"   *ngIf="riesgo.Anadir != 0" (click)="updateRiesgo()">Editar Riesgo</button>
+		  <button type="submit" class="btn btn-primary"   *ngIf="riesgo.Anadir == 0" (click)="anadirRiesgo()" data-bs-toggle="modal" data-bs-target="#altaRiesgo">Añadir Riesgo</button>
+		  <button type="submit" class="btn btn-primary"   *ngIf="riesgo.Anadir != 0" (click)="updateRiesgo()"  data-bs-toggle="modal" data-bs-target="#editarRiesgo">Editar Riesgo</button>
 	  </div>
 

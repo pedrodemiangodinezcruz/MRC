@@ -24,6 +24,7 @@ import { ParetoComponent } from './body/pareto/pareto.component';
 import { InstructivoComponent } from './body/instructivo/instructivo.component';
 import { RiesgoComponent } from './body/riesgo/riesgo.component';
 import { ControlRiesgoComponent } from './body/control-riesgo/control-riesgo.component';
+import { ControlesComponent } from './body/controles/controles.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ControlRiesgoComponent } from './body/control-riesgo/control-riesgo.com
     ParetoComponent,
     InstructivoComponent,
     RiesgoComponent,
-    ControlRiesgoComponent
+    ControlRiesgoComponent,
+    ControlesComponent
   ],
   imports: [
     BrowserModule,
