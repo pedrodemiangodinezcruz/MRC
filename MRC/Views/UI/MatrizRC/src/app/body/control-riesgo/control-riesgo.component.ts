@@ -11,6 +11,7 @@ export class ControlRiesgoComponent implements OnInit {
 	constructor(private service: SharedService) { }
 	@Input() control:any;
 	ControlList: any = [];
+	RiesgoList: any = [];
 	Anadir: number = 0;
 	Id: number = 0;
 	ActivarModal: boolean = false;
@@ -44,6 +45,7 @@ export class ControlRiesgoComponent implements OnInit {
   
 	ngOnInit(): void {
 		this.refreshControlList();
+		this.refreshRiesgoList();
 		this.Id = this.control.Id;
 		this.macroProceso = this.control.macroProceso;
 		this.proceso = this.control.proceso;
@@ -106,8 +108,8 @@ export class ControlRiesgoComponent implements OnInit {
 		observaciones: this.observaciones,
 		};
 		this.service.anadirControl(val).subscribe(res => {
-			alert(res.toString());
-			console.log(res.toString());
+			//alert(res.toString());
+			//console.log(res.toString());
 		});
 	}
 
@@ -146,7 +148,7 @@ export class ControlRiesgoComponent implements OnInit {
 	  console.log("Id a cambiar" + this.Id);
 	  console.log(val);
 	  this.service.editarControl(val).subscribe(res => {
-		  alert(res.toString());
+		  //alert(res.toString());
 		  //Aqui esta iba comentada
 	  });
 	  this.refreshControlList();
@@ -162,6 +164,13 @@ export class ControlRiesgoComponent implements OnInit {
 			this.ControlList = datos;
 			console.log("Lista de controles");
 			console.log(this.ControlList);
+		});
+	}
+	refreshRiesgoList() {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			console.log("Lista de riesgos");
+			console.log(this.RiesgoList);
 		});
 	}
   }
