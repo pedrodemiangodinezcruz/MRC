@@ -27,7 +27,7 @@ namespace MRC.Controllers
 
             string query = @"
                    SELECT Id, IdRiesgoAsociado, macroProceso, proceso, subProceso, idControl, general, descripcion
-                    , evidencia, segregacion, documentacion tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
+                    , evidencia, segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, controlClave,
                     controlFraude, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
                     causasAdjuntas, observaciones FROM dbo.controlRiesgo";
@@ -67,8 +67,8 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.Proceso + @"'
                         ,'" + controlRiesgo.SubProceso + @"'
                         ,'" + controlRiesgo.IdControl + @"'
-                        ,'" + controlRiesgo.Descripcion + @"'
                         ,'" + controlRiesgo.General + @"'
+                        ,'" + controlRiesgo.Descripcion + @"'
                         ,'" + controlRiesgo.Evidencia + @"'
                         ,'" + controlRiesgo.Segregacion + @"'
                         ,'" + controlRiesgo.Documentacion + @"'

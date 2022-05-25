@@ -25,6 +25,7 @@ export class ControlRiesgoComponent implements OnInit {
 	segregacion: string | undefined;
 	documentacion: string | undefined;
 	tipoControl: string | undefined;
+	naturalezaAdecuada: string | undefined;
 	naturalezaControl: string | undefined;
 	tipoAdecuado: string | undefined;
 	frecuenciaControl: string | undefined;
@@ -54,6 +55,7 @@ export class ControlRiesgoComponent implements OnInit {
 		this.segregacion= this.control.segregacion;
 		this.documentacion= this.control.documentacion;
 		this.tipoControl= this.control.tipoControl;
+		this.naturalezaAdecuada = this.control.naturalezaAdecuada;
 		this.naturalezaControl= this.control.naturalezaControl;
 		this.tipoAdecuado= this.control.tipoAdecuado;
 		this.frecuenciaControl= this.control.frecuenciaControl;
@@ -86,6 +88,7 @@ export class ControlRiesgoComponent implements OnInit {
 		segregacion : this.segregacion,
 		documentacion : this.documentacion,
 		tipoControl : this.tipoControl,
+		naturalezaAdecuada: this.naturalezaAdecuada,
 		naturalezaControl : this.naturalezaControl,
 		tipoAdecuado: this.tipoAdecuado,
 		frecuenciaControl: this.frecuenciaControl,
@@ -122,6 +125,7 @@ export class ControlRiesgoComponent implements OnInit {
 		segregacion : this.segregacion,
 		documentacion : this.documentacion,
 		tipoControl : this.tipoControl,
+		naturalezaAdecuada: this.naturalezaAdecuada,
 		naturalezaControl : this.naturalezaControl,
 		tipoAdecuado: this.tipoAdecuado,
 		frecuenciaControl: this.frecuenciaControl,
@@ -141,7 +145,7 @@ export class ControlRiesgoComponent implements OnInit {
 	  console.log(this.idControl);
 	  console.log("Id a cambiar" + this.Id);
 	  console.log(val);
-	  this.service.editarRiesgo(val).subscribe(res => {
+	  this.service.editarControl(val).subscribe(res => {
 		  alert(res.toString());
 		  //Aqui esta iba comentada
 	  });

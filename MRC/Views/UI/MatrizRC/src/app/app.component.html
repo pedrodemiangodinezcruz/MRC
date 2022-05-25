@@ -32,12 +32,7 @@
 			<div class="modal-body">
 				<app-control-riesgo></app-control-riesgo>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeClick()">Cerrar</button>
-				<form action="/registroControl">
-					<button type="submit" class="btn btn-primary">Añadir Control de Riesgo</button>
-				</form>
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -165,7 +160,7 @@
 						data-bs-target="#modalRiesgo">
 						Agregar Riesgo
 					</button></li>
-				<li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalControl">
+				<li><button type="button" class="dropdown-item" data-bs-toggle="modal" (click)="addClick()" data-bs-target="#modalControl">
 						Agregar Control
 					</button></li>
 				<li>

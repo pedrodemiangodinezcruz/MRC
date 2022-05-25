@@ -91,7 +91,7 @@
 				<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
 						<button type="button"  class="btn btn-success" (click)="editClick(controlItem)" *ngIf="ocultarBoton" data-bs-toggle="modal"
-						[attr.data-bs-target]="'#' + controlItem.IdRiesgoAsociado" data-backdrop="static" data-keyboard="false">Editar Control
+						[attr.data-bs-target]="'#' + controlItem.idControl" data-backdrop="static" data-keyboard="false">Editar Control
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-pencil-square" viewBox="0 0 16 16">
 								<path
@@ -121,7 +121,7 @@
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
 		</div>
 		<div class="modal-body">
-			<app-control-riesgo [control]="control" *ngIf="ActivarEdicionRiesgo" ></app-control-riesgo>
+			<app-control-riesgo [control]="control" *ngIf="ActivarEdicionControl" ></app-control-riesgo>
 		</div>
 	  </div>
 	</div>

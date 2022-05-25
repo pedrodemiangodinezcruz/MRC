@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
 	ControlList: any = [];
 
 @Input() riesgo:any;
+@Input() control:any;
   //riesgo:any;
   ActivarAltaRiesgo: boolean = false;
+  ActivarAltaControl: boolean = false;
   macroProceso: string | undefined;
   proceso: string | undefined;
   subproceso: string | undefined;
@@ -73,7 +75,26 @@ ngOnInit(): void {
 		probabilidad: 0,
 		impacto: ""
 	}
+	this.ActivarAltaControl = true;
+	this.control = {
+		Anadir: 0,
+		macroProceso: "",
+		proceso: "",
+		idRiesgo: "",
+		descripcion: "",
+		causa: "",
+		consecuencia: "",
+		tipoEvento: "",
+		tipoRiesgo: "",
+		iff: "",
+		icc: "",
+		ios: "",
+		riesgoFraude: "",
+		probabilidad: 0,
+		impacto: ""
+	}
 }
+
 anadirRiesgo() {
 	var val = {
 		idRiesgo: this.idRiesgo,

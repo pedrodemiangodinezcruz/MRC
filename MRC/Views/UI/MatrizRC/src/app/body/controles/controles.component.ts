@@ -31,8 +31,8 @@ export class ControlesComponent implements OnInit {
 
 	ControlList: any = [];
 	control: any;
-	ActivarAltaRiesgo: boolean = false;
-	ActivarEdicionRiesgo: boolean = false;
+	ActivarAltaControl: boolean = false;
+	ActivarEdicionControl: boolean = false;
 	Id: string | undefined;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
@@ -44,6 +44,7 @@ export class ControlesComponent implements OnInit {
 	segregacion: string | undefined;
 	documentacion: string | undefined;
 	tipoControl: string | undefined;
+	naturalezaAdecuada: string | undefined;
 	naturalezaControl: string | undefined;
 	tipoAdecuado: string | undefined;
 	frecuenciaControl: string | undefined;
@@ -74,6 +75,7 @@ export class ControlesComponent implements OnInit {
 		this.segregacion= this.control.segregacion;
 		this.documentacion= this.control.documentacion;
 		this.tipoControl= this.control.tipoControl;
+		this.naturalezaAdecuada = this.control.naturalezaAdecuada;
 		this.naturalezaControl= this.control.naturalezaControl;
 		this.tipoAdecuado= this.control.tipoAdecuado;
 		this.frecuenciaControl= this.control.frecuenciaControl;
@@ -95,7 +97,7 @@ export class ControlesComponent implements OnInit {
 	}
 
 	addClick() {
-		this.ActivarAltaRiesgo = true;
+		this.ActivarAltaControl = true;
 		this.control = {
 			Anadir: 0,
 			Id: "",
@@ -109,6 +111,7 @@ export class ControlesComponent implements OnInit {
 	segregacion: "",
 	documentacion: "",
 	tipoControl: "",
+	naturalezaAdecuada: "",
 	naturalezaControl: "",
 	tipoAdecuado: "",
 	frecuenciaControl: "",
@@ -127,14 +130,14 @@ export class ControlesComponent implements OnInit {
 		}
 	}
 	closeClick() {
-		this.ActivarEdicionRiesgo = !this.ActivarEdicionRiesgo;
+		this.ActivarEdicionControl = !this.ActivarEdicionControl;
 		this.refreshControlList();
 	}
 
 
 	editClick(item: any) {
 		this.control = item;
-		this.ActivarEdicionRiesgo = true;
+		this.ActivarEdicionControl = true;
 		console.log(item.idControl)
 	}
 
@@ -151,6 +154,7 @@ export class ControlesComponent implements OnInit {
 		segregacion : this.segregacion,
 		documentacion : this.documentacion,
 		tipoControl : this.tipoControl,
+		naturalezaAdecuada: this.naturalezaAdecuada,
 		naturalezaControl : this.naturalezaControl,
 		tipoAdecuado: this.tipoAdecuado,
 		frecuenciaControl: this.frecuenciaControl,
