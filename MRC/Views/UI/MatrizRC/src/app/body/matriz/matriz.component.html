@@ -118,7 +118,7 @@
 		<tbody>
 			<ng-container *ngFor="let controlItem of ControlList">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
-					<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
+					<tr *ngIf="riesgoItem.idRiesgo === controlItem.idRiesgoAsociado">
 						<!-- Modal para la edicion de riesgo -->
 					<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
 					aria-labelledby="modalRiesgoLabel" aria-hidden="true">
