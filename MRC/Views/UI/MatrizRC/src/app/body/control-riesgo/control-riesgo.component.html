@@ -302,7 +302,6 @@
 		<p class="text-center fw-bold">Id del riesgo asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{control.idRiesgoAsociado}}" aria-label="Default select example">
-				
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== control.IdRiesgoAsociado">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
