@@ -280,14 +280,15 @@
 	<div class="col">
 		<p class="text-center fw-bold">ID del Control</p>
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" [(ngModel)]="idControl" placeholder="ID del Control">
-			<label for="floatingInput">ID del Control</label>
+			<input type="text" class="form-control" [(ngModel)]="idControl"  value="{{control.idControl}}" placeholder="ID del Control">
+			<label for="floatingInput">Escriba el ID del Control</label>
 		</div>
 	</div>
+
 	<div class="col">
 		<p class="text-center fw-bold">General/Proceso</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="general" name="general" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="general" value="{{control.general}}" aria-label="Default select example">
 				<option selected>...</option>
 				<option value="General">General</option>
 				<option value="Proceso">Proceso</option>
@@ -299,7 +300,7 @@
 		<p class="text-center fw-bold">Id del riesgo asociado</p>
 		<div class="form-floating mb-3">
 			
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado" name="idRiesgoAsociado" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{control.idRiesgoAsociado}}" aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList">
 					<ng-container *ngFor="let riesgoItem of RiesgoList">
 						<option selected *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">{{riesgoItem.idRiesgo}}</option>
@@ -316,15 +317,16 @@
 <div class="row">
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label fw-bold">Descripción del Control</label>
-		<textarea class="form-control" [(ngModel)]="descripcion" name="descripcion" rows="2"></textarea>
+		<textarea class="form-control" [(ngModel)]="descripcion" value="{{control.descripcion}}" rows="2"></textarea>
 	</div>
 </div>
 <div class="row">
 	<div class="col">
+		<p class="text-center fw-bold">Evidencia del control</p>
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" [(ngModel)]="evidencia" name="evidencia"
+			<input type="text" class="form-control" [(ngModel)]="evidencia" value="{{control.evidencia}}"
 				placeholder="Evidencia del Control">
-			<label for="floatingInput">Evidencia del Control</label>
+			<label for="floatingInput fw-bold">Escriba la evidencia</label>
 		</div>
 	</div>
 </div>
@@ -332,7 +334,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Segregación de Funciones</p><br>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="segregacion" name="segregacionFunciones"
+			<select class="form-select" [(ngModel)]="segregacion" value="{{control.segregacion}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -344,7 +346,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Documentación (Política, manual, procedimiento, etc.)</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="documentacion" name="documentacion"
+			<select class="form-select" [(ngModel)]="documentacion" value="{{control.documentacion}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -357,7 +359,7 @@
 		<br>
 		<p class="text-center fw-bold">Tipo de Control</p><br>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="tipoControl" name="tipoControl"
+			<select class="form-select" [(ngModel)]="tipoControl" value="{{control.tipoControl}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Preventivo">Preventivo</option>
@@ -370,7 +372,7 @@
 		<br>
 		<p class="text-center fw-bold">Naturaleza adecuada</p><br>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="naturalezaAdecuada" name="naturalezaControl"
+			<select class="form-select" [(ngModel)]="naturalezaAdecuada" value="{{control.naturalezaAdecuada}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -384,7 +386,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Naturaleza de Control</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="naturalezaControl" name="naturalezaControl"
+			<select class="form-select" [(ngModel)]="naturalezaControl" value="{{control.naturalezaControl}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Manual">Manual</option>
@@ -397,7 +399,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Tipo Adecuado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="tipoAdecuado" name="tipoAdecuado"
+			<select class="form-select" [(ngModel)]="tipoAdecuado" value="{{control.tipoAdecuado}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -409,7 +411,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Frecuencia de Control</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="frecuenciaControl" name="frecuenciaControl"
+			<select class="form-select" [(ngModel)]="frecuenciaControl" value="{{control.frecuenciaControl}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Anual">Anual</option>
@@ -421,7 +423,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Frecuencia adecuada</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="frecuenciaAdecuada" name="frecuenciaControlAdecuada"
+			<select class="form-select" [(ngModel)]="frecuenciaAdecuada" value="{{control.frecuenciaAdecuada}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -435,7 +437,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Responsable del Control</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="responsable" name="responsableControl"
+			<select class="form-select" [(ngModel)]="responsable" value="{{control.responsable}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Área de Finanzas">Área de Finanzas</option>
@@ -455,7 +457,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Responsabilidad del Control</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="responsabilidadControl" name="responsabilidadControl"
+			<select class="form-select" [(ngModel)]="responsabilidadControl" value="{{control.responsabilidadControl}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -467,7 +469,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Generación de Evidencia</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="generacionEvidencia" name="generacionEvidencia"
+			<select class="form-select" [(ngModel)]="generacionEvidencia" value="{{control.generacionEvidencia}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -481,7 +483,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Control clave</p><br>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="controlClave" name="controlClave"
+			<select class="form-select" [(ngModel)]="controlClave" value="{{control.controlClave}}"
 				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
@@ -493,7 +495,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Control diseñado para mitigar fraude</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="controlFraude" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="controlFraude" value="{{control.controlFraude}}" aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
 				<option value="No">No</option>
@@ -512,7 +514,7 @@
 					<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
 				</svg>
 			</button>
-			<input type="text" maxlength="2" id="cantidad" [(ngModel)]="cobertura" name="coberturaControl"
+			<input type="text" maxlength="2" id="cantidad" [(ngModel)]="cobertura" value="{{control.cobertura}}"
 				class="form-control input-number" value="50" min="1" max="100" pattern="[0-9]{2}">
 			<button type="button" class="cantidad-mas btn btn-success btn-number" data-type="plus" data-field="">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -539,7 +541,7 @@
 	<div class="col">
 		<p class="fw-bold">Responsable(s) del tratamiento del riesgo</p>
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" [(ngModel)]="responsableTratamiento" name="responsable"
+			<input type="text" class="form-control" [(ngModel)]="responsableTratamiento" value="{{control.responsableTratamiento}}"
 				placeholder="Escriba el/los responsables">
 			<label for="floatingInput">Escriba el/los responsables</label>
 		</div>
@@ -548,20 +550,20 @@
 <div class="row">
 	<p class="fw-bold">Descripción/Notas sore el tratamiento del riesgo</p>
 	<div class="mb-3">
-		<textarea class="form-control" [(ngModel)]="descripcionTratamiento" name="descripción"
+		<textarea class="form-control" [(ngModel)]="descripcionTratamiento" value="{{control.descripcionTratamiento}}"
 			placeholder="Escriba el/los responsables" rows="2"></textarea>
 	</div>
 </div>
 <div class="row">
 	<p class="fw-bold">Causas adjuntas</p>
 	<div class="mb-3">
-		<textarea class="form-control" [(ngModel)]="causasAdjuntas" rows="2"></textarea>
+		<textarea class="form-control" [(ngModel)]="causasAdjuntas"  value="{{control.causasAdjuntas}}" rows="2"></textarea>
 	</div>
 </div>
 <div class="row">
 	<div class="mb-3">
 		<p class="fw-bold">Observaciones</p>
-		<textarea class="form-control" [(ngModel)]="observaciones" rows="2"></textarea>
+		<textarea class="form-control" [(ngModel)]="observaciones"  value="{{control.observaciones}}" rows="2"></textarea>
 	</div>
 </div>
 <div class="modal-footer">
