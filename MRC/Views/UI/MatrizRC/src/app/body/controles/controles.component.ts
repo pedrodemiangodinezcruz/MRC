@@ -139,6 +139,7 @@ export class ControlesComponent implements OnInit {
 		this.control = item;
 		this.ActivarEdicionControl = true;
 		console.log(item.idControl)
+		
 	}
 
 	anadirControl() {

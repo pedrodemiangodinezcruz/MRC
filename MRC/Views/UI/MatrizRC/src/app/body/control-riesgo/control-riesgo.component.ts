@@ -113,7 +113,6 @@ export class ControlRiesgoComponent implements OnInit {
 		});
 	}
 
-  
   updateControl() {
 	  var val = {
 		Id: this.Id,

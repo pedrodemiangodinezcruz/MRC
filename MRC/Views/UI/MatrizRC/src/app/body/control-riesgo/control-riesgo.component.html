@@ -280,7 +280,8 @@
 	<div class="col">
 		<p class="text-center fw-bold">ID del Control</p>
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" [(ngModel)]="idControl"  value="{{control.idControl}}" placeholder="ID del Control">
+			<input type="text" class="form-control" [(ngModel)]="idControl" value="{{control.idControl}}"
+				placeholder="ID del Control">
 			<label for="floatingInput">Escriba el ID del Control</label>
 		</div>
 	</div>
@@ -288,7 +289,8 @@
 	<div class="col">
 		<p class="text-center fw-bold">General/Proceso</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="general" value="{{control.general}}" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="general" value="{{control.general}}"
+				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="General">General</option>
 				<option value="Proceso">Proceso</option>
@@ -299,16 +301,13 @@
 	<div class="col">
 		<p class="text-center fw-bold">Id del riesgo asociado</p>
 		<div class="form-floating mb-3">
-			
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{control.idRiesgoAsociado}}" aria-label="Default select example">
-				<ng-container *ngFor="let controlItem of ControlList">
-					<ng-container *ngFor="let riesgoItem of RiesgoList">
-						<option selected *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">{{riesgoItem.idRiesgo}}</option>
-						</ng-container>
-						</ng-container>
+				
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
-				<option>{{riesgoItem.idRiesgo}}</option>
-			</ng-container>
+					<ng-container *ngIf="riesgoItem.idRiesgo !== control.IdRiesgoAsociado">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+					</ng-container>
+				</ng-container>
 			</select>
 			<label for="floatingSelect">Seleccione</label>
 		</div>
@@ -495,7 +494,8 @@
 	<div class="col">
 		<p class="text-center fw-bold">Control diseñado para mitigar fraude</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="controlFraude" value="{{control.controlFraude}}" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="controlFraude" value="{{control.controlFraude}}"
+				aria-label="Default select example">
 				<option selected>...</option>
 				<option value="Sí">Sí</option>
 				<option value="No">No</option>
@@ -541,8 +541,8 @@
 	<div class="col">
 		<p class="fw-bold">Responsable(s) del tratamiento del riesgo</p>
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" [(ngModel)]="responsableTratamiento" value="{{control.responsableTratamiento}}"
-				placeholder="Escriba el/los responsables">
+			<input type="text" class="form-control" [(ngModel)]="responsableTratamiento"
+				value="{{control.responsableTratamiento}}" placeholder="Escriba el/los responsables">
 			<label for="floatingInput">Escriba el/los responsables</label>
 		</div>
 	</div>
@@ -557,13 +557,15 @@
 <div class="row">
 	<p class="fw-bold">Causas adjuntas</p>
 	<div class="mb-3">
-		<textarea class="form-control" [(ngModel)]="causasAdjuntas"  value="{{control.causasAdjuntas}}" rows="2"></textarea>
+		<textarea class="form-control" [(ngModel)]="causasAdjuntas" value="{{control.causasAdjuntas}}"
+			rows="2"></textarea>
 	</div>
 </div>
 <div class="row">
 	<div class="mb-3">
 		<p class="fw-bold">Observaciones</p>
-		<textarea class="form-control" [(ngModel)]="observaciones"  value="{{control.observaciones}}" rows="2"></textarea>
+		<textarea class="form-control" [(ngModel)]="observaciones" value="{{control.observaciones}}"
+			rows="2"></textarea>
 	</div>
 </div>
 <div class="modal-footer">
@@ -572,67 +574,4 @@
 		data-bs-toggle="modal" data-bs-target="#altaControl">Añadir Control</button>
 	<button type="submit" class="btn btn-primary" *ngIf="control.Anadir != 0" (click)="updateControl()"
 		data-bs-toggle="modal" data-bs-target="#editarControl">Editar Control</button>
-</div>
-
-<!--Modales de alta, edición y eliminacion de control-->
-
-<div class="modal" id="altaControl">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Estatus de solicitud</h5>
-				<a href="/controles">
-				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
-			</a>
-			</div>
-			<div class="modal-body">
-				<div class="col-12 alert alert-success  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-						aria-label="Success:" style="float: left;">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Control, dado de alta exitosamente
-					</div>
-				</div>
-				<div class="modal-footer">
-					<a href="/controles">
-					<button type="button"  class="btn btn-outline-primary"
-						data-bs-dismiss="modal">Ok</button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal" id="editarControl">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Estatus de solicitud</h5>
-				<a href="/controles">
-				<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
-					aria-label="Close"></button>
-					</a>
-			</div>
-			<div class="modal-body">
-				<div class="col-12 alert alert-success  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-						aria-label="Success:" style="float: left;">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Control, editado exitosamente
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="/controles">
-				<button type="button" class="btn btn-outline-primary"
-					data-bs-dismiss="modal">Ok</button>
-				</a>
-			</div>
-		</div>
-	</div>
 </div>

@@ -26,7 +26,7 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   SELECT Id, IdRiesgoAsociado, macroProceso, proceso, subProceso, idControl, general, descripcion
+                   SELECT Id, idRiesgoAsociado, macroProceso, proceso, subProceso, idControl, general, descripcion
                     , evidencia, segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, controlClave,
                     controlFraude, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
@@ -55,7 +55,7 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   insert into dbo.controlRiesgo (IdRiesgoAsociado, macroProceso, proceso
+                   insert into dbo.controlRiesgo (idRiesgoAsociado, macroProceso, proceso
                     ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
                     tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia,

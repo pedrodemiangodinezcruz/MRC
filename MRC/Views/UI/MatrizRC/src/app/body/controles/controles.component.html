@@ -184,6 +184,69 @@
 			</ng-container>
 		</tbody>
 	</table>
+	<!--Modales de alta, edición y eliminacion de control-->
+
+<div class="modal" id="altaControl">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/controles">
+				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+			</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Control, dado de alta exitosamente
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="/controles">
+					<button type="button"  class="btn btn-outline-primary"
+						data-bs-dismiss="modal">Ok</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="editarControl">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/controles">
+				<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+					</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Control, editado exitosamente
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="/controles">
+				<button type="button" class="btn btn-outline-primary"
+					data-bs-dismiss="modal">Ok</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
 	<!--Control eliminado exitosamente modal-->
 	<div class="modal" id="">
 		<div class="modal-dialog">
