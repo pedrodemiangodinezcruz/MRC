@@ -119,6 +119,58 @@
 			<ng-container *ngFor="let controlItem of ControlList">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
 					<tr *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">
+						<!-- Modal para la edicion de riesgo -->
+					<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
+					aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
+									editar el riesgo {{riesgoItem.idRiesgo}} </h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo"></app-riesgo>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Modal para verificar si esta seguro de eliminar un riesgo-->
+				<div class="modal fade" [attr.id]="'eliminar' + controlItem.IdRiesgoAsociado">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Advertencia</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="col-12 alert alert-danger  align-items-center" role="alert">
+									<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+										aria-label="Danger:" style="float: left;">
+										<use xlink:href="#exclamation-triangle-fill" />
+									</svg>
+									<div>
+										¿Estas seguro de querer eliminar el riesgo {{riesgoItem.idRiesgo}}?
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline-primary"
+									data-bs-dismiss="modal">Cerrar</button>
+								<button type="button" class="btn btn-danger"
+									(click)="eliminarRiesgo(RiesgoList)">Eliminar
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+										<path
+											d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+					</div>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
@@ -168,7 +220,7 @@
 							<!--(click)="editarRiesgo()" para lo gray y set editable-->
 							<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"
 								*ngIf="ocultarBoton" data-bs-toggle="modal"
-								[attr.data-bs-target]="'#' + controlItem.IdRiesgoAsociado" data-backdrop="static"
+								[attr.data-bs-target]="'#editar' + controlItem.IdRiesgoAsociado" data-backdrop="static"
 								data-keyboard="false">Editar Riesgo
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -181,7 +233,7 @@
 						</td>
 						<td scope="col">
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-								data-bs-target="#eliminar">Eliminar Riesgo
+							[attr.data-bs-target]="'#eliminar' + controlItem.IdRiesgoAsociado">Eliminar Riesgo
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-trash3" viewBox="0 0 16 16">
 									<path
@@ -190,23 +242,6 @@
 							</button>
 						</td>
 					</tr>
-					<!-- Modal para la edicion de riesgo -->
-					<div class="modal fade" [attr.id]="'' + controlItem.IdRiesgoAsociado" tabindex="-1"
-						aria-labelledby="modalRiesgoLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
-										editar el riesgo seleccionado </h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo"></app-riesgo>
-								</div>
-							</div>
-						</div>
-					</div>
 				</ng-container>
 			</ng-container>
 		</tbody>
@@ -276,36 +311,3 @@
 </div>
 
 
-<!--Modal apra verificar si esta seguro de eliminar un riesgo-->
-<div class="modal" id="eliminar">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Advertencia</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<div class="col-12 alert alert-danger  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
-						style="float: left;">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						¿Estas seguro de querer eliminar este riesgo y su control adjunto?
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cerrar</button>
-				<ng-container *ngFor="let riesgoItem of RiesgoList">
-					<button type="button" class="btn btn-danger"  (click)="eliminarRiesgo(RiesgoList)" >Eliminar
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-						<path
-							d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-					</svg>
-				</button>
-			</ng-container>
-		</div>
-	</div>
-</div>

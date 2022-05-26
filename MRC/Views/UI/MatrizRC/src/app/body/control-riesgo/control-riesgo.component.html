@@ -300,7 +300,11 @@
 		<div class="form-floating mb-3">
 			
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado" name="idRiesgoAsociado" aria-label="Default select example">
-				<option selected>...</option>
+				<ng-container *ngFor="let controlItem of ControlList">
+					<ng-container *ngFor="let riesgoItem of RiesgoList">
+						<option selected *ngIf="riesgoItem.idRiesgo === controlItem.IdRiesgoAsociado">{{riesgoItem.idRiesgo}}</option>
+						</ng-container>
+						</ng-container>
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
 				<option>{{riesgoItem.idRiesgo}}</option>
 			</ng-container>
