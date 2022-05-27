@@ -39,8 +39,8 @@ export class TablaCausaComponent implements OnInit {
 
 
 	ngOnInit(): void {
-		this.refreshCausasList();
 		this.refreshRiesgoList();
+		this.refreshCausasList();
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
 		this.descripcion = this.causa.descripcion;
@@ -88,7 +88,7 @@ export class TablaCausaComponent implements OnInit {
 		  descripcion : this.descripcion
 		};
 		console.log(this.Id);
-		console.log("Id a cambiar" + this.Id);
+		console.log("Id a cambiar: " + this.Id);
 		console.log(val);
 		this.service.editarCausa(val).subscribe(res => {
 			//alert(res.toString());
