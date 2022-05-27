@@ -38,17 +38,17 @@ export class SharedService {
 		return this.http.delete<any>(this.APIUrl + '/RiesgoControl', val)
 	}
 	getCausasList(): Observable<any[]> {
-		return this.http.get<any>(this.APIUrl + '/CausasControl')
+		return this.http.get<any>(this.APIUrl + '/Causa')
 	}
 
 	anadirCausa(val: any) {
-		return this.http.post<any>(this.APIUrl + '/CausasControl', val)
+		return this.http.post<any>(this.APIUrl + '/Causa', val)
 	}
 	editarCausa(val: any) {
-		return this.http.put<any>(this.APIUrl + '/CausasControl', val)
+		return this.http.put<any>(this.APIUrl + '/Causa', val)
 	}
 	borrarCausa(val: any) {
-		return this.http.delete<any>(this.APIUrl + '/CausasControl', val)
+		return this.http.delete<any>(this.APIUrl + '/Causa', val)
 	}
 
 }

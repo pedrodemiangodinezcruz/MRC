@@ -82,7 +82,7 @@ export class CausasComponent implements OnInit {
 			console.log(res.toString());
 		});
 	}
-	updateControl() {
+	updateCausa() {
 		var val = {
 		  Id: this.Id,
 		  idRiesgoAsociado : this.idRiesgoAsociado,
@@ -91,7 +91,7 @@ export class CausasComponent implements OnInit {
 		console.log(this.Id);
 		console.log("Id a cambiar" + this.Id);
 		console.log(val);
-		this.service.editarControl(val).subscribe(res => {
+		this.service.editarCausa(val).subscribe(res => {
 			//alert(res.toString());
 			//Aqui esta iba comentada
 		});
