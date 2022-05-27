@@ -1,6 +1,6 @@
 
 
-<!--Modal apra verificar si esta seguro de eliminar un riesgo-->
+<!--Modal apra verificar si esta seguro de eliminar una causa-->
 <div class="modal" id="eliminar">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -37,27 +37,29 @@
 		</div>
 	</div>
 </div>
-
     <div id="infoSeccion"  class="col-12 text-center">
         <strong>
           <h2>Causas de los riesgos</h2>
         </strong>
 				<div class="row" style="margin: 1vw;">
 						<div class="col">
-							<p class="fw-bold">Descripción de la causa</p>
+							<p class="fw-bold" [ngModel]="descripcion">Descripción de la causa</p>
 							<textarea class="form-control" 
 								rows="2"></textarea>
 						</div>
-					<div class="col">
-						<p class="text-center fw-bold">Id del riesgo asociado</p>
-						<div class="form-floating mb-3">
-							<select class="form-select"  aria-label="Default select example">
-							</select>
-							<label for="floatingSelect">Seleccione</label>
+						<div class="col">
+							<p class="text-center fw-bold">Id del riesgo asociado</p>
+							<div class="form-floating mb-3">
+								<select class="form-select" [(ngModel)]="idRiesgoAsociado" aria-label="Default select example">
+									<ng-container *ngFor="let riesgoItem of RiesgoList">
+											<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+										</ng-container>
+								</select>
+								<label for="floatingSelect">Seleccione</label>
+							</div>
 						</div>
-					</div>
 				</div>
-				<button type="submit" class="btn btn-primary" style="margin-bottom: 2vh;">Guardar Causa
+				<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#altaCausa" style="margin-bottom: 2vh;">Guardar Causa
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save"
 					  viewBox="0 0 16 16">
 					  <path
@@ -85,7 +87,7 @@
                 <td>R-M7-01</td>
                 <td [attr.contenteditable]="contenteditable">Crítico</td>
                 <td>
-                    <button type="button" class="btn btn-success" (click)="editarRiesgo()" *ngIf="ocultarBoton" >Editar Causa
+                    <button type="button" class="btn btn-success" (click)="editarCausa()" *ngIf="ocultarBoton" >Editar Causa
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path
@@ -159,13 +161,8 @@
 	<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
   </symbol>
 </svg>
-    <!--Modales de alta de riesgo y control
-    <% if (altaCausa=='verdadero' ) { %>
-      <script>
-        jQuery(document).ready(function (e) {
-          $('#altaCausa').modal('show');
-        });
-      </script>
+    <!--Modales de alta de causa y control-->
+
       <div class="modal" id="altaCausa">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -184,11 +181,14 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cerrar</button>
+				  <a href="/causas">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ok</button>
+			</a>
               </div>
             </div>
           </div>
         </div>
+
         <!--Modales para la alerta de una causa dada de alta/editada/eliminada exitosamente
         <% } %>
           <% if (edicionCausa=='verdadero' ) { %>

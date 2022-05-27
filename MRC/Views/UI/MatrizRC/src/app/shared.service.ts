@@ -37,5 +37,18 @@ export class SharedService {
 	borrarControl(val: any) {
 		return this.http.delete<any>(this.APIUrl + '/RiesgoControl', val)
 	}
+	getCausasList(): Observable<any[]> {
+		return this.http.get<any>(this.APIUrl + '/CausasControl')
+	}
+
+	anadirCausa(val: any) {
+		return this.http.post<any>(this.APIUrl + '/CausasControl', val)
+	}
+	editarCausa(val: any) {
+		return this.http.put<any>(this.APIUrl + '/CausasControl', val)
+	}
+	borrarCausa(val: any) {
+		return this.http.delete<any>(this.APIUrl + '/CausasControl', val)
+	}
 
 }
