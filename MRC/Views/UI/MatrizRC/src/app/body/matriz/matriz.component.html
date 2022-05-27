@@ -115,10 +115,11 @@
 					</button></th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="table-group-divider">
 			<ng-container *ngFor="let controlItem of ControlList">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
-					<tr *ngIf="riesgoItem.idRiesgo === controlItem.idRiesgoAsociado">
+					<ng-container *ngFor="let causaItem of CausaList">
+					<tr *ngIf="riesgoItem.idRiesgo === controlItem.idRiesgoAsociado && riesgoItem.idRiesgo === causaItem.IdRiesgoAsociado">
 						<!-- Modal para la edicion de riesgo -->
 					<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
 					aria-labelledby="modalRiesgoLabel" aria-hidden="true">
@@ -176,7 +177,7 @@
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
-						<td [attr.contenteditable]="contenteditable">{{riesgoItem.causa}}</td>
+						<td [attr.contenteditable]="contenteditable">{{causaItem.descripcion}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
 						<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}</td>
@@ -244,6 +245,7 @@
 					</tr>
 				</ng-container>
 			</ng-container>
+		</ng-container>
 		</tbody>
 	</table>
 

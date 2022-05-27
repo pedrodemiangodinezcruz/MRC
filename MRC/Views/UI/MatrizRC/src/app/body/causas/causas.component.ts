@@ -29,99 +29,18 @@ export class CausasComponent implements OnInit {
 	}
 	CausasList: any = [];
 	RiesgoList: any = [];
-	causa: any;
-	ActivarAltaControl: boolean = false;
-	ActivarEdicionControl: boolean = false;
-	Id: string | undefined;
+	causa : any;
 
-	idRiesgoAsociado: string | undefined;
-	descripcion: string | undefined;
 
 
 
 	ngOnInit(): void {
-		this.refreshCausasList();
-		this.refreshRiesgoList();
-		this.Id = this.causa.Id;
-		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
-		this.descripcion = this.causa.descripcion;
-		console.log(this.causa.Id);
 
 	}
 
-	addClick() {
-		this.ActivarAltaControl = true;
-		this.causa = {
-			Anadir: 0,
-			Id: "",
-			idRiesgoAsociado: "",
-			descripcion: ""
-		}
-	}
-	closeClick() {
-		this.ActivarEdicionControl = !this.ActivarEdicionControl;
-		this.refreshCausasList();
-	}
 
 
-	editClick(item: any) {
-		this.causa = item;
-		this.ActivarEdicionControl = true;
-		console.log(item.idControl)
 
-	}
-
-	anadirCausa() {
-		var val = {
-			Id: this.Id,
-			idRiesgoAsociado: this.idRiesgoAsociado,
-			descripcion: this.descripcion,
-		};
-		this.service.anadirCausa(val).subscribe(res => {
-			alert(res.toString());
-			console.log(res.toString());
-		});
-	}
-	updateCausa() {
-		var val = {
-		  Id: this.Id,
-		  idRiesgoAsociado : this.idRiesgoAsociado,
-		  descripcion : this.descripcion
-		};
-		console.log(this.Id);
-		console.log("Id a cambiar" + this.Id);
-		console.log(val);
-		this.service.editarCausa(val).subscribe(res => {
-			//alert(res.toString());
-			//Aqui esta iba comentada
-		});
-		this.refreshCausasList();
-	}
-
-
-	eliminarCausa(item: any) {
-		console.log(item);
-		console.log("ID BD del causa a eliminar " + item.Id);
-		this.service.borrarCausa(item.Id).subscribe(data => {
-			alert(data.toString());
-			this.refreshCausasList();
-		})
-	}
-
-	refreshCausasList() {
-		this.service.getCausasList().subscribe(datos => {
-			this.CausasList = datos;
-			console.log("Lista de causas");
-			console.log(this.CausasList);
-		});
-	}
-	refreshRiesgoList() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
-		});
-	}
 
 
 

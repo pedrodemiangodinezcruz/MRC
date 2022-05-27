@@ -32,6 +32,7 @@ export class MatrizComponent implements OnInit {
 
 	RiesgoList: any = [];
 	ControlList: any = [];
+	CausaList: any = [];
 	riesgo: any;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
@@ -55,6 +56,7 @@ export class MatrizComponent implements OnInit {
 	ngOnInit(): void {
 		this.refreshRiesgoList();
 		this.refreshControlList();
+		this.refreshCausaList();
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
@@ -154,6 +156,13 @@ export class MatrizComponent implements OnInit {
 			this.ControlList = datos;
 			console.log("Lista de controles");
 			console.log(this.ControlList);
+		});
+	}
+	refreshCausaList() {
+		this.service.getCausasList().subscribe(datos => {
+			this.CausaList = datos;
+			console.log("Lista de causas");
+			console.log(this.CausaList);
 		});
 	}
 
