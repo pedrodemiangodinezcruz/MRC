@@ -55,9 +55,9 @@ export class CausasComponent implements OnInit {
 
 	editClick(item: any) {
 		this.causa = item;
-		this.ActivarEdicionCausa = true;
+		//this.ActivarEdicionCausa = true;
 		console.log(item.descripcion)
-		console.log(item.idRiesgoAsociado)
+		console.log(item.IdRiesgoAsociado)
 
 	}
 	

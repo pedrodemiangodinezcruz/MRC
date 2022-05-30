@@ -1,15 +1,16 @@
 <div class="row">
 	<div class="col">
-		<p class="fw-bold">Descripción de la causa</p> 
+		<p class="fw-bold">Descripción de la causa</p>
 		<textarea class="form-control" [(ngModel)]="descripcion" value="{{causa.descripcion}}"
-placeholder="Escriba la descripción correspondiente" rows="2"></textarea>
+			placeholder="Escriba la descripción correspondiente" rows="2"></textarea>
 	</div>
 	<div class="col">
-		<p class="text-center fw-bold">Id del riesgo asociado</p>
+		<p class="text-center fw-bold">Id del riesgo asociado: {{causa.IdRiesgoAsociado}}</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.IdRiesgoAsociado}}" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.IdRiesgoAsociado}}"
+				aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
-					<ng-container *ngIf="riesgoItem.idRiesgo != causa.IdRiesgoAsociado">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
 					</ng-container>
 				</ng-container>
@@ -20,11 +21,11 @@ placeholder="Escriba la descripción correspondiente" rows="2"></textarea>
 </div>
 <div class="row">
 	<div class="modal-footer">
-		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton" (click)="closeClick()">Cerrar</button>
+		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
+			(click)="closeClick()">Cerrar</button>
 		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir == 0" (click)="anadirCausa()"
 			data-bs-toggle="modal" data-bs-target="#altaControl">Añadir Causa</button>
 		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir != 0" (click)="updateCausa()"
 			data-bs-toggle="modal" data-bs-target="#editarControl">Editar Causa</button>
 	</div>
 </div>
-
