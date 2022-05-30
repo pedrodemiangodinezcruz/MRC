@@ -12,6 +12,7 @@ export class TablaCausaComponent implements OnInit {
 	ocultarBoton: boolean = true;
 	mostarBoton: boolean = false;
 	contenteditable = false;
+	Anadir: number = 0;
 
 	editarCausa() {
 		this.ocultarBoton = !this.ocultarBoton;

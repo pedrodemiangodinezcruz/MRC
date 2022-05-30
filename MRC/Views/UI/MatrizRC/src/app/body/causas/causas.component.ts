@@ -12,6 +12,8 @@ export class CausasComponent implements OnInit {
 	ocultarBoton: boolean = true;
 	mostarBoton: boolean = false;
 	contenteditable = false;
+	ActivarAltaCausa: boolean = false;
+	ActivarEdicionCausa: boolean = false;
 
 	editarCausa() {
 		this.ocultarBoton = !this.ocultarBoton;
@@ -30,8 +32,6 @@ export class CausasComponent implements OnInit {
 	CausasList: any = [];
 	RiesgoList: any = [];
 	causa: any;
-	ActivarAltaControl: boolean = false;
-	ActivarEdicionControl: boolean = false;
 	Id: string | undefined;
 
 	idRiesgoAsociado: string | undefined;
@@ -50,7 +50,7 @@ export class CausasComponent implements OnInit {
 	}
 
 	addClick() {
-		this.ActivarAltaControl = true;
+		this.ActivarAltaCausa = true;
 		this.causa = {
 			Anadir: 0,
 			Id: "",
@@ -59,17 +59,18 @@ export class CausasComponent implements OnInit {
 		}
 	}
 	closeClick() {
-		this.ActivarEdicionControl = !this.ActivarEdicionControl;
+		this.ActivarEdicionCausa = !this.ActivarEdicionCausa;
 		this.refreshCausasList();
 	}
 
 
 	editClick(item: any) {
 		this.causa = item;
-		this.ActivarEdicionControl = true;
-		console.log(item.idControl)
+		this.ActivarEdicionCausa = true;
+		console.log(item.descripcion)
 
 	}
+	
 
 	anadirCausa() {
 		var val = {
