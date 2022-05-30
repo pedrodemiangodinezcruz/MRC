@@ -36,6 +36,21 @@
 		</div>
 	</div>
 </div>
+<!-- Modal para llenado de control de riesgo -->
+<div class="modal fade" id="modalCausa" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title fw-bold" id="modalRiesgoLabel">Llene los campos para añadir una causa de riesgo
+				</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<app-tabla-causa [causa]="causa" *ngIf="ActivarAltaCausa"></app-tabla-causa>
+			</div>
+		</div>
+	</div>
+</div>
 <!--Side bar sección-->
 <div class="row" style="display: inline-flex;">
 	<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
@@ -164,7 +179,10 @@
 					 data-bs-target="#modalControl">
 						Agregar Control
 					</button></li>
-				<li>
+				<li><button type="button" class="dropdown-item" data-bs-toggle="modal" (click)="addCausa()"
+						data-bs-target="#modalCausa">
+						Agregar Causa
+				</button>
 					<hr class="dropdown-divider">
 				</li>
 				<li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>

@@ -8,12 +8,9 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class CausasComponent implements OnInit {
 
-	myScriptElement: HTMLScriptElement;
 	ocultarBoton: boolean = true;
 	mostarBoton: boolean = false;
 	contenteditable = false;
-	ActivarAltaCausa: boolean = false;
-	ActivarEdicionCausa: boolean = false;
 
 	editarCausa() {
 		this.ocultarBoton = !this.ocultarBoton;
@@ -22,18 +19,13 @@ export class CausasComponent implements OnInit {
 
 	}
 
-	constructor(private service: SharedService) {
-		this.myScriptElement = document.createElement('script');
-		this.myScriptElement.src = '../../assets/js/matriz.js';
-		document.body.appendChild(this.myScriptElement);
-
-
-	}
+	constructor(private service: SharedService) { }
 	CausasList: any = [];
 	RiesgoList: any = [];
 	causa: any;
+	ActivarAltaCausa: boolean = false;
+	ActivarEdicionCausa: boolean = false;
 	Id: string | undefined;
-
 	idRiesgoAsociado: string | undefined;
 	descripcion: string | undefined;
 
@@ -41,12 +33,9 @@ export class CausasComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.refreshCausasList();
-		this.refreshRiesgoList();
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
 		this.descripcion = this.causa.descripcion;
-		console.log(this.causa.Id);
-
 	}
 
 	addClick() {
@@ -68,6 +57,7 @@ export class CausasComponent implements OnInit {
 		this.causa = item;
 		this.ActivarEdicionCausa = true;
 		console.log(item.descripcion)
+		console.log(item.idRiesgoAsociado)
 
 	}
 	
@@ -79,26 +69,10 @@ export class CausasComponent implements OnInit {
 			descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
-			//console.log(res.toString());
+			alert(res.toString());
 		});
 	}
-	updateCausa() {
-		var val = {
-		  Id: this.Id,
-		  idRiesgoAsociado : this.idRiesgoAsociado,
-		  descripcion : this.descripcion
-		};
-		console.log(this.Id);
-		console.log("Id a cambiar" + this.Id);
-		console.log(val);
-		this.service.editarCausa(val).subscribe(res => {
-			//alert(res.toString());
-			//Aqui esta iba comentada
-		});
-		this.refreshCausasList();
-	}
-
-
+	
 	eliminarCausa(item: any) {
 		console.log(item);
 		console.log("ID BD del causa a eliminar " + item.Id);
@@ -115,14 +89,5 @@ export class CausasComponent implements OnInit {
 			console.log(this.CausasList);
 		});
 	}
-	refreshRiesgoList() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
-		});
-	}
-
-
 
 }

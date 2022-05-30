@@ -17,15 +17,17 @@ export class AppComponent implements OnInit {
 
 @Input() riesgo:any;
 @Input() control:any;
+@Input() causa: any;
   //riesgo:any;
   ActivarAltaRiesgo: boolean = false;
   ActivarAltaControl: boolean = false;
+  ActivarAltaCausa: boolean = false;
   macroProceso: string | undefined;
   proceso: string | undefined;
   subproceso: string | undefined;
   idRiesgo: string | undefined;
   descripcion: string | undefined;
-  causa: string | undefined;
+  //causa: string | undefined;
   consecuencia: string | undefined;
   tipoEvento: string | undefined;
   tipoRiesgo: string | undefined;
@@ -43,7 +45,7 @@ ngOnInit(): void {
 	this.subproceso = this.riesgo.subproceso;
 	this.idRiesgo = this.riesgo.idRiesgo;
 	this.descripcion = this.riesgo.descripcion;
-	this.causa = this.riesgo.causa;
+	//this.causa = this.riesgo.causa;
 	this.consecuencia = this.riesgo.consecuencia;
 	this.tipoEvento = this.riesgo.tipoEvento;
 	this.tipoRiesgo = this.riesgo.tipoRiesgo;
@@ -53,7 +55,6 @@ ngOnInit(): void {
 	this.riesgoFraude = this.riesgo.riesgoFraude;
 	this.probabilidad = this.riesgo.probabilidad;
 	this.impacto = this.riesgo.impacto;   
-	console.log(this.idRiesgo);
 
 }
   addClick() {
@@ -64,7 +65,7 @@ ngOnInit(): void {
 		proceso: "",
 		idRiesgo: "",
 		descripcion: "",
-		causa: "",
+		//causa: "",
 		consecuencia: "",
 		tipoEvento: "",
 		tipoRiesgo: "",
@@ -83,6 +84,13 @@ addControl() {
 		Anadir: 0,
 	}
 	console.log(this.control.Anadir)
+}
+addCausa() {
+	this.ActivarAltaCausa = true;
+	this.causa = {
+		Anadir: 0,
+	}
+	console.log(this.causa.Anadir)
 }
 
 anadirRiesgo() {

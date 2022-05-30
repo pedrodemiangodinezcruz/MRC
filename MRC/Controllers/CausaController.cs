@@ -26,7 +26,7 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   SELECT Id, IdRiesgoAsociado, descripcion FROM dbo.Causa";
+                   SELECT Id, idRiesgoAsociado, descripcion FROM dbo.Causa";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;

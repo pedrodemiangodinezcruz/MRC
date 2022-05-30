@@ -141,17 +141,17 @@
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
-					<td [className]="esFomulado ? 'formulado' : 'inactivo'">Diseño del control</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Diseño del control</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
-					<td [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategia}}</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategia}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
-					<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
-					<td [className]="esFomulado ? 'formulado' : 'inactivo'">19%</td>
-					<td [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
-					<td [className]="esFomulado ? 'formulado' : 'inactivo'">Medio</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">19%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Medio</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
 					<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
@@ -179,8 +179,6 @@
 						</button>
 					</td>
 				</tr>
-				
-				
 			</ng-container>
 		</tbody>
 	</table>

@@ -8,31 +8,13 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class TablaCausaComponent implements OnInit {
 
-	myScriptElement: HTMLScriptElement;
-	ocultarBoton: boolean = true;
-	mostarBoton: boolean = false;
-	contenteditable = false;
-	Anadir: number = 0;
-
-	editarCausa() {
-		this.ocultarBoton = !this.ocultarBoton;
-		this.mostarBoton = !this.mostarBoton;
-		this.contenteditable = !this.contenteditable;
-
-	}
-
-	constructor(private service: SharedService) {
-		this.myScriptElement = document.createElement('script');
-		this.myScriptElement.src = '../../assets/js/matriz.js';
-		document.body.appendChild(this.myScriptElement);
-
-
-	}
+	constructor(private service: SharedService) { }
+	@Input() causa: any;
 	CausasList: any = [];
 	RiesgoList: any = [];
-	@Input() causa:any;
 	ActivarAltaControl: boolean = false;
 	ActivarEdicionControl: boolean = false;
+	Anadir: number = 0;
 	Id: string | undefined;
 	idRiesgoAsociado: string | undefined;
 	descripcion: string | undefined;
@@ -45,48 +27,33 @@ export class TablaCausaComponent implements OnInit {
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
 		this.descripcion = this.causa.descripcion;
-		console.log(this.causa.Id);
+		//console.log(this.causa.Id);
 
 	}
 
-	addClick() {
-		this.ActivarAltaControl = true;
-		this.causa = {
-			Anadir: 0,
-			Id: "",
-			idRiesgoAsociado: "",
-			descripcion: ""
-		}
-	}
+
 	closeClick() {
 		this.ActivarEdicionControl = !this.ActivarEdicionControl;
 		this.refreshCausasList();
 	}
 
-
-	editClick(item: any) {
-		this.causa = item;
-		this.ActivarEdicionControl = true;
-		console.log(item.idControl)
-
-	}
-
 	anadirCausa() {
 		var val = {
 			Id: this.Id,
-			idRiesgoAsociado: this.idRiesgoAsociado,
-			descripcion: this.descripcion,
+		idRiesgoAsociado: this.idRiesgoAsociado,
+		descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
 			//console.log(res.toString());
-			console.log(val);
+			//console.log(val);
 		});
 	}
+
 	updateCausa() {
 		var val = {
-		  Id: this.Id,
-		  idRiesgoAsociado : this.idRiesgoAsociado,
-		  descripcion : this.descripcion
+			Id: this.Id,
+			idRiesgoAsociado: this.idRiesgoAsociado,
+			descripcion: this.descripcion
 		};
 		console.log(this.Id);
 		console.log("Id a cambiar: " + this.Id);
@@ -96,16 +63,6 @@ export class TablaCausaComponent implements OnInit {
 			//Aqui esta iba comentada
 		});
 		this.refreshCausasList();
-	}
-
-
-	eliminarCausa(item: any) {
-		console.log(item);
-		console.log("ID BD del causa a eliminar " + item.Id);
-		this.service.borrarCausa(item.Id).subscribe(data => {
-			alert(data.toString());
-			this.refreshCausasList();
-		})
 	}
 
 	refreshCausasList() {
@@ -122,7 +79,5 @@ export class TablaCausaComponent implements OnInit {
 			console.log(this.RiesgoList);
 		});
 	}
-
-
 
 }
