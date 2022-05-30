@@ -24,7 +24,7 @@
 		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
 			(click)="closeClick()">Cerrar</button>
 		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir == 0" (click)="anadirCausa()"
-			data-bs-toggle="modal" data-bs-target="#altaControl">Añadir Causa</button>
+			data-bs-toggle="modal" data-bs-target="#altaCausa">Añadir Causa</button>
 		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir != 0" (click)="updateCausa()"
 			data-bs-toggle="modal" data-bs-target="#editarControl">Editar Causa</button>
 	</div>

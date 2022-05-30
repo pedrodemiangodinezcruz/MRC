@@ -5,7 +5,13 @@
 <head>
 
 </head>
-
+<!--Icono de paloma verde (Exito) y triangulo warning-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+	<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+		<path
+			d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+	</symbol>
+</svg>
 <!-- Modal para llenado de riesgo -->
 <div class="modal fade" id="modalRiesgo" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -16,6 +22,36 @@
 			</div>
 			<div class="modal-body">
 				<app-riesgo [riesgo]="riesgo" *ngIf="ActivarAltaRiesgo"></app-riesgo>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Modal para alta de riesgo-->
+<div class="modal" id="altaRiesgo">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/matriz">
+				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+			</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Riesgo, dado de alta exitosamente
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="/matriz">
+					<button type="button"  class="btn btn-outline-primary"
+						data-bs-dismiss="modal">Ok</button>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -36,7 +72,37 @@
 		</div>
 	</div>
 </div>
-<!-- Modal para llenado de control de riesgo -->
+<!-- Modal para alta de control de riesgo -->
+<div class="modal" id="altaControl">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/controles">
+				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+			</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Control, dado de alta exitosamente
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="/controles">
+					<button type="button"  class="btn btn-outline-primary"
+						data-bs-dismiss="modal">Ok</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal para llenado de causa de riesgo -->
 <div class="modal fade" id="modalCausa" tabindex="-1" aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -47,6 +113,36 @@
 			</div>
 			<div class="modal-body">
 				<app-tabla-causa [causa]="causa" *ngIf="ActivarAltaCausa"></app-tabla-causa>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal para alta de causa de riesgo -->
+<div class="modal" id="altaCausa">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/causa">
+				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+			</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Causa, dada de alta exitosamente
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="/causas">
+					<button type="button"  class="btn btn-outline-primary"
+						data-bs-dismiss="modal">Ok</button>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
