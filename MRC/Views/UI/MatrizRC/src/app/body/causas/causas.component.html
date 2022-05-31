@@ -106,3 +106,34 @@
 	</table>
 </div>
 
+<!--Modal de confirmación de edición de causa-->
+<div class="modal" id="editarControl">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/causas">
+				<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+					</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+						aria-label="Success:" style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Causa, editada exitosamente
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="/causas">
+				<button type="button" class="btn btn-outline-primary"
+					data-bs-dismiss="modal">Ok</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
