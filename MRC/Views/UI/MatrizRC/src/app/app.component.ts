@@ -9,8 +9,14 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class AppComponent implements OnInit {
   title = 'MatrizRC';
- 
-  constructor(private service:SharedService) {}
+	
+  myScriptElement: HTMLScriptElement;
+  constructor(private service:SharedService) {
+	this.myScriptElement = document.createElement('script');
+	this.myScriptElement.src = '/assets/js/formulario.js';
+	document.body.appendChild(this.myScriptElement);
+  }
+  
 
 	RiesgoList: any = [];
 	ControlList: any = [];
