@@ -16,7 +16,7 @@ export class TablaCausaComponent implements OnInit {
 	ActivarEdicionControl: boolean = false;
 	Anadir: number = 0;
 	Id: string | undefined;
-	idRiesgoAsociado: string | undefined;
+	IdRiesgoAsociado: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -25,7 +25,7 @@ export class TablaCausaComponent implements OnInit {
 		this.refreshRiesgoList();
 		this.refreshCausasList();
 		this.Id = this.causa.Id;
-		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
+		this.IdRiesgoAsociado = this.causa.IdRiesgoAsociado;
 		this.descripcion = this.causa.descripcion;
 		//console.log(this.causa.Id);
 
@@ -40,7 +40,7 @@ export class TablaCausaComponent implements OnInit {
 	anadirCausa() {
 		var val = {
 			Id: this.Id,
-		idRiesgoAsociado: this.idRiesgoAsociado,
+		IdRiesgoAsociado: this.IdRiesgoAsociado,
 		descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
@@ -52,7 +52,7 @@ export class TablaCausaComponent implements OnInit {
 	updateCausa() {
 		var val = {
 			Id: this.Id,
-			idRiesgoAsociado: this.idRiesgoAsociado,
+			IdRiesgoAsociado: this.IdRiesgoAsociado,
 			descripcion: this.descripcion
 		};
 		console.log(this.Id);

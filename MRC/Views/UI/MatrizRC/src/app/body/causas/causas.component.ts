@@ -26,7 +26,7 @@ export class CausasComponent implements OnInit {
 	ActivarAltaCausa: boolean = false;
 	ActivarEdicionCausa: boolean = false;
 	Id: string | undefined;
-	idRiesgoAsociado: string | undefined;
+	IdRiesgoAsociado: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -34,7 +34,7 @@ export class CausasComponent implements OnInit {
 	ngOnInit(): void {
 		this.refreshCausasList();
 		this.Id = this.causa.Id;
-		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
+		this.IdRiesgoAsociado = this.causa.IdRiesgoAsociado;
 		this.descripcion = this.causa.descripcion;
 	}
 
@@ -43,7 +43,7 @@ export class CausasComponent implements OnInit {
 		this.causa = {
 			Anadir: 0,
 			Id: "",
-			idRiesgoAsociado: "",
+			IdRiesgoAsociado: "",
 			descripcion: ""
 		}
 	}
@@ -55,9 +55,10 @@ export class CausasComponent implements OnInit {
 
 	editClick(item: any) {
 		this.causa = item;
-		//this.ActivarEdicionCausa = true;
+		this.ActivarEdicionCausa = true;
 		console.log(item.descripcion)
 		console.log(item.IdRiesgoAsociado)
+		console.log(item.Id)
 
 	}
 	
@@ -65,7 +66,7 @@ export class CausasComponent implements OnInit {
 	anadirCausa() {
 		var val = {
 			Id: this.Id,
-			idRiesgoAsociado: this.idRiesgoAsociado,
+			IdRiesgoAsociado: this.IdRiesgoAsociado,
 			descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
