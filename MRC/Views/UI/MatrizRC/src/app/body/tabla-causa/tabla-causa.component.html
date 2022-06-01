@@ -11,7 +11,7 @@
 			<div class="form-floating mb-3">
 				<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.idRiesgoAsociado}}" aria-label="Default select example">
 					<ng-container *ngFor="let riesgoItem of RiesgoList">
-						<ng-container *ngIf="riesgoItem.idRiesgo !== causa.idControlAsociado">
+						<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado">
 							<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
 						</ng-container>
 					</ng-container>
@@ -24,7 +24,7 @@
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idControlAsociado" value="{{causa.idControlAsociado}}" aria-label="Default select example">
 				<ng-container *ngFor="let controItem of ControlList">
-					<ng-container *ngIf="controItem.idControl !== causa.idRiesgoAsociado">
+					<ng-container *ngIf="controItem.idControl !== causa.IdControlAsociado">
 						<option value="{{controItem.idControl}}">{{controItem.idControl}}</option>
 					</ng-container>
 				</ng-container>
