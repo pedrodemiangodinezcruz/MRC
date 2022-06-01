@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 	<div class="col">
-		<p class="text-center fw-bold">Id del riesgo asociado</p>
+		<p class="text-center fw-bold">Id del riesgo asociado  {{causa.idRiesgoAsociado}}</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.idRiesgoAsociado}}" aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
