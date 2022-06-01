@@ -18,8 +18,8 @@ export class TablaCausaComponent implements OnInit {
 	ActivarEdicionControl: boolean = false;
 	Anadir: number = 0;
 	Id: string | undefined;
-	IdRiesgoAsociado: string | undefined;
-	IdControlAsociado: string | undefined;
+	idRiesgoAsociado: string | undefined;
+	idControlAsociado: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -29,8 +29,8 @@ export class TablaCausaComponent implements OnInit {
 		this.refreshCausasList();
 		this.refreshControlList();
 		this.Id = this.causa.Id;
-		this.IdRiesgoAsociado = this.causa.IdRiesgoAsociado;
-		this.IdControlAsociado = this.causa.IdControlAsociado;
+		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
+		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
 		//console.log(this.causa.Id);
 
@@ -45,8 +45,8 @@ export class TablaCausaComponent implements OnInit {
 	anadirCausa() {
 		var val = {
 			Id: this.Id,
-		IdRiesgoAsociado: this.IdRiesgoAsociado,
-		IdControlAsociado: this.IdControlAsociado,
+		idRiesgoAsociado: this.idRiesgoAsociado,
+		idControlAsociado: this.idControlAsociado,
 		descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
@@ -58,8 +58,8 @@ export class TablaCausaComponent implements OnInit {
 	updateCausa() {
 		var val = {
 			Id: this.Id,
-			IdRiesgoAsociado: this.IdRiesgoAsociado,
-			IdControlAsociado: this.IdControlAsociado,
+			idRiesgoAsociado: this.idRiesgoAsociado,
+			idControlAsociado: this.idControlAsociado,
 			descripcion: this.descripcion
 		};
 		console.log(this.Id);
@@ -79,8 +79,8 @@ export class TablaCausaComponent implements OnInit {
 		});
 	}
 	refreshRiesgoList() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
+		this.service.getRiesgoList().subscribe(dato => {
+			this.RiesgoList = dato;
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
 		});

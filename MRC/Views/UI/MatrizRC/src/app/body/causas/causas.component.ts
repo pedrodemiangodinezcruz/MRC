@@ -25,8 +25,8 @@ export class CausasComponent implements OnInit {
 	ActivarAltaCausa: boolean = false;
 	ActivarEdicionCausa: boolean = false;
 	Id: string | undefined;
-	IdRiesgoAsociado: string | undefined;
-	IdControlAsociado: string | undefined;
+	idRiesgoAsociado: string | undefined;
+	idControlAsociado: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -34,8 +34,8 @@ export class CausasComponent implements OnInit {
 	ngOnInit(): void {
 		this.refreshCausasList();
 		this.Id = this.causa.Id;
-		this.IdRiesgoAsociado = this.causa.IdRiesgoAsociado;
-		this.IdControlAsociado = this.causa.IdControlAsociado;
+		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
+		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
 	}
 
@@ -44,8 +44,8 @@ export class CausasComponent implements OnInit {
 		this.causa = {
 			Anadir: 0,
 			Id: "",
-			IdRiesgoAsociado: "",
-			IdControlAsociado: "",
+			idRiesgoAsociado: "",
+			idControlAsociado: "",
 			descripcion: ""
 		}
 	}
