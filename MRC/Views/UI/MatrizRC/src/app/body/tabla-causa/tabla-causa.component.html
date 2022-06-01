@@ -6,19 +6,19 @@
 	</div>
 	</div>
 	<div class="row">
-	<div class="col">
-		<p class="text-center fw-bold">Id del riesgo asociado  {{causa.idRiesgoAsociado}}</p>
-		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.idRiesgoAsociado}}" aria-label="Default select example">
-				<ng-container *ngFor="let riesgoItem of RiesgoList">
-					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.idRiesgoAsociado">
-						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+		<div class="col">
+			<p class="text-center fw-bold">Id del riesgo asociado</p>
+			<div class="form-floating mb-3">
+				<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.idRiesgoAsociado}}" aria-label="Default select example">
+					<ng-container *ngFor="let riesgoItem of RiesgoList">
+						<ng-container *ngIf="riesgoItem.idRiesgo !== causa.idControlAsociado">
+							<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+						</ng-container>
 					</ng-container>
-				</ng-container>
-			</select>
-			<label for="floatingSelect">Seleccione el ID del riesgo asociado</label>
+				</select>
+				<label for="floatingSelect">Seleccione el ID del riesgo asociado</label>
+			</div>
 		</div>
-	</div>
 	<div class="col">
 		<p class="text-center fw-bold">Id del control asociado</p>
 		<div class="form-floating mb-3">
@@ -29,7 +29,7 @@
 					</ng-container>
 				</ng-container>
 			</select>
-			<label for="floatingSelect">Seleccione el ID del riesgo asociado</label>
+			<label for="floatingSelect">Seleccione el ID del control asociado</label>
 		</div>
 	</div>
 	
