@@ -26,7 +26,7 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   SELECT Id, idRiesgoAsociado, descripcion FROM dbo.Causa";
+                   SELECT Id, idRiesgoAsociado, idControlAsociado, descripcion FROM dbo.Causa";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;
@@ -51,9 +51,10 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   insert into dbo.Causa (idRiesgoAsociado, descripcion ) values 
+                   insert into dbo.Causa (idRiesgoAsociado, idControlAsociado, descripcion ) values 
                      (
                         '" + causa.IdRiesgoAsociado + @"'
+                        ,'" + causa.IdControlAsociado + @"'
                         ,'" + causa.Descripcion + @"'
                        )
                     ";
@@ -83,6 +84,7 @@ namespace MRC.Controllers
             string query = @"
                     update  dbo.Causa set
                     idRiesgoAsociado = '" + causa.IdRiesgoAsociado + @"'
+                    ,idControlAsociado = '" + causa.IdControlAsociado + @"'
                     ,descripcion =  '" + causa.Descripcion + @"'
                     where Id = " + causa.Id + @"
                     ";

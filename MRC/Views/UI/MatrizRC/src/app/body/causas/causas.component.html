@@ -9,14 +9,15 @@
 	<table class="table table-bordered text-center" id="causas">
 		<thead>
 			<tr>
-				<th scope="col" colspan="3" class="anaranjado">CAUSAS DE LOS RIESGOS</th>
+				<th scope="col" colspan="4" class="anaranjado">CAUSAS DE LOS RIESGOS</th>
 			</tr>
 			<tr>
 			<tr>
-				<th scope="col" colspan="3"></th>
+				<th scope="col" colspan="4"></th>
 			</tr>
 			<tr>
-				<th scope="col" class="naranja">ID de los riesgos adjuntos</th>
+				<th scope="col" class="naranja">ID del riesgo adjuntos</th>
+				<th scope="col" class="naranja">ID del control adjunto</th>
 				<th scope="col" class="naranja">Causa</th>
 				<th scope="col" class="naranja">Opciones</th>
 			</tr>
@@ -77,6 +78,7 @@
 				</div>
 				<tr>
 					<td>{{causasItem.IdRiesgoAsociado}}</td>
+					<td>{{causasItem.idControlAsociado}}</td>
 					<td>{{causasItem.descripcion}}</td>
 					<td>
 						<button type="button" class="btn btn-success" id="editBoton" data-bs-toggle="modal"

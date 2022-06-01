@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
@@ -12,11 +13,13 @@ export class TablaCausaComponent implements OnInit {
 	@Input() causa: any;
 	CausasList: any = [];
 	RiesgoList: any = [];
+	ControlList: any = [];
 	ActivarAltaControl: boolean = false;
 	ActivarEdicionControl: boolean = false;
 	Anadir: number = 0;
 	Id: string | undefined;
 	IdRiesgoAsociado: string | undefined;
+	idControlAsociado: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -24,8 +27,10 @@ export class TablaCausaComponent implements OnInit {
 	ngOnInit(): void {
 		this.refreshRiesgoList();
 		this.refreshCausasList();
+		this.refreshControlList();
 		this.Id = this.causa.Id;
 		this.IdRiesgoAsociado = this.causa.IdRiesgoAsociado;
+		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
 		//console.log(this.causa.Id);
 
@@ -41,6 +46,7 @@ export class TablaCausaComponent implements OnInit {
 		var val = {
 			Id: this.Id,
 		IdRiesgoAsociado: this.IdRiesgoAsociado,
+		idControlAsociado: this.idControlAsociado,
 		descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
@@ -53,6 +59,7 @@ export class TablaCausaComponent implements OnInit {
 		var val = {
 			Id: this.Id,
 			IdRiesgoAsociado: this.IdRiesgoAsociado,
+			idControlAsociado: this.idControlAsociado,
 			descripcion: this.descripcion
 		};
 		console.log(this.Id);
@@ -77,6 +84,13 @@ export class TablaCausaComponent implements OnInit {
 			this.RiesgoList = data;
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
+		});
+	}
+	refreshControlList() {
+		this.service.getControlesList().subscribe(data => {
+			this.ControlList = data;
+			console.log("Lista de controles");
+			console.log(this.ControlList);
 		});
 	}
 

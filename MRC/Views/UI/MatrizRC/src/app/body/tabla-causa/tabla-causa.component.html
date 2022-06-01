@@ -4,6 +4,8 @@
 		<textarea class="form-control" [(ngModel)]="descripcion" value="{{causa.descripcion}}"
 			placeholder="Escriba la descripción correspondiente" rows="2"></textarea>
 	</div>
+	</div>
+	<div class="row">
 	<div class="col">
 		<p class="text-center fw-bold">Id del riesgo asociado</p>
 		<div class="form-floating mb-3">
@@ -17,6 +19,20 @@
 			<label for="floatingSelect">Seleccione el ID del riesgo asociado</label>
 		</div>
 	</div>
+	<div class="col">
+		<p class="text-center fw-bold">Id del control asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado" value="{{causa.idControlAsociado}}" aria-label="Default select example">
+				<ng-container *ngFor="let controItem of ControlList">
+					<ng-container *ngIf="controItem.idControl !== causa.idRiesgoAsociado">
+						<option value="{{controItem.idControl}}">{{controItem.idControl}}</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione el ID del riesgo asociado</label>
+		</div>
+	</div>
+	
 </div>
 <div class="row">
 	<div class="modal-footer">
