@@ -21,12 +21,12 @@ export class CausasComponent implements OnInit {
 
 	constructor(private service: SharedService) { }
 	CausasList: any = [];
-	RiesgoList: any = [];
 	causa: any;
 	ActivarAltaCausa: boolean = false;
 	ActivarEdicionCausa: boolean = false;
 	Id: string | undefined;
 	IdRiesgoAsociado: string | undefined;
+	IdControlAsociado: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -35,6 +35,7 @@ export class CausasComponent implements OnInit {
 		this.refreshCausasList();
 		this.Id = this.causa.Id;
 		this.IdRiesgoAsociado = this.causa.IdRiesgoAsociado;
+		this.IdControlAsociado = this.causa.IdControlAsociado;
 		this.descripcion = this.causa.descripcion;
 	}
 
@@ -44,6 +45,7 @@ export class CausasComponent implements OnInit {
 			Anadir: 0,
 			Id: "",
 			IdRiesgoAsociado: "",
+			IdControlAsociado: "",
 			descripcion: ""
 		}
 	}
@@ -56,23 +58,9 @@ export class CausasComponent implements OnInit {
 	editClick(item: any) {
 		this.causa = item;
 		this.ActivarEdicionCausa = true;
-		console.log(item.descripcion)
-		console.log(item.IdRiesgoAsociado)
-		console.log(item.Id)
-
 	}
 	
 
-	anadirCausa() {
-		var val = {
-			Id: this.Id,
-			IdRiesgoAsociado: this.IdRiesgoAsociado,
-			descripcion: this.descripcion,
-		};
-		this.service.anadirCausa(val).subscribe(res => {
-			alert(res.toString());
-		});
-	}
 	
 	eliminarCausa(item: any) {
 		console.log(item);

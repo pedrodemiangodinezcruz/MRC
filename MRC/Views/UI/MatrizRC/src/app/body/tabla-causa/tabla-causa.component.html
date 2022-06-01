@@ -22,7 +22,7 @@
 	<div class="col">
 		<p class="text-center fw-bold">Id del control asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idControlAsociado" value="{{causa.idControlAsociado}}" aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="IdControlAsociado" value="{{causa.IdControlAsociado}}" aria-label="Default select example">
 				<ng-container *ngFor="let controItem of ControlList">
 					<ng-container *ngIf="controItem.idControl !== causa.idRiesgoAsociado">
 						<option value="{{controItem.idControl}}">{{controItem.idControl}}</option>
