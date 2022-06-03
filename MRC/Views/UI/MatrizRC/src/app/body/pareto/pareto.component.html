@@ -16,10 +16,11 @@
 	  </select>--> 
 	  <select class="form-select" id="seleccionProceso" name="macroproceso" [(ngModel)]="macroproceso" aria-label="Default select example"
 		onchange="location = this.value;">
-		<option *ngFor="let macro of macroproceso" [value]="macro.Nombre">{{macro.Nombre}}</option>
+		<option *ngFor="let macro of macroproceso" [value]="'pareto/' + macro.Nombre">{{macro.Nombre}}</option>
 	  </select>
 	  <label for="floatingSelect">Seleccione el macroproceso al que guste ver su pareto adjunto
 	  </label>
+	  
 	</div>
 	  <div id="container" class="infoSeccion"></div>
 	  <p class="highcharts-description">

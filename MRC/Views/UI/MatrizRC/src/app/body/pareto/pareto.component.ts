@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import {Macroproceso} from './macroproceso';
+import { ActivatedRoute } from '@angular/router';
 
 
 declare var require: any;
@@ -9,7 +10,6 @@ let exporting = require('highcharts/modules/exporting');
 let exportdata = require('highcharts/modules/export-data');
 let accessibility = require('highcharts/modules/accessibility');
 
-var Macro: string;
 
 
 pareto(Highcharts);
@@ -23,17 +23,21 @@ accessibility(Highcharts);
   styleUrls: ['./pareto.component.css']
 })
 
+
+
 export class ParetoComponent implements OnInit {
 	macroproceso:Macroproceso[] | undefined;
-	
-	public options: any = {
+
+	  constructor(private _Activatedroute:ActivatedRoute) { }
+
+	  public options: any = {
 		Macro : "Jaun",
         chart: {
           renderTo: 'container',
           type: 'column'
         },
         title: {
-          text: 'Pareto del macroproceso de: '  + Macro 
+          text: 'Pareto del macroproceso de: '  + this._Activatedroute.snapshot.paramMap.get('macro'),
         },
         tooltip: {
           shared: true
@@ -90,9 +94,6 @@ export class ParetoComponent implements OnInit {
         }]
       
 	};
-	  constructor() { 
-		
-	  }
 	
 	  ngOnInit(){
 		this.macroproceso =[
@@ -108,5 +109,6 @@ export class ParetoComponent implements OnInit {
 		];
 		Highcharts.chart('container', this.options);
 	  }
+	  
 	}
 

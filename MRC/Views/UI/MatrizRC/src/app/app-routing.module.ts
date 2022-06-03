@@ -22,16 +22,16 @@ const routes: Routes = [
 {path: 'mapaResidual', component: MapaResidualComponent},
 {path: 'mapaRiesgo', component: MapaRiesgoComponent},
 {path: 'pareto', component: ParetoComponent },
-{path: 'Concepto al Producto', component: ParetoComponent },
-{path: 'Compra al Pago', component: ParetoComponent },
-{path: 'Demanda al Abasto', component: ParetoComponent },
-{path: 'Pedido al Cobro', component: ParetoComponent },
-{path: 'Mantenimiento a la Liquidación', component: ParetoComponent },
-{path: 'Inversión a la Desinversión', component: ParetoComponent },
-{path: 'Finanzas a la Administración', component: ParetoComponent },
-{path: 'Contratación al Retiro', component: ParetoComponent },
-{path: 'Procesos Criticos fuera de Macros', component: ParetoComponent },
-{path: 'instructivo', component: InstructivoComponent}
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: ParetoComponent },
+{path: 'pareto/:macro', component: InstructivoComponent}
 
 ];
 
