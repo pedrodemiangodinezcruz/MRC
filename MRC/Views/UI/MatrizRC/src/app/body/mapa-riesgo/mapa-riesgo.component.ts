@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { SharedService } from 'src/app/shared.service';
 declare function getPointCategoryName(point: any, dimension: any): any;
 declare var require: any;
 
@@ -120,9 +121,19 @@ accessibility(Highcharts);
 
   };
 
-	constructor() { }
+	constructor(private service: SharedService) { }
+	RiesgoList: any = [];
 	
 	  ngOnInit(){
+		this.refreshRiesgoList();
 		Highcharts.chart('container', this.chartOptions);
 	  }
+	  refreshRiesgoList() {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			console.log("Lista de riesgos");
+			console.log(this.RiesgoList);
+			
+		});
+	}
 }

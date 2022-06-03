@@ -38,41 +38,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>R-M7-01</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>R-M7-02</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>R-M7-03</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>R-M7-04</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>R-M7-05</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>R-M7-06</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>R-M7-01</td>
-              <td>Medio</td>
-              <td>A</td>
-            </tr>
+            <ng-container *ngFor="let riesgoItem of RiesgoList" >
+				<tr>
+					<td>{{riesgoItem.idRiesgo}}</td>
+					<td>¿Formulado?</td>
+					<td>Formulado</td>
+				</tr>
+			</ng-container>
           </tbody>
         </table>    
 	</div>  

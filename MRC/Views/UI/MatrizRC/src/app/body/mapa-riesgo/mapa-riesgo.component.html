@@ -38,36 +38,13 @@
 				</tr>
 			</thead>
 			<tbody>
+				<ng-container *ngFor="let riesgoItem of RiesgoList" >
 				<tr>
-					<td>R-M7-01</td>
-					<td>Crítico</td>
-					<td>Bajo</td>
+					<td>{{riesgoItem.idRiesgo}}</td>
+					<td>{{riesgoItem.impacto}}</td>
+					<td>{{riesgoItem.probabilidad}}</td>
 				</tr>
-				<tr>
-					<td>R-M7-01</td>
-					<td>Crítico</td>
-					<td>Bajo</td>
-				</tr>
-				<tr>
-					<td>R-M7-02</td>
-					<td>Crítico</td>
-					<td>Bajo</td>
-				</tr>
-				<tr>
-					<td>R-M7-03</td>
-					<td>Crítico</td>
-					<td>Bajo</td>
-				</tr>
-				<tr>
-					<td>R-M7-04</td>
-					<td>Crítico</td>
-					<td>Bajo</td>
-				</tr>
-				<tr>
-					<td>R-M7-05</td>
-					<td>Crítico</td>
-					<td>Bajo</td>
-				</tr>
+			</ng-container>
 			</tbody>
 		</table>
 	</div>
