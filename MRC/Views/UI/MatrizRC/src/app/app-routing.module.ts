@@ -22,6 +22,7 @@ const routes: Routes = [
 {path: 'mapaResidual', component: MapaResidualComponent},
 {path: 'mapaResidual/:macro', component: MapaResidualComponent},
 {path: 'mapaRiesgo', component: MapaRiesgoComponent},
+{path: 'mapaRiesgo/:macro', component: MapaRiesgoComponent},
 {path: 'pareto', component: ParetoComponent },
 {path: 'pareto/:macro', component: ParetoComponent },
 

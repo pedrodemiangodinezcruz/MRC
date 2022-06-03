@@ -9,15 +9,15 @@
 						<select class="form-select" id="seleccionProceso" name="macroproceso"
 							aria-label="Default select example" onchange="location = this.value;">
 							<option selected>...</option>
-							<option value="/productoMapaRiesgo">Concepto al Producto</option>
-							<option value="/compraMapaRiesgo">Compra al Pago</option>
-							<option value="/abastoMapaRiesgo">Demanda al Abasto</option>
-							<option value="/pedidoMapaRiesgo">Pedido al Cobro</option>
-							<option value="/mantenimientoMapaRiesgo">Mantenimiento a la Liquidación</option>
-							<option value="/inversionMapaRiesgo">Inversión a la Desinversión</option>
-							<option value="finanzasMapaRiesgo">Finanzas a la Administración</option>
-							<option value="/contratacionMapaRiesgo">Contratación al Retiro</option>
-							<option value="/procesosMapaRiesgo">Procesos Criticos fuera de Macros</option>
+							<option value="mapaRiesgo/Concepto al Producto">Concepto al Producto</option>
+							<option value="mapaRiesgo/Compra al Pago">Compra al Pago</option>
+							<option value="mapaRiesgo/Demanda al Abasto">Demanda al Abasto</option>
+							<option value="mapaRiesgo/Pedido al Cobro">Pedido al Cobro</option>
+							<option value="mapaRiesgo/Mantenimiento a la Liquidación">Mantenimiento a la Liquidación</option>
+							<option value="mapaRiesgo/Inversión a la Desinversión">Inversión a la Desinversión</option>
+							<option value="mapaRiesgo/Finanzas a la Administración">Finanzas a la Administración</option>
+							<option value="mapaRiesgo/Contratación al Retiro">Contratación al Retiro</option>
+							<option value="mapaRiesgo/Procesos Criticos fuera de Macros">Procesos Criticos fuera de Macros</option>
 						</select>
 						<label for="floatingSelect">Seleccione un macroproceso
 						</label>
@@ -52,7 +52,7 @@
 		<figure class="highcharts-figure">
 			<div id="container"></div>
 			<p class="highcharts-description">
-				Mapa de calor inherente asignando del macroproceso <strong>"<%= proceso %>"</strong> mostrando ID de
+				Mapa de calor inherente asignando del macroproceso <strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong> mostrando ID de
 				cada
 				riesgo.
 			</p>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { SharedService } from 'src/app/shared.service';
+import { ActivatedRoute } from '@angular/router';
 declare function getPointCategoryName(point: any, dimension: any): any;
 declare var require: any;
 
@@ -121,7 +122,7 @@ accessibility(Highcharts);
 
   };
 
-	constructor(private service: SharedService) { }
+	constructor(private service: SharedService, public _Activatedroute:ActivatedRoute) { }
 	RiesgoList: any = [];
 	
 	  ngOnInit(){
