@@ -9,15 +9,15 @@
                 <select class="form-select" id="seleccionProceso" name="macroproceso"
                   aria-label="Default select example" onchange="location = this.value;">
                   <option selected>...</option>
-                  <option value="/productoMapaResidual">Concepto al Producto</option>
-                  <option value="/compraMapaResidual">Compra al Pago</option>
-                  <option value="/abastoMapaResidual">Demanda al Abasto</option>
-                  <option value="/pedidoMapaResidual">Pedido al Cobro</option>
-                  <option value="/mantenimientoMapaResidual">Mantenimiento a la Liquidación</option>
-                  <option value="/inversionMapaResidual">Inversión a la Desinversión</option>
-                  <option value="finanzasMapaResidual">Finanzas a la Administración</option>
-                  <option value="/contratacionMapaResidual">Contratación al Retiro</option>
-                  <option value="/procesosMapaResidual">Procesos Criticos fuera de Macros</option>
+                  <option value="mapaResidual/Concepto al Producto">Concepto al Producto</option>
+                  <option value="mapaResidual/Compra al Pago">Compra al Pago</option>
+                  <option value="mapaResidual/Demanda al Abasto">Demanda al Abasto</option>
+                  <option value="mapaResidual/Pedido al Cobro">Pedido al Cobro</option>
+                  <option value="mapaResidual/Mantenimiento a la Liquidación">Mantenimiento a la Liquidación</option>
+                  <option value="mapaResidual/Inversión a la Desinversión">Inversión a la Desinversión</option>
+                  <option value="mapaResidual/Finanzas a la Administración">Finanzas a la Administración</option>
+                  <option value="mapaResidual/Contratación al Retiro">Contratación al Retiro</option>
+                  <option value="mapaResidual/Procesos Criticos fuera de Macros">Procesos Criticos fuera de Macros</option>
                 </select>
                 <label for="floatingSelect">Seleccione un macroproceso
                 </label>
@@ -52,7 +52,7 @@
         <figure class="highcharts-figure">
           <div id="container"></div>
           <p class="highcharts-description">
-            Mapa de calor inherente residual asignando del macroproceso <strong>"<%= proceso %>"</strong> mostrando ID
+            Mapa de calor inherente residual asignando del macroproceso <strong>{{this._Activatedroute.snapshot.paramMap.get('macro')}}</strong> mostrando ID
             de cada riesgo.
           </p>
         </figure>

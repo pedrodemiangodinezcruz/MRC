@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { SharedService } from 'src/app/shared.service';
+import { ActivatedRoute } from '@angular/router';
 declare function getPointCategoryName(point: any, dimension: any): any;
 
 @Component({
@@ -109,7 +110,7 @@ export class MapaResidualComponent implements OnInit {
 	};
 
 
-	constructor(private service: SharedService) { }
+	constructor(private service: SharedService, public _Activatedroute:ActivatedRoute) { }
 	RiesgoList: any = [];
 
 	ngOnInit() {

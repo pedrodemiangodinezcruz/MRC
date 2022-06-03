@@ -1,5 +1,5 @@
 <div class="col" id="infoSeccion">
-	<p class="text-center fw-bold" [(ngModel)]="macroproceso" >Pareto adjunto del macroproceso de: </p>
+	<p class="text-center fw-bold" >Pareto adjunto del macroproceso de: {{this._Activatedroute.snapshot.paramMap.get('macro')}}</p>
 	<div class="form-floating mb-3">
 	 <!--<select class="form-select" id="seleccionProceso" name="macroproceso" [(ngModel)]="employee" aria-label="Default select example"
 		onchange="location = this.value;">

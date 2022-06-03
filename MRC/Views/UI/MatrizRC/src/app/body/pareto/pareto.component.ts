@@ -28,7 +28,7 @@ accessibility(Highcharts);
 export class ParetoComponent implements OnInit {
 	macroproceso:Macroproceso[] | undefined;
 
-	  constructor(private _Activatedroute:ActivatedRoute) { }
+	  constructor(public _Activatedroute:ActivatedRoute) { }
 
 	  public options: any = {
 		Macro : "Jaun",

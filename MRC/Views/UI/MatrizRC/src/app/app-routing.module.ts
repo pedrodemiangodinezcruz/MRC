@@ -20,18 +20,10 @@ const routes: Routes = [
 {path: 'criterios', component: CriteriosComponent},
 {path: 'estadisticas', component: EstadisticasComponent},
 {path: 'mapaResidual', component: MapaResidualComponent},
+{path: 'mapaResidual/:macro', component: MapaResidualComponent},
 {path: 'mapaRiesgo', component: MapaRiesgoComponent},
 {path: 'pareto', component: ParetoComponent },
 {path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: ParetoComponent },
-{path: 'pareto/:macro', component: InstructivoComponent}
 
 ];
 
