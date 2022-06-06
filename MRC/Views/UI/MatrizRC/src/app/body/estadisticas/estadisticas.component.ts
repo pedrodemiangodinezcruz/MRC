@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 declare var require: any;
+import {Macroproceso} from '../pareto/macroproceso';
+import { ActivatedRoute } from '@angular/router';
 
 let pareto = require('highcharts/modules/pareto');
 let exporting = require('highcharts/modules/exporting');
@@ -20,11 +22,14 @@ accessibility(Highcharts);
   styleUrls: ['./estadisticas.component.css']
 })
 export class EstadisticasComponent implements OnInit {
+	macroproceso:Macroproceso[] | undefined;
 
 	riesgoInherente: boolean = true;
 	residual: boolean = false;
 	cobertura: boolean = false;
 	
+	constructor(public _Activatedroute:ActivatedRoute) { }
+
 	public inherentePastel: any = {
 
 		// Build the chart
@@ -36,7 +41,7 @@ export class EstadisticasComponent implements OnInit {
 				type: 'pie'
 			},
 			title: {
-				text: 'Diagrama de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+				text: 'Diagrama de pastel del macroproceso de: ' + this._Activatedroute.snapshot.paramMap.get('macro'),
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -85,7 +90,7 @@ export class EstadisticasComponent implements OnInit {
 			type: 'pie'
 		},
 		title: {
-			text: 'Diagrama 2 de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+			text: 'Diagrama de pastel del macroproceso: '+  this._Activatedroute.snapshot.paramMap.get('macro') + ' mostrando la frecuencia de los niveles de riesgo',
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -131,7 +136,7 @@ export class EstadisticasComponent implements OnInit {
 			type: 'pie'
 		},
 		title: {
-			text: 'Diagrama 3 de pastel del macroproceso <strong>"<%= proceso %>"</strong> mostrando la frecuencia de los niveles de riesgo'
+			text: 'Diagrama 3 de pastel del macroproceso: ' +  this._Activatedroute.snapshot.paramMap.get('macro') + ' mostrando la frecuencia de los niveles de riesgo'
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -191,10 +196,21 @@ export class EstadisticasComponent implements OnInit {
 		Highcharts.chart('container', this.coberturaPastel);
 	}
 	
-  constructor() { }
+
 
   ngOnInit(): void {
 	this.riesgoInherente = true;
+	this.macroproceso =[
+		{Nombre: "Concepto al Producto"},
+		{Nombre: "Compra al Pago"},
+		{Nombre: "Demanda al Abasto"},
+		{Nombre: "Pedido al Cobro"},
+		{Nombre: "Mantenimiento a la Liquidación"},
+		{Nombre: "Inversión a la Desinversión"},
+		{Nombre: "Finanzas a la Administración"},
+		{Nombre: "Contratación al Retiro"},
+		{Nombre: "Procesos Criticos fuera de Macros"}
+	];
 	Highcharts.chart('container', this.inherentePastel);
   }
 

@@ -1,6 +1,6 @@
 <!--Tabla y pastel de nivel de riesgo Inherente empieza-->
-<div class="row" ngClass="infoSeccion" >
-	<div class="col-auto"  *ngIf="riesgoInherente">
+<div class="row" ngClass="infoSeccion">
+	<div class="col-auto" *ngIf="riesgoInherente">
 		<table class="table table-bordered" style="text-align: center;">
 			<thead>
 				<tr>
@@ -10,17 +10,10 @@
 					<th>
 						<div class="form-floating mb-3">
 							<select class="form-select" id="seleccionProceso" name="macroproceso"
-								aria-label="Default select example" onchange="location = this.value;">
-								<option selected>...</option>
-								<option value="/productoEstadisticas">Concepto al Producto</option>
-								<option value="/compraEstadisticas">Compra al Pago</option>
-								<option value="/abastoEstadisticas">Demanda al Abasto</option>
-								<option value="/pedidoEstadisticas">Pedido al Cobro</option>
-								<option value="/mantenimientoEstadisticas">Mantenimiento a la Liquidación</option>
-								<option value="/inversionEstadisticas">Inversión a la Desinversión</option>
-								<option value="finanzasEstadisticas">Finanzas a la Administración</option>
-								<option value="/contratacionEstadisticas">Contratación al Retiro</option>
-								<option value="/procesosEstadisticas">Procesos Criticos fuera de Macros</option>
+								[(ngModel)]="macroproceso" aria-label="Default select example"
+								onchange="location = this.value;">
+								<option *ngFor="let macro of macroproceso" [value]="'estadisticas/' + macro.Nombre">
+									{{macro.Nombre}}</option>
 							</select>
 							<label for="floatingSelect">Seleccione el macroproceso al que guste ver su gráfico
 								adjunto

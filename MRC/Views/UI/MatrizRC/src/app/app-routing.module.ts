@@ -19,6 +19,7 @@ const routes: Routes = [
 {path: 'controles', component: ControlesComponent},
 {path: 'criterios', component: CriteriosComponent},
 {path: 'estadisticas', component: EstadisticasComponent},
+{path: 'estadisticas/:macro', component: EstadisticasComponent},
 {path: 'mapaResidual', component: MapaResidualComponent},
 {path: 'mapaResidual/:macro', component: MapaResidualComponent},
 {path: 'mapaRiesgo', component: MapaRiesgoComponent},
