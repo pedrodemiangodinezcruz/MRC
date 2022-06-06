@@ -41,7 +41,7 @@ export class EstadisticasComponent implements OnInit {
 				type: 'pie'
 			},
 			title: {
-				text: 'Diagrama de pastel del macroproceso de: ' + this._Activatedroute.snapshot.paramMap.get('macro'),
+				text: 'Diagrama de pastel del macroproceso de: <strong> ' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong>',
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -90,7 +90,7 @@ export class EstadisticasComponent implements OnInit {
 			type: 'pie'
 		},
 		title: {
-			text: 'Diagrama de pastel del macroproceso: '+  this._Activatedroute.snapshot.paramMap.get('macro') + ' mostrando la frecuencia de los niveles de riesgo',
+			text: 'Diagrama de pastel del macroproceso: <strong>'+  this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando la frecuencia de los niveles de riesgo',
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -136,7 +136,7 @@ export class EstadisticasComponent implements OnInit {
 			type: 'pie'
 		},
 		title: {
-			text: 'Diagrama 3 de pastel del macroproceso: ' +  this._Activatedroute.snapshot.paramMap.get('macro') + ' mostrando la frecuencia de los niveles de riesgo'
+			text: 'Diagrama 3 de pastel del macroproceso: <strong>' +  this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando la frecuencia de los niveles de riesgo'
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
