@@ -38,13 +38,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<ng-container *ngFor="let riesgoItem of RiesgoList" >
-				<tr>
+				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let aux = index;" >
+				<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'); else noRiesgo">
 					<td>{{riesgoItem.idRiesgo}}</td>
 					<td>{{riesgoItem.impacto}}</td>
 					<td>{{riesgoItem.probabilidad}}</td>
+					<td>{{aux}}</td>
 				</tr>
-			</ng-container>
+				<ng-template #noRiesgo>
+					<tr  *ngIf="RiesgoList.length-1 === i;">
+					<td colspan="3">"No existen riesgos con dicho Macroproceso adjunto"</td>
+				</tr>
+			</ng-template>
+		</ng-container>
 			</tbody>
 		</table>
 	</div>
