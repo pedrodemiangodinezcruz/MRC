@@ -115,7 +115,6 @@
 			<ng-container *ngFor="let controlItem of ControlList">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
 				<ng-container *ngFor="let causaItem of CausaList">
-					<ng-container  *ngIf="riesgoItem.idRiesgo === controlItem.idRiesgoAsociado">
 						<tr *ngIf="riesgoItem.idRiesgo === causaItem.idRiesgoAsociado && (controlItem.idRiesgoAsociado === riesgoItem.idRiesgo)  && (controlItem.idRiesgoAsociado === causaItem.idRiesgoAsociado) && (controlItem.idControl == causaItem.idControlAsociado)">
 						<!--Modal para la edicion de riesgo -->
 						<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
@@ -245,7 +244,6 @@
 					</ng-container>
 				</ng-container>
 			</ng-container>
-		</ng-container>
 			<!--
 			<ng-container *ngFor="let controlItem of ControlList">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
