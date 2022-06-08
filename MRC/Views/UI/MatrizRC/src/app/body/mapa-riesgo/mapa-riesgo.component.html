@@ -43,10 +43,9 @@
 					<td>{{riesgoItem.idRiesgo}}</td>
 					<td>{{riesgoItem.impacto}}</td>
 					<td>{{riesgoItem.probabilidad}}</td>
-					<td>{{aux}}</td>
 				</tr>
 				<ng-template #noRiesgo>
-					<tr  *ngIf="RiesgoList.length-1 === i;">
+					<tr *ngIf="RiesgoList.length-1 === i && RiesgoList[i-1].macroProceso !== this._Activatedroute.snapshot.paramMap.get('macro');">
 					<td colspan="3">"No existen riesgos con dicho Macroproceso adjunto"</td>
 				</tr>
 			</ng-template>
