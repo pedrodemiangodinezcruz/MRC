@@ -15,6 +15,7 @@ import { InstructivoComponent } from './body/instructivo/instructivo.component';
 const routes: Routes = [
 {path: 'metodologia', component: MetodologiaComponent},
 {path: 'matriz', component: MatrizComponent},
+{path: 'instructivo', component: InstructivoComponent},
 {path: 'causas', component: CausasComponent},
 {path: 'controles', component: ControlesComponent},
 {path: 'criterios', component: CriteriosComponent},

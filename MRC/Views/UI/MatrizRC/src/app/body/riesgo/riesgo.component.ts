@@ -12,7 +12,9 @@ export class RiesgoComponent implements OnInit {
 
   constructor(private service: SharedService) { }
   @Input() riesgo:any;
+  @Input() causas: any;
   RiesgoList: any = [];
+  CausasList: any = [];
   Anadir: number = 0;
   Id: number = 0;
   ActivarModal: boolean = false;
@@ -31,8 +33,12 @@ export class RiesgoComponent implements OnInit {
   riesgoFraude:  string = "";
   probabilidad:  string = "";
   impacto:  string = "";
+  mostarDiv: boolean = false;
+
+  
 
   ngOnInit(): void {
+	this.refreshCausasList();
 	this.Id = this.riesgo.Id;
 	this.Anadir = this.riesgo.Anadir;
 	this.macroProceso = this.riesgo.macroProceso;
@@ -54,6 +60,9 @@ export class RiesgoComponent implements OnInit {
 	console.log("Id Riesgo BD " + this.Id);
   }
 
+  desplegarNuevaCausa() {
+	this.mostarDiv = !this.mostarDiv;
+}
  anadirRiesgo() {
 	var val = {
 		idRiesgo: this.idRiesgo,
@@ -107,6 +116,8 @@ updateRiesgo() {
 	this.refreshRiesgoList();
 }
 
+
+
 closeClick(){
     this.ActivarModal = false;
     this.refreshRiesgoList();
@@ -118,6 +129,13 @@ closeClick(){
 		console.log("Lista de riesgos");
 		console.log(this.RiesgoList);
 		
+	});
+}
+refreshCausasList() {
+	this.service.getCausasList().subscribe(datos => {
+		this.CausasList = datos;
+		console.log("Lista de causas");
+		console.log(this.CausasList);
 	});
 }
 

@@ -26,7 +26,7 @@ namespace MRC.Controllers
         {
             
             string query = @"
-                   SELECT Id, idRiesgo, macroProceso, proceso, subProceso, descripcion, causa, consecuencia
+                   SELECT Id, idRiesgo, macroProceso, proceso, subProceso, descripcion, causas, consecuencia
                     , tipoEvento, tipoRiesgo, iff, ic, ios, riesgoFraude, probabilidad, impacto FROM dbo.Riesgo";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
@@ -53,7 +53,7 @@ namespace MRC.Controllers
             
             string query = @"
                    insert into dbo.Riesgo (idRiesgo, macroProceso, proceso
-                    ,subProceso, descripcion, causa, consecuencia, tipoEvento, tipoRiesgo,
+                    ,subProceso, descripcion, causas, consecuencia, tipoEvento, tipoRiesgo,
                     iff, ic, ios, riesgoFraude, probabilidad, impacto ) values 
                      (
                         '" + riesgo.IdRiesgo + @"'
@@ -61,7 +61,7 @@ namespace MRC.Controllers
                         ,'" + riesgo.Proceso + @"'
                         ,'" + riesgo.SubProceso + @"'
                         ,'" + riesgo.Descripcion + @"'
-                        ,'" + riesgo.Causa + @"'
+                        ,'" + riesgo.Causas + @"'
                         ,'" + riesgo.Consecuencia + @"'
                         ,'" + riesgo.TipoEvento + @"'
                         ,'" + riesgo.TipoRiesgo + @"'
@@ -103,7 +103,7 @@ namespace MRC.Controllers
                     ,proceso = '" + riesgo.Proceso + @"'
                     ,subProceso = '" + riesgo.SubProceso + @"'
                     ,descripcion =  '" + riesgo.Descripcion + @"'
-                    ,causa =  '" + riesgo.Causa + @"'
+                    ,causas =  '" + riesgo.Causas + @"'
                     ,consecuencia = '" + riesgo.Consecuencia + @"'
                     ,tipoEvento = '" + riesgo.TipoEvento + @"'
                     ,tipoRiesgo = '" + riesgo.TipoRiesgo + @"'
