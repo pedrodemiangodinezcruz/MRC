@@ -445,7 +445,7 @@
 		</button>
 	</div>
 	<ng-container *ngFor="let causasItem of CausasList; let i = index;">
-	<div class="col" style="display: block;" *ngIf="riesgo.Anadir === 0 && mostarDiv && (i+2 <3)">
+	<div  class="col" style="display: block;" *ngIf="riesgo.Anadir === 0 && mostarDiv && (i+2 <3)">
 		<p class="text-center fw-bold">Causa {{i+2}} asociada</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="causas" name="impacto" value="{{riesgo.causas}}"
