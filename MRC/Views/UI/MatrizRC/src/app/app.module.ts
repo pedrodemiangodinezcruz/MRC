@@ -26,6 +26,7 @@ import { RiesgoComponent } from './body/riesgo/riesgo.component';
 import { ControlRiesgoComponent } from './body/control-riesgo/control-riesgo.component';
 import { ControlesComponent } from './body/controles/controles.component';
 import { TablaCausaComponent } from './body/tabla-causa/tabla-causa.component';
+import { ListaRiesgosComponent } from './body/lista-riesgos/lista-riesgos.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { TablaCausaComponent } from './body/tabla-causa/tabla-causa.component';
     RiesgoComponent,
     ControlRiesgoComponent,
     ControlesComponent,
-    TablaCausaComponent
+    TablaCausaComponent,
+    ListaRiesgosComponent
   ],
   imports: [
     BrowserModule,

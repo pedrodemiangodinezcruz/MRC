@@ -11,11 +11,13 @@ import { ParetoComponent } from './body/pareto/pareto.component';
 import { CausasComponent } from './body/causas/causas.component';
 import { ControlesComponent } from './body/controles/controles.component';
 import { InstructivoComponent } from './body/instructivo/instructivo.component';
+import { ListaRiesgosComponent } from './body/lista-riesgos/lista-riesgos.component';
 
 const routes: Routes = [
 {path: 'metodologia', component: MetodologiaComponent},
 {path: 'matriz', component: MatrizComponent},
 {path: 'instructivo', component: InstructivoComponent},
+{path: 'listaRiesgos', component: ListaRiesgosComponent},
 {path: 'causas', component: CausasComponent},
 {path: 'controles', component: ControlesComponent},
 {path: 'criterios', component: CriteriosComponent},
