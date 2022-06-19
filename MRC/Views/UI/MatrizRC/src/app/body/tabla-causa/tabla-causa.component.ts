@@ -21,8 +21,7 @@ export class TablaCausaComponent implements OnInit {
 	idRiesgoAsociado: string | undefined;
 	idControlAsociado: string | undefined;
 	descripcion: string | undefined;
-
-
+	nuevoRiesgo:  number = 0;
 
 	ngOnInit(): void {
 		this.refreshRiesgoList();
@@ -33,9 +32,14 @@ export class TablaCausaComponent implements OnInit {
 		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
 		//console.log(this.causa.Id);
+		//this.numRiesgos = this.refreshRiesgoList();
+		//console.log("Total riesgos" + this.numRiesgos)
 
 	}
 
+	desplegarNuevoRiesgo() {
+		this.nuevoRiesgo = this.nuevoRiesgo+1;
+	}
 
 	closeClick() {
 		this.ActivarEdicionControl = !this.ActivarEdicionControl;
@@ -78,11 +82,11 @@ export class TablaCausaComponent implements OnInit {
 			console.log(this.CausasList);
 		});
 	}
-	refreshRiesgoList() {
+	refreshRiesgoList(): any {
 		this.service.getRiesgoList().subscribe(dato => {
 			this.RiesgoList = dato;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
+			console.log("Num de riesgos: " + this.RiesgoList.length);
+			return this.RiesgoList.length;
 		});
 	}
 	refreshControlList() {

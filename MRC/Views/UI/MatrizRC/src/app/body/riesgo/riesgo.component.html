@@ -418,6 +418,7 @@
 		</div>
 	</div>
 </div>
+<!--
 <div class="row">
 	<div class="col-8" style="display: block;" *ngIf="riesgo.Anadir === 0">
 		<p class="text-center fw-bold">Causa asociada</p>
@@ -444,6 +445,7 @@
 			Agregar otra causa
 		</button>
 	</div>
+	-->
 	<ng-container *ngFor="let causasItem of CausasList; let i = index;">
 	<div  class="col" style="display: block;" *ngIf="riesgo.Anadir === 0 && mostarDiv && (i+2 <3)">
 		<p class="text-center fw-bold">Causa {{i+2}} asociada</p>
