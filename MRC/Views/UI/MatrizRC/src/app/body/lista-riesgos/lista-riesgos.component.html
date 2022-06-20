@@ -5,7 +5,7 @@
 			<tr>
 			<tr>
 				<th scope="col" colspan="3" class="gris">Proceso</th>
-				<th scope="col" colspan="13" class="anaranjado">RIESGO INHERENTE</th>
+				<th scope="col" colspan="12" class="anaranjado">RIESGO INHERENTE</th>
 				<th scope="col" class="bg-light" colspan="2" rowspan="4">Opciones</th>
 			</tr>
 			<tr>
@@ -14,7 +14,7 @@
 				<th scope="col" class="morado" rowspan="2">Subproceso</th>
 				<th scope="col" class="naranja" rowspan="2">ID Riesgo</th>
 				<th scope="col" class="verde" rowspan="2">Descripción del Riesgo</th>
-				<th scope="col" class="verde" rowspan="2">Causa</th>
+				<!--<th scope="col" class="verde" rowspan="2">Causas</th>-->
 				<th scope="col" class="verde" rowspan="2">Consecuencia</th>
 				<th scope="col" class="naranja" rowspan="2">Tipo de Evento</th>
 				<th scope="col" class="naranja" rowspan="2">Tipo de Riesgo</th>
@@ -28,7 +28,9 @@
 		<tbody class="table-group-divider">
 			<!--Contenedor sobre todas las causas y controles que coincidan con un mismo ID de riesgo asociado-->
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
-						<tr>
+					<!--<ng-container *ngFor="let causaItem of CausaList">-->
+						<!--<tr *ngIf="riesgoItem.idRiesgo === causaItem.idRiesgoAsociado">-->
+							<tr>
 						<!--Modal para la edicion de riesgo -->
 						<div class="modal fade" [attr.id]="'editar' + riesgoItem.idRiesgo" tabindex="-1"
 							aria-labelledby="modalRiesgoLabel" aria-hidden="true">
@@ -86,7 +88,7 @@
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
-						<td [attr.contenteditable]="contenteditable">{{riesgoItem.causas}}</td>
+						<!--<td [attr.contenteditable]="contenteditable">{{causaItem.descripcion}}</td>-->
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}
@@ -125,6 +127,7 @@
 						</td>
 					</tr>
 				</ng-container>
+		<!--</ng-container>-->
 		</tbody>
 	</table>
 	<div class="modal" id="editarRiesgo">

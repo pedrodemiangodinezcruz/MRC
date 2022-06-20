@@ -16,7 +16,7 @@
 		<thead id="alineada">
 			<tr>
 			<tr>
-				<th scope="col" colspan="4" class="azul-marino">CONTROL</th>
+				<th scope="col" colspan="6" class="azul-marino">CONTROL</th>
 				<th scope="col" colspan="12" class="verde">EVALUACIÓN DE CONTROLES</th>
 				<th scope="col" colspan="10" class="azul-marino">CONTROL</th>
 				<th scope="col" class="gris">COMENTARIOS</th>
@@ -35,6 +35,7 @@
 			</tr>
 			<tr>
 				<th scope="col" class="azul-marino" rowspan="2">ID del Control</th>
+				<th scope="col" class="azul-marino" rowspan="2">ID de los riesgos adjuntos al control</th>
 				<th scope="col" class="azul-marino" rowspan="2">General/Proceso</th>
 				<th scope="col" class="azul-marino" rowspan="2">Descripción del Control</th>
 				<th scope="col" class="azul-marino" rowspan="2">Evidencia del Control</th>
@@ -123,6 +124,9 @@
 				</div>
 				<tr>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
+					<td [attr.contenteditable]="contenteditable">{{controlItem.idRiesgoAsociado}} {{controlItem.idRiesgoAsociado2}} {{controlItem.idRiesgoAsociado3}}
+						{{controlItem.idRiesgoAsociado4}} {{controlItem.idRiesgoAsociado5}} {{controlItem.idRiesgoAsociado6}}
+					</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
