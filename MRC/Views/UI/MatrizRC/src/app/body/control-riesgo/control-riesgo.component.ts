@@ -24,6 +24,14 @@ export class ControlRiesgoComponent implements OnInit {
 	subProceso: string = "";
 	idRiesgoAsociado: string | undefined;
 	idRiesgoAsociado2: string | undefined;
+	idRiesgoAsociado3: string | undefined;
+	idRiesgoAsociado4: string | undefined;
+	idRiesgoAsociado5: string | undefined;
+	idRiesgoAsociado6: string | undefined;
+	idRiesgoAsociado7: string | undefined;
+	idRiesgoAsociado8: string | undefined;
+	idRiesgoAsociado9: string | undefined;
+	idRiesgoAsociado10: string | undefined;
 	idControl: string | undefined;
 	general: string | undefined;
 	descripcion: string | undefined;
@@ -57,9 +65,15 @@ export class ControlRiesgoComponent implements OnInit {
 		this.macroProceso = this.control.macroProceso;
 		this.proceso = this.control.proceso;
 		this.idRiesgoAsociado = this.control.idRiesgoAsociado;
-		console.log("ID 1" + this.idRiesgoAsociado);
 		this.idRiesgoAsociado2 = this.control.idRiesgoAsociado2;
-		console.log("ID 2" + this.idRiesgoAsociado2);
+		this.idRiesgoAsociado3 = this.control.idRiesgoAsociado3;
+		this.idRiesgoAsociado4 = this.control.idRiesgoAsociado4;
+		this.idRiesgoAsociado5 = this.control.idRiesgoAsociado5;
+		this.idRiesgoAsociado6 = this.control.idRiesgoAsociado6;
+		this.idRiesgoAsociado7 = this.control.idRiesgoAsociado7;
+		this.idRiesgoAsociado8 = this.control.idRiesgoAsociado8;
+		this.idRiesgoAsociado9 = this.control.idRiesgoAsociado9;
+		this.idRiesgoAsociado10 = this.control.idRiesgoAsociado10;
 		this.idControl = this.control.idControl;
 		this.general = this.control.general;
 		this.descripcion = this.control.descripcion;
@@ -94,6 +108,14 @@ export class ControlRiesgoComponent implements OnInit {
 			proceso: this.proceso,
 			idRiesgoAsociado: this.idRiesgoAsociado,
 			idRiesgoAsociado2: this.idRiesgoAsociado2,
+			idRiesgoAsociado3: this.idRiesgoAsociado3,
+			idRiesgoAsociado4: this.idRiesgoAsociado4,
+			idRiesgoAsociado5: this.idRiesgoAsociado5,
+			idRiesgoAsociado6: this.idRiesgoAsociado6,
+			idRiesgoAsociado7: this.idRiesgoAsociado7,
+			idRiesgoAsociado8: this.idRiesgoAsociado8,
+			idRiesgoAsociado9: this.idRiesgoAsociado9,
+			idRiesgoAsociado10: this.idRiesgoAsociado10,
 			idControl: this.idControl,
 			general: this.general,
 			descripcion: this.descripcion,
@@ -134,6 +156,14 @@ export class ControlRiesgoComponent implements OnInit {
 			proceso: this.proceso,
 			idRiesgoAsociado: this.idRiesgoAsociado,
 			idRiesgoAsociado2: this.idRiesgoAsociado2,
+			idRiesgoAsociado3: this.idRiesgoAsociado3,
+			idRiesgoAsociado4: this.idRiesgoAsociado4,
+			idRiesgoAsociado5: this.idRiesgoAsociado5,
+			idRiesgoAsociado6: this.idRiesgoAsociado6,
+			idRiesgoAsociado7: this.idRiesgoAsociado7,
+			idRiesgoAsociado8: this.idRiesgoAsociado8,
+			idRiesgoAsociado9: this.idRiesgoAsociado9,
+			idRiesgoAsociado10: this.idRiesgoAsociado10,
 			idControl: this.idControl,
 			general: this.general,
 			descripcion: this.descripcion,

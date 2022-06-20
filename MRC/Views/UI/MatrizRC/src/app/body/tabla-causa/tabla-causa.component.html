@@ -36,7 +36,7 @@
 </div>
 
 <div class="row">
-	<div class="col-auto" *ngIf="(nuevoRiesgo > 0) && (nuevoRiesgo  <= this.RiesgoList.length);else demasiadosRiesgos">
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 0) && (nuevoRiesgo  < this.RiesgoList.length);else demasiadosRiesgos">
 		<p class="text-center fw-bold">Riesgo 2 asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado2" name="impacto" value="{{causa.idRiesgoAsociado2}}"
@@ -50,7 +50,7 @@
 			<label for="floatingSelect">Seleccione</label>
 		</div>
 	</div>
-	<div class="col-auto" *ngIf="(nuevoRiesgo > 1) && (nuevoRiesgo  <= this.RiesgoList.length);">
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 1) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 3 asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado3" name="impacto" value="{{causa.idRiesgoAsociado3}}"
@@ -64,7 +64,7 @@
 			<label for="floatingSelect">Seleccione</label>
 		</div>
 	</div>
-	<div class="col-auto" *ngIf="(nuevoRiesgo > 2) && (nuevoRiesgo  <= this.RiesgoList.length);">
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 2) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 4 asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado4" name="impacto" value="{{causa.idRiesgoAsociado4}}"
@@ -78,7 +78,7 @@
 			<label for="floatingSelect">Seleccione</label>
 		</div>
 	</div>
-	<div class="col-auto" *ngIf="(nuevoRiesgo > 3) && (nuevoRiesgo  <= this.RiesgoList.length);">
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 3) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 5 asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado5" name="impacto" value="{{causa.idRiesgoAsociado5}}"
@@ -92,7 +92,7 @@
 			<label for="floatingSelect">Seleccione</label>
 		</div>
 	</div>
-	<div class="col-auto" *ngIf="(nuevoRiesgo > 4) && (nuevoRiesgo  <= this.RiesgoList.length);">
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 4) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 6 asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado6" name="impacto" value="{{causa.idRiesgoAsociado6}}"
