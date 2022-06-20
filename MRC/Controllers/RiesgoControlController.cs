@@ -26,7 +26,9 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   SELECT Id, idRiesgoAsociado, macroProceso, proceso, subProceso, idControl, general, descripcion
+                   SELECT Id, idRiesgoAsociado, idRiesgoAsociado2, idRiesgoAsociado3, idRiesgoAsociado4,
+                    idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7, idRiesgoAsociado8, idRiesgoAsociado9,
+                    idRiesgoAsociado10, macroProceso, proceso, subProceso, idControl, general, descripcion
                     , evidencia, segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, controlClave,
                     controlFraude, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
@@ -55,7 +57,9 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   insert into dbo.controlRiesgo (idRiesgoAsociado, macroProceso, proceso
+                   insert into dbo.controlRiesgo (idRiesgoAsociado, idRiesgoAsociado2, idRiesgoAsociado3, idRiesgoAsociado4,
+                    idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7, idRiesgoAsociado8, idRiesgoAsociado9,
+                    idRiesgoAsociado10, macroProceso, proceso
                     ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
                     tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia,
@@ -63,6 +67,15 @@ namespace MRC.Controllers
                     descripcionTratamiento, causasAdjuntas, observaciones) values 
                      (
                         '" + controlRiesgo.IdRiesgoAsociado + @"'
+                        ,'" + controlRiesgo.IdRiesgoAsociado2 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado3 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado4 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado5 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado6 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado7 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado8 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado9 + @"'
+                         ,'" + controlRiesgo.IdRiesgoAsociado10 + @"'
                         ,'" + controlRiesgo.MacroProceso + @"'
                         ,'" + controlRiesgo.Proceso + @"'
                         ,'" + controlRiesgo.SubProceso + @"'
@@ -117,6 +130,15 @@ namespace MRC.Controllers
             string query = @"
                     update  dbo.controlRiesgo set
                         idRiesgoAsociado = '" + controlRiesgo.IdRiesgoAsociado + @"'
+                        ,idRiesgoAsociado2 = '" + controlRiesgo.IdRiesgoAsociado2 + @"'
+                        ,idRiesgoAsociado3 = '" + controlRiesgo.IdRiesgoAsociado3 + @"'
+                        ,idRiesgoAsociado4 = '" + controlRiesgo.IdRiesgoAsociado4 + @"'
+                        ,idRiesgoAsociado5 = '" + controlRiesgo.IdRiesgoAsociado5 + @"'
+                        ,idRiesgoAsociado6 = '" + controlRiesgo.IdRiesgoAsociado6 + @"'
+                        ,idRiesgoAsociado7 = '" + controlRiesgo.IdRiesgoAsociado7 + @"'
+                        ,idRiesgoAsociado8 = '" + controlRiesgo.IdRiesgoAsociado8 + @"'
+                        ,idRiesgoAsociado9 = '" + controlRiesgo.IdRiesgoAsociado9 + @"'
+                        ,idRiesgoAsociado10 = '" + controlRiesgo.IdRiesgoAsociado10 + @"'
                         ,macroProceso = '" + controlRiesgo.MacroProceso + @"'
                         ,proceso ='" + controlRiesgo.Proceso + @"'
                         ,subProceso ='" + controlRiesgo.SubProceso + @"'

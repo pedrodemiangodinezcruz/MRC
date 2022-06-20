@@ -26,6 +26,15 @@ export class CausasComponent implements OnInit {
 	ActivarEdicionCausa: boolean = false;
 	Id: string | undefined;
 	idRiesgoAsociado: string | undefined;
+	idRiesgoAsociado2: string | undefined;
+	idRiesgoAsociado3: string | undefined;
+	idRiesgoAsociado4: string | undefined;
+	idRiesgoAsociado5: string | undefined;
+	idRiesgoAsociado6: string | undefined;
+	idRiesgoAsociado7: string | undefined;
+	idRiesgoAsociado8: string | undefined;
+	idRiesgoAsociado9: string | undefined;
+	idRiesgoAsociado10: string | undefined;
 	idControlAsociado: string | undefined;
 	descripcion: string | undefined;
 
@@ -35,6 +44,15 @@ export class CausasComponent implements OnInit {
 		this.refreshCausasList();
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
+		this.idRiesgoAsociado2 = this.causa.idRiesgoAsociado2;
+		this.idRiesgoAsociado3 = this.causa.idRiesgoAsociado3;
+		this.idRiesgoAsociado4 = this.causa.idRiesgoAsociado4;
+		this.idRiesgoAsociado5 = this.causa.idRiesgoAsociado5;
+		this.idRiesgoAsociado6 = this.causa.idRiesgoAsociado6;
+		this.idRiesgoAsociado7 = this.causa.idRiesgoAsociado7;
+		this.idRiesgoAsociado8 = this.causa.idRiesgoAsociado8;
+		this.idRiesgoAsociado9 = this.causa.idRiesgoAsociado9;
+		this.idRiesgoAsociado10 = this.causa.idRiesgoAsociado10;
 		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
 	}

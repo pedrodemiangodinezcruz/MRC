@@ -36,6 +36,7 @@ export class ControlesComponent implements OnInit {
 	macroProceso: string | undefined;
 	proceso: string | undefined;
 	idRiesgoAsociado: string | undefined;
+	idRiesgoAsociado2: string | undefined;
 	idControl: string | undefined;
 	general: string | undefined;
 	descripcion: string | undefined;
@@ -67,6 +68,7 @@ export class ControlesComponent implements OnInit {
 		this.macroProceso = this.control.macroProceso;
 		this.proceso = this.control.proceso;
 		this.idRiesgoAsociado = this.control.idRiesgoAsociado;
+		this.idRiesgoAsociado2 = this.control.idRiesgoAsociado2;
 		this.idControl = this.control.idControl;
 		this.general = this.control.general;
 		this.descripcion = this.control.descripcion;
@@ -103,6 +105,7 @@ export class ControlesComponent implements OnInit {
 			macroProceso: "",
 			proceso: "",
 			idRiesgoAsociado: "",
+			idRiesgoAsociado2: "",
 			idControl: "",
 			general: "",
 			descripcion: "",
@@ -147,6 +150,7 @@ export class ControlesComponent implements OnInit {
 			macroProceso: this.macroProceso,
 			proceso: this.proceso,
 			idRiesgoAsociado: this.idRiesgoAsociado,
+			idRiesgoAsociado2: this.idRiesgoAsociado2,
 			idControl: this.idControl,
 			general: this.general,
 			descripcion: this.descripcion,

@@ -9,6 +9,15 @@ namespace MRC.Models
     {
         public int Id { get; set; }
         public string IdRiesgoAsociado { get; set; }
+        public string IdRiesgoAsociado2 { get; set; }
+        public string IdRiesgoAsociado3 { get; set; }
+        public string IdRiesgoAsociado4 { get; set; }
+        public string IdRiesgoAsociado5 { get; set; }
+        public string IdRiesgoAsociado6 { get; set; }
+        public string IdRiesgoAsociado7 { get; set; }
+        public string IdRiesgoAsociado8 { get; set; }
+        public string IdRiesgoAsociado9 { get; set; }
+        public string IdRiesgoAsociado10 { get; set; }
         public string MacroProceso { get; set; }
         public string Proceso { get; set; }
         public string SubProceso { get; set; }

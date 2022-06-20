@@ -23,6 +23,7 @@ export class ControlRiesgoComponent implements OnInit {
 	proceso: string = "";
 	subProceso: string = "";
 	idRiesgoAsociado: string | undefined;
+	idRiesgoAsociado2: string | undefined;
 	idControl: string | undefined;
 	general: string | undefined;
 	descripcion: string | undefined;
@@ -46,6 +47,8 @@ export class ControlRiesgoComponent implements OnInit {
 	descripcionTratamiento: string | undefined;
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
+	nuevoRiesgo:  number = 0;
+
 
 	ngOnInit(): void {
 		this.refreshControlList();
@@ -54,6 +57,9 @@ export class ControlRiesgoComponent implements OnInit {
 		this.macroProceso = this.control.macroProceso;
 		this.proceso = this.control.proceso;
 		this.idRiesgoAsociado = this.control.idRiesgoAsociado;
+		console.log("ID 1" + this.idRiesgoAsociado);
+		this.idRiesgoAsociado2 = this.control.idRiesgoAsociado2;
+		console.log("ID 2" + this.idRiesgoAsociado2);
 		this.idControl = this.control.idControl;
 		this.general = this.control.general;
 		this.descripcion = this.control.descripcion;
@@ -87,6 +93,7 @@ export class ControlRiesgoComponent implements OnInit {
 			macroProceso: this.macroProceso,
 			proceso: this.proceso,
 			idRiesgoAsociado: this.idRiesgoAsociado,
+			idRiesgoAsociado2: this.idRiesgoAsociado2,
 			idControl: this.idControl,
 			general: this.general,
 			descripcion: this.descripcion,
@@ -117,12 +124,16 @@ export class ControlRiesgoComponent implements OnInit {
 		});
 	}
 
+	desplegarNuevoRiesgo() {
+		this.nuevoRiesgo = this.nuevoRiesgo+1;
+	}
 	updateControl() {
 		var val = {
 			Id: this.Id,
 			macroProceso: this.macroProceso,
 			proceso: this.proceso,
 			idRiesgoAsociado: this.idRiesgoAsociado,
+			idRiesgoAsociado2: this.idRiesgoAsociado2,
 			idControl: this.idControl,
 			general: this.general,
 			descripcion: this.descripcion,

@@ -36,14 +36,69 @@
 </div>
 
 <div class="row">
-	<div class="col-auto"
-		*ngIf="(nuevoRiesgo >= 1) && (nuevoRiesgo  <= this.RiesgoList.length); else demasiadosRiesgos">
-		<p class="text-center fw-bold">Riesgo {{nuevoRiesgo}} asociado</p>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 0) && (nuevoRiesgo  <= this.RiesgoList.length);else demasiadosRiesgos">
+		<p class="text-center fw-bold">Riesgo 2 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado" name="impacto" value="{{causa.idRiesgoAsociado}}"
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado2" name="impacto" value="{{causa.idRiesgoAsociado2}}"
 				aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList">
-					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado2">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 1) && (nuevoRiesgo  <= this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 3 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado3" name="impacto" value="{{causa.idRiesgoAsociado3}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado3">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 2) && (nuevoRiesgo  <= this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 4 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado4" name="impacto" value="{{causa.idRiesgoAsociado4}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado4">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 3) && (nuevoRiesgo  <= this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 5 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado5" name="impacto" value="{{causa.idRiesgoAsociado5}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado5">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 4) && (nuevoRiesgo  <= this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 6 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado6" name="impacto" value="{{causa.idRiesgoAsociado6}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado6">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
 					</ng-container>
 				</ng-container>
@@ -53,8 +108,8 @@
 	</div>
 </div>
 <div class="row text-center">
-	<ng-template #demasiadosRiesgos>
-		<div class="col text-center">
+	<ng-template  #demasiadosRiesgos>
+		<div class="col text-center" *ngIf="(nuevoRiesgo > 0)">
 			<div class="modal-body">
 				<div class="col-12 alert alert-danger  align-items-center" role="alert">
 					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
@@ -62,7 +117,8 @@
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						No existen más riesgos para adjuntar
+						No existen más de {{nuevoRiesgo}} riesgos en el sistema para adjuntar<br>
+						<a href="/listaRiesgos" style="color: red;">Ir a lista de riesgos</a>
 					</div>
 				</div>
 			</div>
@@ -86,8 +142,14 @@
 	-->
 <div class="row">
 	<div class="modal-footer">
-		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
+		<a href="/metodologia" *ngIf="causa.Anadir == 0">
+		<button type="button"  class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
 			(click)="closeClick()">Cerrar</button>
+		</a>
+		<a href="/causas" *ngIf="causa.Anadir != 0">
+			<button type="button" *ngIf="causa.Anadir != 0" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
+			(click)="closeClick()">Cerrar</button>
+		</a>
 		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir == 0" (click)="anadirCausa()"
 			data-bs-toggle="modal" data-bs-target="#altaCausa">Añadir Causa</button>
 		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir != 0" (click)="updateCausa()"
