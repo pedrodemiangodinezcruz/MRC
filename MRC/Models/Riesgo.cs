@@ -13,7 +13,6 @@ namespace MRC.Models
         public string Proceso { get; set; }
         public string SubProceso { get; set; }
         public string Descripcion { get; set; }
-        public string Causas { get; set; }
         public string Consecuencia { get; set; }
         public string TipoEvento { get; set; }
         public string TipoRiesgo { get; set; }

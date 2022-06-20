@@ -70,13 +70,13 @@
 		<tbody>
 			<ng-container *ngFor="let controlItem of ControlList">
 				<!-- Modal para la edicion de control -->
-				<div class="modal fade" [attr.id]="'editar' + controlItem.idControl" tabindex="-1"
+				<div class="modal fade" [attr.id]="'editar' + controlItem.Id" tabindex="-1"
 				aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title fs-5 fw-bold" >Llene los campos para
-								editar el control {{controlItem.idControl}} </h5>
+								editar el control {{controlItem.Id}} </h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"
 								aria-label="Close"></button>
 						</div>
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 			<!--Modal para verificar si esta seguro de eliminar un control-->
-			<div class="modal fade" [attr.id]="'eliminar' + controlItem.idControl">
+			<div class="modal fade" [attr.id]="'eliminar' + controlItem.Id">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -102,7 +102,7 @@
 									<use xlink:href="#exclamation-triangle-fill" />
 								</svg>
 								<div>
-									¿Estas seguro de querer eliminar el control {{controlItem.idControl}}?
+									¿Estas seguro de querer eliminar el control {{controlItem.Id}}?
 								</div>
 							</div>
 						</div>
@@ -153,7 +153,7 @@
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
 						<button type="button" class="btn btn-success" (click)="editClick(controlItem)"
 							*ngIf="ocultarBoton" data-bs-toggle="modal"
-							[attr.data-bs-target]="'#editar' + controlItem.idControl" data-backdrop="static"
+							[attr.data-bs-target]="'#editar' + controlItem.Id" data-backdrop="static"
 							data-keyboard="false">Editar Control
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -166,7 +166,7 @@
 					</td>
 					<td scope="col">
 						<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-						[attr.data-bs-target]="'#eliminar' + controlItem.idControl">Eliminar Control
+						[attr.data-bs-target]="'#eliminar' + controlItem.Id">Eliminar Control
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-trash3" viewBox="0 0 16 16">
 								<path

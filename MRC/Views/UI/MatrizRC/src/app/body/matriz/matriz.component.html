@@ -115,7 +115,8 @@
 			<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamanoListaRiesgo = count">
 			<ng-container *ngFor="let causaItem of CausaList; let j = index; let tamanoListaCausa = count">
 			<ng-container *ngFor="let controlItem of ControlList; let k = index; let tamanoListaControl = count">
-						<tr *ngIf="controlItem.idRiesgoAsociado === riesgoItem.idRiesgo && causaItem.idRiesgoAsociado === riesgoItem.idRiesgo; else listaRiesgosSinControl">
+				<!-- && causaItem.idRiesgoAsociado === riesgoItem.idRiesgo;-->
+						<tr *ngIf="(controlItem.idRiesgoAsociado === riesgoItem.idRiesgo) && (causaItem.idRiesgoAsociado === riesgoItem.idRiesgo);  else listaRiesgosSinControlConCausa">
 						<!--Modal para la edicion de riesgo -->
 						<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
 							aria-labelledby="modalRiesgoLabel" aria-hidden="true">
@@ -242,15 +243,15 @@
 						</td>
 					</tr>
 					
-					<ng-template #listaRiesgosSinControl>
-						<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de riesgos, ver que condición poenr aqui para checar todo de nuevo-->
-						<tr *ngIf="i !=  0 && j === tamanoListaCausa - 1  && k === tamanoListaControl - 1">
+					<ng-template #listaRiesgosSinControlConCausa>
+						<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de riesgos, Nota: ver que condición poner aqui para checar todo de nuevo-->
+						<tr *ngIf="(causaItem.idRiesgoAsociado === riesgoItem.idRiesgo)  && i !=  0 && j === tamanoListaCausa - 1  && k === tamanoListaControl - 1 ">
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
-						<td [attr.contenteditable]="contenteditable">{{riesgoItem.causas}}</td>
+						<td [attr.contenteditable]="contenteditable">{{causaItem.descripcion}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}
