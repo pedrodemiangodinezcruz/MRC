@@ -119,18 +119,14 @@
 						<tr *ngIf="((causaItem.idRiesgoAsociado === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (causaItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
-						) && (controlItem.idRiesgoAsociado === riesgoItem.idRiesgo);  else listaRiesgosSinControlConCausa">
+						) && ((controlItem.idRiesgoAsociado === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
+						|| (controlItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (controlItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
+						|| (controlItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado6 === riesgoItem.idRiesgo));  else listaRiesgosSinControlConCausa">
 						<!--Modal para la edicion de riesgo -->
 						<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
 							aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
-											editar el riesgo {{riesgoItem.idRiesgo}} </h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal"
-											aria-label="Close"></button>
-									</div>
+								<div class="modal-content">								
 									<div class="modal-body">
 										<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo"></app-riesgo>
 									</div>
@@ -246,7 +242,8 @@
 						</td>
 					</tr>
 					<ng-template #listaRiesgosSinControlConCausa>
-						<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de riesgos, Nota: ver que condición poner aqui para checar todo de nuevo-->
+						<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de riesgos, Nota: ver que condición poner aqui para checar todo de nuevo
+						&& k === tamanoListaControl - 1-->
 						<tr *ngIf="((causaItem.idRiesgoAsociado === riesgoItem.idRiesgo
 						|| (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (causaItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
