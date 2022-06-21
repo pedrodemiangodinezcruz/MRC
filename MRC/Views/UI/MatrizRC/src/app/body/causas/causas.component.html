@@ -79,10 +79,12 @@
 				<tr>
 					<td>{{causasItem.idRiesgoAsociado}} {{causasItem.idRiesgoAsociado2}}  {{causasItem.idRiesgoAsociado3}} 
 						{{causasItem.idRiesgoAsociado4}}  {{causasItem.idRiesgoAsociado5}}  {{causasItem.idRiesgoAsociado6}}
+						{{causasItem.idRiesgoAsociado7}} {{causasItem.idRiesgoAsociado8}} {{causasItem.idRiesgoAsociado9}}
+						{{causasItem.idRiesgoAsociado10}}
 					</td>
 				<!--<td>{{causasItem.idControlAsociado}}</td>-->
 					<td>{{causasItem.descripcion}}</td>
-				<td>
+				<td class="text-center">
 						<button type="button" class="btn btn-success" id="editBoton" data-bs-toggle="modal"
 							(click)="editClick(causasItem)" [attr.data-bs-target]="'#editar' + causasItem.Id">Editar
 							Causa
@@ -93,7 +95,7 @@
 								<path fill-rule="evenodd"
 									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 							</svg>
-						</button>
+						</button><br><br>
 						<button type="button" class="btn btn-danger" data-bs-toggle="modal"
 							[attr.data-bs-target]="'#eliminar' + causasItem.Id">Eliminar Causa
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

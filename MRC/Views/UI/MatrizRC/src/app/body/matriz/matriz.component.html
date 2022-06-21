@@ -119,9 +119,13 @@
 						<tr *ngIf="((causaItem.idRiesgoAsociado === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (causaItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
+						|| (causaItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
+						|| (causaItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado10 === riesgoItem.idRiesgo)
 						) && ((controlItem.idRiesgoAsociado === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (controlItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (controlItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
-						|| (controlItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado6 === riesgoItem.idRiesgo));  else listaRiesgosSinControlConCausa">
+						|| (controlItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
+						|| (controlItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
+						|| (controlItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado10 === riesgoItem.idRiesgo));  else listaRiesgosSinControlConCausa">
 						<!--Modal para la edicion de riesgo -->
 						<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
 							aria-labelledby="modalRiesgoLabel" aria-hidden="true">
@@ -172,9 +176,9 @@
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
-						<td [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
-						<td [attr.contenteditable]="contenteditable">{{causaItem.descripcion}}</td>
-						<td [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
+						<td [attr.contenteditable]="contenteditable" class="columLarga">{{riesgoItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable" >{{causaItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable" class="columLarga">{{riesgoItem.consecuencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}
 						</td>
@@ -186,8 +190,8 @@
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
-						<td [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
-						<td [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable">{{controlItem.general}}</td>
+						<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.descripcion}}</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
 						<td [attr.contenteditable]="contenteditable">Documentación</td>
@@ -214,7 +218,7 @@
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado</td>
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
-						<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
+						<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.observaciones}}</td>
 						<td scope="col">
 							<!--(click)="editarRiesgo()" para lo gray y set editable-->
 							<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"
@@ -248,12 +252,14 @@
 						|| (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (causaItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
+						|| (causaItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
+						|| (causaItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado10 === riesgoItem.idRiesgo)
 						)) && impar && k === tamanoListaControl - 1">
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
-						<td [attr.contenteditable]="contenteditable">{{riesgoItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable" class="columLarga">{{riesgoItem.descripcion}}</td>
 						<td [attr.contenteditable]="contenteditable">{{causaItem.descripcion}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.consecuencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
