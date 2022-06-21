@@ -127,10 +127,16 @@
 						|| (controlItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
 						|| (controlItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado10 === riesgoItem.idRiesgo));  else listaRiesgosSinControlConCausa">
 						<!--Modal para la edicion de riesgo -->
-						<div class="modal fade" [attr.id]="'editar' + controlItem.IdRiesgoAsociado" tabindex="-1"
+						<div class="modal fade" [attr.id]="'editar' + riesgoItem.idRiesgo" tabindex="-1"
 							aria-labelledby="modalRiesgoLabel" aria-hidden="true">
 							<div class="modal-dialog">
-								<div class="modal-content">								
+								<div class="modal-content">	
+									<div class="modal-header">
+										<h5 class="modal-title fs-5 fw-bold" >Llene los campos para
+											editar el control {{riesgoItem.idRiesgo}}</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>							
 									<div class="modal-body">
 										<app-riesgo [riesgo]="riesgo" *ngIf="ActivarEdicionRiesgo"></app-riesgo>
 									</div>
@@ -138,7 +144,7 @@
 							</div>
 						</div>
 					<!--	Modal para verificar si esta seguro de eliminar un riesgo-->
-						<div class="modal fade" [attr.id]="'eliminar' + controlItem.IdRiesgoAsociado">
+						<div class="modal fade" [attr.id]="'eliminar' + riesgoItem.idRiesgo">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -177,7 +183,7 @@
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.idRiesgo}}</td>
 						<td [attr.contenteditable]="contenteditable" class="columLarga">{{riesgoItem.descripcion}}</td>
-						<td [attr.contenteditable]="contenteditable" >{{causaItem.descripcion}}</td>
+						<td [attr.contenteditable]="contenteditable" class>{{causaItem.descripcion}}</td>
 						<td [attr.contenteditable]="contenteditable" class="columLarga">{{riesgoItem.consecuencia}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.tipoEvento}}</td>
 						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.tipoRiesgo}}
@@ -223,7 +229,7 @@
 							<!--(click)="editarRiesgo()" para lo gray y set editable-->
 							<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"
 								*ngIf="ocultarBoton" data-bs-toggle="modal"
-								[attr.data-bs-target]="'#editar' + controlItem.IdRiesgoAsociado" data-backdrop="static"
+								[attr.data-bs-target]="'#editar' + riesgoItem.idRiesgo" data-backdrop="static"
 								data-keyboard="false">Editar Riesgo
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -236,7 +242,7 @@
 						</td>
 						<td scope="col">
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-								[attr.data-bs-target]="'#eliminar' + controlItem.IdRiesgoAsociado">Eliminar Riesgo
+								[attr.data-bs-target]="'#eliminar' + riesgoItem.idRiesgo">Eliminar Riesgo
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-trash3" viewBox="0 0 16 16">
 									<path
@@ -277,7 +283,7 @@
 							<!--(click)="editarRiesgo()" para lo gray y set editable-->
 							<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"
 								*ngIf="ocultarBoton" data-bs-toggle="modal"
-								[attr.data-bs-target]="'#editar' + controlItem.IdRiesgoAsociado" data-backdrop="static"
+								[attr.data-bs-target]="'#editar' + riesgoItem.idRiesgo" data-backdrop="static"
 								data-keyboard="false">Editar Riesgo
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -290,7 +296,7 @@
 						</td>
 						<td scope="col">
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-								[attr.data-bs-target]="'#eliminar' + controlItem.IdRiesgoAsociado">Eliminar Riesgo
+								[attr.data-bs-target]="'#eliminar' + riesgoItem.idRiesgo">Eliminar Riesgo
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-trash3" viewBox="0 0 16 16">
 									<path
