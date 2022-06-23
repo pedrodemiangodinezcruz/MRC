@@ -6,10 +6,9 @@
 	color: white;
 }
 td.columLarga {
-	display: list-item;
+	float: left;
 	width: 22vw;
-	overflow: hidden;
 	border: none;
-	padding-top: 20%;
-	padding-bottom: 15%;
+	/*padding-top: 20%;
+	padding-bottom: 15%;*/
   }

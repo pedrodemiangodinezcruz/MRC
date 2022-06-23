@@ -26,4 +26,5 @@ $(document).ready(function(){
                 $('#cantidad').val(cantidad - 1);
                 }
         });
+
     });

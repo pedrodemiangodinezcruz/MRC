@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'; import { withLatestFrom } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core'; 
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
