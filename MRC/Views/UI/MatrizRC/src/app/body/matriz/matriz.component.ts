@@ -207,5 +207,14 @@ export class MatrizComponent implements OnInit {
 		  }
 		})
 	  }
+	  sortResultControl(prop:any,asc:any){
+		this.ControlList = this.ListaControlSinFiltrado.sort(function(a:any,b:any){
+		  if(asc){
+			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
+		  }else{
+			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
+		  }
+		})
+	  }
 
 }
