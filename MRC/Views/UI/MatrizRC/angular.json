@@ -33,12 +33,11 @@
               "src/assets/estilos/pareto.css",
               "src/assets/estilos/sidebars.css",
               "src/assets/estilos/tablas.css",
-              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
+              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
             ],
             "scripts": [
-              "src/assets/js/jquery.min.js",
               "src/assets/js/formulario.js",
-              "src/assets/js/jquery-3.6.0.min.js",
               "src/assets/js/matriz.js",
               "src/assets/js/mostrar-tablas.js",
               "src/assets/js/mostrarEstadisticas.js",

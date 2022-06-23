@@ -22,6 +22,7 @@
     "angular-datatables": "^13.1.0",
     "datatables.net": "^1.11.3",
     "datatables.net-bs5": "^1.11.3",
+    "datatables.net-dt": "^1.11.3",
     "highcharts": "^10.1.0",
     "highcharts-angular": "^3.0.0",
     "jquery": "^3.6.0",

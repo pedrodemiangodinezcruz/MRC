@@ -43,8 +43,7 @@ export class AppComponent implements OnInit {
 	probabilidad: number | undefined;
 	impacto: string | undefined;
 
-	ngOnInit(): void {
-		this.refreshRiesgoList();
+	ngOnInit():void {
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 2
@@ -52,7 +51,7 @@ export class AppComponent implements OnInit {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			// Calling the DT trigger to manually render the table
-			this.dtTrigger.next(true);
+			this.dtTrigger.next({});
 			console.log("Valores: " + data)
 		});
 		this.macroProceso = this.riesgo.macroProceso;
@@ -70,7 +69,7 @@ export class AppComponent implements OnInit {
 		this.riesgoFraude = this.riesgo.riesgoFraude;
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
-
+		this.refreshRiesgoList();
 	}
 	ngOnDestroy(): void {
 		// Do not forget to unsubscribe the event

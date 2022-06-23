@@ -1,16 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-causas',
 	templateUrl: './causas.component.html',
 	styleUrls: ['./causas.component.css']
 })
-export class CausasComponent implements OnInit {
-
+export class CausasComponent implements OnInit, OnDestroy {
+	dtOptions: DataTables.Settings = {};
 	ocultarBoton: boolean = true;
 	mostarBoton: boolean = false;
 	contenteditable = false;
+	dtTrigger: Subject<any> = new Subject<any>();
 
 	editarCausa() {
 		this.ocultarBoton = !this.ocultarBoton;
@@ -42,6 +44,15 @@ export class CausasComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.refreshCausasList();
+		this.dtOptions = {
+			pagingType: 'full_numbers',
+			pageLength: 2
+		};
+			this.service.getRiesgoList().subscribe(data => {
+			this.CausasList = data;
+			this.dtTrigger.next({});
+			console.log("Valores: " + data);
+		});
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
 		this.idRiesgoAsociado2 = this.causa.idRiesgoAsociado2;
@@ -55,8 +66,11 @@ export class CausasComponent implements OnInit {
 		this.idRiesgoAsociado10 = this.causa.idRiesgoAsociado10;
 		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
+		
 	}
-
+ngOnDestroy(): void {
+		this.dtTrigger.unsubscribe();
+	}
 	addClick() {
 		this.ActivarAltaCausa = true;
 		this.causa = {

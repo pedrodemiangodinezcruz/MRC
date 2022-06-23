@@ -42,11 +42,53 @@
 				<th scope="col" class="bg-light" colspan="2" rowspan="4">Opciones</th>
 			</tr>
 			<tr>
-				<th scope="col" colspan="8"></th>
+				<th scope="col" colspan="3"></th>
+				<th scope="col" ><div class="d-flex flex-row">
+					<div class="col-1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 15 15">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						  </svg>
+						</div>
+						<div class="col-11">
+						  <input [(ngModel)]="filtroPorIdRiesgo" class="form-control" (keyup)="FilterFn()" placeholder="Busqueda filtrada" >
+						</div>
+				</div></th>
+				<th scope="col" ><div class="d-flex flex-row">
+					<div class="col-1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 15 15">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						  </svg>
+						</div>
+						<div class="col-11">
+					<input [(ngModel)]="filtroPorDescripcionRiesgo" class="form-control" (keyup)="FilterFn()" placeholder="Busqueda filtrada">
+					</div>
+				</div></th>
+				<th scope="col" colspan="3"></th>
 				<th scope="col" class="gris">Formulado</th>
 				<th scope="col" colspan="6"></th>
 				<th scope="col" class="gris">Formulado</th>
-				<th scope="col" colspan="15"></th>
+				<th scope="col" ><div class="d-flex flex-row">
+					<div class="col-1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 15 15">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						  </svg>
+						</div>
+						<div class="col-11">
+					<input [(ngModel)]="filtroPorIdControl" class="form-control" (keyup)="FilterFn()" placeholder="Busqueda filtrada">
+					</div>
+				</div></th>
+				<th scope="col"></th>
+				<th scope="col" ><div class="d-flex flex-row">
+					<div class="col-1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 15 15">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						  </svg>
+						</div>
+						<div class="col-11">
+					<input [(ngModel)]="filtroPorDescripcionControl" class="form-control" (keyup)="FilterFn()" placeholder="Busqueda filtrada">
+					</div>
+				</div></th>
+				<th scope="col" colspan="13"></th>
 				<th scope="col" class="gris">Formulado</th>
 				<th scope="col" colspan="2"></th>
 				<th scope="col" class="gris">Formulado</th>
@@ -60,7 +102,27 @@
 				<th scope="col" class="morado" rowspan="2">Macroproceso</th>
 				<th scope="col" class="morado" rowspan="2">Proceso</th>
 				<th scope="col" class="morado" rowspan="2">Subproceso</th>
-				<th scope="col" class="naranja" rowspan="2">ID Riesgo</th>
+				<th scope="col" class="naranja" rowspan="2">
+					<div class="row">
+						<div class="col-6">
+					ID Riesgo
+				</div>
+				<div class="col-6 position-static fixed-bottom">
+					<button type="button" class="btn btn-primary" id="sortAsc" (click)="sortResult('idRiesgo', true)">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+						  </svg>
+						
+					</button>
+					<button type="button" class="btn btn-danger" id="sortDesc"  (click)="sortResult('idRiesgo', false)">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+						  </svg>
+						
+					</button>
+				</div>
+				</div>
+				</th>
 				<th scope="col" class="verde" rowspan="2">Descripción del Riesgo</th>
 				<th scope="col" class="verde" rowspan="2">Causa</th>
 				<th scope="col" class="verde" rowspan="2">Consecuencia</th>

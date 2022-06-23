@@ -31,9 +31,15 @@ export class MatrizComponent implements OnInit {
 	constructor(private service: SharedService) { }
 
 	RiesgoList: any = [];
+	ListaRiesgosSinFiltrado:any=[];
 	ControlList: any = [];
+	ListaControlSinFiltrado:any=[];
 	CausaList: any = [];
 	riesgo: any;
+	filtroPorIdRiesgo: string="";
+	filtroPorIdControl: string="";
+	filtroPorDescripcionRiesgo: string="";
+	filtroPorDescripcionControl: string="";
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -146,6 +152,7 @@ export class MatrizComponent implements OnInit {
 	refreshRiesgoList() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
+			this.ListaRiesgosSinFiltrado = data;
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
 			
@@ -154,6 +161,7 @@ export class MatrizComponent implements OnInit {
 	refreshControlList() {
 		this.service.getControlesList().subscribe(datos => {
 			this.ControlList = datos;
+			this.ListaControlSinFiltrado = datos;
 			console.log("Lista de controles");
 			console.log(this.ControlList);
 		});
@@ -165,5 +173,39 @@ export class MatrizComponent implements OnInit {
 			console.log(this.CausaList);
 		});
 	}
+
+	FilterFn(){
+		var filtroPorIdRiesgo = this.filtroPorIdRiesgo;
+		var filtroPorDescripcionRiesgo = this.filtroPorDescripcionRiesgo;
+		var filtroPorControl = this.filtroPorIdControl;
+		var filtroPorDescripcionControl = this.filtroPorDescripcionControl;
+	
+		this.RiesgoList = this.ListaRiesgosSinFiltrado.filter(function (el:any){
+			return el.idRiesgo.toString().toLowerCase().includes(
+			  filtroPorIdRiesgo.toString().trim().toLowerCase()
+			)&&
+			el.descripcion.toString().toLowerCase().includes(
+				filtroPorDescripcionRiesgo.toString().trim().toLowerCase()
+			)
+		});
+		this.ControlList = this.ListaControlSinFiltrado.filter(function (el:any){
+			return el.idControl.toString().toLowerCase().includes(
+				filtroPorControl.toString().trim().toLowerCase()
+			)&&
+			el.descripcion.toString().toLowerCase().includes(
+				filtroPorDescripcionControl.toString().trim().toLowerCase()
+			)
+		});
+	  }
+	
+	  sortResult(prop:any,asc:any){
+		this.RiesgoList = this.ListaRiesgosSinFiltrado.sort(function(a:any,b:any){
+		  if(asc){
+			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
+		  }else{
+			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
+		  }
+		})
+	  }
 
 }
