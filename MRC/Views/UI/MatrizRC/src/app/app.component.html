@@ -293,5 +293,24 @@
 		</div>
 	</div>
 </div>
-
+<div id="infoSeccion">
+	<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+		<thead>
+		  <tr>
+			<th>ID</th>
+			<th>First name</th>
+			<th>Last name</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr *ngFor="let riesgoItem of RiesgoList">
+			<td>{{ riesgoItem.idRiesgo }}</td>
+			<td>{{ riesgoItem.descripcion }}</td>
+			<td>{{ riesgoItem.macroProceso }}</td>
+		  </tr>
+		</tbody>
+	  </table>
+	  
+	  
+</div>
 <router-outlet></router-outlet>

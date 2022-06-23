@@ -28,24 +28,26 @@
             ],
             "styles": [
               "src/assets/estilos/graficoPastel.css",
-			  "src/assets/estilos/header.css",
-			  "src/assets/estilos/mapasCalor.css",
-			  "src/assets/estilos/pareto.css",
-			  "src/assets/estilos/sidebars.css",
-			  "src/assets/estilos/tablas.css"
-
+              "src/assets/estilos/header.css",
+              "src/assets/estilos/mapasCalor.css",
+              "src/assets/estilos/pareto.css",
+              "src/assets/estilos/sidebars.css",
+              "src/assets/estilos/tablas.css",
+              "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
             ],
             "scripts": [
-				"src/assets/js/jquery.min.js",
-				"src/assets/js/formulario.js",
-				"src/assets/js/jquery-3.6.0.min.js",
-				"src/assets/js/matriz.js",
-				"src/assets/js/mostrar-tablas.js",
-				"src/assets/js/mostrarEstadisticas.js",
-				"src/assets/js/selectsProcesos.js",
-				"src/assets/js/mapaResidual.js"
-			]
-			
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/formulario.js",
+              "src/assets/js/jquery-3.6.0.min.js",
+              "src/assets/js/matriz.js",
+              "src/assets/js/mostrar-tablas.js",
+              "src/assets/js/mostrarEstadisticas.js",
+              "src/assets/js/selectsProcesos.js",
+              "src/assets/js/mapaResidual.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.min.js",
+              "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HighchartsChartComponent } from 'highcharts-angular';
+import { DataTablesModule } from "angular-datatables";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,7 +56,7 @@ import { ListaRiesgosComponent } from './body/lista-riesgos/lista-riesgos.compon
 	FormsModule,
 	ReactiveFormsModule,
 	HttpClientModule,
-	
+	DataTablesModule
   ],
   
   providers: [SharedService],
