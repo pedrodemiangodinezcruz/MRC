@@ -8,7 +8,6 @@ import { BodyComponent } from './body/body.component';
 import { HeaderComponent } from './header/header.component';
 import { MetodologiaComponent } from './body/metodologia/metodologia.component';
 import{SharedService} from './shared.service';
-import {DataTablesModule} from 'angular-datatables';
 
 
 
@@ -56,7 +55,7 @@ import { ListaRiesgosComponent } from './body/lista-riesgos/lista-riesgos.compon
 	FormsModule,
 	ReactiveFormsModule,
 	HttpClientModule,
-	DataTablesModule
+	
   ],
   
   providers: [SharedService],
