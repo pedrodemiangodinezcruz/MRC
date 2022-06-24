@@ -40,6 +40,7 @@ export class MatrizComponent implements OnInit {
 	filtroPorIdControl: string="";
 	filtroPorDescripcionRiesgo: string="";
 	filtroPorDescripcionControl: string="";
+	filtroPorProbabilidadRiesgo: string="";
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -177,6 +178,7 @@ export class MatrizComponent implements OnInit {
 	FilterFn(){
 		var filtroPorIdRiesgo = this.filtroPorIdRiesgo;
 		var filtroPorDescripcionRiesgo = this.filtroPorDescripcionRiesgo;
+		var filtroPorProbabilidadRiesgo = this.filtroPorProbabilidadRiesgo;
 		var filtroPorControl = this.filtroPorIdControl;
 		var filtroPorDescripcionControl = this.filtroPorDescripcionControl;
 	
@@ -186,6 +188,9 @@ export class MatrizComponent implements OnInit {
 			)&&
 			el.descripcion.toString().toLowerCase().includes(
 				filtroPorDescripcionRiesgo.toString().trim().toLowerCase()
+			)&&
+			el.probabilidad.toString().toLowerCase().includes(
+				filtroPorProbabilidadRiesgo.toString().trim().toLowerCase()
 			)
 		});
 		this.ControlList = this.ListaControlSinFiltrado.filter(function (el:any){

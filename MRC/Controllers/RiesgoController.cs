@@ -133,6 +133,7 @@ namespace MRC.Controllers
             return new JsonResult("Riesgo editado exitosamente");
         }
         [HttpDelete("{Id}")]
+
         public JsonResult Delete(int Id)
         {
 

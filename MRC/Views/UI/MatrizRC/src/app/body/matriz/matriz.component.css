@@ -5,11 +5,6 @@
 	background-color: rgb(86, 86, 90);
 	color: white;
 }
-td.columLarga {
-	display: list-item;
-	width: 22vw;
-	overflow: hidden;
-	border: none;
-	padding-top: 20%;
-	padding-bottom: 15%;
-  }
+.columLarga{
+	width: 30em;
+}
