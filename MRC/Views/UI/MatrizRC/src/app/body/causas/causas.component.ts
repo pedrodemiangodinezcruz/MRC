@@ -23,10 +23,13 @@ export class CausasComponent implements OnInit, OnDestroy {
 
 	constructor(private service: SharedService) { }
 	CausasList: any = [];
+	ListaCausaSinFiltrado: any = [];
 	causa: any;
 	ActivarAltaCausa: boolean = false;
 	ActivarEdicionCausa: boolean = false;
 	Id: string | undefined;
+	filtroPorIdRiesgosAsociados: string = "";
+	filtroPorDescripcionCausa: string = "";
 	idRiesgoAsociado: string | undefined;
 	idRiesgoAsociado2: string | undefined;
 	idRiesgoAsociado3: string | undefined;
@@ -66,9 +69,9 @@ export class CausasComponent implements OnInit, OnDestroy {
 		this.idRiesgoAsociado10 = this.causa.idRiesgoAsociado10;
 		this.idControlAsociado = this.causa.idControlAsociado;
 		this.descripcion = this.causa.descripcion;
-		
+
 	}
-ngOnDestroy(): void {
+	ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
 	addClick() {
@@ -91,9 +94,9 @@ ngOnDestroy(): void {
 		this.causa = item;
 		this.ActivarEdicionCausa = true;
 	}
-	
 
-	
+
+
 	eliminarCausa(item: any) {
 		console.log(item);
 		console.log("ID BD del causa a eliminar " + item.Id);
@@ -106,8 +109,40 @@ ngOnDestroy(): void {
 	refreshCausasList() {
 		this.service.getCausasList().subscribe(datos => {
 			this.CausasList = datos;
+			this.ListaCausaSinFiltrado = datos;
 			console.log("Lista de causas");
 			console.log(this.CausasList);
+		});
+	}
+	FilterFn() {
+		var filtroPorIdRiesgosAsociados = this.filtroPorIdRiesgosAsociados;
+		var filtroPorDescripcionCausa = this.filtroPorDescripcionCausa;
+
+		this.CausasList = this.ListaCausaSinFiltrado.filter(function (el: any) {
+			return el.idRiesgoAsociado.toString().toLowerCase().includes(
+				filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado2.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado3.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado4.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado5.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado6.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado7.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado8.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado9.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
+				el.idRiesgoAsociado10.toString().toLowerCase().includes(
+					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase())
+				&&
+				el.descripcion.toString().toLowerCase().includes(
+					filtroPorDescripcionCausa.toString().trim().toLowerCase()
+				)
 		});
 	}
 

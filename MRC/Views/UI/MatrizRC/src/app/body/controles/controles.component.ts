@@ -29,9 +29,12 @@ export class ControlesComponent implements OnInit {
 	constructor(private service: SharedService) { }
 
 	ControlList: any = [];
+	ListaControlSinFiltrado: any = [];
 	control: any;
 	ActivarAltaControl: boolean = false;
 	ActivarEdicionControl: boolean = false;
+	filtroPorIdControl: string="";
+	filtroPorDescripcionControl: string="";
 	Id: string | undefined;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
@@ -194,9 +197,34 @@ export class ControlesComponent implements OnInit {
 	refreshControlList() {
 		this.service.getControlesList().subscribe(datos => {
 			this.ControlList = datos;
+			this.ListaControlSinFiltrado = datos;
 			console.log("Lista de controles");
 			console.log(this.ControlList);
 		});
 	}
+
+	FilterFn(){
+		var filtroPorIdControl = this.filtroPorIdControl;
+		var filtroPorDescripcionControl = this.filtroPorDescripcionControl;
+	
+		this.ControlList = this.ListaControlSinFiltrado.filter(function (el:any){
+			return el.idControl.toString().toLowerCase().includes(
+				filtroPorIdControl.toString().trim().toLowerCase()
+			)&&
+			el.descripcion.toString().toLowerCase().includes(
+				filtroPorDescripcionControl.toString().trim().toLowerCase()
+			)
+		});
+	  }
+	
+	  sortResultControl(prop:any,asc:any){
+		this.ControlList = this.ListaControlSinFiltrado.sort(function(a:any,b:any){
+		  if(asc){
+			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
+		  }else{
+			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
+		  }
+		})
+	  }
 
 }
