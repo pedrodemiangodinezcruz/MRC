@@ -44,7 +44,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.refreshCausasList();
-		this.dtOptions = {
+		/*this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 2
 		};
@@ -52,7 +52,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 			this.CausasList = data;
 			this.dtTrigger.next({});
 			console.log("Valores: " + data);
-		});
+		});*/
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
 		this.idRiesgoAsociado2 = this.causa.idRiesgoAsociado2;

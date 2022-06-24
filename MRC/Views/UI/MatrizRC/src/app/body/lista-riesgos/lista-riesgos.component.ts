@@ -24,11 +24,14 @@ export class ListaRiesgosComponent implements OnInit {
 
 	constructor(private service: SharedService) { }
 	RiesgoList: any = [];
+	ListaRiesgosSinFiltrado:any=[];
 	ControlList: any = [];
 	CausaList: any = [];
 	riesgo: any;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
+	filtroPorIdRiesgo: string="";
+	filtroPorDescripcionRiesgo: string="";
 	Id: string | undefined;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
@@ -139,6 +142,7 @@ export class ListaRiesgosComponent implements OnInit {
 	refreshRiesgoList() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
+			this.ListaRiesgosSinFiltrado = data;
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
 
@@ -158,5 +162,28 @@ export class ListaRiesgosComponent implements OnInit {
 			console.log(this.CausaList);
 		});
 	}
+	FilterFn(){
+		var filtroPorIdRiesgo = this.filtroPorIdRiesgo;
+		var filtroPorDescripcionRiesgo = this.filtroPorDescripcionRiesgo;
+	
+		this.RiesgoList = this.ListaRiesgosSinFiltrado.filter(function (el:any){
+			return el.idRiesgo.toString().toLowerCase().includes(
+			  filtroPorIdRiesgo.toString().trim().toLowerCase()
+			)&&
+			el.descripcion.toString().toLowerCase().includes(
+				filtroPorDescripcionRiesgo.toString().trim().toLowerCase()
+			)
+		});
+	  }
+	
+	  sortResult(prop:any,asc:any){
+		this.RiesgoList = this.ListaRiesgosSinFiltrado.sort(function(a:any,b:any){
+		  if(asc){
+			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
+		  }else{
+			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
+		  }
+		})
+	  }
 
 }
