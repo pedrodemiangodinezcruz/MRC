@@ -116,7 +116,6 @@ export class CausasComponent implements OnInit, OnDestroy {
 	}
 	FilterFn() {
 		var filtroPorIdRiesgosAsociados = this.filtroPorIdRiesgosAsociados;
-		var filtroPorDescripcionCausa = this.filtroPorDescripcionCausa;
 
 		this.CausasList = this.ListaCausaSinFiltrado.filter(function (el: any) {
 			return el.idRiesgoAsociado.toString().toLowerCase().includes(
@@ -139,8 +138,13 @@ export class CausasComponent implements OnInit, OnDestroy {
 					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
 				el.idRiesgoAsociado10.toString().toLowerCase().includes(
 					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase())
-				&&
-				el.descripcion.toString().toLowerCase().includes(
+		});
+	}
+	FilterDescripcion() {
+		var filtroPorDescripcionCausa = this.filtroPorDescripcionCausa;
+
+		this.CausasList = this.ListaCausaSinFiltrado.filter(function (el: any) {
+			return  el.descripcion.toString().toLowerCase().includes(
 					filtroPorDescripcionCausa.toString().trim().toLowerCase()
 				)
 		});

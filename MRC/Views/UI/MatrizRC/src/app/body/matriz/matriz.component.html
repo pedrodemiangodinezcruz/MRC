@@ -33,7 +33,7 @@
 			<tr>
 			<tr>
 				<th scope="col" colspan="3" class="gris">Proceso</th>
-				<th scope="col" colspan="13" class="anaranjado">RIESGO INHERENTE</th>
+				<th scope="col" colspan="13" style="color: white; background-color: rgb(222, 192, 0);" >RIESGO INHERENTE</th>
 				<th scope="col" colspan="4" class="azul-marino">CONTROL</th>
 				<th scope="col" colspan="12" class="verde">EVALUACIÓN DE CONTROLES</th>
 				<th scope="col" colspan="10" class="azul-marino">CONTROL</th>
@@ -297,7 +297,8 @@
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.ic}}</td>
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
-							<td [attr.contenteditable]="contenteditable">{{riesgoItem.probabilidad}}</td>
+							<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
+							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">{{riesgoItem.probabilidad}}</td>
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
@@ -384,7 +385,8 @@
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.ic}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
-								<td [attr.contenteditable]="contenteditable">{{riesgoItem.probabilidad}}</td>
+								<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
+								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">{{riesgoItem.probabilidad}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
 								<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 								<td colspan="29">No existe un control asociado a este riesgo</td>

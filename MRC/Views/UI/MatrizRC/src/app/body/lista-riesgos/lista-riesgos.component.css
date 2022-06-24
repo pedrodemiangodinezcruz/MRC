@@ -1,7 +1,54 @@
-.formulado{
+.formulado {
 	background-color: rgb(167, 167, 181, 0.5);
 }
-#formulado:hover{
+
+#formulado:hover {
 	background-color: rgb(86, 86, 90);
-	color: white;
+	font-weight: 900;
+}
+
+.verde {
+	background-color: rgb(48, 153, 51) !important;
+}
+
+.rojo {
+	background-color: #dc3545 !important;
+}
+
+.anaranjado {
+	background-color: rgb(222, 192, 0) !important;
+	color: black;
+}
+
+.medio {
+	background-color: yellow !important;
+}
+
+.bajo {
+	background-color: rgb(146, 208, 80) !important;
+}
+.verde:hover {
+	background-color: rgb(48, 153, 51) !important;
+	font-weight: 900
+}
+
+.rojo:hover {
+	background-color: #dc3545 !important;
+	font-weight: 900;
+}
+
+.anaranjado:hover {
+	background-color: rgb(222, 192, 0) !important;
+	color: black;
+	font-weight: 900;
+}
+
+.medio:hover {
+	background-color: yellow !important;
+	font-weight: 900;
+}
+
+.bajo:hover {
+	background-color: rgb(146, 208, 80) !important;
+	font-weight: 900;
 }
