@@ -28,7 +28,10 @@ namespace MRC.Controllers
             string query = @"
                    SELECT Id, idRiesgoAsociado, idRiesgoAsociado2, idRiesgoAsociado3,
                     idRiesgoAsociado4, idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7,
-                    idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, descripcion FROM dbo.Causa";
+                    idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, 
+                    idControlAsociado2, idControlAsociado3, idControlAsociado4, idControlAsociado5,
+                    idControlAsociado6, idControlAsociado7, idControlAsociado8, idControlAsociado9,
+                    idControlAsociado10, descripcion FROM dbo.Causa";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;
@@ -55,7 +58,10 @@ namespace MRC.Controllers
             string query = @"
                    insert into dbo.Causa (idRiesgoAsociado,idRiesgoAsociado2, idRiesgoAsociado3,
                     idRiesgoAsociado4, idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7,
-                    idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, descripcion ) values 
+                    idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, 
+                    idControlAsociado2, idControlAsociado3, idControlAsociado4, idControlAsociado5,
+                    idControlAsociado6, idControlAsociado7, idControlAsociado8, idControlAsociado9,
+                    idControlAsociado10 descripcion ) values 
                      (
                         '" + causa.IdRiesgoAsociado + @"'
                         ,'" + causa.IdRiesgoAsociado2 + @"'
@@ -68,6 +74,15 @@ namespace MRC.Controllers
                         ,'" + causa.IdRiesgoAsociado9 + @"'
                         ,'" + causa.IdRiesgoAsociado10 + @"'
                         ,'" + causa.IdControlAsociado + @"'
+                        ,'" + causa.IdControlAsociado2 + @"'
+                        ,'" + causa.IdControlAsociado3 + @"'
+                        ,'" + causa.IdControlAsociado4 + @"'
+                        ,'" + causa.IdControlAsociado5 + @"'
+                        ,'" + causa.IdControlAsociado6 + @"'
+                        ,'" + causa.IdControlAsociado7 + @"'
+                        ,'" + causa.IdControlAsociado8 + @"'
+                        ,'" + causa.IdControlAsociado9 + @"'
+                        ,'" + causa.IdControlAsociado10 + @"'
                         ,'" + causa.Descripcion + @"'
                        )
                     ";
@@ -107,6 +122,15 @@ namespace MRC.Controllers
                     ,idRiesgoAsociado9 = '" + causa.IdRiesgoAsociado9 + @"'
                     ,idRiesgoAsociado10 = '" + causa.IdRiesgoAsociado10 + @"'
                     ,idControlAsociado = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado2 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado3 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado4 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado5 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado6 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado7 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado8 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado9 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado10 = '" + causa.IdControlAsociado + @"'
                     ,descripcion =  '" + causa.Descripcion + @"'
                     where Id = " + causa.Id + @"
                     ";

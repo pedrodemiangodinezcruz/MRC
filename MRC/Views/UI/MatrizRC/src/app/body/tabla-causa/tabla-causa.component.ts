@@ -29,8 +29,18 @@ export class TablaCausaComponent implements OnInit {
 	idRiesgoAsociado9: string | undefined;
 	idRiesgoAsociado10: string | undefined;
 	idControlAsociado: string | undefined;
+	idControlAsociado2: string | undefined;
+	idControlAsociado3: string | undefined;
+	idControlAsociado4: string | undefined;
+	idControlAsociado5: string | undefined;
+	idControlAsociado6: string | undefined;
+	idControlAsociado7: string | undefined;
+	idControlAsociado8: string | undefined;
+	idControlAsociado9: string | undefined;
+	idControlAsociado10: string | undefined;
 	descripcion: string | undefined;
 	nuevoRiesgo:  number = 0;
+	nuevoControl:  number = 0;
 
 	ngOnInit(): void {
 		this.refreshRiesgoList();
@@ -48,6 +58,15 @@ export class TablaCausaComponent implements OnInit {
 		this.idRiesgoAsociado9 = this.causa.idRiesgoAsociado9;
 		this.idRiesgoAsociado10 = this.causa.idRiesgoAsociado10;
 		this.idControlAsociado = this.causa.idControlAsociado;
+		this.idControlAsociado2 = this.causa.idControlAsociado2;
+		this.idControlAsociado3 = this.causa.idControlAsociado3;
+		this.idControlAsociado4 = this.causa.idControlAsociado4;
+		this.idControlAsociado5 = this.causa.idControlAsociado5;
+		this.idControlAsociado6 = this.causa.idControlAsociado6;
+		this.idControlAsociado7 = this.causa.idControlAsociado7;
+		this.idControlAsociado8 = this.causa.idControlAsociado8;
+		this.idControlAsociado9 = this.causa.idControlAsociado9;
+		this.idControlAsociado10 = this.causa.idControlAsociado10;
 		this.descripcion = this.causa.descripcion;
 		//console.log(this.causa.Id);
 		//this.numRiesgos = this.refreshRiesgoList();
@@ -57,6 +76,9 @@ export class TablaCausaComponent implements OnInit {
 
 	desplegarNuevoRiesgo() {
 		this.nuevoRiesgo = this.nuevoRiesgo+1;
+	}
+	desplegarNuevoControl() {
+		this.nuevoControl = this.nuevoControl+1;
 	}
 
 	closeClick() {
@@ -78,6 +100,15 @@ export class TablaCausaComponent implements OnInit {
 		idRiesgoAsociado9: this.idRiesgoAsociado9,
 		idRiesgoAsociado10: this.idRiesgoAsociado10,
 		idControlAsociado: this.idControlAsociado,
+		idControlAsociado2: this.idControlAsociado2,
+		idControlAsociado3: this.idControlAsociado3,
+		idControlAsociado4: this.idControlAsociado4,
+		idControlAsociado5: this.idControlAsociado5,
+		idControlAsociado6: this.idControlAsociado6,
+		idControlAsociado7: this.idControlAsociado7,
+		idControlAsociado8: this.idControlAsociado8,
+		idControlAsociado9: this.idControlAsociado9,
+		idControlAsociado10: this.idControlAsociado10,
 		descripcion: this.descripcion,
 		};
 		this.service.anadirCausa(val).subscribe(res => {
@@ -90,7 +121,6 @@ export class TablaCausaComponent implements OnInit {
 		var val = {
 			Id: this.Id,
 			idRiesgoAsociado: this.idRiesgoAsociado,
-			idControlAsociado: this.idControlAsociado,
 			idRiesgoAsociado2: this.idRiesgoAsociado2,
 			idRiesgoAsociado3: this.idRiesgoAsociado3,
 			idRiesgoAsociado4: this.idRiesgoAsociado4,
@@ -100,6 +130,16 @@ export class TablaCausaComponent implements OnInit {
 			idRiesgoAsociado8: this.idRiesgoAsociado8,
 			idRiesgoAsociado9: this.idRiesgoAsociado9,
 			idRiesgoAsociado10: this.idRiesgoAsociado10,
+			idControlAsociado: this.idControlAsociado,
+			idControlAsociado2: this.idControlAsociado2,
+			idControlAsociado3: this.idControlAsociado3,
+			idControlAsociado4: this.idControlAsociado4,
+			idControlAsociado5: this.idControlAsociado5,
+			idControlAsociado6: this.idControlAsociado6,
+			idControlAsociado7: this.idControlAsociado7,
+			idControlAsociado8: this.idControlAsociado8,
+			idControlAsociado9: this.idControlAsociado9,
+			idControlAsociado10: this.idControlAsociado10,
 			descripcion: this.descripcion
 		};
 		console.log(this.Id);

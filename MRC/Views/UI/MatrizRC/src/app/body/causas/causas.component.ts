@@ -30,6 +30,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 	Id: string | undefined;
 	filtroPorIdRiesgosAsociados: string = "";
 	filtroPorDescripcionCausa: string = "";
+	filtroPorIdControlAsociado: string = "";
 	idRiesgoAsociado: string | undefined;
 	idRiesgoAsociado2: string | undefined;
 	idRiesgoAsociado3: string | undefined;
@@ -41,6 +42,15 @@ export class CausasComponent implements OnInit, OnDestroy {
 	idRiesgoAsociado9: string | undefined;
 	idRiesgoAsociado10: string | undefined;
 	idControlAsociado: string | undefined;
+	idControlAsociado2: string | undefined;
+	idControlAsociado3: string | undefined;
+	idControlAsociado4: string | undefined;
+	idControlAsociado5: string | undefined;
+	idControlAsociado6: string | undefined;
+	idControlAsociado7: string | undefined;
+	idControlAsociado8: string | undefined;
+	idControlAsociado9: string | undefined;
+	idControlAsociado10: string | undefined;
 	descripcion: string | undefined;
 
 
@@ -68,6 +78,15 @@ export class CausasComponent implements OnInit, OnDestroy {
 		this.idRiesgoAsociado9 = this.causa.idRiesgoAsociado9;
 		this.idRiesgoAsociado10 = this.causa.idRiesgoAsociado10;
 		this.idControlAsociado = this.causa.idControlAsociado;
+		this.idControlAsociado2 = this.causa.idControlAsociado2;
+		this.idControlAsociado3 = this.causa.idControlAsociado3;
+		this.idControlAsociado4 = this.causa.idControlAsociado4;
+		this.idControlAsociado5 = this.causa.idControlAsociado5;
+		this.idControlAsociado6 = this.causa.idControlAsociado6;
+		this.idControlAsociado7 = this.causa.idControlAsociado7;
+		this.idControlAsociado8 = this.causa.idControlAsociado8;
+		this.idControlAsociado9 = this.causa.idControlAsociado9;
+		this.idControlAsociado10 = this.causa.idControlAsociado10;
 		this.descripcion = this.causa.descripcion;
 
 	}
@@ -114,7 +133,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 			console.log(this.CausasList);
 		});
 	}
-	FilterFn() {
+	FilterIdRiesgo() {
 		var filtroPorIdRiesgosAsociados = this.filtroPorIdRiesgosAsociados;
 
 		this.CausasList = this.ListaCausaSinFiltrado.filter(function (el: any) {
@@ -138,6 +157,32 @@ export class CausasComponent implements OnInit, OnDestroy {
 					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase()) ||
 				el.idRiesgoAsociado10.toString().toLowerCase().includes(
 					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase())
+		});
+	}
+	FilterIdControl() {
+		var filtroPorIdControlAsociado = this.filtroPorIdControlAsociado;
+
+		this.CausasList = this.ListaCausaSinFiltrado.filter(function (el: any) {
+			return el.idControlAsociado.toString().toLowerCase().includes(
+				filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado2.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado3.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado4.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado5.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado6.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado7.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado8.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado9.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase()) ||
+				el.idControlAsociado10.toString().toLowerCase().includes(
+					filtroPorIdControlAsociado.toString().trim().toLowerCase())
 		});
 	}
 	FilterDescripcion() {

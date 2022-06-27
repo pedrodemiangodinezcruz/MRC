@@ -47,7 +47,6 @@
 		</button>
 	</div>
 </div>
-
 <div class="row">
 	<div class="col-auto" *ngIf="(nuevoRiesgo > 0) && (nuevoRiesgo  < this.RiesgoList.length);else demasiadosRiesgos">
 		<p class="text-center fw-bold">Riesgo 2 asociado</p>
@@ -144,6 +143,144 @@
 		</div>
 	</ng-template>
 </div>
+<div class="row">
+	<div class="col">
+		<p class="text-center fw-bold">Id del control asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado" value="{{causa.idControlAsociado}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado">
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione el ID del control asociado</label>
+		</div>
+	</div>
+	<div class="col-4"  *ngIf="causa.Anadir == 0">
+		<p class="text-center fw-bold">&nbsp;</p>
+		<button type="button" class="btn btn-success" (click)="desplegarNuevoControl()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
+				viewBox="0 0 16 16">
+				<path
+					d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+				<path
+					d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+			</svg>
+			Agregar otro control
+		</button>
+	</div>
+	<div class="col-4"  *ngIf="causa.Anadir != 0">
+		<p class="text-center fw-bold">&nbsp;</p>
+		<button type="button" class="btn btn-success" (click)="desplegarNuevoRiesgo()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
+				viewBox="0 0 16 16">
+				<path
+					d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+				<path
+					d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+			</svg>
+			Editar control asociado {{nuevoControl + 2}}
+		</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-auto" *ngIf="(nuevoControl > 0) && (nuevoControl  < this.ControlList.length);else demasiadosControles">
+		<p class="text-center fw-bold">Control 2 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado2" name="impacto" value="{{causa.idControlAsociado2}}" aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado2">
+						<!--<option  *ngIf="riesgoItem.idRiesgo === causa.idRiesgoAsociado"></option>-->
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoControl > 1) && (nuevoControl  < this.ControlList.length);">
+		<p class="text-center fw-bold">Control 3 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado3" name="impacto" value="{{causa.idControlAsociado3}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado3">
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoControl > 2) && (nuevoControl  < this.ControlList.length);">
+		<p class="text-center fw-bold">Control 4 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado4" name="impacto" value="{{causa.idControlAsociado4}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado4">
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoControl > 3) && (nuevoControl  < this.ControlList.length);">
+		<p class="text-center fw-bold">Control 5 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado5" name="impacto" value="{{causa.idControlAsociado5}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado5">
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoControl > 4) && (nuevoControl  < this.ControlList.length);">
+		<p class="text-center fw-bold">Control 6 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado6" name="impacto" value="{{causa.idControlAsociado6}}"
+				aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado6">
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+</div>
+<div class="row text-center">
+	<ng-template  #demasiadosControles>
+		<div class="col text-center" *ngIf="(nuevoControl > 0)">
+			<div class="modal-body">
+				<div class="col-12 alert alert-danger  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
+						style="float: left;">
+						<use xlink:href="#exclamation-triangle-fill" />
+					</svg>
+					<div>
+						No existen más de {{nuevoControl}} controles en el sistema para adjuntar<br>
+						<a href="/controles" style="color: red;">Ir a lista de controles</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+</div>
+
 <!--
 	<div class="col">
 		<p class="text-center fw-bold">Id del control asociado</p>

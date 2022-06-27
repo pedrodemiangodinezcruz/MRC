@@ -19,6 +19,15 @@ namespace MRC.Models
         public string IdRiesgoAsociado9 { get; set; }
         public string IdRiesgoAsociado10 { get; set; }
         public string IdControlAsociado { get; set; }
+        public string IdControlAsociado2 { get; set; }
+        public string IdControlAsociado3 { get; set; }
+        public string IdControlAsociado4 { get; set; }
+        public string IdControlAsociado5 { get; set; }
+        public string IdControlAsociado6 { get; set; }
+        public string IdControlAsociado7 { get; set; }
+        public string IdControlAsociado8 { get; set; }
+        public string IdControlAsociado9 { get; set; }
+        public string IdControlAsociado10 { get; set; }
         public string Descripcion { get; set; }
     }
 }
