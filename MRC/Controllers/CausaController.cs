@@ -61,7 +61,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, 
                     idControlAsociado2, idControlAsociado3, idControlAsociado4, idControlAsociado5,
                     idControlAsociado6, idControlAsociado7, idControlAsociado8, idControlAsociado9,
-                    idControlAsociado10 descripcion ) values 
+                    idControlAsociado10, descripcion ) values 
                      (
                         '" + causa.IdRiesgoAsociado + @"'
                         ,'" + causa.IdRiesgoAsociado2 + @"'
@@ -122,15 +122,15 @@ namespace MRC.Controllers
                     ,idRiesgoAsociado9 = '" + causa.IdRiesgoAsociado9 + @"'
                     ,idRiesgoAsociado10 = '" + causa.IdRiesgoAsociado10 + @"'
                     ,idControlAsociado = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado2 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado3 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado4 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado5 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado6 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado7 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado8 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado9 = '" + causa.IdControlAsociado + @"'
-                    ,idControlAsociado10 = '" + causa.IdControlAsociado + @"'
+                    ,idControlAsociado2 = '" + causa.IdControlAsociado2 + @"'
+                    ,idControlAsociado3 = '" + causa.IdControlAsociado3 + @"'
+                    ,idControlAsociado4 = '" + causa.IdControlAsociado4 + @"'
+                    ,idControlAsociado5 = '" + causa.IdControlAsociado5 + @"'
+                    ,idControlAsociado6 = '" + causa.IdControlAsociado6 + @"'
+                    ,idControlAsociado7 = '" + causa.IdControlAsociado7 + @"'
+                    ,idControlAsociado8 = '" + causa.IdControlAsociado8 + @"'
+                    ,idControlAsociado9 = '" + causa.IdControlAsociado9 + @"'
+                    ,idControlAsociado10 = '" + causa.IdControlAsociado10 + @"'
                     ,descripcion =  '" + causa.Descripcion + @"'
                     where Id = " + causa.Id + @"
                     ";

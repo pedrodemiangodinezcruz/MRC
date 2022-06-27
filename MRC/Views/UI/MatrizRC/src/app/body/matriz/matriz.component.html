@@ -33,7 +33,8 @@
 			<tr>
 			<tr>
 				<th scope="col" colspan="3" class="gris">Proceso</th>
-				<th scope="col" colspan="13" style="color: white; background-color: rgb(222, 192, 0);" >RIESGO INHERENTE</th>
+				<th scope="col" colspan="13" style="color: white; background-color: rgb(222, 192, 0);">RIESGO INHERENTE
+				</th>
 				<th scope="col" colspan="4" class="azul-marino">CONTROL</th>
 				<th scope="col" colspan="12" class="verde">EVALUACIÓN DE CONTROLES</th>
 				<th scope="col" colspan="10" class="azul-marino">CONTROL</th>
@@ -211,14 +212,11 @@
 		</thead>
 		<tbody class="table-group-divider">
 			<!--Contenedor sobre todas las causas y controles que coincidan con un mismo ID de riesgo asociado-->
-			<ng-container
-				*ngFor="let riesgoItem of RiesgoList; let i = index; let tamanoListaRiesgo = count; let impar = odd;">
+			<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamanoListaRiesgo = count;">
 				<ng-container *ngFor="let causaItem of CausaList; let j = index; let tamanoListaCausa = count">
-					<ng-container
-						*ngFor="let controlItem of ControlList; let k = index; let tamanoListaControl = count">
+					<ng-container *ngFor="let controlItem of ControlList; let k = index; let tamanoListaControl = count">
 						<!-- && causaItem.idRiesgoAsociado === riesgoItem.idRiesgo;-->
-						<tr
-							*ngIf="((causaItem.idRiesgoAsociado === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
+						<tr *ngIf="(((causaItem.idRiesgoAsociado === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (causaItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
@@ -227,7 +225,13 @@
 						|| (controlItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (controlItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
 						|| (controlItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
 						|| (controlItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
-						|| (controlItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado10 === riesgoItem.idRiesgo));  else listaRiesgosSinControlConCausa">
+						|| (controlItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (controlItem.idRiesgoAsociado10 === riesgoItem.idRiesgo)
+						) && (((causaItem.idControlAsociado === controlItem.idControl) || (causaItem.idControlAsociado2 === controlItem.idControl)
+						|| (causaItem.idControlAsociado3 === controlItem.idControl) ||  (causaItem.idControlAsociado4 === controlItem.idControl)
+						|| (causaItem.idControlAsociado5 === controlItem.idControl) || (causaItem.idControlAsociado6 === controlItem.idControl)
+						|| (causaItem.idControlAsociado7 === controlItem.idControl) || (causaItem.idControlAsociado8 === controlItem.idControl)
+						|| (causaItem.idControlAsociado9 === controlItem.idControl) || (causaItem.idControlAsociado10 === controlItem.idControl))));
+						else listaRiesgosSinControlConCausa;">
 							<!--Modal para la edicion de riesgo -->
 							<div class="modal fade" [attr.id]="'editar' + riesgoItem.idRiesgo" tabindex="-1"
 								aria-labelledby="modalRiesgoLabel" aria-hidden="true">
@@ -297,8 +301,10 @@
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.ic}}</td>
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
-							<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
-							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">{{riesgoItem.probabilidad}}</td>
+							<td [attr.contenteditable]="contenteditable"
+								[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
+							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
+								{{riesgoItem.probabilidad}}</td>
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
@@ -360,15 +366,15 @@
 							</td>
 						</tr>
 						<ng-template #listaRiesgosSinControlConCausa>
-							<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de riesgos, Nota: ver que condición poner aqui para checar todo de nuevo
-						&& k === tamanoListaControl - 1-->
+							<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de controles-->
 							<tr *ngIf="((causaItem.idRiesgoAsociado === riesgoItem.idRiesgo
 						|| (causaItem.idRiesgoAsociado2 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado3 === riesgoItem.idRiesgo) ||  (causaItem.idRiesgoAsociado4 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado5 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado6 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado7 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado8 === riesgoItem.idRiesgo)
 						|| (causaItem.idRiesgoAsociado9 === riesgoItem.idRiesgo) || (causaItem.idRiesgoAsociado10 === riesgoItem.idRiesgo)
-						)) && impar && k === tamanoListaControl - 1">
+						)) && i === tamanoListaRiesgo-1 && j === tamanoListaCausa -1 && k ===tamanoListaControl-1;">
+								<!--)) && impar && k === tamanoListaControl - 1"  && (i > 1)  && ((k / 2) === 1)>-->
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.macroProceso}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.proceso}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.subProceso}}</td>
@@ -385,11 +391,17 @@
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.ic}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
-								<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
-								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">{{riesgoItem.probabilidad}}</td>
+								<td [attr.contenteditable]="contenteditable"
+									[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
+								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
+									{{riesgoItem.probabilidad}}</td>
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
 								<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
-								<td colspan="29">No existe un control asociado a este riesgo</td>
+								<td colspan="29">ListRiesgo: {{tamanoListaRiesgo}}
+									ListCausa: {{tamanoListaCausa}} ListControl: {{tamanoListaControl}} I: {{i}},
+									J:{{j}} K: {{k}}No existe un control asociado al reisgo
+									<strong>{{riesgoItem.idRiesgo}}</strong> y a la causa:
+									<strong>"{{causaItem.descripcion}}"</strong></td>
 								<td scope="col">
 									<!--(click)="editarRiesgo()" para lo gray y set editable-->
 									<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"

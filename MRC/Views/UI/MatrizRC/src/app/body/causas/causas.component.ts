@@ -24,6 +24,8 @@ export class CausasComponent implements OnInit, OnDestroy {
 	constructor(private service: SharedService) { }
 	CausasList: any = [];
 	ListaCausaSinFiltrado: any = [];
+	ControlList: any = [];
+	ListaControlesSinFiltrado: any = [];
 	causa: any;
 	ActivarAltaCausa: boolean = false;
 	ActivarEdicionCausa: boolean = false;
@@ -57,6 +59,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.refreshCausasList();
+		this.refreshControlesList();
 		/*this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 2
@@ -131,6 +134,14 @@ export class CausasComponent implements OnInit, OnDestroy {
 			this.ListaCausaSinFiltrado = datos;
 			console.log("Lista de causas");
 			console.log(this.CausasList);
+		});
+	}
+	refreshControlesList() {
+		this.service.getControlesList().subscribe(datos => {
+			this.ControlList = datos;
+			this.ListaControlesSinFiltrado = datos;
+			console.log("Lista de controles");
+			console.log(this.ControlList);
 		});
 	}
 	FilterIdRiesgo() {
