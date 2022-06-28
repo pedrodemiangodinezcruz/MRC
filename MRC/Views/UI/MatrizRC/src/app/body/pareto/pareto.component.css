@@ -39,3 +39,6 @@
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+.pareto{
+	float: left; width: 80vw; height: 45vw;
+}

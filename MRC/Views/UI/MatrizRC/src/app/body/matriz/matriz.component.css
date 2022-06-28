@@ -53,3 +53,12 @@
 	background-color: rgb(146, 208, 80) !important;
 	font-weight: 900;
 }
+.sinControl{
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+}
+.sinControl:hover{
+    background-color: #fff3cd;
+    border-color: #000000;
+	font-weight: 800;
+}

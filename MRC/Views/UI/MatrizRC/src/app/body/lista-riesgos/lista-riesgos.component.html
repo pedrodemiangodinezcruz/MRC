@@ -5,7 +5,8 @@
 			<tr>
 			<tr>
 				<th scope="col" colspan="3" class="gris">Proceso</th>
-				<th scope="col" colspan="12" style="background-color: rgb(222, 192, 0); color: white;">RIESGO INHERENTE</th>
+				<th scope="col" colspan="12" style="background-color: rgb(222, 192, 0); color: white;">RIESGO INHERENTE
+				</th>
 				<th scope="col" class="bg-light" colspan="2" rowspan="4">Opciones</th>
 			</tr>
 			<tr>
@@ -171,10 +172,12 @@
 					<td [attr.contenteditable]="contenteditable">{{riesgoItem.ios}}</td>
 					<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
 					<td [attr.contenteditable]="contenteditable"
-					[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
-					'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }"
-					>{{riesgoItem.probabilidad}}</td>
-					<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
+						[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
+					'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
+						{{riesgoItem.probabilidad}}</td>
+					<td [attr.contenteditable]="contenteditable" [ngClass]="{'anaranjado':  riesgoItem.impacto === 'Crítico',
+								'medio' : riesgoItem.impacto === 'Importante'}">
+						{{riesgoItem.impacto}}</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 					<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
