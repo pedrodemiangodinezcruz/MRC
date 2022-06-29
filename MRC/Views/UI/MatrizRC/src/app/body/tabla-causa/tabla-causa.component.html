@@ -150,7 +150,7 @@
 				aria-label="Default select example">
 				<option  value="N/A">N/A</option>
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
-					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado">
+					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
 					</ng-container>
 				</ng-container>
