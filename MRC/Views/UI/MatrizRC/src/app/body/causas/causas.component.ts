@@ -120,12 +120,11 @@ export class CausasComponent implements OnInit, OnDestroy {
 
 
 	eliminarCausa(item: any) {
-		console.log(item);
-		console.log("ID BD del causa a eliminar " + item.Id);
-		this.service.borrarCausa(item.Id).subscribe(data => {
-			alert(data.toString());
-			this.refreshCausasList();
+		console.log("ID BD de la causa a eliminar " + item.Id);
+		this.service.borrarCausa(item.Id).subscribe(res => {
+			//alert(res.toString());
 		})
+		this.refreshCausasList();
 	}
 
 	refreshCausasList() {
