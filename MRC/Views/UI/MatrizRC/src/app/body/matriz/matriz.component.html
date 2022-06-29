@@ -364,7 +364,12 @@
 							</td>
 						</tr>
 						<ng-template #listaRiesgosSinControlConCausa>
-							<!--Para evitar duplicados, verificar si estamos en la última posición de la lista de controles-->
+							<!--
+								Ya teniendo la listaRiesgosSinControlAdjuntoConCausa:
+								1.- Verificar que el ID del Riesgo es igual al Riesgo asociado desde la Causa
+								2.-Verificar que el ID del Riesgo NO sea igual al ID del RiesgoAsociado desde el Control
+								3.- Verificar que el ID del Control sea igual al ID del control asociado desde la Causa
+								4.-Para evitar duplicados al usar 3 *ngFors, verificar si estamos en la última posición de la lista de controles (K posicion)-->
 							<tr *ngIf="(((riesgoItem.idRiesgo === (causaItem.idRiesgoAsociado || causaItem.idRiesgoAsociado2 ||
 						causaItem.idRiesgoAsociado3 || causaItem.idRiesgoAsociado4 || causaItem.idRiesgoAsociado5 || causaItem.idRiesgoAsociado6
 						|| causaItem.idRiesgoAsociado7 || causaItem.idRiesgoAsociado8 || causaItem.idRiesgoAsociado9 || causaItem.idRiesgoAsociado10 ))
@@ -373,8 +378,11 @@
 						|| controlItem.idRiesgoAsociado8 || controlItem.idRiesgoAsociado9 || controlItem.idRiesgoAsociado10 )))
 						&& ((controlItem.idControl === (causaItem.idControlAsociado || causaItem.idControlAsociado2 || causaItem.idControlAsociado3
 						|| causaItem.idControlAsociad4 || causaItem.idControlAsociad5 || causaItem.idControlAsociad6 || causaItem.idControlAsociado7
-						|| causaItem.idControlAsociad8 || causaItem.idControlAsociad9 || causaItem.idControlAsociad10))) 
-						
+						|| causaItem.idControlAsociad8 || causaItem.idControlAsociad9 || causaItem.idControlAsociad10))
+						|| (('N/A' === (causaItem.idControlAsociado || causaItem.idControlAsociado2 || causaItem.idControlAsociado3
+						|| causaItem.idControlAsociad4 || causaItem.idControlAsociad5 || causaItem.idControlAsociad6 || causaItem.idControlAsociado7
+						|| causaItem.idControlAsociad8 || causaItem.idControlAsociad9 || causaItem.idControlAsociad10)))
+						&& k === tamanoListaControl - 1)
 						))">
 								<!-- && (!causaItem.idControlAsociado )
 						&& (k === tamanoListaControl-2) -->
