@@ -40,5 +40,8 @@
     background: #f1f7ff;
 }
 .pareto{
-	float: left; width: 80vw; height: 45vw;
+	float: left; width: 78vw; height: 35vw;
+}
+.select{
+padding-left: 1vw;
 }

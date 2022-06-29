@@ -4,6 +4,7 @@
 #formulado:hover{
 	background-color: rgb(86, 86, 90);
 	color: white;
+	font-weight: 900;
 }
 .columLarga{
 	width: 30em;
