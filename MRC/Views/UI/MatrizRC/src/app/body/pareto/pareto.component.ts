@@ -37,6 +37,11 @@ export class ParetoComponent implements OnInit {
 	causasPorMacroproceso: any = [];
 	causa: any;
 	datos: any = [];
+	contadorCausas: number = 0;
+	temp: number = 0;
+	numDup: number = 0
+	dupCount: number = 0;
+	previous: string = "";
 	descripcion: string | undefined;
 	public options: any = {
 
@@ -86,7 +91,7 @@ export class ParetoComponent implements OnInit {
 			name: 'Frecuencia',
 			type: 'column',
 			zIndex: 2,
-			data: [21, 7, 4, 3, 3, 1, 1, 1, 1, 1, 1, 1]
+			data: []
 		}]
 
 	};
@@ -115,13 +120,13 @@ export class ParetoComponent implements OnInit {
 					for (let i = 0; i < this.RiesgoList.length; i++) {
 						//If que verifica que la lista s ellene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
 						//la causa coincida con un riesgo en el sistem
-						if (  (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro') ) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado || this.CausasList[j].idRiesgoAsociado2 ||
-							this.CausasList[j].idRiesgoAsociado3 || this.CausasList[j].idRiesgoAsociado4 || this.CausasList[j].idRiesgoAsociado5 ||
-							this.CausasList[j].idRiesgoAsociado6 || this.CausasList[j].idRiesgoAsociado7 || this.CausasList[j].idRiesgoAsociado8 ||
-							this.CausasList[j].idRiesgoAsociado9 || this.CausasList[j].idRiesgoAsociado10))) {
+						if ((this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado 
+							|| this.CausasList[j].idRiesgoAsociado2 || this.CausasList[j].idRiesgoAsociado3 || this.CausasList[j].idRiesgoAsociado4
+							|| this.CausasList[j].idRiesgoAsociado5 || this.CausasList[j].idRiesgoAsociado6 || this.CausasList[j].idRiesgoAsociado7 
+							|| this.CausasList[j].idRiesgoAsociado8 || this.CausasList[j].idRiesgoAsociado9 || this.CausasList[j].idRiesgoAsociado10))) {
 							let causas = {
 								macroproceso: this.RiesgoList[i].macroProceso,
-								descripcion: this.CausasList[i].descripcion
+								descripcion: this.CausasList[j].descripcion
 							};
 							//Llenar los resultados en el arreglos CausasPorMacroProceso
 							this.causasPorMacroproceso.push(causas);
@@ -129,17 +134,50 @@ export class ParetoComponent implements OnInit {
 						}
 					}
 				}
-				console.log("Array con las descripciones de las cuasas separado por Macroproceso de los riesgos asociados a las cuasas");
+				console.log("Array con las descripciones de las causas separado por Macroproceso de los riesgos asociados a las cuasas");
 				console.log(this.causasPorMacroproceso);
 				//Si existen causas en los macroprocesos
-				if(this.causasPorMacroproceso.length !=0){
-				for(let i = 0; i < this.causasPorMacroproceso.length; i++){
-				this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
-			}}
-			//Sino
-			else{
-				this.options.xAxis['categories'].push(['No existen causas para el Macroproceso'])
-			}
+				if (this.causasPorMacroproceso.length != 0) {
+				//Para contar las causas duplicadas, primer ordenar el arreglo (Bubble sort)
+					for (let i=0; i < this.causasPorMacroproceso.length; ++i) {
+						for (let j=1; j < (this.causasPorMacroproceso.length - i); ++j) {
+							if (this.causasPorMacroproceso[j-1] > this.causasPorMacroproceso[j]) {
+								this.temp = this.causasPorMacroproceso[j-1];
+								this.causasPorMacroproceso[j-1] = this.causasPorMacroproceso[j];
+								this.causasPorMacroproceso[j] = this.temp;
+							}
+						}
+					}
+					console.log("Valores duplicados: ");
+					for (let i=0; i < this.causasPorMacroproceso.length; ++i) {
+						//Popular las categorias en el pareto
+						this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
+						if (this.causasPorMacroproceso[i].descripcion == this.previous) {
+							++this.numDup;
+							if (this.numDup == 1) {
+								++this.dupCount;
+								if (this.dupCount == 1) {
+									console.log(this.causasPorMacroproceso[i].descripcion);
+								}
+								else {
+									console.log(", " + this.causasPorMacroproceso[i].descripcion);
+								}
+							}
+						}
+						else {
+							this.previous =  this.causasPorMacroproceso[i].descripcion;
+							this.numDup = 0;
+						}
+					}
+					console.log("Número de valores duplicados: " + this.dupCount);
+					this.options.series[1]['data'] = [10, 7, 4, 3, this.contadorCausas, 1, 1, 1, 1, 1, 1, 1]
+				}
+				//Sino
+				else {
+					this.options.title['text'] = 'No existen causas para el Macroproceso: ' + this._Activatedroute.snapshot.paramMap.get('macro')
+					//this.options.xAxis['categories'].push(['No existen causas para el Macroproceso: ' + this._Activatedroute.snapshot.paramMap.get('macro')])
+					this.options.series[1]['data'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+				}
 				Highcharts.chart('container', this.options);
 			});
 		});
@@ -175,13 +213,13 @@ export class ParetoComponent implements OnInit {
 					for (let i = 0; i < this.RiesgoList.length; i++) {
 						//If que verifica que la lista s ellene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
 						//la causa coincida con un riesgo en el sistem
-						if (  (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro') ) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado || this.CausasList[j].idRiesgoAsociado2 ||
+						if ((this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado || this.CausasList[j].idRiesgoAsociado2 ||
 							this.CausasList[j].idRiesgoAsociado3 || this.CausasList[j].idRiesgoAsociado4 || this.CausasList[j].idRiesgoAsociado5 ||
 							this.CausasList[j].idRiesgoAsociado6 || this.CausasList[j].idRiesgoAsociado7 || this.CausasList[j].idRiesgoAsociado8 ||
 							this.CausasList[j].idRiesgoAsociado9 || this.CausasList[j].idRiesgoAsociado10))) {
 							let causas = {
 								macroproceso: this.RiesgoList[i].macroProceso,
-								descripcion: this.CausasList[i].descripcion
+								descripcion: this.CausasList[j].descripcion
 							};
 							//Llenar los resultados en el arreglos CausasPorMacroProceso
 							this.causasPorMacroproceso.push(causas);
