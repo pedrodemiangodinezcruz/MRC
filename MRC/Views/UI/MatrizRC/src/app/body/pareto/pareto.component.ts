@@ -32,10 +32,14 @@ export class ParetoComponent implements OnInit {
 
 	constructor(public _Activatedroute: ActivatedRoute, private service: SharedService) { }
 	CausasList: any = [];
+	RiesgoList: any = [];
 	descripciones: any = [];
+	causasPorMacroproceso: any = [];
 	causa: any;
 	descripcion: string | undefined;
+	
 	public options: any = {
+
 		Macro: "Jaun",
 		chart: {
 			renderTo: 'container',
@@ -74,7 +78,7 @@ export class ParetoComponent implements OnInit {
 				'this.CausasList[9].descripcion',
 				'this.CausasList[10].descripcion',
 				'this.CausasList[11].descripcion',
-				'this.CausasList[12].descripcion',],
+				'this.CausasList[12].descripcion'],
 			crosshair: true
 		},
 		yAxis: [{
@@ -114,6 +118,8 @@ export class ParetoComponent implements OnInit {
 	};
 
 	ngOnInit(): void {
+		this.refreshCausasList();
+		this.refreshRiesgoList();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
@@ -126,7 +132,7 @@ export class ParetoComponent implements OnInit {
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
 		Highcharts.chart('container', this.options);
-		this.refreshCausasList();
+		//this.refreshCausasList();
 		this.descripcion = this.causa.descripcion;
 	}
 
@@ -134,17 +140,52 @@ export class ParetoComponent implements OnInit {
 	refreshCausasList() {
 		this.service.getCausasList().subscribe(datos => {
 			this.CausasList = datos;
-			console.log("Lista de causas");
+			/*console.log("Lista de causas");
 			console.log(this.CausasList);
 			for (let i = 0; i < this.CausasList.length; i++) {
 				let descripcion = {
 					id: i.toString(),
-					name: "Tony"
+					descripciones: this.CausasList[i].descripcion
 				};
 				this.descripciones.push(descripcion);
-				console.log(this.CausasList[i].descripcion);
+				//console.log(this.CausasList[i].descripcion);
 			}
+			console.log("Array con las descripciones");
+			console.log(this.descripciones);*/
 		});
+	}
+	refreshRiesgoList() {
+		this.service.getRiesgoList().subscribe(riesgos => {
+			this.service.getCausasList().subscribe(causas => {
+				this.RiesgoList = riesgos;
+				//console.log("Lista de riesgos");
+				//console.log(this.RiesgoList);
+				this.CausasList = causas;
+				//Recorrer listas de causas y lista de ruesgos
+				for (let j = 0; j < this.CausasList.length; j++) {
+					for (let i = 0; i < this.RiesgoList.length; i++) {
+						//If que verifica que la lista s ellene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
+						//la causa coincida con un riesgo en el sistem
+						if (  (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro') ) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado || this.CausasList[j].idRiesgoAsociado2 ||
+							this.CausasList[j].idRiesgoAsociado3 || this.CausasList[j].idRiesgoAsociado4 || this.CausasList[j].idRiesgoAsociado5 ||
+							this.CausasList[j].idRiesgoAsociado6 || this.CausasList[j].idRiesgoAsociado7 || this.CausasList[j].idRiesgoAsociado8 ||
+							this.CausasList[j].idRiesgoAsociado9 || this.CausasList[j].idRiesgoAsociado10))) {
+							let causas = {
+								id: i.toString(),
+								macroproceso: this.RiesgoList[i].macroProceso,
+								descripcion: this.CausasList[i].descripcion
+							};
+							//Llenar los resultados en el arreglos CausasPorMacroProceso
+							this.causasPorMacroproceso.push(causas);
+							//console.log(this.CausasList[i].descripcion);
+						}
+					}
+				}
+				console.log("Array desde riesgos con las descripciones");
+				console.log(this.causasPorMacroproceso);
+			});
+		});
+
 	}
 }
 
