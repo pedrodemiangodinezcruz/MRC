@@ -36,8 +36,8 @@ export class ParetoComponent implements OnInit {
 	descripciones: any = [];
 	causasPorMacroproceso: any = [];
 	causa: any;
+	datos: any = [];
 	descripcion: string | undefined;
-	
 	public options: any = {
 
 		Macro: "Jaun",
@@ -52,33 +52,7 @@ export class ParetoComponent implements OnInit {
 			shared: true
 		},
 		xAxis: {
-			/*[
-			'Información incorrecta, incompleta o no confiable desde su origen externo a este proceso',
-			'Ejecución de procesos manuales / Sistemas no alineados a las necesidades de la operación',
-			'Falta de capacitación, perfil inadecuado, falta de lineamientos en políticas y procedimientos',
-			'Falta de supervisión y segregación de funciones en la aprobación de los estados financieros',
-			'Saldos de cuentas contables presentados incorrectamente en los estados financieros',
-			'Cambios en las Normas de Información Financiera Mexicanas (NIFs) no implemntados adecuadamente',
-			'Inadecuada segregación de funciones',
-			'Ausencia de un inventario y una matriz de riesgo de la información clasificada, incluyendo los estados financieros proyectados o consolidados en físico, digitalizados, en correos electrónicos o carpetas compartidas',
-			'Falta de actualización de las políticas de seguridad de la información:* Copias de seguridad * Cifrado de datos * Dispositivos externos * Acceso remoto y bloqueo * Permisos para crear, modificar y eliminar datos',
-			'Objetivos o metas no alineados a la estrategia del grupo, o poco realistas',
-			'Sobreestimación / subestimación de activos/ingresos * Diferencias en tiempo * Valuación indebida de activos * Revelaciones indebidas * Diferencias en tiempo * Ingresos sobreestimados / subestimados * Pasivos y gastos sobreestimados / ocultos',
-			'Sobreestimación / subestimación de activos / ingresos * Diferencias en tiempo * Valuación indebida de activos * Revelaciones indebidas * Diferencias en tiempo * Ingresos sobreestimados / subestimados * Pasivos y gastos sobreestimados / ocultos',
-		  ] */
-			categories: [
-				'this.CausasList[1].descripcion',
-				'this.CausasList[2].descripcion',
-				'this.CausasList[3].descripcion',
-				'this.CausasList[4].descripcion',
-				'this.CausasList[5].descripcion',
-				'this.CausasList[6].descripcion',
-				'this.CausasList[7].descripcion',
-				'this.CausasList[8].descripcion',
-				'this.CausasList[9].descripcion',
-				'this.CausasList[10].descripcion',
-				'this.CausasList[11].descripcion',
-				'this.CausasList[12].descripcion'],
+			categories: [],
 			crosshair: true
 		},
 		yAxis: [{
@@ -117,9 +91,9 @@ export class ParetoComponent implements OnInit {
 
 	};
 
-	ngOnInit(): void {
-		this.refreshCausasList();
-		this.refreshRiesgoList();
+	ngOnInit() {
+		//this.refreshCausasList();
+		//this.refreshRiesgoList();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
@@ -131,9 +105,44 @@ export class ParetoComponent implements OnInit {
 			{ Nombre: "Contratación al Retiro" },
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
-		Highcharts.chart('container', this.options);
-		//this.refreshCausasList();
-		this.descripcion = this.causa.descripcion;
+		//Obtener lista de riesgos y lista de causas
+		this.service.getRiesgoList().subscribe(riesgos => {
+			this.service.getCausasList().subscribe(causas => {
+				this.RiesgoList = riesgos;
+				this.CausasList = causas;
+				//Recorrer listas de causas y lista de ruesgos
+				for (let j = 0; j < this.CausasList.length; j++) {
+					for (let i = 0; i < this.RiesgoList.length; i++) {
+						//If que verifica que la lista s ellene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
+						//la causa coincida con un riesgo en el sistem
+						if (  (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro') ) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado || this.CausasList[j].idRiesgoAsociado2 ||
+							this.CausasList[j].idRiesgoAsociado3 || this.CausasList[j].idRiesgoAsociado4 || this.CausasList[j].idRiesgoAsociado5 ||
+							this.CausasList[j].idRiesgoAsociado6 || this.CausasList[j].idRiesgoAsociado7 || this.CausasList[j].idRiesgoAsociado8 ||
+							this.CausasList[j].idRiesgoAsociado9 || this.CausasList[j].idRiesgoAsociado10))) {
+							let causas = {
+								macroproceso: this.RiesgoList[i].macroProceso,
+								descripcion: this.CausasList[i].descripcion
+							};
+							//Llenar los resultados en el arreglos CausasPorMacroProceso
+							this.causasPorMacroproceso.push(causas);
+							//console.log(this.CausasList[i].descripcion);
+						}
+					}
+				}
+				console.log("Array con las descripciones de las cuasas separado por Macroproceso de los riesgos asociados a las cuasas");
+				console.log(this.causasPorMacroproceso);
+				//Si existen causas en los macroprocesos
+				if(this.causasPorMacroproceso.length !=0){
+				for(let i = 0; i < this.causasPorMacroproceso.length; i++){
+				this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
+			}}
+			//Sino
+			else{
+				this.options.xAxis['categories'].push(['No existen causas para el Macroproceso'])
+			}
+				Highcharts.chart('container', this.options);
+			});
+		});
 	}
 
 
@@ -171,7 +180,6 @@ export class ParetoComponent implements OnInit {
 							this.CausasList[j].idRiesgoAsociado6 || this.CausasList[j].idRiesgoAsociado7 || this.CausasList[j].idRiesgoAsociado8 ||
 							this.CausasList[j].idRiesgoAsociado9 || this.CausasList[j].idRiesgoAsociado10))) {
 							let causas = {
-								id: i.toString(),
 								macroproceso: this.RiesgoList[i].macroProceso,
 								descripcion: this.CausasList[i].descripcion
 							};
@@ -181,7 +189,7 @@ export class ParetoComponent implements OnInit {
 						}
 					}
 				}
-				console.log("Array desde riesgos con las descripciones");
+				console.log("Array con las descripciones de las cuasas separado por Macroproceso de los riesgos asociados a las cuasas");
 				console.log(this.causasPorMacroproceso);
 			});
 		});
