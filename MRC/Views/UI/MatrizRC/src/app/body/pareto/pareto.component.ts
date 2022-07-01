@@ -40,8 +40,9 @@ export class ParetoComponent implements OnInit {
 	contadorCausas: number = 0;
 	temp: number = 0;
 	numDup: number = 0
-	dupCount: number = 0;
-	previous: string = "";
+	dupCont: number = 0;
+	ocurrencias: number = 1;
+	anteriorCausa: string = "";
 	descripcion: string | undefined;
 	public options: any = {
 
@@ -138,39 +139,62 @@ export class ParetoComponent implements OnInit {
 				console.log(this.causasPorMacroproceso);
 				//Si existen causas en los macroprocesos
 				if (this.causasPorMacroproceso.length != 0) {
-				//Para contar las causas duplicadas, primer ordenar el arreglo (Bubble sort)
-					for (let i=0; i < this.causasPorMacroproceso.length; ++i) {
-						for (let j=1; j < (this.causasPorMacroproceso.length - i); ++j) {
-							if (this.causasPorMacroproceso[j-1] > this.causasPorMacroproceso[j]) {
-								this.temp = this.causasPorMacroproceso[j-1];
-								this.causasPorMacroproceso[j-1] = this.causasPorMacroproceso[j];
-								this.causasPorMacroproceso[j] = this.temp;
-							}
-						}
+				//Para contar las causas duplicadas, primer ordenar el arreglo (Por descripción)
+					this.causasPorMacroproceso.sort((elemento:any,elemento2:any) => {
+					if (elemento.descripcion > elemento2.descripcion) {
+						return 1;
 					}
+				
+					if (elemento.descripcion < elemento2.descripcion) {
+						return -1;
+					}
+				
+					return 0;
+				});
+					console.log("Lista ordenada: ");
+					console.log(this.causasPorMacroproceso);
 					console.log("Valores duplicados: ");
 					for (let i=0; i < this.causasPorMacroproceso.length; ++i) {
-						//Popular las categorias en el pareto
-						this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
-						if (this.causasPorMacroproceso[i].descripcion == this.previous) {
+						//Validación: Cubrir caso de si es el primer elemento del array
+						//Si son iguales las causas, se suma 1 al contador de ocurrencias la causa y los duplicados
+						if (this.causasPorMacroproceso[i].descripcion === this.anteriorCausa) {
 							++this.numDup;
-							if (this.numDup == 1) {
-								++this.dupCount;
-								if (this.dupCount == 1) {
-									console.log(this.causasPorMacroproceso[i].descripcion);
+							++this.ocurrencias;
+							//Si sí
+							if (this.numDup === 1) {
+								++this.dupCont;
+								if (this.dupCont === 1) {
+									console.log("Ocurrencias de '" + this.causasPorMacroproceso[i].descripcion + "': "  + this.ocurrencias);
+									//this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
+									this.options.series[1]['data'].push([this.ocurrencias]);
 								}
 								else {
-									console.log(", " + this.causasPorMacroproceso[i].descripcion);
+									++this.ocurrencias;
+									console.log("Ocurrencias de '" + this.causasPorMacroproceso[i].descripcion + "': "  + this.ocurrencias);
+									//this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
+									this.options.series[1]['data'].push([this.ocurrencias]);
 								}
 							}
 						}
+						//Si no son iguales las causas
 						else {
-							this.previous =  this.causasPorMacroproceso[i].descripcion;
+							//Si van a existir repetidos no adjuntar hasta que sea la última ocurrencia
+							if(this.ocurrencias >= 2){
+							}
+							else if(i>=1){	
+							//Popular con el número de ocurrencias
+							this.options.series[1]['data'].push([this.ocurrencias]);
+							}
+							this.anteriorCausa =  this.causasPorMacroproceso[i].descripcion;
 							this.numDup = 0;
+							//Popular las categorias en el pareto solo una vez cuando existen repetidos
+							this.options.xAxis['categories'].push([this.causasPorMacroproceso[i].descripcion])
+							//Dejar las ocurrecnias en 1 ya que siempre existe una cuasa por riesgo
+							this.ocurrencias = 1;
 						}
+
 					}
-					console.log("Número de valores duplicados: " + this.dupCount);
-					this.options.series[1]['data'] = [10, 7, 4, 3, this.contadorCausas, 1, 1, 1, 1, 1, 1, 1]
+					console.log("Número de valores duplicados: " + this.dupCont);
 				}
 				//Sino
 				else {
