@@ -75,9 +75,9 @@ export class MapaResidualComponent implements OnInit {
 		},
 
 		tooltip: {
-			formatter: function (point: any): any {
-				//return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
-				//this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
+			formatter: function (this: any) {
+				return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
+				this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
 			}
 		},
 
@@ -100,8 +100,8 @@ export class MapaResidualComponent implements OnInit {
 				chartOptions: {
 					yAxis: {
 						labels: {
-							formatter: function format(value: any): any {
-								//return this.value.charAt(0);
+							formatter: function format(this: any){
+								return this.value.charAt(0);
 							}
 						}
 					}
@@ -118,6 +118,7 @@ export class MapaResidualComponent implements OnInit {
 
 	ngOnInit() {
 		this.refreshRiesgoList();
+		this.buscarRiesgosSinMacro();
 		Highcharts.chart('container', this.chartOptions);
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
@@ -130,6 +131,16 @@ export class MapaResidualComponent implements OnInit {
 			{ Nombre: "Contratación al Retiro" },
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
+	}
+	refreshRiesgoList() {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			console.log("Lista de riesgos");
+			console.log(this.RiesgoList);
+
+		});
+	}
+	buscarRiesgosSinMacro() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			for (let i = 0; i < this.RiesgoList.length; i++) {
@@ -142,14 +153,6 @@ export class MapaResidualComponent implements OnInit {
 			console.log("Contador: " + this.contRiesgosSinMacro);
 			console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
 			}
-		});
-	}
-	refreshRiesgoList() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
-
 		});
 	}
 }

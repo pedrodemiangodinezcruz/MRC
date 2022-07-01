@@ -91,7 +91,7 @@ accessibility(Highcharts);
 
     tooltip: {
       formatter: function (this: any) {
-        return 'Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
+        return 'ID de los riesgos: <b>' + 50 +'</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
          this.point.value + '</b><br> Con nivel de probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
       }
     },
@@ -132,6 +132,7 @@ accessibility(Highcharts);
 	
 	  ngOnInit(){
 		this.refreshRiesgoList();
+		this.buscarRiesgosSinMacros();
 		Highcharts.chart('container', this.chartOptions);
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
@@ -144,6 +145,17 @@ accessibility(Highcharts);
 			{ Nombre: "Contratación al Retiro" },
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
+		
+	  }
+	  refreshRiesgoList() {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			console.log("Lista de riesgos");
+			console.log(this.RiesgoList);
+			
+		});
+	}
+	buscarRiesgosSinMacros(){
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			for (let i = 0; i < this.RiesgoList.length; i++) {
@@ -156,14 +168,6 @@ accessibility(Highcharts);
 			console.log("Contador: " + this.contRiesgosSinMacro);
 			console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
 			}
-		});
-	  }
-	  refreshRiesgoList() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
-			
 		});
 	}
 }

@@ -302,8 +302,8 @@
 								[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
 							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
 								{{riesgoItem.probabilidad}}</td>
-							<td [attr.contenteditable]="contenteditable" [ngClass]="{'anaranjado':  riesgoItem.impacto === 'Crítico',
-							'medio' : riesgoItem.impacto === 'Importante'}">{{riesgoItem.impacto}}</td>
+							<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
+							'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">{{riesgoItem.impacto}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.general}}</td>
@@ -406,8 +406,8 @@
 									[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
 								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
 									{{riesgoItem.probabilidad}}</td>
-								<td [attr.contenteditable]="contenteditable" [ngClass]="{'anaranjado':  riesgoItem.impacto === 'Crítico',
-								'medio' : riesgoItem.impacto === 'Importante'}">{{riesgoItem.impacto}}</td>
+								<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
+								'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">{{riesgoItem.impacto}}</td>
 								<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
 								<td colspan="29" class="sinControl">
 									ListRiesgo: {{tamanoListaRiesgo}}

@@ -10,6 +10,11 @@
 .verde {
 	background-color: rgb(48, 153, 51) !important;
 }
+.verdeImpacto {
+	background-color: rgb(48, 153, 51) !important;
+	color: black;
+}
+
 
 .rojo {
 	background-color: #dc3545 !important;
@@ -27,13 +32,15 @@
 .bajo {
 	background-color: rgb(146, 208, 80) !important;
 }
-.verde:hover {
+.verdeImpacto:hover {
 	background-color: rgb(48, 153, 51) !important;
+	color: black;
 	font-weight: 900
 }
 
 .rojo:hover {
 	background-color: #dc3545 !important;
+	color: black;
 	font-weight: 900;
 }
 
@@ -45,10 +52,12 @@
 
 .medio:hover {
 	background-color: yellow !important;
+	color: black;
 	font-weight: 900;
 }
 
 .bajo:hover {
 	background-color: rgb(146, 208, 80) !important;
+	color: black;
 	font-weight: 900;
 }
