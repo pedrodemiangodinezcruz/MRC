@@ -46,7 +46,7 @@ export class ParetoComponent implements OnInit {
 	descripcion: string | undefined;
 	public options: any = {
 
-		Macro: "Jaun",
+		Macro: "",
 		chart: {
 			renderTo: 'container',
 			type: 'column'
