@@ -34,8 +34,8 @@
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamaLista = count;">
 					<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'); else noRiesgo">
 						<td>{{riesgoItem.idRiesgo}}</td>
-						<td>{{riesgoItem.iff}}</td>
 						<td>{{riesgoItem.impacto}}</td>
+						<td>{{riesgoItem.probabilidad}}</td>
 					</tr>
 					<ng-template #noRiesgo>
 						<tr *ngIf="RiesgoList.length === this.contRiesgosSinMacro && RiesgoList.length-1 === i ">

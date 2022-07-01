@@ -90,9 +90,9 @@ accessibility(Highcharts);
     },
 
     tooltip: {
-      formatter: function () {
-        //return 'Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
-         // this.point.value + '</b><br> Con nivel de probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
+      formatter: function (this: any) {
+        return 'Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
+         this.point.value + '</b><br> Con nivel de probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
       }
     },
 
@@ -114,11 +114,11 @@ accessibility(Highcharts);
         },
         chartOptions: {
           yAxis: {
-        /*    labels: {
-             formatter: function () {
+        labels: {
+             formatter: function (this: any) {
               return this.value.charAt(0);
               }
-		}*/
+		}
           }
         }
       }]

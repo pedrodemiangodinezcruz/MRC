@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { SharedService } from 'src/app/shared.service';
 import { ActivatedRoute } from '@angular/router';
+import { Macroproceso } from 'src/app/body/pareto/macroproceso';
 declare function getPointCategoryName(point: any, dimension: any): any;
 
 @Component({
@@ -10,6 +11,7 @@ declare function getPointCategoryName(point: any, dimension: any): any;
 	styleUrls: ['./mapa-residual.component.css']
 })
 export class MapaResidualComponent implements OnInit {
+	macroproceso: Macroproceso[] | undefined;
 	getPointCategoryName(point: any, dimension: any) {
 		var series = point.series,
 			isY = dimension === 'y',
@@ -112,10 +114,35 @@ export class MapaResidualComponent implements OnInit {
 
 	constructor(private service: SharedService, public _Activatedroute:ActivatedRoute) { }
 	RiesgoList: any = [];
+	contRiesgosSinMacro: number = 0;
 
 	ngOnInit() {
 		this.refreshRiesgoList();
 		Highcharts.chart('container', this.chartOptions);
+		this.macroproceso = [
+			{ Nombre: "Concepto al Producto" },
+			{ Nombre: "Compra al Pago" },
+			{ Nombre: "Demanda al Abasto" },
+			{ Nombre: "Pedido al Cobro" },
+			{ Nombre: "Mantenimiento a la Liquidación" },
+			{ Nombre: "Inversión a la Desinversión" },
+			{ Nombre: "Finanzas a la Administración" },
+			{ Nombre: "Contratación al Retiro" },
+			{ Nombre: "Procesos Criticos fuera de Macros" }
+		];
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			for (let i = 0; i < this.RiesgoList.length; i++) {
+					//Sino existen macros para la lista de riesgos
+				if (this.RiesgoList[i].macroProceso != this._Activatedroute.snapshot.paramMap.get('macro')){
+					++this.contRiesgosSinMacro;
+				}
+			}
+			if(this.contRiesgosSinMacro === this.RiesgoList.length){
+			console.log("Contador: " + this.contRiesgosSinMacro);
+			console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
+			}
+		});
 	}
 	refreshRiesgoList() {
 		this.service.getRiesgoList().subscribe(data => {
