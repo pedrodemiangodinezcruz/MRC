@@ -1,4 +1,4 @@
-/*import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 declare var require: any;
@@ -91,4 +91,3 @@ export class GraficoComponent implements OnInit {
 	  }
 	}
 
-*/

@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
 	impacto: string | undefined;
 
 	ngOnInit():void {
+		
 		this.dtOptions = {
 			pagingType: 'full_numbers',
 			pageLength: 2
