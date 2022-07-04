@@ -29,6 +29,7 @@ import { ControlesComponent } from './body/controles/controles.component';
 import { TablaCausaComponent } from './body/tabla-causa/tabla-causa.component';
 import { ListaRiesgosComponent } from './body/lista-riesgos/lista-riesgos.component';
 import { InicioComponent } from './body/inicio/inicio.component';
+import { CriteriosDefinicionComponent } from './body/criterios-definicion/criterios-definicion.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { InicioComponent } from './body/inicio/inicio.component';
     ControlesComponent,
     TablaCausaComponent,
     ListaRiesgosComponent,
-    InicioComponent
+    InicioComponent,
+    CriteriosDefinicionComponent
   ],
   imports: [
     BrowserModule,
