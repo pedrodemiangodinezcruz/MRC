@@ -1,0 +1,131 @@
+	<table class="table table-bordered" id="2" style="text-align: center;">
+		<thead>
+			<tr>
+				<th scope="col" colspan="5" class="categoria" style="text-align: left;">Impacto</th>
+			</tr>
+			<tr>
+				<th scope="col" colspan="5"></th>
+			</tr>
+			<tr>
+				<th scope="col" colspan="2" class="headers">VALORACIÓN DEL IMPACTO</th>
+				<th scope="col" class="headers">IMPACTO FINANCIERO</th>
+				<th scope="col" class="headers">IMPACTO SOBRE CUMPLIMIENTO</th>
+				<th scope="col" class="headers">IMPACTO OPERACIONAL</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row" colspan="2" class="bg-danger">Catastrofico</th>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="financieroCatastrofico" value="{{criterio.financieroCatastrofico}}"
+							style="height: 100px"></textarea>
+					</div>
+					
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control"  [(ngModel)]="cumplimientoCatastrofico" value="{{criterio.cumplimientoCatastrofico}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="operacionalCatastrofico" value="{{criterio.operacionalCatastrofico}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2" class="bg-warning">Critico</th>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="financieroCritico" value="{{criterio.financieroCritico}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="cumplimientoCritico" value="{{criterio.cumplimientoCritico}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="operacionalCritico" value="{{criterio.operacionalCritico}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+
+			</tr>
+			<tr>
+				<th scope="row" colspan="2" class="medio">Importante</th>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="financieroImportante" value="{{criterio.financieroImportante}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="cumplimientoImportante" value="{{criterio.cumplimientoImportante}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="operacionalImportante" value="{{criterio.operacionalImportante}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2" class="bajo">Débil</th>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="financieroDebil" value="{{criterio.financieroDebil}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="cumplimientoDebil" value="{{criterio.cumplimientoDebil}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="operacionalDebil" value="{{criterio.operacionalDebil}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2" class="bg-success">Marginal</th>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="financieroMarginal" value="{{criterio.financieroMarginal}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="cumplimientoMarginal" value="{{criterio.cumplimientoMarginal}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+				<td>
+					<div class="form-floating">
+						<textarea class="form-control" [(ngModel)]="operacionalMarginal" value="{{criterio.operacionalMarginal}}"
+							style="height: 100px"></textarea>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+<div class="modal-footer">
+	<button type="submit" class="btn btn-primary" (click)="updateCriterio()" data-bs-toggle="modal"
+		data-bs-target="#editarRiesgo">Editar Riesgo</button>
+	<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+</div>

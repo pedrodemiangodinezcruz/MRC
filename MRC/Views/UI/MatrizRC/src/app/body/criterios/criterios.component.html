@@ -1,7 +1,8 @@
 <div class="col" id="infoSeccion">
+	<ng-container *ngFor="let criterioItem of CriteriosList">
 	<table class="table table-bordered" id="2" style="text-align: center;">
 	  <thead>
-		<tr>
+		<tr >
 		  <th scope="col" colspan="7" class="categoria" style="text-align: left;">Impacto</th>
 		</tr>
 		<tr>
@@ -14,15 +15,35 @@
 			  </svg>
 			</button></th>
 		  <th scope="col">
-			<button type="button" class="btn btn-success">Editar
-			  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-				class="bi bi-pencil-square" viewBox="0 0 16 16">
-				<path
-				  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-				<path fill-rule="evenodd"
-				  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-			  </svg>
-			</button>
+			<button type="button" class="btn btn-success" (click)="editClick(criterioItem)"
+							 data-bs-toggle="modal"
+							[attr.data-bs-target]="'#editar' + criterioItem.Id" data-backdrop="static"
+							data-keyboard="false">Editar Impactos
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-pencil-square" viewBox="0 0 16 16">
+								<path
+									d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+								<path fill-rule="evenodd"
+									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+							</svg>
+						</button>
+			<!--Modal para la edicion de riesgo -->
+					<div class="modal fade" [attr.id]="'editar' + criterioItem.Id" tabindex="-1"
+						aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content" style="width: 80vw; margin-left: -15%;" >
+								<div class="modal-header">
+									<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
+										editar los impactos </h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<app-criterios-definicion [criterio]="criterio"></app-criterios-definicion>
+								</div>
+							</div>
+						</div>
+					</div>
 		  </th>
 		  <th scope="col">
 			<button type="button" class="btn btn-danger">Eliminar
@@ -47,136 +68,48 @@
 		<tr>
 		  <th scope="row" colspan="2" class="bg-danger">Catastrofico</th>
 		  <td class="table-light">Impide la consecución de los objetivos y la ejecución de la estrategia.</td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
+		  <td>{{criterioItem.financieroCatastrofico}}</td>
+		  <td>{{criterioItem.cumplimientoCatastrofico}}</td>
+		  <td>{{criterioItem.operacionalCatastrofico}}</td>
 		  <td>5</td>
 		</tr>
 		<tr>
 		  <th scope="row" colspan="2" class="bg-warning">Critico</th>
 		  <td class="table-light">Afecta gravemente la consecución de los objetivos y la ejecución de la estrategia.
 		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
+		  <td>{{criterioItem.financieroCritico}}</td>
+		  <td>{{criterioItem.cumplimientoCritico}}</td>
+		  <td>{{criterioItem.operacionalCritico}}</td>
 		  <td>4</td>
 		</tr>
 		<tr>
 		  <th scope="row" colspan="2" class="medio">Importante</th>
 		  <td class="table-light">Afecta moderadamente la consecución de los objetivos, sin impedir su logro y la
 			ejecución de la estrategia.</td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
+		  <td>{{criterioItem.financieroImportante}}
 		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
+		  <td>{{criterioItem.cumplimientoImportante}}</td>
+		  <td>{{criterioItem.operacionalImportante}}</td>
 		  <td>3</td>
 		</tr>
 		<tr>
 		  <th scope="row" colspan="2" class="bajo">Débil</th>
 		  <td class="table-light">Afecta la consecución de los objetivos y la ejecución de la estrategia. </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
+		  <td>{{criterioItem.financieroDebil}}</td>
+		  <td>{{criterioItem.cumplimientoDebil}}</td>
+		  <td>{{criterioItem.operacionalDebil}}</td>
 		  <td>2</td>
 		</tr>
 		<tr>
 		  <th scope="row" colspan="2" class="bg-success">Marginal</th>
 		  <td class="table-light">Afecta levemente la consecución de los objetivos y la ejecución de la estrategia.
 		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
-		  <td>
-			<div class="form-floating">
-			  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-				style="height: 100px"></textarea>
-			  <label for="floatingTextarea2">Escriba</label>
-			</div>
-		  </td>
+		  <td>{{criterioItem.financieroMarginal}}</td>
+		  <td>{{criterioItem.cumplimientoMarginal}}</td>
+		  <td>{{criterioItem.operacionalMarginal}}</td>
 		  <td>1</td>
 		</tr>
 	  </tbody>
 	</table>
+</ng-container>
   </div>

@@ -50,5 +50,16 @@ export class SharedService {
 	borrarCausa(val: any) {
 		return this.http.delete<any>(this.APIUrl + '/Causa', val)
 	}
+	getCriteriosList(): Observable<any[]> {
+		return this.http.get<any>(this.APIUrl + '/Criterios')
+	}
+
+	anadirCriterio(val: any) {
+		return this.http.post<any>(this.APIUrl + '/Criterios', val)
+	}
+	editarCriterio(val: any) {
+		return this.http.put<any>(this.APIUrl + '/Criterios', val)
+	}
+
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -9,100 +9,101 @@ import { SharedService } from 'src/app/shared.service';
 export class CriteriosDefinicionComponent implements OnInit {
 
 	constructor(private service: SharedService) { }
+	
+	@Input() criterio: any;
 	CriteriosList: any = [];
-	criterio: any;
+	Id: number = 0;
 	ActivarAltaCriterio: boolean = false;
 	ActivarEdicionCriterio: boolean = false;
-	finacieroCatastrofico: string = "";
-	finacieroCritico: string = "";
-	finacieroImportante: string = "";
-	finacieroDebil: string = "";
-	finacieroMarginal: string = "";
-	cumplimientoCatastrofico: string = "";
-	cumplimientoCritico: string = "";
-	cumplimientoImportante: string = "";
-	cumplimientoDebil: string = "";
-	cumplimientoMarginal: string = "";
-	operacionalCatastrofico: string = "";
-	operacionalCritico: string = "";
-	operacionalImportante: string = "";
-	operacionalDebil: string = "";
-	operacionalMarginal: string = "";
+	financieroCatastrofico: string | undefined;
+	financieroCritico: string | undefined;
+	financieroImportante: string | undefined;
+	financieroDebil: string | undefined;
+	financieroMarginal: string | undefined;
+	cumplimientoCatastrofico: string | undefined;
+	cumplimientoCritico: string | undefined;
+	cumplimientoImportante: string | undefined;
+	cumplimientoDebil: string | undefined;
+	cumplimientoMarginal: string | undefined;
+	operacionalCatastrofico: string | undefined;
+	operacionalCritico: string | undefined;
+	operacionalImportante: string | undefined;
+	operacionalDebil: string | undefined;
+	operacionalMarginal: string | undefined;
+
+
 	ngOnInit(): void {
 		this.refreshCriteriosList();
-		this.finacieroCatastrofico = this.finacieroCatastrofico;
-		this.finacieroCritico = this.finacieroCritico;
-		this.finacieroImportante = this.finacieroImportante;
-		this.finacieroDebil = this.finacieroDebil;
-		this.finacieroMarginal = this.finacieroMarginal;
-		this.cumplimientoCatastrofico = this.cumplimientoCatastrofico;
-		this.cumplimientoCritico = this.cumplimientoCritico;
-		this.cumplimientoImportante = this.cumplimientoImportante;
-		this.cumplimientoDebil = this.cumplimientoDebil;
-		this.cumplimientoMarginal = this.cumplimientoMarginal;
-		this.operacionalCatastrofico = this.operacionalCatastrofico;
-		this.operacionalCritico = this.operacionalCritico;
-		this.operacionalImportante = this.operacionalImportante;
-		this.operacionalDebil = this.operacionalDebil;
-		this.operacionalMarginal = this.operacionalMarginal;
+		this.Id = this.criterio.Id;
+		this.financieroCatastrofico = this.criterio.financieroCatastrofico;
+		this.financieroCritico = this.criterio.financieroCritico;
+		this.financieroImportante = this.criterio.financieroImportante;
+		this.financieroDebil = this.criterio.financieroDebil;
+		this.financieroMarginal = this.criterio.financieroMarginal;
+		this.cumplimientoCatastrofico = this.criterio.cumplimientoCatastrofico;
+		this.cumplimientoCritico = this.criterio.cumplimientoCritico;
+		this.cumplimientoImportante = this.criterio.cumplimientoImportante;
+		this.cumplimientoDebil = this.criterio.cumplimientoDebil;
+		this.cumplimientoMarginal = this.criterio.cumplimientoMarginal;
+		this.operacionalCatastrofico = this.criterio.operacionalCatastrofico;
+		this.operacionalCritico = this.criterio.operacionalCritico;
+		this.operacionalImportante = this.criterio.operacionalImportante;
+		this.operacionalDebil = this.criterio.operacionalDebil;
+		this.operacionalMarginal = this.criterio.operacionalMarginal;
 	}
 
-	addClick() {
-		this.ActivarAltaCriterio = true;
-		this.criterio = {
-			Anadir: 0,
-			Id: 0,
-			macroProceso: "",
-			proceso: "",
-			idRiesgo: "",
-			descripcion: "",
-			causa: "",
-			consecuencia: "",
-			tipoEvento: "",
-			tipoRiesgo: "",
-			iff: "",
-			icc: "",
-			ios: "",
-			riesgoFraude: "",
-			probabilidad: 0,
-			impacto: ""
-		}
-	}
-	closeClick() {
-		this.ActivarEdicionCriterio = !this.ActivarEdicionCriterio;
-		this.refreshCriteriosList();
-	}
-	editClick(item: any) {
-		this.criterio = item;
-		this.ActivarAltaCriterio = true;
-	}
 
 	anadirCriterio() {
 		var val = {
-			finacieroCatastrofico: this.finacieroCatastrofico,
-			finacieroCritico: this.finacieroCritico,
-			finacieroImportante: this.finacieroImportante,
-			finacieroDebil:  this.finacieroDebil,
-			finacieroMarginal: this.finacieroMarginal,
-			cumplimientoCatastrofico:  this.cumplimientoCatastrofico,
-			cumplimientoCritico:  this.cumplimientoCritico,
-			cumplimientoImportante:  this.cumplimientoImportante,
-			cumplimientoDebil:  this.cumplimientoDebil,
-			cumplimientoMarginal:  this.cumplimientoMarginal,
-			operacionalCatastrofico:  this.operacionalCatastrofico,
-			operacionalCritico:  this.operacionalCritico,
-			operacionalImportante:  this.operacionalImportante,
-			operacionalDebil:  this.operacionalDebil,
-			operacionalMarginal:  this.operacionalMarginal
+			financieroCatastrofico: this.financieroCatastrofico,
+			financieroCritico: this.financieroCritico,
+			financieroImportante: this.financieroImportante,
+			financieroDebil: this.financieroDebil,
+			financieroMarginal: this.financieroMarginal,
+			cumplimientoCatastrofico: this.cumplimientoCatastrofico,
+			cumplimientoCritico: this.cumplimientoCritico,
+			cumplimientoImportante: this.cumplimientoImportante,
+			cumplimientoDebil: this.cumplimientoDebil,
+			cumplimientoMarginal: this.cumplimientoMarginal,
+			operacionalCatastrofico: this.operacionalCatastrofico,
+			operacionalCritico: this.operacionalCritico,
+			operacionalImportante: this.operacionalImportante,
+			operacionalDebil: this.operacionalDebil,
+			operacionalMarginal: this.operacionalMarginal
 		};
-		this.service.anadirRiesgo(val).subscribe(res => {
-			alert(res.toString());
-			console.log(res.toString());
+		this.service.anadirCriterio(val).subscribe(res => {
+		//	alert(res.toString());
+		//	console.log(res.toString());
 		});
+	}
+	updateCriterio() {
+		var val = {
+			Id: this.Id,
+			financieroCatastrofico: this.financieroCatastrofico,
+			financieroCritico: this.financieroCritico,
+			financieroImportante: this.financieroImportante,
+			financieroDebil: this.financieroDebil,
+			financieroMarginal: this.financieroMarginal,
+			cumplimientoCatastrofico: this.cumplimientoCatastrofico,
+			cumplimientoCritico: this.cumplimientoCritico,
+			cumplimientoImportante: this.cumplimientoImportante,
+			cumplimientoDebil: this.cumplimientoDebil,
+			cumplimientoMarginal: this.cumplimientoMarginal,
+			operacionalCatastrofico: this.operacionalCatastrofico,
+			operacionalCritico: this.operacionalCritico,
+			operacionalImportante: this.operacionalImportante,
+			operacionalDebil: this.operacionalDebil,
+			operacionalMarginal: this.operacionalMarginal
+		};
+		console.log(val);
+		this.service.editarCriterio(val).subscribe(res => {
+			//alert(res.toString());
+		});
+		this.refreshCriteriosList();
 	}
 
 	refreshCriteriosList() {
-		this.service.getControlesList().subscribe(datos => {
+		this.service.getCriteriosList().subscribe(datos => {
 			this.CriteriosList = datos;
 			console.log("Lista de criterios");
 			console.log(this.CriteriosList);

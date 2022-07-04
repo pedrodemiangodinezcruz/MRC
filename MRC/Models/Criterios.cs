@@ -8,11 +8,11 @@ namespace MRC.Models
     public class Criterios
     {
         public int Id { get; set; }
-        public string FinacieroCatastrofico { get; set; }
-        public string FinacieroCritico { get; set; }
-        public string FinacieroImportante { get; set; }
-        public string FinacieroDebil { get; set; }
-        public string FinacieroMarginal { get; set; }
+        public string FinancieroCatastrofico { get; set; }
+        public string FinancieroCritico { get; set; }
+        public string FinancieroImportante { get; set; }
+        public string FinancieroDebil { get; set; }
+        public string FinancieroMarginal { get; set; }
         public string CumplimientoCatastrofico { get; set; }
         public string CumplimientoCritico { get; set; }
         public string CumplimientoImportante { get; set; }

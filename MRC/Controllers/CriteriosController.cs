@@ -13,11 +13,11 @@ namespace MRC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CrtieriosCotroller : ControllerBase
+    public class CriteriosController : ControllerBase
     {
         private readonly IConfiguration _configuration;
 
-        public CrtieriosCotroller(IConfiguration configuration)
+        public CriteriosController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -26,7 +26,7 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   SELECT Id, finacieroCatastrofico, finacieroCritico, finacieroImportante, finacieroDebil, finacieroMarginal, cumplimientoCatastrofico,
+                   SELECT Id, financieroCatastrofico, financieroCritico, financieroImportante, financieroDebil, financieroMarginal, cumplimientoCatastrofico,
             cumplimientoCritico, cumplimientoImportante, cumplimientoDebil, cumplimientoMarginal, operacionalCatastrofico,
 			operacionalCritico, operacionalImportante, operacionalDebil, operacionalMarginal FROM dbo.Criterios";
             DataTable table = new DataTable();
@@ -53,15 +53,15 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   insert into dbo.Criterios (finacieroCatastrofico, finacieroCritico, finacieroImportante, finacieroDebil, finacieroMarginal, cumplimientoCatastrofico,
+                   insert into dbo.Criterios (financieroCatastrofico, financieroCritico, financieroImportante, financieroDebil, financieroMarginal, cumplimientoCatastrofico,
             cumplimientoCritico, cumplimientoImportante, cumplimientoDebil, cumplimientoMarginal, operacionalCatastrofico,
 			operacionalCritico, operacionalImportante, operacionalDebil, operacionalMarginal ) values 
                      (
-                        '" + criterio.finacieroCatastrofico + @"'
-                        ,'" + criterio.FinacieroCritico + @"'
-                        ,'" + criterio.FinacieroImportante + @"
-                        ,'" + criterio.FinacieroDebil + @"'
-                        ,'" + criterio.FinacieroMarginal + @"'
+                        '" + criterio.FinancieroCatastrofico + @"'
+                        ,'" + criterio.FinancieroCritico + @"'
+                        ,'" + criterio.FinancieroImportante + @"
+                        ,'" + criterio.FinancieroDebil + @"'
+                        ,'" + criterio.FinancieroMarginal + @"'
                         ,'" + criterio.CumplimientoCatastrofico + @"'
                         ,'" + criterio.CumplimientoCritico + @"'
                         ,'" + criterio.CumplimientoImportante + @"'
@@ -99,21 +99,21 @@ namespace MRC.Controllers
 
             string query = @"
                     update  dbo.Criterios set
-                    idRiesgoAsociado = '" + criterio.FinacieroCatastrofico + @"'
-                    ,idRiesgoAsociado2 = '" + criterio.FinacieroCritico + @"'
-                    ,idRiesgoAsociado3 = '" + criterio.FinacieroImportante + @"'
-                    ,idRiesgoAsociado4 = '" + criterio.FinacieroDebil + @"'
-                    ,idRiesgoAsociado5 = '" + criterio.FinacieroMarginal + @"'
-                    ,idRiesgoAsociado6 = '" + criterio.CumplimientoCatastrofico + @"'
-                    ,idRiesgoAsociado7 = '" + criterio.CumplimientoCritico + @"'
-                    ,idRiesgoAsociado8 = '" + criterio.CumplimientoImportante + @"'
-                    ,idRiesgoAsociado9 = '" + criterio.CumplimientoDebil + @"'
-                    ,idRiesgoAsociado10 = '" + criterio.CumplimientoMarginal + @"'
-                    ,idControlAsociado = '" + criterio.OperacionalCatastrofico + @"'
-                    ,idControlAsociado2 = '" + criterio.OperacionalCritico + @"'
-                    ,idControlAsociado3 = '" + criterio.OperacionalImportante + @"'
-                    ,idControlAsociado4 = '" + criterio.OperacionalDebil + @"'
-                    ,idControlAsociado5 = '" + criterio.OperacionalMarginal + @"'
+                    financieroCatastrofico = '" + criterio.FinancieroCatastrofico + @"'
+                    ,financieroCritico = '" + criterio.FinancieroCritico + @"'
+                    ,financieroImportante = '" + criterio.FinancieroImportante + @"'
+                    ,financieroDebil = '" + criterio.FinancieroDebil + @"'
+                    ,financieroMarginal = '" + criterio.FinancieroMarginal + @"'
+                    ,cumplimientoCatastrofico = '" + criterio.CumplimientoCatastrofico + @"'
+                    ,cumplimientoCritico = '" + criterio.CumplimientoCritico + @"'
+                    ,cumplimientoImportante = '" + criterio.CumplimientoImportante + @"'
+                    ,cumplimientoDebil = '" + criterio.CumplimientoDebil + @"'
+                    ,cumplimientoMarginal = '" + criterio.CumplimientoMarginal + @"'
+                    ,operacionalCatastrofico = '" + criterio.OperacionalCatastrofico + @"'
+                    ,operacionalCritico = '" + criterio.OperacionalCritico + @"'
+                    ,operacionalImportante = '" + criterio.OperacionalImportante + @"'
+                    ,operacionalDebil = '" + criterio.OperacionalDebil + @"'
+                    ,operacionalMarginal = '" + criterio.OperacionalMarginal + @"'
                     where Id = " + criterio.Id + @"
                     ";
 
