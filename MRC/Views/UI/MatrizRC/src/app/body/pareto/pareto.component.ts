@@ -181,7 +181,8 @@ export class ParetoComponent implements OnInit {
 							//Si van a existir repetidos no adjuntar hasta que sea la última ocurrencia
 							if(this.ocurrencias >= 2){
 							}
-							else if(i>=1){	
+							//Aqui cambiar el 0 por 1
+							else if(i>=0){	
 							//Popular con el número de ocurrencias
 							this.options.series[1]['data'].push([this.ocurrencias]);
 							}

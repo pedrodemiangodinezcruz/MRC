@@ -35,7 +35,7 @@ export class ControlesComponent implements OnInit {
 	ActivarEdicionControl: boolean = false;
 	filtroPorIdControl: string="";
 	filtroPorDescripcionControl: string="";
-	Id: string | undefined;
+	Id: number | undefined;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
 	idRiesgoAsociado: string | undefined;
@@ -100,40 +100,7 @@ export class ControlesComponent implements OnInit {
 
 	}
 
-	addClick() {
-		this.ActivarAltaControl = true;
-		this.control = {
-			Anadir: 0,
-			Id: "",
-			macroProceso: "",
-			proceso: "",
-			idRiesgoAsociado: "",
-			idRiesgoAsociado2: "",
-			idControl: "",
-			general: "",
-			descripcion: "",
-			evidencia: "",
-			segregacion: "",
-			documentacion: "",
-			tipoControl: "",
-			naturalezaAdecuada: "",
-			naturalezaControl: "",
-			tipoAdecuado: "",
-			frecuenciaControl: "",
-			frecuenciaAdecuada: "",
-			responsable: "",
-			responsabilidadControl: "",
-			generacionEvidencia: "",
-			controlClave: "",
-			controlFraude: "",
-			cobertura: "",
-			estrategia: "",
-			responsableTratamiento: "",
-			descripcionTratamiento: "",
-			causasAdjuntas: "",
-			observaciones: ""
-		}
-	}
+	
 	closeClick() {
 		this.ActivarEdicionControl = !this.ActivarEdicionControl;
 		this.refreshControlList();

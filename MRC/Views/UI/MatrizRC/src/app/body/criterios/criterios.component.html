@@ -1,5 +1,22 @@
 <div class="col" id="infoSeccion">
 	<ng-container *ngFor="let criterioItem of CriteriosList">
+		<!--Modal para la edicion de riesgo -->
+		<div class="modal fade" [attr.id]="'editar' + criterioItem.Id" tabindex="-1"
+		aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width: 80vw; margin-left: -15%;" >
+				<div class="modal-header">
+					<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
+						editar los impactos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<app-criterios-definicion [criterio]="criterio"></app-criterios-definicion>
+				</div>
+			</div>
+		</div>
+	</div>
 	<table class="table table-bordered" id="2" style="text-align: center;">
 	  <thead>
 		<tr >
@@ -20,23 +37,6 @@
 									d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
 							</svg>
 						</button>
-			<!--Modal para la edicion de riesgo -->
-					<div class="modal fade" [attr.id]="'editar' + criterioItem.Id" tabindex="-1"
-						aria-labelledby="modalRiesgoLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content" style="width: 80vw; margin-left: -15%;" >
-								<div class="modal-header">
-									<h5 class="modal-title fs-5 fw-bold" id="modalRiesgoLabel">Llene los campos para
-										editar los impactos </h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<app-criterios-definicion [criterio]="criterio"></app-criterios-definicion>
-								</div>
-							</div>
-						</div>
-					</div>
 		  </th>
 		  <th scope="col">
 		  </th>
@@ -99,3 +99,33 @@
 	</table>
 </ng-container>
   </div>
+<!-- Modal alerta de criteiro editado exitosamente-->
+  <div class="modal" id="editarCriterio">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Estatus de solicitud</h5>
+				<a href="/criterios">
+					<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</a>
+			</div>
+			<div class="modal-body">
+				<div class="col-12 alert alert-success  align-items-center" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+						style="float: left;">
+						<use xlink:href="#check-circle-fill" />
+					</svg>
+					<div>
+						Criterios, editados exitosamente
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="/criterios">
+					<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ok</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

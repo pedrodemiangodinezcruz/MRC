@@ -12,9 +12,8 @@ export class CriteriosDefinicionComponent implements OnInit {
 	
 	@Input() criterio: any;
 	CriteriosList: any = [];
-	Id: number = 0;
-	ActivarAltaCriterio: boolean = false;
-	ActivarEdicionCriterio: boolean = false;
+	Id: number = 1;
+	Anadir: number = 0;
 	financieroCatastrofico: string | undefined;
 	financieroCritico: string | undefined;
 	financieroImportante: string | undefined;
@@ -53,29 +52,7 @@ export class CriteriosDefinicionComponent implements OnInit {
 	}
 
 
-	anadirCriterio() {
-		var val = {
-			financieroCatastrofico: this.financieroCatastrofico,
-			financieroCritico: this.financieroCritico,
-			financieroImportante: this.financieroImportante,
-			financieroDebil: this.financieroDebil,
-			financieroMarginal: this.financieroMarginal,
-			cumplimientoCatastrofico: this.cumplimientoCatastrofico,
-			cumplimientoCritico: this.cumplimientoCritico,
-			cumplimientoImportante: this.cumplimientoImportante,
-			cumplimientoDebil: this.cumplimientoDebil,
-			cumplimientoMarginal: this.cumplimientoMarginal,
-			operacionalCatastrofico: this.operacionalCatastrofico,
-			operacionalCritico: this.operacionalCritico,
-			operacionalImportante: this.operacionalImportante,
-			operacionalDebil: this.operacionalDebil,
-			operacionalMarginal: this.operacionalMarginal
-		};
-		this.service.anadirCriterio(val).subscribe(res => {
-		//	alert(res.toString());
-		//	console.log(res.toString());
-		});
-	}
+	
 	updateCriterio() {
 		var val = {
 			Id: this.Id,
@@ -95,6 +72,7 @@ export class CriteriosDefinicionComponent implements OnInit {
 			operacionalDebil: this.operacionalDebil,
 			operacionalMarginal: this.operacionalMarginal
 		};
+		console.log("Id a cambiar: " + this.Id);
 		console.log(val);
 		this.service.editarCriterio(val).subscribe(res => {
 			//alert(res.toString());

@@ -53,7 +53,6 @@ export class SharedService {
 	getCriteriosList(): Observable<any[]> {
 		return this.http.get<any>(this.APIUrl + '/Criterios')
 	}
-
 	anadirCriterio(val: any) {
 		return this.http.post<any>(this.APIUrl + '/Criterios', val)
 	}

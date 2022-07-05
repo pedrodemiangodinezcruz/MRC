@@ -97,8 +97,6 @@ export class ControlRiesgoComponent implements OnInit {
 		this.descripcionTratamiento = this.control.descripcionTratamiento;
 		this.causasAdjuntas = this.control.causasAdjuntas;
 		this.observaciones = this.control.observaciones;
-		//console.log("Id Riesgo a cambiar" + this.control.idControl);
-		//console.log("Id Riesgo BD " + this.control.Id);
 	}
 
 	anadirControl() {
