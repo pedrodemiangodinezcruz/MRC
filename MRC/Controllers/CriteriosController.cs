@@ -53,9 +53,10 @@ namespace MRC.Controllers
         {
 
             string query = @"
-                   insert into dbo.Criterios (financieroCatastrofico, financieroCritico, financieroImportante, financieroDebil, financieroMarginal, cumplimientoCatastrofico,
-            cumplimientoCritico, cumplimientoImportante, cumplimientoDebil, cumplimientoMarginal, operacionalCatastrofico,
-			operacionalCritico, operacionalImportante, operacionalDebil, operacionalMarginal ) values 
+                   insert into dbo.Criterios (financieroCatastrofico, financieroCritico, financieroImportante, financieroDebil,
+            financieroMarginal, cumplimientoCatastrofico, cumplimientoCritico, cumplimientoImportante, cumplimientoDebil, 
+            cumplimientoMarginal, operacionalCatastrofico, operacionalCritico, operacionalImportante, operacionalDebil,
+            operacionalMarginal ) values 
                      (
                         '" + criterio.FinancieroCatastrofico + @"'
                         ,'" + criterio.FinancieroCritico + @"'
@@ -91,7 +92,7 @@ namespace MRC.Controllers
                 }
             }
 
-            return new JsonResult("Criterios añadido exitosamente");
+            return new JsonResult("Criterio añadido exitosamente");
         }
         [HttpPut]
         public JsonResult Put(Criterios criterio)
