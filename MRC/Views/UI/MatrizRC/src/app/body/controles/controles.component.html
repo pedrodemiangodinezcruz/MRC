@@ -191,10 +191,10 @@
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Diseño del control</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.disenoControl}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategia}}</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>

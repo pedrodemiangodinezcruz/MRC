@@ -35,11 +35,20 @@ export class ControlesComponent implements OnInit {
 	ActivarEdicionControl: boolean = false;
 	filtroPorIdControl: string="";
 	filtroPorDescripcionControl: string="";
-	Id: number | undefined;
-	macroProceso: string | undefined;
-	proceso: string | undefined;
+	Id: number = 0;
+	macroProceso: string = "";
+	proceso: string = "";
+	subProceso: string = "";
 	idRiesgoAsociado: string | undefined;
 	idRiesgoAsociado2: string | undefined;
+	idRiesgoAsociado3: string | undefined;
+	idRiesgoAsociado4: string | undefined;
+	idRiesgoAsociado5: string | undefined;
+	idRiesgoAsociado6: string | undefined;
+	idRiesgoAsociado7: string | undefined;
+	idRiesgoAsociado8: string | undefined;
+	idRiesgoAsociado9: string | undefined;
+	idRiesgoAsociado10: string | undefined;
 	idControl: string | undefined;
 	general: string | undefined;
 	descripcion: string | undefined;
@@ -55,12 +64,17 @@ export class ControlesComponent implements OnInit {
 	responsable: string | undefined;
 	responsabilidadControl: string | undefined;
 	generacionEvidencia: string | undefined;
+	disenoControl: string | undefined;
 	controlClave: string | undefined;
 	controlFraude: string | undefined;
-	cobertura: string | undefined;
-	estrategia: string | undefined;
+	cobertura: number | undefined;
+	estrategiaMonitoreo: string | undefined;
 	responsableTratamiento: string | undefined;
 	descripcionTratamiento: string | undefined;
+	calificacionControl: number | undefined;
+	coberturaPonderada: number | undefined;
+	coberturaTotal: number | undefined;
+	nivelCobertura: number | undefined;
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
 
@@ -72,6 +86,14 @@ export class ControlesComponent implements OnInit {
 		this.proceso = this.control.proceso;
 		this.idRiesgoAsociado = this.control.idRiesgoAsociado;
 		this.idRiesgoAsociado2 = this.control.idRiesgoAsociado2;
+		this.idRiesgoAsociado3 = this.control.idRiesgoAsociado3;
+		this.idRiesgoAsociado4 = this.control.idRiesgoAsociado4;
+		this.idRiesgoAsociado5 = this.control.idRiesgoAsociado5;
+		this.idRiesgoAsociado6 = this.control.idRiesgoAsociado6;
+		this.idRiesgoAsociado7 = this.control.idRiesgoAsociado7;
+		this.idRiesgoAsociado8 = this.control.idRiesgoAsociado8;
+		this.idRiesgoAsociado9 = this.control.idRiesgoAsociado9;
+		this.idRiesgoAsociado10 = this.control.idRiesgoAsociado10;
 		this.idControl = this.control.idControl;
 		this.general = this.control.general;
 		this.descripcion = this.control.descripcion;
@@ -87,12 +109,17 @@ export class ControlesComponent implements OnInit {
 		this.responsable = this.control.responsable;
 		this.responsabilidadControl = this.control.responsabilidadControl;
 		this.generacionEvidencia = this.control.generacionEvidencia;
+		this.disenoControl = this.control.disenoControl;
 		this.controlClave = this.control.controlClave;
 		this.controlFraude = this.control.controlFraude;
 		this.cobertura = this.control.cobertura;
-		this.estrategia = this.control.estrategia;
+		this.estrategiaMonitoreo = this.control.estrategiaMonitoreo;
 		this.responsableTratamiento = this.control.responsableTratamiento;
 		this.descripcionTratamiento = this.control.descripcionTratamiento;
+		this.calificacionControl = this.control.calificacionControl;
+		this.coberturaPonderada = this.control.coberturaPonderada;
+		this.coberturaTotal = this.control.coberturaTotal;
+		this.nivelCobertura = this.control.nivelCobertura;
 		this.causasAdjuntas = this.control.causasAdjuntas;
 		this.observaciones = this.control.observaciones;
 
@@ -121,6 +148,14 @@ export class ControlesComponent implements OnInit {
 			proceso: this.proceso,
 			idRiesgoAsociado: this.idRiesgoAsociado,
 			idRiesgoAsociado2: this.idRiesgoAsociado2,
+			idRiesgoAsociado3: this.idRiesgoAsociado3,
+			idRiesgoAsociado4: this.idRiesgoAsociado4,
+			idRiesgoAsociado5: this.idRiesgoAsociado5,
+			idRiesgoAsociado6: this.idRiesgoAsociado6,
+			idRiesgoAsociado7: this.idRiesgoAsociado7,
+			idRiesgoAsociado8: this.idRiesgoAsociado8,
+			idRiesgoAsociado9: this.idRiesgoAsociado9,
+			idRiesgoAsociado10: this.idRiesgoAsociado10,
 			idControl: this.idControl,
 			general: this.general,
 			descripcion: this.descripcion,
@@ -139,15 +174,19 @@ export class ControlesComponent implements OnInit {
 			controlClave: this.controlClave,
 			controlFraude: this.controlFraude,
 			cobertura: this.cobertura,
-			estrategia: this.estrategia,
+			estrategiaMonitoreo: this.estrategiaMonitoreo,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
+			calificacionControl: this.calificacionControl,
+			coberturaPonderada: this.coberturaPonderada,
+			coberturaTotal: this.coberturaTotal,
+			nivelCobertura: this.nivelCobertura,
 			causasAdjuntas: this.causasAdjuntas,
 			observaciones: this.observaciones,
 		};
 		this.service.anadirControl(val).subscribe(res => {
-			alert(res.toString());
-			console.log(res.toString());
+			//alert(res.toString());
+			//console.log(res.toString());
 		});
 	}
 

@@ -47,16 +47,21 @@ export class ControlRiesgoComponent implements OnInit {
 	responsable: string | undefined;
 	responsabilidadControl: string | undefined;
 	generacionEvidencia: string | undefined;
+	disenoControl: string | undefined;
 	controlClave: string | undefined;
 	controlFraude: string | undefined;
-	cobertura: string | undefined;
-	estrategia: string | undefined;
+	cobertura: number | undefined;
+	estrategiaMonitoreo: string | undefined;
 	responsableTratamiento: string | undefined;
 	descripcionTratamiento: string | undefined;
+	calificacionControl: number | undefined;
+	coberturaPonderada: number | undefined;
+	coberturaTotal: number | undefined;
+	nivelCobertura: number | undefined;
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
 	nuevoRiesgo:  number = 0;
-
+	
 
 	ngOnInit(): void {
 		this.refreshControlList();
@@ -89,12 +94,17 @@ export class ControlRiesgoComponent implements OnInit {
 		this.responsable = this.control.responsable;
 		this.responsabilidadControl = this.control.responsabilidadControl;
 		this.generacionEvidencia = this.control.generacionEvidencia;
+		this.disenoControl = this.control.disenoControl;
 		this.controlClave = this.control.controlClave;
 		this.controlFraude = this.control.controlFraude;
 		this.cobertura = this.control.cobertura;
-		this.estrategia = this.control.estrategia;
+		this.estrategiaMonitoreo = this.control.estrategiaMonitoreo;
 		this.responsableTratamiento = this.control.responsableTratamiento;
 		this.descripcionTratamiento = this.control.descripcionTratamiento;
+		this.calificacionControl = this.control.calificacionControl;
+		this.coberturaPonderada = this.control.coberturaPonderada;
+		this.coberturaTotal = this.control.coberturaTotal;
+		this.nivelCobertura = this.control.nivelCobertura;
 		this.causasAdjuntas = this.control.causasAdjuntas;
 		this.observaciones = this.control.observaciones;
 	}
@@ -132,9 +142,13 @@ export class ControlRiesgoComponent implements OnInit {
 			controlClave: this.controlClave,
 			controlFraude: this.controlFraude,
 			cobertura: this.cobertura,
-			estrategia: this.estrategia,
+			estrategiaMonitoreo: this.estrategiaMonitoreo,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
+			calificacionControl: this.calificacionControl,
+			coberturaPonderada: this.coberturaPonderada,
+			coberturaTotal: this.coberturaTotal,
+			nivelCobertura: this.nivelCobertura,
 			causasAdjuntas: this.causasAdjuntas,
 			observaciones: this.observaciones,
 		};
@@ -180,9 +194,13 @@ export class ControlRiesgoComponent implements OnInit {
 			controlClave: this.controlClave,
 			controlFraude: this.controlFraude,
 			cobertura: this.cobertura,
-			estrategia: this.estrategia,
+			estrategiaMonitoreo: this.estrategiaMonitoreo,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
+			calificacionControl: this.calificacionControl,
+			coberturaPonderada: this.coberturaPonderada,
+			coberturaTotal: this.coberturaTotal,
+			nivelCobertura: this.nivelCobertura,
 			causasAdjuntas: this.causasAdjuntas,
 			observaciones: this.observaciones,
 		};

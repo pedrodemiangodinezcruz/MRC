@@ -30,7 +30,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7, idRiesgoAsociado8, idRiesgoAsociado9,
                     idRiesgoAsociado10, macroProceso, proceso, subProceso, idControl, general, descripcion
                     , evidencia, segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
-                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, diseñoControl, controlClave,
+                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl, controlClave,
                     controlFraude, estrategiaMonitoreo, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
                     calificacionControl, coberturaPonderada , coberturaTotal , nivelCobertura, 
                     causasAdjuntas, observaciones FROM dbo.controlRiesgo";
@@ -63,7 +63,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado10, macroProceso, proceso
                     ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
                     tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
-                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, diseñoControl,
+                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl,
                     controlClave, controlFraude, estrategiaMonitoreo,cobertura, estrategia, responsableTratamiento,
                     descripcionTratamiento, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,
                     causasAdjuntas, observaciones) values 
@@ -96,7 +96,7 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.Responsable + @"'
                         ,'" + controlRiesgo.ResponsabilidadControl + @"'
                         ,'" + controlRiesgo.GeneracionEvidencia + @"'
-                        ,'" + controlRiesgo.DiseñoControl + @"'
+                        ,'" + controlRiesgo.DisenoControl + @"'
                         ,'" + controlRiesgo.ControlClave + @"'
                         ,'" + controlRiesgo.ControlFraude + @"'
                         ,'" + controlRiesgo.EstrategiaMonitoreo + @"'

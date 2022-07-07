@@ -36,7 +36,7 @@ namespace MRC.Models
         public string Responsable { get; set; }
         public string ResponsabilidadControl { get; set; }
         public string GeneracionEvidencia { get; set; }
-        public string DiseñoControl { get; set; }
+        public string DisenoControl { get; set; }
         public string ControlClave { get; set; }
         public string ControlFraude { get; set; }
         public string EstrategiaMonitoreo { get; set; }
