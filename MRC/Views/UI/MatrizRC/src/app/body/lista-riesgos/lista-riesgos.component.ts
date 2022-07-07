@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
@@ -51,8 +52,6 @@ export class ListaRiesgosComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.refreshRiesgoList();
-		this.refreshControlList();
-		this.refreshCausaList();
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
@@ -146,25 +145,46 @@ export class ListaRiesgosComponent implements OnInit {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			this.ListaRiesgosSinFiltrado = data;
+			this.calcularTipoRiesgo();
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
 
 		});
 	}
-	refreshControlList() {
-		this.service.getControlesList().subscribe(datos => {
-			this.ControlList = datos;
-			console.log("Lista de controles");
-			console.log(this.ControlList);
+
+		calcularTipoRiesgo() {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			for(let i=0; i < this.RiesgoList.length; ++i){
+				if(this.RiesgoList[i].tipoEvento == 'Gobierno, Político y Económico' || this.RiesgoList[i].tipoEvento == 'Modelo de Negocios y Estrategias'
+				|| this.RiesgoList[i].tipoEvento == 'Mercado, Industria y Competidores'){
+					this.RiesgoList[i].tipoRiesgo = "Estratégico";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Riesgo de crédito' || this.RiesgoList[i].tipoEvento == 'Riesgo de liquidez' ||
+				this.RiesgoList[i].tipoEvento  == 'Ingresos y Rentabilidad del Negocio' ||  this.RiesgoList[i].tipoEvento  == 'Información Contable y Financiera'){
+					this.RiesgoList[i].tipoRiesgo = "Financiero";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Normativo / Regulatorio' || this.RiesgoList[i].tipoEvento == 'Legal / Fiscal' ||
+				this.RiesgoList[i].tipoEvento  == 'Tratados de Comercio Internaciones' ||  this.RiesgoList[i].tipoEvento  == 'Requisitos del Cliente'){
+					this.RiesgoList[i].tipoRiesgo = "Cumplimiento";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Fraude Interno' || this.RiesgoList[i].tipoEvento == 'Fraude Externo'){
+					this.RiesgoList[i].tipoRiesgo = "Fraude";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Eficiencia, Calidad y Productividad' || this.RiesgoList[i].tipoEvento == 'Clientes, Productos y Prácticas Empresariales' ||
+				this.RiesgoList[i].tipoEvento  == 'Cadena de Suministro' ||  this.RiesgoList[i].tipoEvento  == 'Higiene, Seguridad y Medio Ambiente' ||
+				this.RiesgoList[i].tipoEvento  == 'Estructura de la Compañía' ||  this.RiesgoList[i].tipoEvento  == 'Continuidad del Negocio'){
+					this.RiesgoList[i].tipoRiesgo = "Operacional";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Sistemas e Infraestructura de Comunicaciones' || this.RiesgoList[i].tipoEvento == 'Segregación de Funciones' ||
+				this.RiesgoList[i].tipoEvento  == 'Calidad de la Información'){
+					this.RiesgoList[i].tipoRiesgo = "Tecnológico";
+				}
+			}
 		});
 	}
-	refreshCausaList() {
-		this.service.getCausasList().subscribe(datos => {
-			this.CausaList = datos;
-			console.log("Lista de causas");
-			console.log(this.CausaList);
-		});
-	}
+
+	
 	FilterFn(){
 		var filtroPorIdRiesgo = this.filtroPorIdRiesgo;
 		var filtroPorDescripcionRiesgo = this.filtroPorDescripcionRiesgo;
