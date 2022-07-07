@@ -44,9 +44,9 @@ namespace MRC.Models
         public string Estrategia { get; set; }
         public string ResponsableTratamiento { get; set; }
         public string DescripcionTratamiento { get; set; }
-        public string CalificacionControl { get; set; }
-        public string CoberturaPonderada { get; set; }
-        public string CoberturaTotal { get; set; }
+        public int CalificacionControl { get; set; }
+        public int CoberturaPonderada { get; set; }
+        public int CoberturaTotal { get; set; }
         public string NivelCobertura { get; set; }
         public string CausasAdjuntas { get; set; }
         public string Observaciones { get; set; }

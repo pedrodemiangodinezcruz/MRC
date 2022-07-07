@@ -60,9 +60,8 @@ namespace MRC.Controllers
             string query = @"
                    insert into dbo.controlRiesgo (idRiesgoAsociado, idRiesgoAsociado2, idRiesgoAsociado3, idRiesgoAsociado4,
                     idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7, idRiesgoAsociado8, idRiesgoAsociado9,
-                    idRiesgoAsociado10, macroProceso, proceso
-                    ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
-                    tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
+                    idRiesgoAsociado10, macroProceso, proceso,subProceso, idControl, general, descripcion, evidencia,
+                    segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl,
                     controlClave, controlFraude, estrategiaMonitoreo,cobertura, estrategia, responsableTratamiento,
                     descripcionTratamiento, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,

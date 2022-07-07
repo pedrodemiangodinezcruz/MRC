@@ -110,7 +110,7 @@
 				<th scope="col" class="azul-marino" rowspan="2">Cobertura individual por Control</th>
 				<th scope="col" class="azul-marino" rowspan="2">Cobertura Ponderada por Control (Calificación x
 					Cobertura)</th>
-				<th scope="col" class="azul-marino" rowspan="2">Coberture Total de los Controles</th>
+				<th scope="col" class="azul-marino" rowspan="2">Cobertura Total de los Controles</th>
 				<th scope="col" class="azul-marino" rowspan="2">Nivel de Cobertura Total de los Controles</th>
 				<th scope="col" class="morado" rowspan="2">Observaciones</th>
 			</tr>
@@ -181,7 +181,7 @@
 					<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.descripcion}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
-					<td [attr.contenteditable]="contenteditable">Documentación</td>
+					<td [attr.contenteditable]="contenteditable">{{controlItem.documentacion}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.tipoControl}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.naturalezaAdecuada}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.naturalezaControl}}</td>
@@ -197,12 +197,12 @@
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
-					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">19%</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">48%</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Medio</td>
-					<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.observaciones}}</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}%</td>
+					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaPonderada}}%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaTotal}}%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.nivelCobertura}}</td>
+					<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.observaciones}}%</td>
 					<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
 						<button type="button" class="btn btn-success" (click)="editClick(controlItem)"

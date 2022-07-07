@@ -314,7 +314,7 @@
 							</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
-							<td [attr.contenteditable]="contenteditable">Documentación</td>
+							<td [attr.contenteditable]="contenteditable">{{controlItem.documentacion}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.tipoControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.naturalezaAdecuada}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.naturalezaControl}}</td>
@@ -324,20 +324,19 @@
 							<td [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.disenoControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
-								{{controlItem.estrategia}}</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado%</td>
-							<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado</td>
-							<td [attr.contenteditable]="contenteditable">{{controlItem.tipoAdecuado}}</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}%</td>
+							<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaPonderada}}%</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaTotal}}%</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.nivelCobertura}}</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado (Ver qué poner aquí)</td>
+							<td [attr.contenteditable]="contenteditable">Ver que poner aquí</td>
 							<td [attr.contenteditable]="contenteditable">
 								{{controlItem.observaciones}}</td>
 							<td scope="col">

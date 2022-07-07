@@ -74,7 +74,7 @@ export class ControlesComponent implements OnInit {
 	calificacionControl: number | undefined;
 	coberturaPonderada: number | undefined;
 	coberturaTotal: number | undefined;
-	nivelCobertura: number | undefined;
+	nivelCobertura: string | undefined;
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
 
