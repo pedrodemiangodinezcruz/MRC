@@ -307,7 +307,7 @@
 								{{riesgoItem.probabilidad}}</td>
 							<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
 							'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">{{riesgoItem.impacto}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.impacto}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.general}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}
@@ -415,7 +415,7 @@
 									{{riesgoItem.probabilidad}}</td>
 								<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
 								'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">{{riesgoItem.impacto}}</td>
-								<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
+								<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.nivelRiesgo}}</td>
 								<td colspan="29" class="sinControl">
 									ListRiesgo: {{tamanoListaRiesgo}}
 									ListCausa: {{tamanoListaCausa}} ListControl: {{tamanoListaControl}} I: {{i}},
@@ -527,7 +527,7 @@
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.probabilidad}}</td>
 						<td [attr.contenteditable]="contenteditable">{{riesgoItem.impacto}}</td>
-						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">A</td>
+						<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.nivelRiesgo}}</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.proceso}}</td>
 						<td [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}</td>

@@ -33,6 +33,7 @@ export class RiesgoComponent implements OnInit {
   riesgoFraude:  string = "";
   probabilidad:  string = "";
   impacto:  string = "";
+  nivelRiesgo: string = "";
   mostarDiv: boolean = false;
 
   
@@ -56,6 +57,7 @@ export class RiesgoComponent implements OnInit {
 	this.riesgoFraude = this.riesgo.riesgoFraude;
 	this.probabilidad = this.riesgo.probabilidad;
 	this.impacto = this.riesgo.impacto;
+	this.nivelRiesgo = this.riesgo.nivelRiesgo;
 	console.log("Id Riesgo a cambiar" + this.idRiesgo);
 	console.log("Id Riesgo BD " + this.Id);
   }
@@ -79,7 +81,8 @@ export class RiesgoComponent implements OnInit {
 		ios: this.ios,
 		riesgoFraude: this.riesgoFraude,
 		probabilidad: this.probabilidad,
-		impacto: this.impacto
+		impacto: this.impacto,
+		nivelRiesgo: this.nivelRiesgo
 	};
 	console.log(this.idRiesgo);
 	console.log(val);
@@ -105,7 +108,8 @@ updateRiesgo() {
 		ios: this.ios,
 		riesgoFraude: this.riesgoFraude,
 		probabilidad: this.probabilidad,
-		impacto: this.impacto
+		impacto: this.impacto,
+		nivelRiesgo: this.nivelRiesgo
 	};
 	console.log(this.idRiesgo);
 	console.log("Id a cambiar" + this.Id);

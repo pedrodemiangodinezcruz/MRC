@@ -36,12 +36,18 @@ namespace MRC.Models
         public string Responsable { get; set; }
         public string ResponsabilidadControl { get; set; }
         public string GeneracionEvidencia { get; set; }
+        public string DiseñoControl { get; set; }
         public string ControlClave { get; set; }
         public string ControlFraude { get; set; }
+        public string EstrategiaMonitoreo { get; set; }
         public int Cobertura { get; set; }
         public string Estrategia { get; set; }
         public string ResponsableTratamiento { get; set; }
         public string DescripcionTratamiento { get; set; }
+        public string CalificacionControl { get; set; }
+        public string CoberturaPonderada { get; set; }
+        public string CoberturaTotal { get; set; }
+        public string NivelCobertura { get; set; }
         public string CausasAdjuntas { get; set; }
         public string Observaciones { get; set; }
     }

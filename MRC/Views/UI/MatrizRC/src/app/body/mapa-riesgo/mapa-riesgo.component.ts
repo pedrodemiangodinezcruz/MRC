@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Macroproceso } from 'src/app/body/pareto/macroproceso';
 
 declare function getPointCategoryName(point: any, dimension: any): any;
+declare function obtenerRiesgos(riesgosPorMacro: any): any;
 declare var require: any;
 
 let heatmap = require('highcharts/modules/heatmap');
@@ -32,6 +33,24 @@ export class MapaRiesgoComponent implements OnInit {
 			isY = dimension === 'y',
 			axis = series[isY ? 'yAxis' : 'xAxis'];
 		return axis.categories[point[isY ? 'y' : 'x']];
+	}
+	obtenerRiesgos(riesgosPorMacro: any) {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			for (let i = 0; i < this.RiesgoList.length; i++) {
+				//Si existen riesgos asociados al macroproceso correspondiente
+				if (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) {
+					this.RiesgoListPorMacro.push(this.RiesgoList[i].idRiesgo);
+					console.log("Riesgo con macro");
+				}
+			}
+			for (let j = 0; j < this.RiesgoListPorMacro.length; j++) {
+				console.log(this.RiesgoListPorMacro[j]);
+				riesgosPorMacro += " " + this.RiesgoListPorMacro[j];
+			}
+			console.log("Return");
+		return riesgosPorMacro;
+	});
 	}
 
 	public chartOptions: any = {
@@ -61,13 +80,19 @@ export class MapaRiesgoComponent implements OnInit {
 
 		accessibility: {
 			point: {
-				descriptionFormatter: function (point: any) {
+				descriptionFormatter: function (point: any, riesgosPorMacro: any) {
 					var ix = point.index + 1,
 						xName = getPointCategoryName(point, 'x'),
 						yName = getPointCategoryName(point, 'y'),
-						val = point.value;
+						val = obtenerRiesgos(riesgosPorMacro);
 					return ix + '. ' + xName + ' sales ' + yName + ', ' + val + '.';
+				},
+			riesgos:{
+				obtenerRiesgosOptions: function (riesgosPorMacro: any) {
+					var val = obtenerRiesgos(riesgosPorMacro);
+					return + val + '.';
 				}
+			}
 			}
 		},
 
@@ -98,7 +123,7 @@ export class MapaRiesgoComponent implements OnInit {
 			borderWidth: 1,
 			data: [[0, 0, 75,], [0, 1, 50], [0, 2, 25], [0, 3, 25], [0, 4, 0], [1, 0, 75], [1, 1, 75], [1, 2, 50], [1, 3, 25], [1, 4, 25], [2, 0, 100], [2, 1, 75], [2, 2, 50], [2, 3, 50], [2, 4, 50], [3, 0, 100], [3, 1, 100], [3, 2, 100], [3, 3, 75], [3, 4, 75], [4, 0, 100], [4, 1, 100], [4, 2, 100], [4, 3, 100], [4, 4, 75]],
 			dataLabels: {
-				enabled: true,
+				enabled: false,
 				color: '#000000'
 			}
 		}],
@@ -132,6 +157,7 @@ export class MapaRiesgoComponent implements OnInit {
 	ngOnInit() {
 		this.refreshRiesgoList();
 		this.buscarRiesgosSinMacros();
+		this.obtenerRiesgos(this.riesgosPorMacro);
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
@@ -143,29 +169,13 @@ export class MapaRiesgoComponent implements OnInit {
 			{ Nombre: "Contratación al Retiro" },
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
-			for (let i = 0; i < this.RiesgoList.length; i++) {
-				//Si existen riesgos asociados al macroproceso correspondiente
-				if (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) {
-					this.RiesgoListPorMacro.push(this.RiesgoList[i].idRiesgo);
-					console.log("Riesgo con macro");
-				}
-			}
-			for (let j = 0; j < this.RiesgoListPorMacro.length; j++) {
-				console.log(this.RiesgoListPorMacro[j]);
-				this.riesgosPorMacro += " " + this.RiesgoListPorMacro[j];
-			}
-			//console.log(this.riesgosPorMacro);
-			this.chartOptions.tooltip.formatter = function (this: any) {
-				this.riesgos = this.riesgosPorMacro;
-				console.log("Aca: " + this.riesgosPorMacro);
-				return 'ID de los riesgos: <b>' + this.riesgos + '</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
+			this.chartOptions.tooltip.formatter = function (this : any) {
+				//return 'ID de los riesgos: <b>' + obtenerRiesgos(this.riesgosPorMacro) + '</b>';
+					return 'ID de los riesgos: <b>' + 'Wow' + '</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
 					this.point.value + '</b><br> Con nivel de probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>';
 			}
-			console.log( "Aqui" + this.riesgosPorMacro);
+			
 			Highcharts.chart('container', this.chartOptions);
-		});
 
 	}
 	refreshRiesgoList() {

@@ -58,6 +58,7 @@ export class MatrizComponent implements OnInit {
 	riesgoFraude: string | undefined;
 	probabilidad: number | undefined;
 	impacto: string | undefined;
+	nivelRiesgo: string | undefined;
 
 
 	ngOnInit(): void {
@@ -79,6 +80,7 @@ export class MatrizComponent implements OnInit {
 		this.riesgoFraude = this.riesgo.riesgoFraude;
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
+		this,this.nivelRiesgo = this.riesgo.nivelRiesgo;
 		console.log(this.riesgo.idRiesgo);
 
 	}
@@ -101,7 +103,8 @@ export class MatrizComponent implements OnInit {
 			ios: "",
 			riesgoFraude: "",
 			probabilidad: 0,
-			impacto: ""
+			impacto: "",
+			nivelRiesgo: ""
 		}
 	}
 	closeClick() {
@@ -132,7 +135,8 @@ export class MatrizComponent implements OnInit {
 			ios: this.ios,
 			riesgoFraude: this.riesgoFraude,
 			probabilidad: this.probabilidad,
-			impacto: this.impacto
+			impacto: this.impacto,
+			nivelRiesgo: this.nivelRiesgo
 		};
 		this.service.anadirRiesgo(val).subscribe(res => {
 			alert(res.toString());

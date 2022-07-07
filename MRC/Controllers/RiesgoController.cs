@@ -27,7 +27,7 @@ namespace MRC.Controllers
             
             string query = @"
                    SELECT Id, idRiesgo, macroProceso, proceso, subProceso, descripcion, consecuencia
-                    , tipoEvento, tipoRiesgo, iff, ic, ios, riesgoFraude, probabilidad, impacto FROM dbo.Riesgo";
+                    , tipoEvento, tipoRiesgo, iff, ic, ios, riesgoFraude, probabilidad, impacto, nivelRiesgo FROM dbo.Riesgo";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;
@@ -54,7 +54,7 @@ namespace MRC.Controllers
             string query = @"
                    insert into dbo.Riesgo (idRiesgo, macroProceso, proceso
                     ,subProceso, descripcion, consecuencia, tipoEvento, tipoRiesgo,
-                    iff, ic, ios, riesgoFraude, probabilidad, impacto ) values 
+                    iff, ic, ios, riesgoFraude, probabilidad, impacto, nivelRiesgo ) values 
                      (
                         '" + riesgo.IdRiesgo + @"'
                         ,'" + riesgo.MacroProceso + @"'
@@ -70,6 +70,7 @@ namespace MRC.Controllers
                         ,'" + riesgo.RiesgoFraude + @"'
                         ,'" + riesgo.Probabilidad + @"'
                         ,'" + riesgo.Impacto + @"'
+                        ,'" + riesgo.NivelRiesgo+ @"'
                        )
                     ";
 
@@ -111,6 +112,7 @@ namespace MRC.Controllers
                     ,riesgoFraude = '" + riesgo.RiesgoFraude + @"'
                     ,probabilidad = '" + riesgo.Probabilidad + @"'
                     ,impacto = '" + riesgo.Impacto + @"'
+                    ,nivelRiesgo = '" + riesgo.NivelRiesgo+ @"'
                     where Id = " + riesgo.Id + @"
                     ";
 

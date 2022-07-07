@@ -30,8 +30,9 @@ namespace MRC.Controllers
                     idRiesgoAsociado5, idRiesgoAsociado6, idRiesgoAsociado7, idRiesgoAsociado8, idRiesgoAsociado9,
                     idRiesgoAsociado10, macroProceso, proceso, subProceso, idControl, general, descripcion
                     , evidencia, segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
-                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, controlClave,
-                    controlFraude, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
+                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, diseñoControl, controlClave,
+                    controlFraude, estrategiaMonitoreo, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
+                    calificacionControl, coberturaPonderada , coberturaTotal , nivelCobertura, 
                     causasAdjuntas, observaciones FROM dbo.controlRiesgo";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
@@ -62,9 +63,10 @@ namespace MRC.Controllers
                     idRiesgoAsociado10, macroProceso, proceso
                     ,subProceso, idControl, general, descripcion, evidencia, segregacion, documentacion,
                     tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
-                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia,
-                    controlClave, controlFraude, cobertura, estrategia, responsableTratamiento,
-                    descripcionTratamiento, causasAdjuntas, observaciones) values 
+                    frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, diseñoControl,
+                    controlClave, controlFraude, estrategiaMonitoreo,cobertura, estrategia, responsableTratamiento,
+                    descripcionTratamiento, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,
+                    causasAdjuntas, observaciones) values 
                      (
                         '" + controlRiesgo.IdRiesgoAsociado + @"'
                         ,'" + controlRiesgo.IdRiesgoAsociado2 + @"'
@@ -94,12 +96,18 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.Responsable + @"'
                         ,'" + controlRiesgo.ResponsabilidadControl + @"'
                         ,'" + controlRiesgo.GeneracionEvidencia + @"'
+                        ,'" + controlRiesgo.DiseñoControl + @"'
                         ,'" + controlRiesgo.ControlClave + @"'
                         ,'" + controlRiesgo.ControlFraude + @"'
+                        ,'" + controlRiesgo.EstrategiaMonitoreo + @"'
                         ,'" + controlRiesgo.Cobertura + @"'
                         ,'" + controlRiesgo.Estrategia + @"'
                         ,'" + controlRiesgo.ResponsableTratamiento + @"'
                         ,'" + controlRiesgo.DescripcionTratamiento + @"'
+                        ,'" + controlRiesgo.CalificacionControl + @"'
+                        ,'" + controlRiesgo.CoberturaPonderada + @"'
+                        ,'" + controlRiesgo.CoberturaTotal + @"'
+                        ,'" + controlRiesgo.NivelCobertura+ @"'
                         ,'" + controlRiesgo.CausasAdjuntas + @"'
                         ,'" + controlRiesgo.Observaciones + @"'
                        )
@@ -163,6 +171,10 @@ namespace MRC.Controllers
                         ,estrategia ='" + controlRiesgo.Estrategia + @"'
                         ,responsableTratamiento ='" + controlRiesgo.ResponsableTratamiento + @"'
                         ,descripcionTratamiento ='" + controlRiesgo.DescripcionTratamiento + @"'
+                        ,calificacionControl ='" + controlRiesgo.CalificacionControl + @"'
+                        ,coberturaPonderada ='" + controlRiesgo.CoberturaPonderada + @"'
+                        ,coberturaTotal ='" + controlRiesgo.CoberturaTotal + @"'
+                        ,NivelCobertura ='" + controlRiesgo.NivelCobertura + @"'
                         ,causasAdjuntas='" + controlRiesgo.CausasAdjuntas + @"'
                         ,observaciones ='" + controlRiesgo.Observaciones + @"'
                         where Id = " + controlRiesgo.Id + @"

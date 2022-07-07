@@ -22,6 +22,7 @@ namespace MRC.Models
         public string RiesgoFraude { get; set; }
         public string Probabilidad { get; set; }
         public string Impacto { get; set; }
+        public string NivelRiesgo { get; set; }
 
     }
 }
