@@ -142,17 +142,7 @@ export class ListaRiesgosComponent implements OnInit {
 	}
 
 	refreshRiesgoList() {
-		this.service.getRiesgoList().subscribe(data => {
 			this.calcularTipoRiesgo();
-			this.calcularNivelRiesgoInherente();
-			/*
-			this.RiesgoList = data;
-			this.ListaRiesgosSinFiltrado = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
-			*/
-
-		});
 	}
 
 		calcularTipoRiesgo() {
@@ -184,22 +174,61 @@ export class ListaRiesgosComponent implements OnInit {
 					this.RiesgoList[i].tipoRiesgo = "Tecnológico";
 				}
 			}
-			this.RiesgoList = data;
-			this.ListaRiesgosSinFiltrado = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
+			this.calcularNivelRiesgoInherente(this.RiesgoList, this.ListaRiesgosSinFiltrado, data);
+			//console.log("Lista de riesgos");
+			//console.log(this.RiesgoList);
 		});
 	}
 
-	calcularNivelRiesgoInherente() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
+	calcularNivelRiesgoInherente(RiesgoList: any, ListaRiesgosSinFiltrado: any, data: any) {
 			for(let i=0; i < this.RiesgoList.length; ++i){
-				if(this.RiesgoList[i].probabilidad == 'Muy alta' && this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil'){
+				if(this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')){
 					this.RiesgoList[i].nivelRiesgo = "A";
 				}
-				else{
-					this.RiesgoList[i].nivelRiesgo = "Wow";
+				else if(this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Importante' || this.RiesgoList[i].impacto == 'Crítico'|| this.RiesgoList[i].impacto == 'Catastrófico')){
+					this.RiesgoList[i].nivelRiesgo = "MA";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Marginal')){
+					this.RiesgoList[i].nivelRiesgo = "M";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Débil' || this.RiesgoList[i].impacto == 'Importante')){
+					this.RiesgoList[i].nivelRiesgo = "A";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')){
+					this.RiesgoList[i].nivelRiesgo = "MA";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Marginal')){
+					this.RiesgoList[i].nivelRiesgo = "B";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Débil' || this.RiesgoList[i].impacto == 'Importante')){
+					this.RiesgoList[i].nivelRiesgo = "M";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')){
+					this.RiesgoList[i].nivelRiesgo = "MA";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')){
+					this.RiesgoList[i].nivelRiesgo = "B";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Importante')){
+					this.RiesgoList[i].nivelRiesgo = "M";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Crítico')){
+					this.RiesgoList[i].nivelRiesgo = "A";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')){
+					this.RiesgoList[i].nivelRiesgo = "MA";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Marginal')){
+					this.RiesgoList[i].nivelRiesgo = "MB";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Débil')){
+					this.RiesgoList[i].nivelRiesgo = "B";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Importante')){
+					this.RiesgoList[i].nivelRiesgo = "M";
+				}
+				else if(this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')){
+					this.RiesgoList[i].nivelRiesgo = "A";
 				}
 				
 			}
@@ -207,7 +236,7 @@ export class ListaRiesgosComponent implements OnInit {
 			this.ListaRiesgosSinFiltrado = data;
 			console.log("Lista de riesgos");
 			console.log(this.RiesgoList);
-		});
+		return RiesgoList + ListaRiesgosSinFiltrado + data;
 	}
 
 	

@@ -170,13 +170,16 @@
 					<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
 					<td [attr.contenteditable]="contenteditable"
 						[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
-					'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
+					'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verdeImpacto' : riesgoItem.probabilidad === 'Muy Baja' }">
 						{{riesgoItem.probabilidad}}</td>
 					<td [attr.contenteditable]="contenteditable"
 						[ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
 								'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">
 						{{riesgoItem.impacto}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.nivelRiesgo}}
+					<td [attr.contenteditable]="contenteditable"
+						[ngClass]="{'rojo' : riesgoItem.nivelRiesgo === 'MA','anaranjado':  riesgoItem.nivelRiesgo === 'A',
+							'medio' : riesgoItem.nivelRiesgo === 'M', 'bajo' : riesgoItem.nivelRiesgo === 'B', 'verdeImpacto' : riesgoItem.nivelRiesgo === 'MB'}">
+						{{riesgoItem.nivelRiesgo}}
 					</td>
 					<td scope="col">
 						<button type="button" class="btn btn-success" (click)="editClick(riesgoItem)"
