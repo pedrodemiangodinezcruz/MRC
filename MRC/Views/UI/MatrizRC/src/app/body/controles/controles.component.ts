@@ -294,7 +294,19 @@ export class ControlesComponent implements OnInit {
 	}
 
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any, data: any) {
-	
+		ControlList = data;
+		for (let i = 0; i < ControlList.length; ++i) {
+			if (ControlList[i].disenoControl == 'No Efectivo') {
+				ControlList[i].coberturaPonderada = ((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5)/100);
+			}
+			else  {
+				ControlList[i].coberturaPonderada = ((ControlList[i].calificacionControl * ControlList[i].cobertura)/100);
+			}
+		}
+		ControlList = data;
+		ListaControlSinFiltrado = data;
+		console.log("Lista de controles despues de calcular coberturaPonderada: ");
+		console.log(ControlList);
 	}
 
 
