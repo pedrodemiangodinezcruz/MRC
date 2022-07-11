@@ -708,7 +708,7 @@
 </div>
 <div class="row">
 	<div class="col">
-		<p class="text-center fw-bold">Control clave</p>
+		<p class="text-center fw-bold">Control clave</p><br>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="controlClave" value="{{control.controlClave}}"
 				aria-label="Default select example">
@@ -753,6 +753,19 @@
 						d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
 				</svg>
 			</button>-->
+		</div>
+	</div>
+	<div class="col">
+		<p class="text-center fw-bold">Evaluacion de Funcionalidad</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="evaluacionFuncionalidad" value="{{control.evaluacionFuncionalidad}}"
+				aria-label="Default select example">
+				<option selected>...</option>
+				<option value="Efectivo">Efectivo</option>
+				<option value="No efectivo">No efectivo</option>
+				<option value="No efectivo">No probado</option>
+			</select>
+			<label for="floatingSelect">Seleccione una opción</label>
 		</div>
 	</div>
 </div>

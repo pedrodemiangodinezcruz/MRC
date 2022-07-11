@@ -43,6 +43,7 @@ namespace MRC.Models
         public int Cobertura { get; set; }
         public string ResponsableTratamiento { get; set; }
         public string DescripcionTratamiento { get; set; }
+        public string EvaluacionFuncionalidad { get; set; }
         public int CalificacionControl { get; set; }
         public int CoberturaPonderada { get; set; }
         public int CoberturaTotal { get; set; }

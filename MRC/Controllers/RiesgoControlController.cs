@@ -31,7 +31,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado10, macroProceso, proceso, subProceso, idControl, general, descripcion
                     , evidencia, segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl, controlClave,
-                    controlFraude, estrategiaMonitoreo, cobertura, estrategia, responsableTratamiento, descripcionTratamiento,
+                    controlFraude, estrategiaMonitoreo, cobertura, estrategia, responsableTratamiento, descripcionTratamiento, evaluacionFuncionalidad,
                     calificacionControl, coberturaPonderada , coberturaTotal , nivelCobertura, 
                     causasAdjuntas, observaciones FROM dbo.controlRiesgo";
             DataTable table = new DataTable();
@@ -63,8 +63,8 @@ namespace MRC.Controllers
                     idRiesgoAsociado10, macroProceso, proceso,subProceso, idControl, general, descripcion, evidencia,
                     segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl,
-                    controlClave, controlFraude,cobertura, estrategiaMonitoreo, responsableTratamiento,
-                    descripcionTratamiento, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,
+                    controlClave, controlFraude, cobertura, estrategiaMonitoreo, responsableTratamiento,
+                    descripcionTratamiento, evaluacionFuncionalidad, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,
                     causasAdjuntas, observaciones) values 
                      (
                         '" + controlRiesgo.IdRiesgoAsociado + @"'
@@ -102,6 +102,7 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.EstrategiaMonitoreo + @"'
                         ,'" + controlRiesgo.ResponsableTratamiento + @"'
                         ,'" + controlRiesgo.DescripcionTratamiento + @"'
+                        ,'" + controlRiesgo.EvaluacionFuncionalidad + @"'
                         ,'" + controlRiesgo.CalificacionControl + @"'
                         ,'" + controlRiesgo.CoberturaPonderada + @"'
                         ,'" + controlRiesgo.CoberturaTotal + @"'
@@ -170,10 +171,11 @@ namespace MRC.Controllers
                         ,estrategiaMonitoreo ='" + controlRiesgo.EstrategiaMonitoreo + @"'
                         ,responsableTratamiento ='" + controlRiesgo.ResponsableTratamiento + @"'
                         ,descripcionTratamiento ='" + controlRiesgo.DescripcionTratamiento + @"'
+                        ,evaluacionFuncionalidad ='" + controlRiesgo.EvaluacionFuncionalidad + @"'
                         ,calificacionControl ='" + controlRiesgo.CalificacionControl + @"'
                         ,coberturaPonderada ='" + controlRiesgo.CoberturaPonderada + @"'
                         ,coberturaTotal ='" + controlRiesgo.CoberturaTotal + @"'
-                        ,NivelCobertura ='" + controlRiesgo.NivelCobertura + @"'
+                        ,nivelCobertura ='" + controlRiesgo.NivelCobertura + @"'
                         ,causasAdjuntas='" + controlRiesgo.CausasAdjuntas + @"'
                         ,observaciones ='" + controlRiesgo.Observaciones + @"'
                         where Id = " + controlRiesgo.Id + @"

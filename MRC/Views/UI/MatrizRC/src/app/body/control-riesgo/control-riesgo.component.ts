@@ -54,6 +54,7 @@ export class ControlRiesgoComponent implements OnInit {
 	estrategiaMonitoreo: string | undefined;
 	responsableTratamiento: string | undefined;
 	descripcionTratamiento: string | undefined;
+	evaluacionFuncionalidad: string | undefined;
 	calificacionControl: number | undefined;
 	coberturaPonderada: number | undefined;
 	coberturaTotal: number | undefined;
@@ -101,6 +102,7 @@ export class ControlRiesgoComponent implements OnInit {
 		this.estrategiaMonitoreo = this.control.estrategiaMonitoreo;
 		this.responsableTratamiento = this.control.responsableTratamiento;
 		this.descripcionTratamiento = this.control.descripcionTratamiento;
+		this.evaluacionFuncionalidad = this.control.evaluacionFuncionalidad;
 		this.calificacionControl = this.control.calificacionControl;
 		this.coberturaPonderada = this.control.coberturaPonderada;
 		this.coberturaTotal = this.control.coberturaTotal;
@@ -145,6 +147,7 @@ export class ControlRiesgoComponent implements OnInit {
 			estrategiaMonitoreo: this.estrategiaMonitoreo,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
+			evaluacionFuncionalidad: this.evaluacionFuncionalidad,
 			calificacionControl: this.calificacionControl,
 			coberturaPonderada: this.coberturaPonderada,
 			coberturaTotal: this.coberturaTotal,
@@ -197,6 +200,7 @@ export class ControlRiesgoComponent implements OnInit {
 			estrategiaMonitoreo: this.estrategiaMonitoreo,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
+			evaluacionFuncionalidad: this.evaluacionFuncionalidad,
 			calificacionControl: this.calificacionControl,
 			coberturaPonderada: this.coberturaPonderada,
 			coberturaTotal: this.coberturaTotal,

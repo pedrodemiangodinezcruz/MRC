@@ -72,6 +72,7 @@ export class ControlesComponent implements OnInit {
 	estrategiaMonitoreo: string | undefined;
 	responsableTratamiento: string | undefined;
 	descripcionTratamiento: string | undefined;
+	evaluacionFuncionalidad: string | undefined;
 	calificacionControl: number | undefined;
 	coberturaPonderada: number | undefined;
 	coberturaTotal: number | undefined;
@@ -117,6 +118,7 @@ export class ControlesComponent implements OnInit {
 		this.estrategiaMonitoreo = this.control.estrategiaMonitoreo;
 		this.responsableTratamiento = this.control.responsableTratamiento;
 		this.descripcionTratamiento = this.control.descripcionTratamiento;
+		this.evaluacionFuncionalidad = this.control.evaluacionFuncionalidad;
 		this.calificacionControl = this.control.calificacionControl;
 		this.coberturaPonderada = this.control.coberturaPonderada;
 		this.coberturaTotal = this.control.coberturaTotal;
@@ -178,6 +180,7 @@ export class ControlesComponent implements OnInit {
 			estrategiaMonitoreo: this.estrategiaMonitoreo,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
+			evaluacionFuncionalidad: this.evaluacionFuncionalidad,
 			calificacionControl: this.calificacionControl,
 			coberturaPonderada: this.coberturaPonderada,
 			coberturaTotal: this.coberturaTotal,
@@ -209,7 +212,7 @@ export class ControlesComponent implements OnInit {
 		this.service.getControlesList().subscribe(data => {
 			this.ControlList = data;
 			for (let i = 0; i < this.ControlList.length; ++i) {
-				if (this.ControlList[i].calificacionControl == 0) {
+				if (this.ControlList[i].evaluacionFuncionalidad == 0) {
 					this.ControlList[i].disenoControl = "No se identifico control";
 				}
 				else if (this.ControlList[i].segregacion == 'Sí') {
