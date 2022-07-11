@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'; 
+import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
 
@@ -31,16 +31,16 @@ export class MatrizComponent implements OnInit {
 	constructor(private service: SharedService) { }
 
 	RiesgoList: any = [];
-	ListaRiesgosSinFiltrado:any=[];
+	ListaRiesgosSinFiltrado: any = [];
 	ControlList: any = [];
-	ListaControlSinFiltrado:any=[];
+	ListaControlSinFiltrado: any = [];
 	CausaList: any = [];
 	riesgo: any;
-	filtroPorIdRiesgo: string="";
-	filtroPorIdControl: string="";
-	filtroPorDescripcionRiesgo: string="";
-	filtroPorDescripcionControl: string="";
-	filtroPorProbabilidadRiesgo: string="";
+	filtroPorIdRiesgo: string = "";
+	filtroPorIdControl: string = "";
+	filtroPorDescripcionRiesgo: string = "";
+	filtroPorDescripcionControl: string = "";
+	filtroPorProbabilidadRiesgo: string = "";
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -80,7 +80,7 @@ export class MatrizComponent implements OnInit {
 		this.riesgoFraude = this.riesgo.riesgoFraude;
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
-		this,this.nivelRiesgo = this.riesgo.nivelRiesgo;
+		this, this.nivelRiesgo = this.riesgo.nivelRiesgo;
 		console.log(this.riesgo.idRiesgo);
 
 	}
@@ -155,13 +155,100 @@ export class MatrizComponent implements OnInit {
 	}
 
 	refreshRiesgoList() {
+		this.calcularTipoRiesgo();
+	}
+	calcularTipoRiesgo() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
-			this.ListaRiesgosSinFiltrado = data;
-			console.log("Lista de riesgos");
-			console.log(this.RiesgoList);
-			
+			for (let i = 0; i < this.RiesgoList.length; ++i) {
+				if (this.RiesgoList[i].tipoEvento == 'Gobierno, Político y Económico' || this.RiesgoList[i].tipoEvento == 'Modelo de Negocios y Estrategias'
+					|| this.RiesgoList[i].tipoEvento == 'Mercado, Industria y Competidores') {
+					this.RiesgoList[i].tipoRiesgo = "Estratégico";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Riesgo de crédito' || this.RiesgoList[i].tipoEvento == 'Riesgo de liquidez' ||
+					this.RiesgoList[i].tipoEvento == 'Ingresos y Rentabilidad del Negocio' || this.RiesgoList[i].tipoEvento == 'Información Contable y Financiera') {
+					this.RiesgoList[i].tipoRiesgo = "Financiero";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Normativo / Regulatorio' || this.RiesgoList[i].tipoEvento == 'Legal / Fiscal' ||
+					this.RiesgoList[i].tipoEvento == 'Tratados de Comercio Internaciones' || this.RiesgoList[i].tipoEvento == 'Requisitos del Cliente') {
+					this.RiesgoList[i].tipoRiesgo = "Cumplimiento";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Fraude Interno' || this.RiesgoList[i].tipoEvento == 'Fraude Externo') {
+					this.RiesgoList[i].tipoRiesgo = "Fraude";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Eficiencia, Calidad y Productividad' || this.RiesgoList[i].tipoEvento == 'Clientes, Productos y Prácticas Empresariales' ||
+					this.RiesgoList[i].tipoEvento == 'Cadena de Suministro' || this.RiesgoList[i].tipoEvento == 'Higiene, Seguridad y Medio Ambiente' ||
+					this.RiesgoList[i].tipoEvento == 'Estructura de la Compañía' || this.RiesgoList[i].tipoEvento == 'Continuidad del Negocio') {
+					this.RiesgoList[i].tipoRiesgo = "Operacional";
+				}
+				else if (this.RiesgoList[i].tipoEvento == 'Sistemas e Infraestructura de Comunicaciones' || this.RiesgoList[i].tipoEvento == 'Segregación de Funciones' ||
+					this.RiesgoList[i].tipoEvento == 'Calidad de la Información') {
+					this.RiesgoList[i].tipoRiesgo = "Tecnológico";
+				}
+			}
+			this.RiesgoList = data;
+			this.calcularNivelRiesgoInherente(this.RiesgoList, data);
+			//console.log("Lista de riesgos");
+			//console.log(this.RiesgoList);
 		});
+	}
+	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
+	calcularNivelRiesgoInherente(RiesgoList: any, data: any) {
+		for (let i = 0; i < this.RiesgoList.length; ++i) {
+			if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')) {
+				this.RiesgoList[i].nivelRiesgo = "A";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Importante' || this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
+				this.RiesgoList[i].nivelRiesgo = "MA";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Marginal')) {
+				this.RiesgoList[i].nivelRiesgo = "M";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Débil' || this.RiesgoList[i].impacto == 'Importante')) {
+				this.RiesgoList[i].nivelRiesgo = "A";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
+				this.RiesgoList[i].nivelRiesgo = "MA";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Marginal')) {
+				this.RiesgoList[i].nivelRiesgo = "B";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Débil' || this.RiesgoList[i].impacto == 'Importante')) {
+				this.RiesgoList[i].nivelRiesgo = "M";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
+				this.RiesgoList[i].nivelRiesgo = "MA";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')) {
+				this.RiesgoList[i].nivelRiesgo = "B";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
+				this.RiesgoList[i].nivelRiesgo = "M";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
+				this.RiesgoList[i].nivelRiesgo = "A";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
+				this.RiesgoList[i].nivelRiesgo = "MA";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
+				this.RiesgoList[i].nivelRiesgo = "MB";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
+				this.RiesgoList[i].nivelRiesgo = "B";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
+				this.RiesgoList[i].nivelRiesgo = "M";
+			}
+			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
+				this.RiesgoList[i].nivelRiesgo = "A";
+			}
+
+		}
+		this.RiesgoList = data;
+		console.log("Lista de riesgos");
+		console.log(this.RiesgoList);
+		return RiesgoList + data;
 	}
 	refreshControlList() {
 		this.service.getControlesList().subscribe(datos => {
@@ -179,51 +266,51 @@ export class MatrizComponent implements OnInit {
 		});
 	}
 
-	FilterFn(){
+	FilterFn() {
 		var filtroPorIdRiesgo = this.filtroPorIdRiesgo;
 		var filtroPorDescripcionRiesgo = this.filtroPorDescripcionRiesgo;
 		var filtroPorProbabilidadRiesgo = this.filtroPorProbabilidadRiesgo;
 		var filtroPorControl = this.filtroPorIdControl;
 		var filtroPorDescripcionControl = this.filtroPorDescripcionControl;
-	
-		this.RiesgoList = this.ListaRiesgosSinFiltrado.filter(function (el:any){
+
+		this.RiesgoList = this.ListaRiesgosSinFiltrado.filter(function (el: any) {
 			return el.idRiesgo.toString().toLowerCase().includes(
-			  filtroPorIdRiesgo.toString().trim().toLowerCase()
-			)&&
-			el.descripcion.toString().toLowerCase().includes(
-				filtroPorDescripcionRiesgo.toString().trim().toLowerCase()
-			)&&
-			el.probabilidad.toString().toLowerCase().includes(
-				filtroPorProbabilidadRiesgo.toString().trim().toLowerCase()
-			)
+				filtroPorIdRiesgo.toString().trim().toLowerCase()
+			) &&
+				el.descripcion.toString().toLowerCase().includes(
+					filtroPorDescripcionRiesgo.toString().trim().toLowerCase()
+				) &&
+				el.probabilidad.toString().toLowerCase().includes(
+					filtroPorProbabilidadRiesgo.toString().trim().toLowerCase()
+				)
 		});
-		this.ControlList = this.ListaControlSinFiltrado.filter(function (el:any){
+		this.ControlList = this.ListaControlSinFiltrado.filter(function (el: any) {
 			return el.idControl.toString().toLowerCase().includes(
 				filtroPorControl.toString().trim().toLowerCase()
-			)&&
-			el.descripcion.toString().toLowerCase().includes(
-				filtroPorDescripcionControl.toString().trim().toLowerCase()
-			)
+			) &&
+				el.descripcion.toString().toLowerCase().includes(
+					filtroPorDescripcionControl.toString().trim().toLowerCase()
+				)
 		});
-	  }
-	
-	  sortResult(prop:any,asc:any){
-		this.RiesgoList = this.ListaRiesgosSinFiltrado.sort(function(a:any,b:any){
-		  if(asc){
-			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-		  }else{
-			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-		  }
+	}
+
+	sortResult(prop: any, asc: any) {
+		this.RiesgoList = this.ListaRiesgosSinFiltrado.sort(function (a: any, b: any) {
+			if (asc) {
+				return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+			} else {
+				return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+			}
 		})
-	  }
-	  sortResultControl(prop:any,asc:any){
-		this.ControlList = this.ListaControlSinFiltrado.sort(function(a:any,b:any){
-		  if(asc){
-			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-		  }else{
-			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-		  }
+	}
+	sortResultControl(prop: any, asc: any) {
+		this.ControlList = this.ListaControlSinFiltrado.sort(function (a: any, b: any) {
+			if (asc) {
+				return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+			} else {
+				return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+			}
 		})
-	  }
+	}
 
 }

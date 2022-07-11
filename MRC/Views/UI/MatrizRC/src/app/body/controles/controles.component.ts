@@ -33,12 +33,13 @@ export class ControlesComponent implements OnInit {
 	control: any;
 	ActivarAltaControl: boolean = false;
 	ActivarEdicionControl: boolean = false;
-	filtroPorIdControl: string="";
-	filtroPorDescripcionControl: string="";
+	filtroPorIdControl: string = "";
+	filtroPorDescripcionControl: string = "";
 	Id: number = 0;
 	macroProceso: string = "";
 	proceso: string = "";
 	subProceso: string = "";
+	valorDiseñoDeControl: number = 0;
 	idRiesgoAsociado: string | undefined;
 	idRiesgoAsociado2: string | undefined;
 	idRiesgoAsociado3: string | undefined;
@@ -127,7 +128,7 @@ export class ControlesComponent implements OnInit {
 
 	}
 
-	
+
 	closeClick() {
 		this.ActivarEdicionControl = !this.ActivarEdicionControl;
 		this.refreshControlList();
@@ -201,36 +202,136 @@ export class ControlesComponent implements OnInit {
 	}
 
 	refreshControlList() {
-		this.service.getControlesList().subscribe(datos => {
-			this.ControlList = datos;
-			this.ListaControlSinFiltrado = datos;
+		this.calcularDiseñoControl();
+		this.calcularEstrategiaMonitoreo();
+	}
+
+	calcularDiseñoControl() {
+		this.service.getControlesList().subscribe(data => {
+			this.ControlList = data;
+			for (let i = 0; i < this.ControlList.length; ++i) {
+				if (this.ControlList[i].calificacionControl == 0) {
+					this.ControlList[i].disenoControl = "No se identifico control";
+				}
+				else if (this.ControlList[i].segregacion == 'Sí') {
+					++this.valorDiseñoDeControl;
+					//console.log("Coincidencia " + i + ": " + this.valorDiseñoDeControl);
+				}
+				if (this.ControlList[i].documentacion == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].naturalezaAdecuada == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].tipoAdecuado == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].frecuenciaAdecuada == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].responsabilidadControl == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].generacionEvidencia == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				//console.log("Número de 'SÍ' en: " + this.ControlList[i].idControl + ": " + this.valorDiseñoDeControl);
+				//Switch para todos los casos del diseño de control
+				switch (this.valorDiseñoDeControl) {
+					case 0:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 1:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 2:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 3:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 4:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 5:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 6:
+						this.ControlList[i].disenoControl = "Requiere Mejora";
+						break;
+					case 7:
+						this.ControlList[i].disenoControl = "Efectivo";
+				}
+				//Resetear el valor a 0 para evaluar el siguiente control
+				this.valorDiseñoDeControl = 0;
+			}
+			this.ControlList = data;
+			this.ListaControlSinFiltrado = data;
 			console.log("Lista de controles");
 			console.log(this.ControlList);
 		});
 	}
+	calcularEstrategiaMonitoreo() {
+			this.service.getControlesList().subscribe(data => {
+				this.ControlList = data;
+				for (let i = 0; i < this.ControlList.length; ++i) {
+					if (this.ControlList[i].calificacionControl == 0) {
+						this.ControlList[i].disenoControl = "No se identifico control";
+					}
+					else if (this.ControlList[i].segregacion == 'Sí') {
+						++this.valorDiseñoDeControl;
+						//console.log("Coincidencia " + i + ": " + this.valorDiseñoDeControl);
+					}
+					if (this.ControlList[i].documentacion == 'Sí') {
+						++this.valorDiseñoDeControl;
+					}
+					if (this.ControlList[i].naturalezaAdecuada == 'Sí') {
+						++this.valorDiseñoDeControl;
+					}
+					if (this.ControlList[i].tipoAdecuado == 'Sí') {
+						++this.valorDiseñoDeControl;
+					}
+					if (this.ControlList[i].frecuenciaAdecuada == 'Sí') {
+						++this.valorDiseñoDeControl;
+					}
+					if (this.ControlList[i].responsabilidadControl == 'Sí') {
+						++this.valorDiseñoDeControl;
+					}
+					if (this.ControlList[i].generacionEvidencia == 'Sí') {
+						++this.valorDiseñoDeControl;
+					}
+					this.valorDiseñoDeControl = 0;
+				}
+				this.ControlList = data;
+				this.ListaControlSinFiltrado = data;
+				console.log("Lista de controles");
+				console.log(this.ControlList);
+			});
+		}
 
-	FilterFn(){
+	//Funcion para filtrar los controles
+	FilterFn() {
 		var filtroPorIdControl = this.filtroPorIdControl;
 		var filtroPorDescripcionControl = this.filtroPorDescripcionControl;
-	
-		this.ControlList = this.ListaControlSinFiltrado.filter(function (el:any){
+
+		this.ControlList = this.ListaControlSinFiltrado.filter(function (el: any) {
 			return el.idControl.toString().toLowerCase().includes(
 				filtroPorIdControl.toString().trim().toLowerCase()
-			)&&
-			el.descripcion.toString().toLowerCase().includes(
-				filtroPorDescripcionControl.toString().trim().toLowerCase()
-			)
+			) &&
+				el.descripcion.toString().toLowerCase().includes(
+					filtroPorDescripcionControl.toString().trim().toLowerCase()
+				)
 		});
-	  }
-	
-	  sortResultControl(prop:any,asc:any){
-		this.ControlList = this.ListaControlSinFiltrado.sort(function(a:any,b:any){
-		  if(asc){
-			  return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-		  }else{
-			return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-		  }
+	}
+	//Funcion para ordenar los controles
+	sortResultControl(prop: any, asc: any) {
+		this.ControlList = this.ListaControlSinFiltrado.sort(function (a: any, b: any) {
+			if (asc) {
+				return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+			} else {
+				return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+			}
 		})
-	  }
+	}
 
 }

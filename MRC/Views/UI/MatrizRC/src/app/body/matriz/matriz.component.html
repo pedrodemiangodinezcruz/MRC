@@ -204,7 +204,7 @@
 				<th scope="col" class="azul-marino" rowspan="2">Nivel de Cobertura Total de los Controles</th>
 				<th scope="col" class="naranja" rowspan="2">Gravedad Riesgo Residual</th>
 				<th scope="col" class="naranja">Tratamiento del Riesgo</th>
-				<th scope="col" class="morado" rowspan="2" >Observaciones</th>
+				<th scope="col" class="morado" rowspan="2">Observaciones</th>
 			</tr>
 			<tr>
 				<td class="naranja">IF</td>
@@ -305,9 +305,15 @@
 								[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
 							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
 								{{riesgoItem.probabilidad}}</td>
-							<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
-							'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">{{riesgoItem.impacto}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.impacto}}</td>
+							<td [attr.contenteditable]="contenteditable"
+								[ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
+							'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">
+								{{riesgoItem.impacto}}</td>
+							<td [attr.contenteditable]="contenteditable"
+								[ngClass]="{'rojo' : riesgoItem.nivelRiesgo === 'MA','anaranjado':  riesgoItem.nivelRiesgo === 'A',
+							'medio' : riesgoItem.nivelRiesgo === 'M', 'bajo' : riesgoItem.nivelRiesgo === 'B', 'verdeImpacto' : riesgoItem.nivelRiesgo === 'MB'}">
+								{{riesgoItem.nivelRiesgo}}
+							</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.general}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcion}}
@@ -324,18 +330,25 @@
 							<td [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.disenoControl}}</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.disenoControl}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.estrategiaMonitoreo}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}%</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.calificacionControl}}%</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaPonderada}}%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaTotal}}%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.nivelCobertura}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado (Ver qué poner aquí)</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.coberturaPonderada}}%</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.coberturaTotal}}%</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.nivelCobertura}}</td>
+							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado (Ver qué
+								poner aquí)</td>
 							<td [attr.contenteditable]="contenteditable">Ver que poner aquí</td>
 							<td [attr.contenteditable]="contenteditable">
 								{{controlItem.observaciones}}</td>
@@ -412,9 +425,15 @@
 									[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
 								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
 									{{riesgoItem.probabilidad}}</td>
-								<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
-								'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">{{riesgoItem.impacto}}</td>
-								<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{riesgoItem.nivelRiesgo}}</td>
+								<td [attr.contenteditable]="contenteditable"
+									[ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
+								'medio' : riesgoItem.impacto === 'Importante', 'bajo' : riesgoItem.impacto === 'Débil', 'verdeImpacto' : riesgoItem.impacto === 'Marginal'}">
+									{{riesgoItem.impacto}}</td>
+								<td [attr.contenteditable]="contenteditable"
+									[ngClass]="{'rojo' : riesgoItem.nivelRiesgo === 'MA','anaranjado':  riesgoItem.nivelRiesgo === 'A',
+										'medio' : riesgoItem.nivelRiesgo === 'M', 'bajo' : riesgoItem.nivelRiesgo === 'B', 'verdeImpacto' : riesgoItem.nivelRiesgo === 'MB'}">
+									{{riesgoItem.nivelRiesgo}}
+								</td>
 								<td colspan="29" class="sinControl">
 									ListRiesgo: {{tamanoListaRiesgo}}
 									ListCausa: {{tamanoListaCausa}} ListControl: {{tamanoListaControl}} I: {{i}},
