@@ -41,7 +41,6 @@ namespace MRC.Models
         public string ControlFraude { get; set; }
         public string EstrategiaMonitoreo { get; set; }
         public int Cobertura { get; set; }
-        public string Estrategia { get; set; }
         public string ResponsableTratamiento { get; set; }
         public string DescripcionTratamiento { get; set; }
         public int CalificacionControl { get; set; }

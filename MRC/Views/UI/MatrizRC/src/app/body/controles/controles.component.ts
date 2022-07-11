@@ -203,7 +203,6 @@ export class ControlesComponent implements OnInit {
 
 	refreshControlList() {
 		this.calcularDiseñoControl();
-		this.calcularEstrategiaMonitoreo();
 	}
 
 	calcularDiseñoControl() {
@@ -267,47 +266,28 @@ export class ControlesComponent implements OnInit {
 			}
 			this.ControlList = data;
 			this.ListaControlSinFiltrado = data;
-			console.log("Lista de controles");
-			console.log(this.ControlList);
+			this.calcularEstrategiaMonitoreo(this.ControlList, this.ListaControlSinFiltrado, data);
 		});
 	}
-	calcularEstrategiaMonitoreo() {
-			this.service.getControlesList().subscribe(data => {
-				this.ControlList = data;
-				for (let i = 0; i < this.ControlList.length; ++i) {
-					if (this.ControlList[i].calificacionControl == 0) {
-						this.ControlList[i].disenoControl = "No se identifico control";
-					}
-					else if (this.ControlList[i].segregacion == 'Sí') {
-						++this.valorDiseñoDeControl;
-						//console.log("Coincidencia " + i + ": " + this.valorDiseñoDeControl);
-					}
-					if (this.ControlList[i].documentacion == 'Sí') {
-						++this.valorDiseñoDeControl;
-					}
-					if (this.ControlList[i].naturalezaAdecuada == 'Sí') {
-						++this.valorDiseñoDeControl;
-					}
-					if (this.ControlList[i].tipoAdecuado == 'Sí') {
-						++this.valorDiseñoDeControl;
-					}
-					if (this.ControlList[i].frecuenciaAdecuada == 'Sí') {
-						++this.valorDiseñoDeControl;
-					}
-					if (this.ControlList[i].responsabilidadControl == 'Sí') {
-						++this.valorDiseñoDeControl;
-					}
-					if (this.ControlList[i].generacionEvidencia == 'Sí') {
-						++this.valorDiseñoDeControl;
-					}
-					this.valorDiseñoDeControl = 0;
-				}
-				this.ControlList = data;
-				this.ListaControlSinFiltrado = data;
-				console.log("Lista de controles");
-				console.log(this.ControlList);
-			});
+	calcularEstrategiaMonitoreo(ControlList: any, ListaControlSinFiltrado: any, data: any) {
+		ControlList = data;
+		for (let i = 0; i < ControlList.length; ++i) {
+			if (ControlList[i].disenoControl == 'No Efectivo' || ControlList[i].disenoControl == 'Requiere Mejora'
+				|| ControlList[i].disenoControl == 'No se identifico control') {
+				ControlList[i].estrategiaMonitoreo = "Hasta que concluya plan de acción";
+			}
+			else if (ControlList[i].disenoControl == 'Efectivo' && ControlList[i].controlClave == 'Sí') {
+				ControlList[i].estrategiaMonitoreo = "Pruebas de funcionalidad";
+			}
+			else if (ControlList[i].disenoControl == 'Efectivo' && ControlList[i].controlClave == 'No') {
+				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
+			}
 		}
+		ControlList = data;
+		ListaControlSinFiltrado = data;
+		console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
+		console.log(ControlList);
+	}
 
 	//Funcion para filtrar los controles
 	FilterFn() {

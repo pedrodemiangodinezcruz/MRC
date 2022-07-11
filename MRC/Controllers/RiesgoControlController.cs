@@ -63,7 +63,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado10, macroProceso, proceso,subProceso, idControl, general, descripcion, evidencia,
                     segregacion, documentacion, tipoControl, naturalezaAdecuada, naturalezaControl, tipoAdecuado, frecuenciaControl, 
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl,
-                    controlClave, controlFraude, estrategiaMonitoreo,cobertura, estrategia, responsableTratamiento,
+                    controlClave, controlFraude,cobertura, estrategiaMonitoreo, responsableTratamiento,
                     descripcionTratamiento, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,
                     causasAdjuntas, observaciones) values 
                      (
@@ -98,9 +98,8 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.DisenoControl + @"'
                         ,'" + controlRiesgo.ControlClave + @"'
                         ,'" + controlRiesgo.ControlFraude + @"'
-                        ,'" + controlRiesgo.EstrategiaMonitoreo + @"'
                         ,'" + controlRiesgo.Cobertura + @"'
-                        ,'" + controlRiesgo.Estrategia + @"'
+                        ,'" + controlRiesgo.EstrategiaMonitoreo + @"'
                         ,'" + controlRiesgo.ResponsableTratamiento + @"'
                         ,'" + controlRiesgo.DescripcionTratamiento + @"'
                         ,'" + controlRiesgo.CalificacionControl + @"'
@@ -164,10 +163,11 @@ namespace MRC.Controllers
                         ,responsable ='" + controlRiesgo.Responsable + @"'
                         ,responsabilidadControl ='" + controlRiesgo.ResponsabilidadControl + @"'
                         ,generacionEvidencia ='" + controlRiesgo.GeneracionEvidencia + @"'
+                        ,disenoControl ='" + controlRiesgo.DisenoControl + @"'
                         ,controlClave ='" + controlRiesgo.ControlClave + @"'
                         ,controlFraude='" + controlRiesgo.ControlFraude + @"'
                         ,cobertura ='" + controlRiesgo.Cobertura + @"'
-                        ,estrategia ='" + controlRiesgo.Estrategia + @"'
+                        ,estrategiaMonitoreo ='" + controlRiesgo.EstrategiaMonitoreo + @"'
                         ,responsableTratamiento ='" + controlRiesgo.ResponsableTratamiento + @"'
                         ,descripcionTratamiento ='" + controlRiesgo.DescripcionTratamiento + @"'
                         ,calificacionControl ='" + controlRiesgo.CalificacionControl + @"'
