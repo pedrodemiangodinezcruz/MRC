@@ -290,7 +290,13 @@ export class ControlesComponent implements OnInit {
 		ListaControlSinFiltrado = data;
 		console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		console.log(ControlList);
+		//this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado, data);
 	}
+
+	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any, data: any) {
+	
+	}
+
 
 	//Funcion para filtrar los controles
 	FilterFn() {

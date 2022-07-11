@@ -78,9 +78,7 @@
 					<div class="d-flex flex-row">
 					</div>
 				</th>
-				<th scope="col" colspan="2"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col" colspan="4"></th>
+				<th scope="col" colspan="7"></th>
 				<th scope="col">
 					<div class="d-flex flex-row">
 						<div class="col-1">
@@ -112,8 +110,7 @@
 						</div>
 					</div>
 				</th>
-				<th scope="col"></th>
-				<th scope="col" class="gris">Formulado</th>
+				<th scope="col" colspan="2"></th>
 				<th scope="col">
 					<div class="d-flex flex-row">
 						<div class="col-1">
@@ -145,15 +142,7 @@
 						</div>
 					</div>
 				</th>
-				<th scope="col" colspan="12"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col" colspan="2"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col" colspan="2"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col"></th>
-				<th scope="col" colspan="4" class="gris">Formulado</th>
-				<th scope="col"></th>
+				<th scope="col" colspan="25"></th>
 				<th scope="col">
 					<div class="d-flex flex-row columLarga"></div>
 				</th>
@@ -200,7 +189,7 @@
 				<th scope="col" class="azul-marino" rowspan="2">Cobertura individual por Control</th>
 				<th scope="col" class="azul-marino" rowspan="2">Cobertura Ponderada por Control (Calificación x
 					Cobertura)</th>
-				<th scope="col" class="azul-marino" rowspan="2">Coberture Total de los Controles</th>
+				<th scope="col" class="azul-marino" rowspan="2">Cobertura Total de los Controles</th>
 				<th scope="col" class="azul-marino" rowspan="2">Nivel de Cobertura Total de los Controles</th>
 				<th scope="col" class="naranja" rowspan="2">Gravedad Riesgo Residual</th>
 				<th scope="col" class="naranja">Tratamiento del Riesgo</th>
@@ -337,7 +326,7 @@
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.estrategiaMonitoreo}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
-							<td [attr.contenteditable]="contenteditable">{{controlItem.causasAdjuntas}}</td>
+							<td [attr.contenteditable]="contenteditable">{{controlItem.evaluacionFuncionalidad}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.calificacionControl}}%</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>

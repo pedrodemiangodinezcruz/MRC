@@ -72,15 +72,7 @@
 						</div>-->
 					</div>
 				</th>
-				<th scope="col" colspan="12"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col" colspan="2"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col" colspan="2"></th>
-				<th scope="col" class="gris">Formulado</th>
-				<th scope="col"></th>
-				<th scope="col" colspan="3" class="gris">Formulado</th>
-				<th scope="col" colspan="2"></th>
+				<th scope="col" colspan="25"></th>
 			</tr>
 			<tr>
 				<th scope="col" class="azul-marino" rowspan="2">ID del Control</th>
@@ -195,9 +187,9 @@
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
-					<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
+					<td [attr.contenteditable]="contenteditable"></td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.evaluacionFuncionalidad}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}%</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaPonderada}}%</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaTotal}}%</td>
