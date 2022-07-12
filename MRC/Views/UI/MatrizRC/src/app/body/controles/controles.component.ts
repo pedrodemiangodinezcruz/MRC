@@ -206,7 +206,6 @@ export class ControlesComponent implements OnInit {
 
 	refreshControlList() {
 		this.calcularDiseñoControl();
-		//this.calcularCoberturaPonderadaPorControl();
 	}
 
 	calcularDiseñoControl() {
@@ -300,9 +299,17 @@ export class ControlesComponent implements OnInit {
 				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura)/100));
 			}
 		}
-		console.log("Lista de controles despues de calcular coberturaPonderada: ");
-		console.log(ControlList);
+		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
+		//console.log(ControlList);
+		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
 	}
+	calcularCoberturaTotalControles(ControlList: any, ListaControlSinFiltrado: any) {
+		for (let i = 0; i < ControlList.length; ++i) {
+				ControlList[i].coberturaTotal = ControlList[i].coberturaPonderada;
+		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
+		//console.log(ControlList);
+	}
+}
 
 
 	//Funcion para filtrar los controles

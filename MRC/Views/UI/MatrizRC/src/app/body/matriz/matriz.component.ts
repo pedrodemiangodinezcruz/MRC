@@ -41,6 +41,7 @@ export class MatrizComponent implements OnInit {
 	filtroPorDescripcionRiesgo: string = "";
 	filtroPorDescripcionControl: string = "";
 	filtroPorProbabilidadRiesgo: string = "";
+	valorDiseñoDeControl: number = 0;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -251,13 +252,112 @@ export class MatrizComponent implements OnInit {
 		return RiesgoList + data;
 	}
 	refreshControlList() {
-		this.service.getControlesList().subscribe(datos => {
-			this.ControlList = datos;
-			this.ListaControlSinFiltrado = datos;
-			console.log("Lista de controles");
-			console.log(this.ControlList);
+		this.calcularDiseñoControl();
+	}
+
+	calcularDiseñoControl() {
+		this.service.getControlesList().subscribe(data => {
+			this.ControlList = data;
+			for (let i = 0; i < this.ControlList.length; ++i) {
+				if (this.ControlList[i].evaluacionFuncionalidad == 0) {
+					this.ControlList[i].disenoControl = "No se identifico control";
+				}
+				else if (this.ControlList[i].segregacion == 'Sí') {
+					++this.valorDiseñoDeControl;
+					//console.log("Coincidencia " + i + ": " + this.valorDiseñoDeControl);
+				}
+				if (this.ControlList[i].documentacion == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].naturalezaAdecuada == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].tipoAdecuado == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].frecuenciaAdecuada == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].responsabilidadControl == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				if (this.ControlList[i].generacionEvidencia == 'Sí') {
+					++this.valorDiseñoDeControl;
+				}
+				//console.log("Número de 'SÍ' en: " + this.ControlList[i].idControl + ": " + this.valorDiseñoDeControl);
+				//Switch para todos los casos del diseño de control
+				switch (this.valorDiseñoDeControl) {
+					case 0:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 1:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 2:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 3:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 4:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 5:
+						this.ControlList[i].disenoControl = "No Efectivo";
+						break;
+					case 6:
+						this.ControlList[i].disenoControl = "Requiere Mejora";
+						break;
+					case 7:
+						this.ControlList[i].disenoControl = "Efectivo";
+				}
+				//Resetear el valor a 0 para evaluar el siguiente control
+				this.valorDiseñoDeControl = 0;
+			}
+			this.ControlList = data;
+			this.ListaControlSinFiltrado = data;
+			this.calcularEstrategiaMonitoreo(this.ControlList, this.ListaControlSinFiltrado);
 		});
 	}
+	calcularEstrategiaMonitoreo(ControlList: any, ListaControlSinFiltrado: any) {
+		for (let i = 0; i < ControlList.length; ++i) {
+			if (ControlList[i].disenoControl == 'No Efectivo' || ControlList[i].disenoControl == 'Requiere Mejora'
+				|| ControlList[i].disenoControl == 'No se identifico control') {
+				ControlList[i].estrategiaMonitoreo = "Hasta que concluya plan de acción";
+			}
+			else if (ControlList[i].disenoControl == 'Efectivo' && ControlList[i].controlClave == 'Sí') {
+				ControlList[i].estrategiaMonitoreo = "Pruebas de funcionalidad";
+			}
+			else if (ControlList[i].disenoControl == 'Efectivo' && ControlList[i].controlClave == 'No') {
+				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
+			}
+		}
+		this.calcularCoberturaPonderadaPorControl(this.ControlList , this.ListaControlSinFiltrado);
+		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
+		//console.log(ControlList);
+	}
+
+	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
+		for (let i = 0; i < ControlList.length; ++i) {
+			if (ControlList[i].evaluacionFuncionalidad == 'No efectivo') {
+				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5)/100));
+			}
+			else  {
+				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura)/100));
+			}
+		}
+		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
+		//console.log(ControlList);
+		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
+	}
+	calcularCoberturaTotalControles(ControlList: any, ListaControlSinFiltrado: any) {
+		for (let i = 0; i < ControlList.length; ++i) {
+				ControlList[i].coberturaTotal = ControlList[i].coberturaPonderada;
+		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
+		//console.log(ControlList);
+	}
+}
+
 	refreshCausaList() {
 		this.service.getCausasList().subscribe(datos => {
 			this.CausaList = datos;

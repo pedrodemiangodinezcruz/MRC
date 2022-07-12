@@ -72,3 +72,11 @@
     border-color: #000000;
 	font-weight: 800;
 }
+.rojo-alerta{
+	color: yellow;
+	background-color: red;
+	font-weight: 600;
+}
+.rojo-alerta:hover{
+	font-weight: 800;
+}
