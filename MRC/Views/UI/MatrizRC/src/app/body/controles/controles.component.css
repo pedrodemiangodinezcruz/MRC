@@ -15,3 +15,11 @@ td.columLarga {
 	width: 9em;
 }
   
+.rojo-alerta{
+	color: yellow;
+	background-color: red;
+	font-weight: 600;
+}
+.rojo-alerta:hover{
+	font-weight: 800;
+}

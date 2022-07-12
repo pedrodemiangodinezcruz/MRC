@@ -206,6 +206,7 @@ export class ControlesComponent implements OnInit {
 
 	refreshControlList() {
 		this.calcularDiseñoControl();
+		//this.calcularCoberturaPonderadaPorControl();
 	}
 
 	calcularDiseñoControl() {
@@ -269,11 +270,10 @@ export class ControlesComponent implements OnInit {
 			}
 			this.ControlList = data;
 			this.ListaControlSinFiltrado = data;
-			this.calcularEstrategiaMonitoreo(this.ControlList, this.ListaControlSinFiltrado, data);
+			this.calcularEstrategiaMonitoreo(this.ControlList, this.ListaControlSinFiltrado);
 		});
 	}
-	calcularEstrategiaMonitoreo(ControlList: any, ListaControlSinFiltrado: any, data: any) {
-		ControlList = data;
+	calcularEstrategiaMonitoreo(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
 			if (ControlList[i].disenoControl == 'No Efectivo' || ControlList[i].disenoControl == 'Requiere Mejora'
 				|| ControlList[i].disenoControl == 'No se identifico control') {
@@ -286,25 +286,20 @@ export class ControlesComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		ControlList = data;
-		ListaControlSinFiltrado = data;
-		console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
-		console.log(ControlList);
-		//this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado, data);
+		this.calcularCoberturaPonderadaPorControl(this.ControlList , this.ListaControlSinFiltrado);
+		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
+		//console.log(ControlList);
 	}
 
-	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any, data: any) {
-		ControlList = data;
+	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
-			if (ControlList[i].disenoControl == 'No Efectivo') {
-				ControlList[i].coberturaPonderada = ((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5)/100);
+			if (ControlList[i].evaluacionFuncionalidad == 'No efectivo') {
+				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5)/100));
 			}
 			else  {
-				ControlList[i].coberturaPonderada = ((ControlList[i].calificacionControl * ControlList[i].cobertura)/100);
+				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura)/100));
 			}
 		}
-		ControlList = data;
-		ListaControlSinFiltrado = data;
 		console.log("Lista de controles despues de calcular coberturaPonderada: ");
 		console.log(ControlList);
 	}
