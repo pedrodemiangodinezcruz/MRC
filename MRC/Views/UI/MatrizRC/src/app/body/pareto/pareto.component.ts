@@ -119,7 +119,7 @@ export class ParetoComponent implements OnInit {
 				//Recorrer listas de causas y lista de ruesgos
 				for (let j = 0; j < this.CausasList.length; j++) {
 					for (let i = 0; i < this.RiesgoList.length; i++) {
-						//If que verifica que la lista s ellene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
+						//If que verifica que la lista se llene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
 						//la causa coincida con un riesgo en el sistem
 						if ((this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) && (this.RiesgoList[i].idRiesgo === (this.CausasList[j].idRiesgoAsociado 
 							|| this.CausasList[j].idRiesgoAsociado2 || this.CausasList[j].idRiesgoAsociado3 || this.CausasList[j].idRiesgoAsociado4

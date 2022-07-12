@@ -42,6 +42,7 @@ export class MatrizComponent implements OnInit {
 	filtroPorDescripcionControl: string = "";
 	filtroPorProbabilidadRiesgo: string = "";
 	valorDiseñoDeControl: number = 0;
+	coberturaTotalControles: number = 0;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -258,7 +259,7 @@ export class MatrizComponent implements OnInit {
 			console.log(this.ControlList);
 		});
 	}
-	calculosControles(){
+	calculosControles() {
 		this.calcularDiseñoControl();
 	}
 	calcularDiseñoControl() {
@@ -338,7 +339,7 @@ export class MatrizComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado);
+		this.calcularCoberturaPonderadaPorControl(ControlList, ListaControlSinFiltrado);
 		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		//console.log(ControlList);
 	}
@@ -347,10 +348,10 @@ export class MatrizComponent implements OnInit {
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
 			if (ControlList[i].evaluacionFuncionalidad == 'No efectivo') {
-				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5)/100));
+				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5) / 100));
 			}
-			else  {
-				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura)/100));
+			else {
+				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura) / 100));
 			}
 		}
 		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
@@ -358,12 +359,58 @@ export class MatrizComponent implements OnInit {
 		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
 	}
 	calcularCoberturaTotalControles(ControlList: any, ListaControlSinFiltrado: any) {
-		for (let i = 0; i < ControlList.length; ++i) {
-				ControlList[i].coberturaTotal = ControlList[i].coberturaPonderada;
-		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
-		//console.log(ControlList);
+		for (let i = 0; i < this.RiesgoList.length; ++i) {
+			for (let j = 0; j < ControlList.length; ++j) {
+				for (let k = 0; k < this.CausaList.length; ++k) {
+					if((this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado2
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado4
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado6
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado8 
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado10)
+						&& (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo ===  ControlList[j].idRiesgoAsociado2 
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4 
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8 
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10)
+						&& (ControlList[j].idControl === this.CausaList[k].idControlAsociado || ControlList[j].idControl === this.CausaList[k].idControlAsociado2 
+						|| ControlList[j].idControl ===  this.CausaList[k].idControlAsociado3 || ControlList[j].idControl ===  this.CausaList[k].idControlAsociado4 
+						|| ControlList[j].idControl ===  this.CausaList[k].idControlAsociado5 || ControlList[j].idControl === this.CausaList[k].idControlAsociado6 
+						|| ControlList[j].idControl === this.CausaList[k].idControlAsociado7 || ControlList[j].idControl === this.CausaList[k].idControlAsociado8 
+						|| ControlList[j].idControl === this.CausaList[k].idControlAsociado9 || ControlList[j].idControl === this.CausaList[k].idControlAsociado10)){
+							
+							console.log("Id controles con el mismo riesgo asociado y causa: " + ControlList[j].idControl);
+							console.log("Cobertura ponderada del control " + ControlList[j].idControl +": " + ControlList[j].coberturaPonderada);
+							this.coberturaTotalControles = this.coberturaTotalControles + ControlList[j].coberturaPonderada;
+						}
+				}
+			}
+		}
+		//Hacer otra vez el recorrido para asignar el nivel de cobertura total a TODOS los controles
+		for (let i = 0; i < this.RiesgoList.length; ++i) {
+			for (let j = 0; j < ControlList.length; ++j) {
+				for (let k = 0; k < this.CausaList.length; ++k) {
+					if((this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado2
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado4
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado6
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado8 
+						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado10)
+						&& (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo ===  ControlList[j].idRiesgoAsociado2 
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4 
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8 
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10)
+						&& (ControlList[j].idControl === this.CausaList[k].idControlAsociado || ControlList[j].idControl === this.CausaList[k].idControlAsociado2 
+						|| ControlList[j].idControl ===  this.CausaList[k].idControlAsociado3 || ControlList[j].idControl ===  this.CausaList[k].idControlAsociado4 
+						|| ControlList[j].idControl ===  this.CausaList[k].idControlAsociado5 || ControlList[j].idControl === this.CausaList[k].idControlAsociado6 
+						|| ControlList[j].idControl === this.CausaList[k].idControlAsociado7 || ControlList[j].idControl === this.CausaList[k].idControlAsociado8 
+						|| ControlList[j].idControl === this.CausaList[k].idControlAsociado9 || ControlList[j].idControl === this.CausaList[k].idControlAsociado10)){
+							ControlList[j].coberturaTotal = this.coberturaTotalControles;
+						}
+				}
+			}
+		}
 	}
-}
+
 
 	refreshCausaList() {
 		this.service.getCausasList().subscribe(datos => {
