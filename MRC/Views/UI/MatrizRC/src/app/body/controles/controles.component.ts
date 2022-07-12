@@ -285,7 +285,7 @@ export class ControlesComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		this.calcularCoberturaPonderadaPorControl(this.ControlList , this.ListaControlSinFiltrado);
+		this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado);
 		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		//console.log(ControlList);
 	}

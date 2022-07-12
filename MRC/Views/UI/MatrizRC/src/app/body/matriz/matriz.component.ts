@@ -66,6 +66,7 @@ export class MatrizComponent implements OnInit {
 		this.refreshRiesgoList();
 		this.refreshControlList();
 		this.refreshCausaList();
+		this.calculosControles();
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
@@ -196,65 +197,70 @@ export class MatrizComponent implements OnInit {
 	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
 	calcularNivelRiesgoInherente(RiesgoList: any, data: any) {
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
-			if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')) {
-				this.RiesgoList[i].nivelRiesgo = "A";
+			if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
+				RiesgoList[i].nivelRiesgo = "A";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Importante' || this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
-				this.RiesgoList[i].nivelRiesgo = "MA";
+			else if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Importante' || RiesgoList[i].impacto == 'Crítico' || RiesgoList[i].impacto == 'Catastrófico')) {
+				RiesgoList[i].nivelRiesgo = "MA";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Marginal')) {
-				this.RiesgoList[i].nivelRiesgo = "M";
+			else if (RiesgoList[i].probabilidad == 'Alta' && (RiesgoList[i].impacto == 'Marginal')) {
+				RiesgoList[i].nivelRiesgo = "M";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Débil' || this.RiesgoList[i].impacto == 'Importante')) {
-				this.RiesgoList[i].nivelRiesgo = "A";
+			else if (RiesgoList[i].probabilidad == 'Alta' && (RiesgoList[i].impacto == 'Débil' || RiesgoList[i].impacto == 'Importante')) {
+				RiesgoList[i].nivelRiesgo = "A";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
-				this.RiesgoList[i].nivelRiesgo = "MA";
+			else if (RiesgoList[i].probabilidad == 'Alta' && (RiesgoList[i].impacto == 'Crítico' || RiesgoList[i].impacto == 'Catastrófico')) {
+				RiesgoList[i].nivelRiesgo = "MA";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Marginal')) {
-				this.RiesgoList[i].nivelRiesgo = "B";
+			else if (RiesgoList[i].probabilidad == 'Media' && (RiesgoList[i].impacto == 'Marginal')) {
+				RiesgoList[i].nivelRiesgo = "B";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Débil' || this.RiesgoList[i].impacto == 'Importante')) {
-				this.RiesgoList[i].nivelRiesgo = "M";
+			else if (RiesgoList[i].probabilidad == 'Media' && (RiesgoList[i].impacto == 'Débil' || RiesgoList[i].impacto == 'Importante')) {
+				RiesgoList[i].nivelRiesgo = "M";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
-				this.RiesgoList[i].nivelRiesgo = "MA";
+			else if (RiesgoList[i].probabilidad == 'Media' && (RiesgoList[i].impacto == 'Crítico' || RiesgoList[i].impacto == 'Catastrófico')) {
+				RiesgoList[i].nivelRiesgo = "MA";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')) {
-				this.RiesgoList[i].nivelRiesgo = "B";
+			else if (RiesgoList[i].probabilidad == 'Baja' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
+				RiesgoList[i].nivelRiesgo = "B";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
-				this.RiesgoList[i].nivelRiesgo = "M";
+			else if (RiesgoList[i].probabilidad == 'Baja' && (RiesgoList[i].impacto == 'Importante')) {
+				RiesgoList[i].nivelRiesgo = "M";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
-				this.RiesgoList[i].nivelRiesgo = "A";
+			else if (RiesgoList[i].probabilidad == 'Baja' && (RiesgoList[i].impacto == 'Crítico')) {
+				RiesgoList[i].nivelRiesgo = "A";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
-				this.RiesgoList[i].nivelRiesgo = "MA";
+			else if (RiesgoList[i].probabilidad == 'Baja' && (RiesgoList[i].impacto == 'Catastrófico')) {
+				RiesgoList[i].nivelRiesgo = "MA";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
-				this.RiesgoList[i].nivelRiesgo = "MB";
+			else if (RiesgoList[i].probabilidad == 'Muy Baja' && (RiesgoList[i].impacto == 'Marginal')) {
+				RiesgoList[i].nivelRiesgo = "MB";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
-				this.RiesgoList[i].nivelRiesgo = "B";
+			else if (RiesgoList[i].probabilidad == 'Muy Baja' && (RiesgoList[i].impacto == 'Débil')) {
+				RiesgoList[i].nivelRiesgo = "B";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
-				this.RiesgoList[i].nivelRiesgo = "M";
+			else if (RiesgoList[i].probabilidad == 'Muy Baja' && (RiesgoList[i].impacto == 'Importante')) {
+				RiesgoList[i].nivelRiesgo = "M";
 			}
-			else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico' || this.RiesgoList[i].impacto == 'Catastrófico')) {
-				this.RiesgoList[i].nivelRiesgo = "A";
+			else if (RiesgoList[i].probabilidad == 'Muy Baja' && (RiesgoList[i].impacto == 'Crítico' || RiesgoList[i].impacto == 'Catastrófico')) {
+				RiesgoList[i].nivelRiesgo = "A";
 			}
 
 		}
-		this.RiesgoList = data;
+		RiesgoList = data;
 		console.log("Lista de riesgos");
-		console.log(this.RiesgoList);
-		return RiesgoList + data;
+		console.log(RiesgoList);
 	}
 	refreshControlList() {
+		this.service.getControlesList().subscribe(data => {
+			this.ControlList = data;
+			console.log("Lista de contorles");
+			console.log(this.ControlList);
+		});
+	}
+	calculosControles(){
 		this.calcularDiseñoControl();
 	}
-
 	calcularDiseñoControl() {
 		this.service.getControlesList().subscribe(data => {
 			this.ControlList = data;
@@ -332,10 +338,11 @@ export class MatrizComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		this.calcularCoberturaPonderadaPorControl(this.ControlList , this.ListaControlSinFiltrado);
+		this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado);
 		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		//console.log(ControlList);
 	}
+
 
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {

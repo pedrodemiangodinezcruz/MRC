@@ -210,16 +210,21 @@
 					*ngFor="let controlItem of ControlList; let k = index; let tamanoListaControl = count; let parCausa = even">
 					<ng-container
 						*ngFor="let causaItem of CausaList; let j = index; let tamanoListaCausa = count; let parControl = even">
-						<tr *ngIf="(((riesgoItem.idRiesgo === (causaItem.idRiesgoAsociado || causaItem.idRiesgoAsociado2 ||
-						causaItem.idRiesgoAsociado3 || causaItem.idRiesgoAsociado4 || causaItem.idRiesgoAsociado5 || causaItem.idRiesgoAsociado6
-						|| causaItem.idRiesgoAsociado7 || causaItem.idRiesgoAsociado8 || causaItem.idRiesgoAsociado9 || causaItem.idRiesgoAsociado10 ))
-						) && ((riesgoItem.idRiesgo === controlItem.idRiesgoAsociado || controlItem.idRiesgoAsociado2 || controlItem.idRiesgoAsociado3
-						|| controlItem.idRiesgoAsociado4 || controlItem.idRiesgoAsociado5 || controlItem.idRiesgoAsociado6 || controlItem.idRiesgoAsociado7 
-						|| controlItem.idRiesgoAsociado8 || controlItem.idRiesgoAsociado9 || controlItem.idRiesgoAsociado10 )
-						) && (((controlItem.idControl === (causaItem.idControlAsociado || causaItem.idControlAsociado2 || causaItem.idControlAsociado3
-						|| causaItem.idControlAsociad4 || causaItem.idControlAsociad5 || causaItem.idControlAsociad6 || causaItem.idControlAsociado7
-						|| causaItem.idControlAsociad8 || causaItem.idControlAsociad9 || causaItem.idControlAsociad10))))
-						&& true);
+						<tr *ngIf="((riesgoItem.idRiesgo === causaItem.idRiesgoAsociado || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado2
+						|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado3 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado4
+						|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado5 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado6
+						|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado7 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado8 
+						|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado9 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado10)
+						&& (riesgoItem.idRiesgo === controlItem.idRiesgoAsociado || riesgoItem.idRiesgo ===  controlItem.idRiesgoAsociado2 
+						|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado3 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado4 
+						|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado5 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado6
+						|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado7 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado8 
+						|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado9 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado10)
+						&& (controlItem.idControl === causaItem.idControlAsociado || controlItem.idControl === causaItem.idControlAsociado2 
+						|| controlItem.idControl ===  causaItem.idControlAsociado3 || controlItem.idControl ===  causaItem.idControlAsociado4 
+						|| controlItem.idControl ===  causaItem.idControlAsociado5 || controlItem.idControl === causaItem.idControlAsociado6 
+						|| controlItem.idControl === causaItem.idControlAsociado7 || controlItem.idControl === causaItem.idControlAsociado8 
+						|| controlItem.idControl === causaItem.idControlAsociado9 || controlItem.idControl === causaItem.idControlAsociado10));
 						else listaRiesgosSinControlConCausa;">
 							<!--Modal para la edicion de riesgo -->
 							<div class="modal fade" [attr.id]="'editar' + riesgoItem.idRiesgo" tabindex="-1"
