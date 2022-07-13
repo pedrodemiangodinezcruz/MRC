@@ -189,10 +189,10 @@
 	<div class="col-auto" *ngIf="(nuevoControl > 0) && (nuevoControl  < this.ControlList.length);else demasiadosControles">
 		<p class="text-center fw-bold">Control 2 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idControlAsociado2" name="impacto" value="{{causa.idControlAsociado2}}" aria-label="Default select example">
-				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
-					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado2">
-						<!--<option  *ngIf="riesgoItem.idRiesgo === causa.idRiesgoAsociado"></option>-->
+			<select class="form-select" [(ngModel)]="idControlAsociado2" name="impacto"
+				value="{{causa.idControlAsociado2}}" aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList;  let i = index; let tamLista = count;">
+					<ng-container *ngIf="controlItem.idControl!== causa.IdControlAsociado2">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
 						<option *ngIf="i == tamLista-1" value="">N/A</option>
 					</ng-container>
@@ -207,7 +207,7 @@
 			<select class="form-select" [(ngModel)]="idControlAsociado3" name="impacto" value="{{causa.idControlAsociado3}}"
 				aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
-					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado3">
+					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado3">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
 						<option *ngIf="i == tamLista-1" value="">N/A</option>
 					</ng-container>
@@ -222,7 +222,7 @@
 			<select class="form-select" [(ngModel)]="idControlAsociado4" name="impacto" value="{{causa.idControlAsociado4}}"
 				aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
-					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado4">
+					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado4">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
 						<option *ngIf="i == tamLista-1" value="">N/A</option>
 					</ng-container>
@@ -237,7 +237,7 @@
 			<select class="form-select" [(ngModel)]="idControlAsociado5" name="impacto" value="{{causa.idControlAsociado5}}"
 				aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
-					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado5">
+					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado5">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
 						<option *ngIf="i == tamLista-1" value="">N/A</option>
 					</ng-container>
@@ -252,7 +252,7 @@
 			<select class="form-select" [(ngModel)]="idControlAsociado6" name="impacto" value="{{causa.idControlAsociado6}}"
 				aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
-					<ng-container *ngIf="controlItem.idControl !== causa.idControlAsociado6">
+					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado6">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
 						<option *ngIf="i == tamLista-1" value="">N/A</option>
 					</ng-container>
