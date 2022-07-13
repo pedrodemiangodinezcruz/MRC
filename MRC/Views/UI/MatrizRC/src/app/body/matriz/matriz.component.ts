@@ -43,6 +43,7 @@ export class MatrizComponent implements OnInit {
 	filtroPorProbabilidadRiesgo: string = "";
 	ocurrencias: number = 1;
 	valorDiseñoDeControl: number = 0;
+	valorCalificacionControl: number = 0;
 	coberturaTotalControles: number = 0;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
@@ -340,12 +341,56 @@ export class MatrizComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		this.calcularCoberturaPonderadaPorControl(ControlList, ListaControlSinFiltrado);
+		this.calcularCalificacionControl(ControlList, ListaControlSinFiltrado);
 		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		//console.log(ControlList);
 	}
 
-
+	calcularCalificacionControl(ControlList: any, ListaControlSinFiltrado: any) {
+		for (let i = 0; i < ControlList.length; ++i) {
+			if (ControlList[i].tipoControl == 'No efectivo') {
+				ControlList[i].calificacionControl = 0;
+			}
+			if (ControlList[i].segregacion == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 15;
+			}
+			if (ControlList[i].documentacion == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 5;
+			}
+			if (ControlList[i].frecuenciaAdecuada == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 5;
+			}
+			if (ControlList[i].responsabilidadControl == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 8;
+			}
+			if (ControlList[i].generacionEvidencia == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 7;
+			}
+			switch (ControlList[i].tipoControl) {
+				case "Detectivo":
+					this.valorCalificacionControl = this.valorCalificacionControl + 10;
+					break;
+				case "Preventivo":
+					this.valorCalificacionControl = this.valorCalificacionControl + 15;
+			}
+			switch (ControlList[i].naturalezaControl) {
+				case "Manual":
+					this.valorCalificacionControl = this.valorCalificacionControl + 5;
+					break;
+				case "Semi-automático":
+					this.valorCalificacionControl = this.valorCalificacionControl + 10;
+					break;
+				case "Automático":
+					this.valorCalificacionControl = this.valorCalificacionControl + 15;
+			}
+			ControlList[i].calificacionControl = this.valorCalificacionControl;
+			this.valorCalificacionControl = 0;
+		}
+		this.calcularCoberturaPonderadaPorControl(ControlList, ListaControlSinFiltrado);
+		//console.log("Lista de controles despues de calcular la calificación del control: ");
+		//console.log(ControlList);
+		
+	}
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
 			if (ControlList[i].evaluacionFuncionalidad == 'No efectivo') {
@@ -359,6 +404,8 @@ export class MatrizComponent implements OnInit {
 		//console.log(ControlList);
 		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
 	}
+
+
 	calcularCoberturaTotalControles(ControlList: any, ListaControlSinFiltrado: any) {
 		//Recorrer todas las listas, para encontrar todos los controles asociados que aparezcan en la matriz
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
@@ -388,13 +435,13 @@ export class MatrizComponent implements OnInit {
 						//Ciclo for aquí dentro de los controles, para llenar con la variable "coberturaTotalControles"
 						//solo si el id del riesgo es igual al id del riesgo asociado, luego resetear la variable "coberturaTotalControles"
 						for (let l = 0; l < ControlList.length; ++l) {
-						if (this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado2
-							|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado4
-							|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado6
-							|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
-							|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
-							ControlList[l].coberturaTotal = this.coberturaTotalControles;
-						}
+							if (this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado2
+								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado4
+								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado6
+								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
+								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
+								ControlList[l].coberturaTotal = this.coberturaTotalControles;
+							}
 						}
 					}
 				}

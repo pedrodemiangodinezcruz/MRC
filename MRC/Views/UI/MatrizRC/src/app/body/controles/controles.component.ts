@@ -40,6 +40,7 @@ export class ControlesComponent implements OnInit {
 	proceso: string = "";
 	subProceso: string = "";
 	valorDiseñoDeControl: number = 0;
+	valorCalificacionControl: number = 0;
 	idRiesgoAsociado: string | undefined;
 	idRiesgoAsociado2: string | undefined;
 	idRiesgoAsociado3: string | undefined;
@@ -285,9 +286,53 @@ export class ControlesComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado);
+		this.calcularCalificacionControl(ControlList , ListaControlSinFiltrado);
 		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		//console.log(ControlList);
+	}
+	calcularCalificacionControl(ControlList: any, ListaControlSinFiltrado: any) {
+		for (let i = 0; i < ControlList.length; ++i) {
+			if (ControlList[i].tipoControl == 'No efectivo') {
+				ControlList[i].calificacionControl = 0;
+			}
+			if (ControlList[i].segregacion == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 15;
+			}
+			if (ControlList[i].documentacion == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 5;
+			}
+			if (ControlList[i].frecuenciaAdecuada == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 5;
+			}
+			if (ControlList[i].responsabilidadControl == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 8;
+			}
+			if (ControlList[i].generacionEvidencia == 'Sí') {
+				this.valorCalificacionControl = this.valorCalificacionControl + 7;
+			}
+			switch (ControlList[i].tipoControl) {
+				case "Detectivo":
+					this.valorCalificacionControl = this.valorCalificacionControl + 10;
+					break;
+				case "Preventivo":
+					this.valorCalificacionControl = this.valorCalificacionControl + 15;
+			}
+			switch (ControlList[i].naturalezaControl) {
+				case "Manual":
+					this.valorCalificacionControl = this.valorCalificacionControl + 5;
+					break;
+				case "Semi-automático":
+					this.valorCalificacionControl = this.valorCalificacionControl + 10;
+					break;
+				case "Automático":
+					this.valorCalificacionControl = this.valorCalificacionControl + 15;
+			}
+			ControlList[i].calificacionControl = this.valorCalificacionControl;
+			this.valorCalificacionControl = 0;
+		}
+		//console.log("Lista de controles despues de calcular la calificación del control: ");
+		//console.log(ControlList);
+		this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado);
 	}
 
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
