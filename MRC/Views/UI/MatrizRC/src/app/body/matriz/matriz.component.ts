@@ -389,7 +389,7 @@ export class MatrizComponent implements OnInit {
 		this.calcularCoberturaPonderadaPorControl(ControlList, ListaControlSinFiltrado);
 		//console.log("Lista de controles despues de calcular la calificación del control: ");
 		//console.log(ControlList);
-		
+
 	}
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
@@ -449,53 +449,36 @@ export class MatrizComponent implements OnInit {
 			//Resetar la variable "coberturaTotalControles" para que no se sumen todas las coberturas ponderadas de los controles
 			this.coberturaTotalControles = 0;
 		}
+		this.calcularNivelCobertura(ControlList, ListaControlSinFiltrado);
+	}
 
-		//Hacer otra vez el recorrido para asignar el nivel de cobertura total a TODOS los controles, en caso de no hacer este recorrido
-		//no se podrá calcular el nivel de cobertura total para la primera ocurrencia de control
-		//Para contar las causas duplicadas, primer ordenar el arreglo (Por idRiesgoAsociado)
-		/*ControlList.sort((elemento: any, elemento2: any) => {
-			if (elemento.idRiesgoAsociado > elemento2.idRiesgoAsociado) {
-				return 1;
+	calcularNivelCobertura(ControlList: any, ListaControlSinFiltrado: any) {
+		//Recorrer losta de los controles
+		for (let j = 0; j < ControlList.length; ++j) {
+			//Si la cobertura total 0-20%, cobetura = Ausencia de control
+			if (ControlList[j].coberturaTotal <= 20) {
+				ControlList[j].nivelCobertura = "Ausencia de control";
 			}
-
-			if (elemento.idRiesgoAsociado < elemento2.idRiesgoAsociado) {
-				return -1;
+			//Si la cobertura total 20-40%, cobetura = Bajo
+			else if (ControlList[j].coberturaTotal > 20 && ControlList[j].coberturaTotal <= 40) {
+				ControlList[j].nivelCobertura = "Bajo";
 			}
-
-			return 0;
-		});
-		console.log("ControlList ordenado por ID del riesgoasociado: ");
-		console.log(ControlList);
-		for (let i = 0; i < ControlList.length; ++i) {
-			//Si son iguales los riesgos asociados, se suma 1 al contador de ocurrencias
-			if (ControlList[i].idRiesgoAsociado === this.anteriorIdRiesgo) {
-				++this.numDup;
-				++this.ocurrencias;
-				//Si sí
-				if (this.numDup === 1) {
-					++this.dupCont;
-					if (this.dupCont === 1) {
-						console.log("Ocurrencias de '" + ControlList[i].idRiesgoAsociado + "': " + this.ocurrencias);
-					}
-					else {
-						++this.ocurrencias;
-						console.log("Ocurrencias de '" + ControlList[i].idRiesgoAsociado + "': " + this.ocurrencias);
-					}
-				}
+			//Si la cobertura total 40-60%, cobetura = Medio
+			else if (ControlList[j].coberturaTotal > 40 && ControlList[j].coberturaTotal <= 60) {
+				ControlList[j].nivelCobertura = "Medio";
 			}
-			//Si no es igual el ID del riesgo asociado, se resetea el contador de ocurrencias
-			else {
-				this.anteriorIdRiesgo = ControlList[i].idRiesgoAsociado;
-				this.numDup = 0;
-				//Dejar las ocurrecnias en 1 ya que siempre existe un riesgo por control
-				this.ocurrencias = 1;
-				ControlList[i].coberturaTotal = this.coberturaTotalControles;
-				this.coberturaTotalControles = 0;
+			//Si la cobertura total 60-80%, cobetura = Alto
+			else if (ControlList[j].coberturaTotal > 60 && ControlList[j].coberturaTotal <= 80) {
+				ControlList[j].nivelCobertura = "Alto";
 			}
-
-		}*/
+			//Si la cobertura total 80-100%, cobetura = Total
+			else if (ControlList[j].coberturaTotal > 80 && ControlList[j].coberturaTotal <= 100) {
+				ControlList[j].nivelCobertura = "Total";
+			}
+		}
 
 	}
+
 
 
 

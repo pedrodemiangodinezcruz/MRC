@@ -349,12 +349,40 @@ export class ControlesComponent implements OnInit {
 		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
 	}
 	calcularCoberturaTotalControles(ControlList: any, ListaControlSinFiltrado: any) {
+		//Al ser solo UN control, asignar el mismo valor al de la cobertura ponderada
 		for (let i = 0; i < ControlList.length; ++i) {
-				ControlList[i].coberturaTotal = ControlList[i].coberturaPonderada;
-		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
-		//console.log(ControlList);
+			ControlList[i].coberturaTotal = ControlList[i].coberturaPonderada;
+		}
+		this.calcularNivelCobertura(ControlList, ListaControlSinFiltrado);
 	}
-}
+
+	calcularNivelCobertura(ControlList: any, ListaControlSinFiltrado: any) {
+		//Recorrer losta de los controles
+		for (let j = 0; j < ControlList.length; ++j) {
+			//Si la cobertura total 0-20%, cobetura = Ausencia de control
+			if (ControlList[j].coberturaTotal <= 20) {
+				ControlList[j].nivelCobertura = "Ausencia de control";
+			}
+			//Si la cobertura total 20-40%, cobetura = Bajo
+			else if (ControlList[j].coberturaTotal > 20 && ControlList[j].coberturaTotal <= 40) {
+				ControlList[j].nivelCobertura = "Bajo";
+			}
+			//Si la cobertura total 40-60%, cobetura = Medio
+			else if (ControlList[j].coberturaTotal > 40 && ControlList[j].coberturaTotal <= 60) {
+				ControlList[j].nivelCobertura = "Medio";
+			}
+			//Si la cobertura total 60-80%, cobetura = Alto
+			else if (ControlList[j].coberturaTotal > 60 && ControlList[j].coberturaTotal <= 80) {
+				ControlList[j].nivelCobertura = "Alto";
+			}
+			//Si la cobertura total 80-100%, cobetura = Total
+			else if (ControlList[j].coberturaTotal > 80 && ControlList[j].coberturaTotal <= 100) {
+				ControlList[j].nivelCobertura = "Total";
+			}
+		}
+
+	}
+
 
 
 	//Funcion para filtrar los controles

@@ -297,7 +297,7 @@
 							<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
 							<td [attr.contenteditable]="contenteditable"
 								[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
-							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
+							'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verdeImpacto' : riesgoItem.probabilidad === 'Muy Baja' }">
 								{{riesgoItem.probabilidad}}</td>
 							<td [attr.contenteditable]="contenteditable"
 								[ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',
@@ -339,7 +339,9 @@
 								{{controlItem.coberturaPonderada}}%</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.coberturaTotal}}%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+							<td  [className]="esFomulado ? 'formulado' : 'inactivo'"
+							[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','bajo':  controlItem.nivelCobertura === 'Alto',
+							'medio' : controlItem.nivelCobertura === 'Medio', 'anaranjado' : controlItem.nivelCobertura === 'Bajo', 'rojo' : controlItem.nivelCobertura === 'Ausencia de control'}">
 								{{controlItem.nivelCobertura}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado (Ver qué
 								poner aquí)</td>
@@ -417,7 +419,7 @@
 								<td [attr.contenteditable]="contenteditable">{{riesgoItem.riesgoFraude}}</td>
 								<td [attr.contenteditable]="contenteditable"
 									[ngClass]="{'rojo' : riesgoItem.probabilidad === 'Muy Alta', 'anaranjado':  riesgoItem.probabilidad === 'Alta',
-								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verde' : riesgoItem.probabilidad === 'Muy Baja' }">
+								'medio' : riesgoItem.probabilidad === 'Media', 'bajo' : riesgoItem.probabilidad === 'Baja', 'verdeImpacto' : riesgoItem.probabilidad === 'Muy Baja' }">
 									{{riesgoItem.probabilidad}}</td>
 								<td [attr.contenteditable]="contenteditable"
 									[ngClass]="{'rojo' : riesgoItem.impacto === 'Catastrófico','anaranjado':  riesgoItem.impacto === 'Crítico',

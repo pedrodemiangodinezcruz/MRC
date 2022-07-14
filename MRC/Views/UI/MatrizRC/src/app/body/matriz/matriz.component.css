@@ -12,9 +12,10 @@
 .verde {
 	background-color: rgb(48, 153, 51) !important;
 }
+
 .verdeImpacto {
 	background-color: rgb(48, 153, 51) !important;
-	color: black;
+	color: black !important;
 }
 
 

@@ -102,8 +102,8 @@
 				<th scope="col" class="azul-marino" rowspan="2">Cobertura individual por Control</th>
 				<th scope="col" class="azul-marino" rowspan="2">Cobertura Ponderada por Control (Calificación x
 					Cobertura)</th>
-				<th scope="col" class="azul-marino" rowspan="2">Cobertura Total de los Controles</th>
-				<th scope="col" class="azul-marino" rowspan="2">Nivel de Cobertura Total de los Controles</th>
+				<th scope="col" class="azul-marino" rowspan="2">Cobertura Total del Control</th>
+				<th scope="col" class="azul-marino" rowspan="2">Nivel de Cobertura Total del Control</th>
 				<th scope="col" class="morado" rowspan="2">Observaciones</th>
 			</tr>
 			<tr>
@@ -193,7 +193,10 @@
 					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaPonderada}}%</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaTotal}}%</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.nivelCobertura}}%</td>
+					<td [className]="esFomulado ? 'formulado' : 'inactivo'"
+					[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','verde':  controlItem.nivelCobertura === 'Alto',
+							'medio' : controlItem.nivelCobertura === 'Medio', 'anaranjado' : controlItem.nivelCobertura === 'Bajo', 'rojo' : controlItem.nivelCobertura === 'Ausencia de control'}"
+					>{{controlItem.nivelCobertura}}</td>
 					<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.observaciones}}</td>
 					<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
