@@ -63,6 +63,7 @@ export class MatrizComponent implements OnInit {
 	probabilidad: number | undefined;
 	impacto: string | undefined;
 	nivelRiesgo: string | undefined;
+	gravedadRiesgoResidual: string | undefined;
 
 
 	ngOnInit(): void {
@@ -85,7 +86,8 @@ export class MatrizComponent implements OnInit {
 		this.riesgoFraude = this.riesgo.riesgoFraude;
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
-		this, this.nivelRiesgo = this.riesgo.nivelRiesgo;
+		this.nivelRiesgo = this.riesgo.nivelRiesgo;
+		this.gravedadRiesgoResidual = this.riesgo.gravedadRiesgoResidual;
 		console.log(this.riesgo.idRiesgo);
 
 	}
@@ -109,7 +111,8 @@ export class MatrizComponent implements OnInit {
 			riesgoFraude: "",
 			probabilidad: 0,
 			impacto: "",
-			nivelRiesgo: ""
+			nivelRiesgo: "",
+			gravedadRiesgoResidual: ""
 		}
 	}
 	closeClick() {
@@ -141,7 +144,8 @@ export class MatrizComponent implements OnInit {
 			riesgoFraude: this.riesgoFraude,
 			probabilidad: this.probabilidad,
 			impacto: this.impacto,
-			nivelRiesgo: this.nivelRiesgo
+			nivelRiesgo: this.nivelRiesgo,
+			gravedadRiesgoResidual: this.gravedadRiesgoResidual
 		};
 		this.service.anadirRiesgo(val).subscribe(res => {
 			alert(res.toString());
@@ -476,11 +480,125 @@ export class MatrizComponent implements OnInit {
 				ControlList[j].nivelCobertura = "Total";
 			}
 		}
+		this.calcularGravedadRiesgoResidual(ControlList, ListaControlSinFiltrado);
+	}
+	calcularGravedadRiesgoResidual(ControlList: any, ListaControlSinFiltrado: any) {
+		//Recorrer lista de los controles
+		//Recorrer lista de los riesgos
+		for (let i = 0; i < this.RiesgoList.length; ++i) {
+			for (let j = 0; j < ControlList.length; ++j) {
+				//Si el id del riesgo es igual al id del riesgo asociado, luego comparar si el nivelRiesgo es alto
+				if (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
+					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
+					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
+					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10) {
+					//Si el nivel de riesgo inherente es "MA"
+					if (this.RiesgoList[i].nivelRiesgo === "MA") {
+						//Switch con los casos para el nivel de riesgo inherente "MA"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Alto":
+								this.RiesgoList[i].gravedadRiesgoResidual = "M";
+								break;
+							case "Medio":
+								this.RiesgoList[i].gravedadRiesgoResidual = "A";
+								break;
+							case "Bajo":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MA";
+								break;
+							case "Ausencia de control":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MA";
+						}
+					}
+					//Si el nivel de riesgo inherente es "A"
+					else if (this.RiesgoList[i].nivelRiesgo === "A") {
+						//Switch con los casos para el nivel de riesgo inherente "A"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Alto":
+								this.RiesgoList[i].gravedadRiesgoResidual = "B";
+								break;
+							case "Medio":
+								this.RiesgoList[i].gravedadRiesgoResidual = "M";
+								break;
+							case "Bajo":
+								this.RiesgoList[i].gravedadRiesgoResidual = "A";
+								break;
+							case "Ausencia de control":
+								this.RiesgoList[i].gravedadRiesgoResidual = "A";
+						}
+					}
+					//Si el nivel de riesgo inherente es "M"
+					else if (this.RiesgoList[i].nivelRiesgo === "M") {
+						//Switch con los casos para el nivel de riesgo inherente "M"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Alto":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Medio":
+								this.RiesgoList[i].gravedadRiesgoResidual = "B";
+								break;
+							case "Bajo":
+								this.RiesgoList[i].gravedadRiesgoResidual = "BA";
+								break;
+							case "Ausencia de control":
+								this.RiesgoList[i].gravedadRiesgoResidual = "BA";
+						}
+					}
+					//Si el nivel de riesgo inherente es "B"
+					else if (this.RiesgoList[i].nivelRiesgo === "B") {
+					//Switch con los casos para el nivel de riesgo inherente "B"
+					switch (ControlList[j].nivelCobertura) {
+						case "Total":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Alto":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Medio":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Bajo":
+							this.RiesgoList[i].gravedadRiesgoResidual = "B";
+							break;
+						case "Ausencia de control":
+							this.RiesgoList[i].gravedadRiesgoResidual = "B";
+					}
+				}
+				//Si el nivel de riesgo inherente es "MB"
+				else if (this.RiesgoList[i].nivelRiesgo === "MB") {
+					//Switch con los casos para el nivel de riesgo inherente "MA"
+					switch (ControlList[j].nivelCobertura) {
+						case "Total":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Alto":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Medio":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Bajo":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+							break;
+						case "Ausencia de control":
+							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+					}
+				}
+
+				}
+			}
+		}
 
 	}
-
-
-
 
 	refreshCausaList() {
 		this.service.getCausasList().subscribe(datos => {

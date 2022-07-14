@@ -34,25 +34,26 @@ export class MapaRiesgoComponent implements OnInit {
 			axis = series[isY ? 'yAxis' : 'xAxis'];
 		return axis.categories[point[isY ? 'y' : 'x']];
 	}
-	obtenerRiesgos(riesgosPorMacro: any) {
+	
+	obtenerRiesgoInherente() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			for (let i = 0; i < this.RiesgoList.length; i++) {
 				//Si existen riesgos asociados al macroproceso correspondiente
 				if (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) {
-					this.RiesgoListPorMacro.push(this.RiesgoList[i].idRiesgo);
-					console.log("Riesgo con macro");
+					var val = {
+						idRiesgo: this.RiesgoList[i].idRiesgo,
+						nivelRiesgoInherente: this.RiesgoList[i].nivelRiesgo,
+					};
+					this.RiesgoListPorMacro.push(val);
 				}
 			}
-			for (let j = 0; j < this.RiesgoListPorMacro.length; j++) {
-				console.log(this.RiesgoListPorMacro[j]);
-				riesgosPorMacro += " " + this.RiesgoListPorMacro[j];
-			}
-			console.log("Return");
-		return riesgosPorMacro;
+			//for (let j = 0; j < this.RiesgoListPorMacro.length; j++) {
+				console.log("Lista de riesgos inherentes por macro");
+				console.log(this.RiesgoListPorMacro); 
+			//}
 	});
 	}
-
 	public chartOptions: any = {
 
 		chart: {
@@ -150,14 +151,13 @@ export class MapaRiesgoComponent implements OnInit {
 	constructor(private service: SharedService, public _Activatedroute: ActivatedRoute) { }
 	RiesgoList: any = [];
 	RiesgoListPorMacro: any = [];
-	riesgosPorMacro: string = "";
 	riesgos: string = "";
 	contRiesgosSinMacro: number = 0;
 
 	ngOnInit() {
 		this.refreshRiesgoList();
 		this.buscarRiesgosSinMacros();
-		this.obtenerRiesgos(this.riesgosPorMacro);
+		this.obtenerRiesgoInherente();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },

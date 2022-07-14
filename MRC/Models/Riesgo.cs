@@ -23,6 +23,8 @@ namespace MRC.Models
         public string Probabilidad { get; set; }
         public string Impacto { get; set; }
         public string NivelRiesgo { get; set; }
+        public string gravedadRiesgoResidual { get; set; }
+        
 
     }
 }

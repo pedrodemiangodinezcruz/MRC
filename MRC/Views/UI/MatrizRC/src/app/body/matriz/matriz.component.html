@@ -343,9 +343,11 @@
 							[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','bajo':  controlItem.nivelCobertura === 'Alto',
 							'medio' : controlItem.nivelCobertura === 'Medio', 'anaranjado' : controlItem.nivelCobertura === 'Bajo', 'rojo' : controlItem.nivelCobertura === 'Ausencia de control'}">
 								{{controlItem.nivelCobertura}}</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">Formulado (Ver qué
-								poner aquí)</td>
-							<td [attr.contenteditable]="contenteditable">Ver que poner aquí</td>
+							<td  [className]="esFomulado ? 'formulado' : 'inactivo'"
+							[ngClass]="{'verdeImpacto' : riesgoItem.gravedadRiesgoResidual === 'MB','bajo':  riesgoItem.gravedadRiesgoResidual === 'B',
+							'medio' : riesgoItem.gravedadRiesgoResidual === 'M', 'anaranjado' : riesgoItem.gravedadRiesgoResidual === 'A', 'rojo' : riesgoItem.gravedadRiesgoResidual === 'MA'}"
+							>{{riesgoItem.gravedadRiesgoResidual}}</td>
+							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 							<td [attr.contenteditable]="contenteditable">
 								{{controlItem.observaciones}}</td>
 							<td scope="col">

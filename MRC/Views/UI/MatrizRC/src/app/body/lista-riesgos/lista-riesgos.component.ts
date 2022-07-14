@@ -172,15 +172,15 @@ export class ListaRiesgosComponent implements OnInit {
 					this.RiesgoList[i].tipoRiesgo = "Tecnológico";
 				}
 			}
-			this.RiesgoList = data;
-			this.ListaRiesgosSinFiltrado = data;
-			this.calcularNivelRiesgoInherente(this.RiesgoList, this.ListaRiesgosSinFiltrado, data);
+			//this.RiesgoList = data;
+			//this.ListaRiesgosSinFiltrado = data;
+			this.calcularNivelRiesgoInherente();
 			//console.log("Lista de riesgos");
 			//console.log(this.RiesgoList);
 		});
 	}
 	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
-	calcularNivelRiesgoInherente(RiesgoList: any, ListaRiesgosSinFiltrado: any, data: any) {
+	calcularNivelRiesgoInherente() {
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
 			if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')) {
 				this.RiesgoList[i].nivelRiesgo = "A";
@@ -232,11 +232,6 @@ export class ListaRiesgosComponent implements OnInit {
 			}
 
 		}
-		this.RiesgoList = data;
-		this.ListaRiesgosSinFiltrado = data;
-		console.log("Lista de riesgos");
-		console.log(this.RiesgoList);
-		return RiesgoList + ListaRiesgosSinFiltrado + data;
 	}
 
 
