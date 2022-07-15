@@ -39,3 +39,15 @@
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+.highcharts-legend  {
+	display: none !important;
+}
+.highcharts-legend-item {
+	display: none !important;
+}
+.highcharts-legend-item  {
+	display: none !important;
+}
+rect{
+	display: none !important;
+}

@@ -547,10 +547,10 @@ export class MatrizComponent implements OnInit {
 								this.RiesgoList[i].gravedadRiesgoResidual = "B";
 								break;
 							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "BA";
+								this.RiesgoList[i].gravedadRiesgoResidual = "M";
 								break;
 							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "BA";
+								this.RiesgoList[i].gravedadRiesgoResidual = "M";
 						}
 					}
 					//Si el nivel de riesgo inherente es "B"
