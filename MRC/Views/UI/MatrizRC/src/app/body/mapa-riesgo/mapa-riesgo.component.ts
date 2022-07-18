@@ -244,7 +244,7 @@ export class MapaRiesgoComponent implements OnInit {
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Crítico'))
-					this.RiesgoList[i].nivelRiesgo = "MA";
+						this.RiesgoList[i].nivelRiesgo = "MA";
 					this.riesgoMuyAltoCritico = this.riesgoMuyAltoCritico + " " + this.RiesgoList[i].idRiesgo;
 					this.chartOptions.series[0]['data'][15] = {
 						x: 3,
@@ -477,7 +477,7 @@ export class MapaRiesgoComponent implements OnInit {
 				else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
 					this.RiesgoList[i].nivelRiesgo = "A";
 					this.riesgoMuyBajoCatastrofico = this.riesgoMuyBajoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][25] = {
+					this.chartOptions.series[0]['data'][24] = {
 						x: 4,
 						y: 4,
 						value: 75,
