@@ -243,251 +243,476 @@ export class MapaRiesgoComponent implements OnInit {
 							description: this.RiesgoList[i].nivelRiesgo
 						};
 					}
-					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Crítico'))
+					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Crítico')) {
 						this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoMuyAltoCritico = this.riesgoMuyAltoCritico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][15] = {
-						x: 3,
-						y: 0,
-						value: 100,
-						name: this.riesgoMuyAltoCritico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
+						this.riesgoMuyAltoCritico = this.riesgoMuyAltoCritico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][15] = {
+							x: 3,
+							y: 0,
+							value: 100,
+							name: this.riesgoMuyAltoCritico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
+						this.RiesgoList[i].nivelRiesgo = "MA";
+						this.riesgoMuyAltoCatastrofico = this.riesgoMuyAltoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][20] = {
+							x: 4,
+							y: 0,
+							value: 100,
+							name: this.riesgoMuyAltoCatastrofico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Marginal')) {
+						this.RiesgoList[i].nivelRiesgo = "M";
+						console.log("Legue aquí");
+						this.riesgoAltoMarginal = this.riesgoAltoMarginal + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][1] = {
+							x: 0,
+							y: 1,
+							value: 50,
+							name: this.riesgoAltoMarginal,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Débil')) {
+						this.RiesgoList[i].nivelRiesgo = "A";
+						this.riesgoAltoDebil = this.riesgoAltoDebil + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][6] = {
+							x: 1,
+							y: 1,
+							value: 75,
+							name: this.riesgoAltoDebil,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Importante')) {
+						this.RiesgoList[i].nivelRiesgo = "A";
+						this.riesgoAltoImportante = this.riesgoAltoImportante + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][11] = {
+							x: 2,
+							y: 1,
+							value: 75,
+							name: this.riesgoAltoImportante,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Crítico')) {
+						this.RiesgoList[i].nivelRiesgo = "MA";
+						this.riesgoAltoCritico = this.riesgoAltoCritico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][16] = {
+							x: 3,
+							y: 1,
+							value: 100,
+							name: this.riesgoAltoCritico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
+						this.RiesgoList[i].nivelRiesgo = "MA";
+						this.riesgoAltoCatastrofico = this.riesgoAltoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][21] = {
+							x: 4,
+							y: 1,
+							value: 100,
+							name: this.riesgoAltoCatastrofico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Marginal')) {
+						this.RiesgoList[i].nivelRiesgo = "B";
+						this.riesgoMedioMarginal = this.riesgoMedioMarginal + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][2] = {
+							x: 0,
+							y: 2,
+							value: 25,
+							name: this.riesgoMedioMarginal,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Débil')) {
+						this.RiesgoList[i].nivelRiesgo = "M";
+						this.riesgoMedioDebil = this.riesgoMedioDebil + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][7] = {
+							x: 1,
+							y: 2,
+							value: 50,
+							name: this.riesgoMedioDebil,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Importante')) {
+						this.RiesgoList[i].nivelRiesgo = "M";
+						this.riesgoMedioImportante = this.riesgoMedioImportante + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][12] = {
+							x: 2,
+							y: 2,
+							value: 50,
+							name: this.riesgoMedioImportante,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico')) {
+						this.RiesgoList[i].nivelRiesgo = "MA";
+						this.riesgoMedioCritico = this.riesgoMedioCritico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][17] = {
+							x: 3,
+							y: 2,
+							value: 100,
+							name: this.riesgoMedioCritico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
+						this.RiesgoList[i].nivelRiesgo = "MA";
+						this.riesgoMedioCatastrofico = this.riesgoMedioCatastrofico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][22] = {
+							x: 4,
+							y: 2,
+							value: 100,
+							name: this.riesgoMedioCatastrofico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
+						this.RiesgoList[i].nivelRiesgo = "B";
+						this.riesgoBajoMarginal = this.riesgoBajoMarginal + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][3] = {
+							x: 0,
+							y: 3,
+							value: 25,
+							name: this.riesgoBajoMarginal,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
+						this.RiesgoList[i].nivelRiesgo = "B";
+						this.riesgoBajoDebil = this.riesgoBajoDebil + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][8] = {
+							x: 1,
+							y: 3,
+							value: 25,
+							name: this.riesgoBajoDebil,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
+						this.RiesgoList[i].nivelRiesgo = "M";
+						this.riesgoBajoImportante = this.riesgoBajoImportante + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][13] = {
+							x: 2,
+							y: 3,
+							value: 50,
+							name: this.riesgoBajoImportante,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
+						this.RiesgoList[i].nivelRiesgo = "A";
+						this.riesgoBajoCritico = this.riesgoBajoCritico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][18] = {
+							x: 3,
+							y: 3,
+							value: 75,
+							name: this.riesgoBajoCritico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
+						this.RiesgoList[i].nivelRiesgo = "MA";
+						this.riesgoBajoCatastrofico = this.riesgoBajoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][23] = {
+							x: 4,
+							y: 3,
+							value: 100,
+							name: this.riesgoBajoCatastrofico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
+						this.RiesgoList[i].nivelRiesgo = "MB";
+						this.riesgoMuyBajoMarginal = this.riesgoMuyBajoMarginal + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][4] = {
+							x: 0,
+							y: 4,
+							value: 0,
+							name: this.riesgoMuyBajoMarginal,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
+						this.RiesgoList[i].nivelRiesgo = "B";
+						this.riesgoMuyBajoDebil = this.riesgoMuyBajoDebil + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][9] = {
+							x: 1,
+							y: 4,
+							value: 25,
+							name: this.riesgoMuyBajoDebil,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
+						this.RiesgoList[i].nivelRiesgo = "M";
+						this.riesgoMuyBajoImportante = this.riesgoMuyBajoImportante + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][14] = {
+							x: 2,
+							y: 4,
+							value: 50,
+							name: this.riesgoMuyBajoImportante,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
+						this.RiesgoList[i].nivelRiesgo = "A";
+						this.riesgoMuyBajoCritico = this.riesgoMuyBajoCritico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][19] = {
+							x: 3,
+							y: 4,
+							value: 75,
+							name: this.riesgoMuyBajoCritico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
+						this.RiesgoList[i].nivelRiesgo = "A";
+						this.riesgoMuyBajoCatastrofico = this.riesgoMuyBajoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
+						this.chartOptions.series[0]['data'][24] = {
+							x: 4,
+							y: 4,
+							value: 75,
+							name: this.riesgoMuyBajoCatastrofico,
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyAltoMarginal == ""){
+						this.chartOptions.series[0]['data'][0] = {
+							x: 0,
+							y: 0,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyAltoDebil == ""){
+						this.chartOptions.series[0]['data'][5] = {
+							x: 1,
+							y: 0,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyAltoImportante == ""){
+						this.chartOptions.series[0]['data'][10] = {
+							x: 2,
+							y: 0,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyAltoCritico == ""){
+						this.chartOptions.series[0]['data'][15] = {
+							x: 3,
+							y: 0,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyAltoCatastrofico == ""){
+						this.chartOptions.series[0]['data'][20] = {
+							x: 4,
+							y: 0,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoAltoMarginal == ""){
+						this.chartOptions.series[0]['data'][1] = {
+							x: 0,
+							y: 1,
+							value: 50,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoAltoDebil == ""){
+						this.chartOptions.series[0]['data'][6] = {
+							x: 1,
+							y: 1,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoAltoImportante == ""){
+						this.chartOptions.series[0]['data'][11] = {
+							x: 2,
+							y: 1,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoAltoCritico == ""){
+						this.chartOptions.series[0]['data'][16] = {
+							x: 3,
+							y: 1,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoAltoCatastrofico == ""){
+						this.chartOptions.series[0]['data'][21] = {
+							x: 4,
+							y: 1,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMedioMarginal == ""){
+						this.chartOptions.series[0]['data'][2] = {
+							x: 0,
+							y: 2,
+							value: 25,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						}
+					}
+					if(this.riesgoMedioDebil == ""){
+						this.chartOptions.series[0]['data'][7] = {
+							x: 1,
+							y: 2,
+							value: 50,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMedioImportante == ""){
+						this.chartOptions.series[0]['data'][12] = {
+							x: 2,
+							y: 2,
+							value: 50,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMedioCritico == ""){
+						this.chartOptions.series[0]['data'][17] = {
+							x: 3,
+							y: 2,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMedioCatastrofico == ""){
+						this.chartOptions.series[0]['data'][22] = {
+							x: 4,
+							y: 2,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoBajoMarginal == ""){
+						this.chartOptions.series[0]['data'][3] = {
+							x: 0,
+							y: 3,
+							value: 25,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoBajoDebil == ""){
+						this.chartOptions.series[0]['data'][8] = {
+							x: 1,
+							y: 3,
+							value: 25,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoBajoImportante == ""){
+						this.chartOptions.series[0]['data'][13] = {
+							x: 2,
+							y: 3,
+							value: 50,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoBajoCritico == ""){
+						this.chartOptions.series[0]['data'][18] = {
+							x: 3,
+							y: 3,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoBajoCatastrofico == ""){
+						this.chartOptions.series[0]['data'][23] = {
+							x: 4,
+							y: 3,
+							value: 100,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyBajoMarginal == ""){
+						this.chartOptions.series[0]['data'][4] = {
+							x: 0,
+							y: 4,
+							value: 0,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if(this.riesgoMuyBajoDebil == ""){
+						this.chartOptions.series[0]['data'][9] = {
+							x: 1,
+							y: 4,
+							value: 25,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if (this.riesgoMuyBajoImportante == "") {
+						this.chartOptions.series[0]['data'][14] = {
+							x: 2,
+							y: 4,
+							value: 50,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if (this.riesgoMuyBajoCritico == "") {
+						this.chartOptions.series[0]['data'][19] = {
+							x: 3,
+							y: 4,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
+					if (this.riesgoMuyBajoCatastrofico == "") {
+						this.chartOptions.series[0]['data'][24] = {
+							x: 4,
+							y: 4,
+							value: 75,
+							name: "No existen riesgos para este cuadrante",
+							description: this.RiesgoList[i].nivelRiesgo
+						};
+					}
 				}
-				else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
-					this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoMuyAltoCatastrofico = this.riesgoMuyAltoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][20] = {
-						x: 4,
-						y: 0,
-						value: 100,
-						name: this.riesgoMuyAltoCatastrofico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Marginal')) {
-					this.RiesgoList[i].nivelRiesgo = "M";
-					this.riesgoAltoMarginal = this.riesgoAltoMarginal + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][1] = {
-						x: 0,
-						y: 1,
-						value: 50,
-						name: this.riesgoAltoMarginal,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Débil')) {
-					this.RiesgoList[i].nivelRiesgo = "A";
-					this.riesgoAltoDebil = this.riesgoAltoDebil + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][6] = {
-						x: 1,
-						y: 1,
-						value: 75,
-						name: this.riesgoAltoDebil,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Importante')) {
-					this.RiesgoList[i].nivelRiesgo = "A";
-					this.riesgoAltoImportante = this.riesgoAltoImportante + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][11] = {
-						x: 2,
-						y: 1,
-						value: 75,
-						name: this.riesgoAltoImportante,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Crítico')) {
-					this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoAltoCritico = this.riesgoAltoCritico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][16] = {
-						x: 3,
-						y: 1,
-						value: 100,
-						name: this.riesgoAltoCritico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
-					this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoAltoCatastrofico = this.riesgoAltoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][21] = {
-						x: 4,
-						y: 1,
-						value: 100,
-						name: this.riesgoAltoCatastrofico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Marginal')) {
-					this.RiesgoList[i].nivelRiesgo = "B";
-					this.riesgoMedioMarginal = this.riesgoMedioMarginal + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][2] = {
-						x: 0,
-						y: 2,
-						value: 25,
-						name: this.riesgoMedioMarginal,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Débil')) {
-					this.RiesgoList[i].nivelRiesgo = "M";
-					this.riesgoMedioDebil = this.riesgoMedioDebil + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][7] = {
-						x: 1,
-						y: 2,
-						value: 50,
-						name: this.riesgoMedioDebil,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Importante')) {
-					this.RiesgoList[i].nivelRiesgo = "M";
-					this.riesgoMedioImportante = this.riesgoMedioImportante + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][12] = {
-						x: 2,
-						y: 2,
-						value: 50,
-						name: this.riesgoMedioImportante,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico')) {
-					this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoMedioCritico = this.riesgoMedioCritico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][17] = {
-						x: 3,
-						y: 2,
-						value: 100,
-						name: this.riesgoMedioCritico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
-					this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoMedioCatastrofico = this.riesgoMedioCatastrofico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][22] = {
-						x: 4,
-						y: 2,
-						value: 100,
-						name: this.riesgoMedioCatastrofico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
-					this.RiesgoList[i].nivelRiesgo = "B";
-					this.riesgoBajoMarginal = this.riesgoBajoMarginal + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][3] = {
-						x: 0,
-						y: 3,
-						value: 25,
-						name: this.riesgoBajoMarginal,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
-					this.RiesgoList[i].nivelRiesgo = "B";
-					this.riesgoBajoDebil = this.riesgoBajoDebil + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][8] = {
-						x: 1,
-						y: 3,
-						value: 25,
-						name: this.riesgoBajoDebil,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
-					this.RiesgoList[i].nivelRiesgo = "M";
-					this.riesgoBajoImportante = this.riesgoBajoImportante + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][13] = {
-						x: 2,
-						y: 3,
-						value: 50,
-						name: this.riesgoBajoImportante,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
-					this.RiesgoList[i].nivelRiesgo = "A";
-					this.riesgoBajoCritico = this.riesgoBajoCritico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][18] = {
-						x: 3,
-						y: 3,
-						value: 75,
-						name: this.riesgoBajoCritico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
-					this.RiesgoList[i].nivelRiesgo = "MA";
-					this.riesgoBajoCatastrofico = this.riesgoBajoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][23] = {
-						x: 4,
-						y: 3,
-						value: 100,
-						name: this.riesgoBajoCatastrofico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
-					this.RiesgoList[i].nivelRiesgo = "MB";
-					this.riesgoMuyBajoMarginal = this.riesgoMuyBajoMarginal + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][4] = {
-						x: 0,
-						y: 4,
-						value: 0,
-						name: this.riesgoMuyBajoMarginal,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
-					this.RiesgoList[i].nivelRiesgo = "B";
-					this.riesgoMuyBajoDebil = this.riesgoMuyBajoDebil + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][9] = {
-						x: 1,
-						y: 4,
-						value: 25,
-						name: this.riesgoMuyBajoDebil,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
-					this.RiesgoList[i].nivelRiesgo = "M";
-					this.riesgoMuyBajoImportante = this.riesgoMuyBajoImportante + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][14] = {
-						x: 2,
-						y: 4,
-						value: 50,
-						name: this.riesgoMuyBajoImportante,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
-					this.RiesgoList[i].nivelRiesgo = "A";
-					this.riesgoMuyBajoCritico = this.riesgoMuyBajoCritico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][19] = {
-						x: 3,
-						y: 4,
-						value: 75,
-						name: this.riesgoMuyBajoCritico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-				else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
-					this.RiesgoList[i].nivelRiesgo = "A";
-					this.riesgoMuyBajoCatastrofico = this.riesgoMuyBajoCatastrofico + " " + this.RiesgoList[i].idRiesgo;
-					this.chartOptions.series[0]['data'][24] = {
-						x: 4,
-						y: 4,
-						value: 75,
-						name: this.riesgoMuyBajoCatastrofico,
-						description: this.RiesgoList[i].nivelRiesgo
-					};
-				}
-
 			}
-
 			this.chartOptions.tooltip.formatter = function (this: any) {
 				//return 'ID de los riesgos: <b>' + this.point.name + '</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
 				//this.point.value + '</b><br> Probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>' + '</b><br> Riesgo Inherente: <b>' + this.point.description + '</b>';
