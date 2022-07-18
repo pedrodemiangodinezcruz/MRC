@@ -113,6 +113,14 @@ export class MapaRiesgoComponent implements OnInit {
 					textOverflow: 'ellipsis',
 					whitewspace: 'nowrap',
 					overflow: 'hidden'
+					/*
+					Solucíon donde caben maximo 5 riesgos
+					width : '70px',
+					fontSize: '12px',
+					whitewspace: 'nowrap',
+					padding: '2px',
+					overflow: 'hidden'
+					*/
                 },
 				enabled: true,
 				color: '#000000',
