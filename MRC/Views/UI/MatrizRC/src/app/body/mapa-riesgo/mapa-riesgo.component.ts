@@ -107,8 +107,17 @@ export class MapaRiesgoComponent implements OnInit {
 			borderWidth: 1,
 			data: [],
 			dataLabels: {
-				enabled: false,
-				color: '#000000'
+				style: {
+					width : '70px',
+					fontSize: '12px',
+					textOverflow: 'ellipsis',
+					whitewspace: 'nowrap',
+					overflow: 'hidden'
+                },
+				enabled: true,
+				color: '#000000',
+				inside: true,
+				format: '{point.name}'
 			}
 		}],
 
@@ -218,7 +227,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 0,
 							value: 75,
 							name: this.riesgoMuyAltoMarginal,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && this.RiesgoList[i].impacto == 'Débil') {
@@ -229,7 +238,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 0,
 							value: 75,
 							name: this.riesgoMuyAltoDebil,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Importante')) {
@@ -240,7 +249,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 0,
 							value: 100,
 							name: this.riesgoMuyAltoImportante,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Crítico')) {
@@ -251,7 +260,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 0,
 							value: 100,
 							name: this.riesgoMuyAltoCritico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
@@ -262,7 +271,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 0,
 							value: 100,
 							name: this.riesgoMuyAltoCatastrofico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Marginal')) {
@@ -274,7 +283,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 1,
 							value: 50,
 							name: this.riesgoAltoMarginal,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Débil')) {
@@ -285,7 +294,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 1,
 							value: 75,
 							name: this.riesgoAltoDebil,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Importante')) {
@@ -296,7 +305,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 1,
 							value: 75,
 							name: this.riesgoAltoImportante,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Crítico')) {
@@ -307,7 +316,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 1,
 							value: 100,
 							name: this.riesgoAltoCritico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Alta' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
@@ -318,7 +327,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 1,
 							value: 100,
 							name: this.riesgoAltoCatastrofico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Marginal')) {
@@ -329,7 +338,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 2,
 							value: 25,
 							name: this.riesgoMedioMarginal,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Débil')) {
@@ -340,7 +349,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 2,
 							value: 50,
 							name: this.riesgoMedioDebil,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Importante')) {
@@ -351,7 +360,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 2,
 							value: 50,
 							name: this.riesgoMedioImportante,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico')) {
@@ -362,7 +371,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 2,
 							value: 100,
 							name: this.riesgoMedioCritico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
@@ -373,7 +382,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 2,
 							value: 100,
 							name: this.riesgoMedioCatastrofico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
@@ -384,7 +393,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 3,
 							value: 25,
 							name: this.riesgoBajoMarginal,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
@@ -395,7 +404,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 3,
 							value: 25,
 							name: this.riesgoBajoDebil,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
@@ -406,7 +415,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 3,
 							value: 50,
 							name: this.riesgoBajoImportante,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
@@ -417,7 +426,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 3,
 							value: 75,
 							name: this.riesgoBajoCritico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
@@ -428,7 +437,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 3,
 							value: 100,
 							name: this.riesgoBajoCatastrofico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Marginal')) {
@@ -439,7 +448,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 4,
 							value: 0,
 							name: this.riesgoMuyBajoMarginal,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Débil')) {
@@ -450,7 +459,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 4,
 							value: 25,
 							name: this.riesgoMuyBajoDebil,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Importante')) {
@@ -461,7 +470,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 4,
 							value: 50,
 							name: this.riesgoMuyBajoImportante,
-							description: this.RiesgoList[i].nivelRiesgo
+							description:this.RiesgoList[i].nivelRiesgo
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {
@@ -472,7 +481,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 4,
 							value: 75,
 							name: this.riesgoMuyBajoCritico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Catastrófico')) {
@@ -483,7 +492,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 4,
 							value: 75,
 							name: this.riesgoMuyBajoCatastrofico,
-							description: this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					if(this.riesgoMuyAltoMarginal == ""){
@@ -491,8 +500,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 0,
 							y: 0,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMuyAltoDebil == ""){
@@ -500,8 +509,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 1,
 							y: 0,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMuyAltoImportante == ""){
@@ -509,8 +518,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 2,
 							y: 0,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMuyAltoCritico == ""){
@@ -518,8 +527,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 3,
 							y: 0,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMuyAltoCatastrofico == ""){
@@ -527,8 +536,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 4,
 							y: 0,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoAltoMarginal == ""){
@@ -536,8 +545,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 0,
 							y: 1,
 							value: 50,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoAltoDebil == ""){
@@ -545,8 +554,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 1,
 							y: 1,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoAltoImportante == ""){
@@ -554,8 +563,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 2,
 							y: 1,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoAltoCritico == ""){
@@ -563,8 +572,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 3,
 							y: 1,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoAltoCatastrofico == ""){
@@ -572,8 +581,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 4,
 							y: 1,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMedioMarginal == ""){
@@ -581,8 +590,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 0,
 							y: 2,
 							value: 25,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						}
 					}
 					if(this.riesgoMedioDebil == ""){
@@ -590,8 +599,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 1,
 							y: 2,
 							value: 50,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMedioImportante == ""){
@@ -599,8 +608,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 2,
 							y: 2,
 							value: 50,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMedioCritico == ""){
@@ -608,8 +617,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 3,
 							y: 2,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMedioCatastrofico == ""){
@@ -617,8 +626,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 4,
 							y: 2,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoBajoMarginal == ""){
@@ -626,8 +635,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 0,
 							y: 3,
 							value: 25,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoBajoDebil == ""){
@@ -635,8 +644,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 1,
 							y: 3,
 							value: 25,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoBajoImportante == ""){
@@ -644,8 +653,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 2,
 							y: 3,
 							value: 50,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoBajoCritico == ""){
@@ -653,8 +662,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 3,
 							y: 3,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoBajoCatastrofico == ""){
@@ -662,8 +671,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 4,
 							y: 3,
 							value: 100,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMuyBajoMarginal == ""){
@@ -671,8 +680,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 0,
 							y: 4,
 							value: 0,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if(this.riesgoMuyBajoDebil == ""){
@@ -680,8 +689,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 1,
 							y: 4,
 							value: 25,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if (this.riesgoMuyBajoImportante == "") {
@@ -689,8 +698,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 2,
 							y: 4,
 							value: 50,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if (this.riesgoMuyBajoCritico == "") {
@@ -698,8 +707,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 3,
 							y: 4,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 					if (this.riesgoMuyBajoCatastrofico == "") {
@@ -707,8 +716,8 @@ export class MapaRiesgoComponent implements OnInit {
 							x: 4,
 							y: 4,
 							value: 75,
-							name: "No existen riesgos para este cuadrante",
-							description: this.RiesgoList[i].nivelRiesgo
+							name: " ",
+							description: "No existen riesgos para este cuadrante"
 						};
 					}
 				}
@@ -716,7 +725,7 @@ export class MapaRiesgoComponent implements OnInit {
 			this.chartOptions.tooltip.formatter = function (this: any) {
 				//return 'ID de los riesgos: <b>' + this.point.name + '</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
 				//this.point.value + '</b><br> Probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>' + '</b><br> Riesgo Inherente: <b>' + this.point.description + '</b>';
-				return 'ID de los riesgos: <b>' + this.point.name;
+				return 'ID de los riesgos: <b>' + this.point.name + '' + this.point.description + '</b>';
 			}
 			Highcharts.chart('container', this.chartOptions);
 		});
