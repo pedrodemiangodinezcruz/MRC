@@ -1,28 +1,54 @@
-li:hover{
-    background-color: #0d6efd !important;
-    border-radius: .25rem;
+li:hover {
+	background-color: rgb(0, 100, 175) !important;
+	border-radius: .25rem;
+	color: white !important;
 }
 
+.d-flex {
+	background-color: rgb(201, 223, 238, 0.7) !important;
+}
+
+.text-black:hover {
+	color: white !important;
+}
+
+.dropdown-menu:hover {
+	color: white !important;
+	background-color: rgb(0, 100, 175) !important;
+	
+}
+
+.dropdown-item:hover {
+	color: black !important;
+}
+
+#menu {
+	background-color: rgb(0, 100, 175) !important;
+	color: black !important;
+}
+
+#dropdownUser1:hover {
+	color: black !important;
+	font-weight: bold !important;
+}
 
 
 /*Especificaciones ventanas modales (formularios)*/
 
-@media (min-width: 576px){
-.modal-dialog {
-    max-width: 60vw !important;
-    margin: 1.75rem auto;
+@media (min-width: 576px) {
+	.modal-dialog {
+		max-width: 60vw !important;
+		margin: 1.75rem auto;
+	}
 }
+
+.d-flex {
+	width: 20vw;
+	height: auto;
 }
-.d-flex{
-    width: 20vw; 
-    height: auto;
-}
-.dropdown-menu-dark {
-    color: white;
-}
-.dropdown-item {
-    color: white !important;
-}
+
+
+
 /* Propueta colores mas blancos
 li:hover{
     background-color: #0d6efd !important;
