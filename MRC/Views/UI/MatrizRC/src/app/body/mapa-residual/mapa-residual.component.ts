@@ -36,7 +36,7 @@ export class MapaResidualComponent implements OnInit {
 		xAxis: {
 			categories: ['Total', 'Alto', 'Medio', 'Bajo', 'Ausencia de control'],
 			title: ['COBERTURA DEL CONJUNTO DE CONTROLES'],
-			
+
 		},
 
 		yAxis: {
@@ -78,7 +78,7 @@ export class MapaResidualComponent implements OnInit {
 		},
 
 		tooltip: {
-			
+
 		},
 
 		series: [{
@@ -86,7 +86,7 @@ export class MapaResidualComponent implements OnInit {
 			data: [],
 			dataLabels: {
 				style: {
-					width : '70px',
+					width: '70px',
 					fontSize: '12px',
 					textOverflow: 'ellipsis',
 					whitewspace: 'nowrap',
@@ -99,7 +99,7 @@ export class MapaResidualComponent implements OnInit {
 					padding: '2px',
 					overflow: 'hidden'
 					*/
-                },
+				},
 				enabled: true,
 				color: '#000000',
 				inside: true,
@@ -115,7 +115,7 @@ export class MapaResidualComponent implements OnInit {
 				chartOptions: {
 					yAxis: {
 						labels: {
-							formatter: function format(this: any){
+							formatter: function format(this: any) {
 								return this.value.charAt(0);
 							}
 						}
@@ -127,21 +127,45 @@ export class MapaResidualComponent implements OnInit {
 	};
 
 
-	constructor(private service: SharedService, public _Activatedroute:ActivatedRoute) { }
+	constructor(private service: SharedService, public _Activatedroute: ActivatedRoute) { }
 	RiesgoList: any = [];
+	RiesgosFinales: any = [];
 	ControlList: any = [];
 	CausaList: any = [];
 	valorDiseñoDeControl: number = 0;
 	valorCalificacionControl: number = 0;
 	coberturaTotalControles: number = 0;
 	contRiesgosSinMacro: number = 0;
-	riesgoM: string = "";
+	riesgoMuyAltoTotal: string = "";
+	riesgoMuyAltoAlto: string = "";
+	riesgoMuyAltoMedio: string = "";
+	riesgoMuyAltoBajo: string = "";
+	riesgoMuyAltoAusenciaControl: string = "";
+	riesgoAltoTotal: string = "";
+	riesgoAltoAlto: string = "";
+	riesgoAltoMedio: string = "";
+	riesgoAltoBajo: string = "";
+	riesgoAltoAusenciaControl: string = "";
+	riesgoMedioTotal: string = "";
+	riesgoMedioAlto: string = "";
+	riesgoMedioMedio: string = "";
+	riesgoMedioBajo: string = "";
+	riesgoMedioAusenciaControl: string = "";
+	riesgoBajoTotal: string = "";
+	riesgoBajoAlto: string = "";
+	riesgoBajoMedio: string = "";
+	riesgoBajoBajo: string = "";
+	riesgoBajoAusenciaControl: string = "";
+	riesgoMuyBajoTotal: string = "";
+	riesgoMuyBajoAlto: string = "";
+	riesgoMuyBajoMedio: string = "";
+	riesgoMuyBajoBajo: string = "";
+	riesgoMuyBajoAusenciaControl: string = "";
 
 	ngOnInit() {
 		this.refreshRiesgoList();
 		this.refreshControlList();
 		this.refreshCausaList();
-		this.calculosControles();
 		this.buscarRiesgosSinMacro();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
@@ -154,7 +178,7 @@ export class MapaResidualComponent implements OnInit {
 			{ Nombre: "Contratación al Retiro" },
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
-		
+
 		this.chartOptions.series[0]['data'] = [{ x: 0, y: 0, value: 0, name: "" }, { x: 0, y: 1, value: 0, name: "" }, { x: 0, y: 2, value: 0, name: "" }, { x: 0, y: 3, value: 0, name: "" },
 		{ x: 0, y: 4, value: 0, name: "" }, { x: 1, y: 0, value: 50, name: "" }, { x: 1, y: 1, value: 25, name: "" }, { x: 1, y: 2, value: 0, name: "" }, { x: 1, y: 3, value: 0, name: "" },
 		{ x: 1, y: 4, value: 0, name: "" }, { x: 2, y: 0, value: 75, name: "" }, { x: 2, y: 1, value: 50, name: "" }, { x: 2, y: 2, value: 25, name: "" }, { x: 2, y: 3, value: 0, name: "" },
@@ -216,7 +240,7 @@ export class MapaResidualComponent implements OnInit {
 	}
 	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
 	calcularNivelRiesgoInherente(RiesgoList: any, data: any) {
-		for (let i = 0; i < this.RiesgoList.length; ++i) {
+		for (let i = 0; i < RiesgoList.length; ++i) {
 			if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
 				RiesgoList[i].nivelRiesgo = "A";
 			}
@@ -268,14 +292,13 @@ export class MapaResidualComponent implements OnInit {
 
 		}
 		RiesgoList = data;
-		console.log("Lista de riesgos");
-		console.log(RiesgoList);
+		this.calculosControles(RiesgoList);
 	}
-	
-	calculosControles() {
-		this.calcularDiseñoControl();
+
+	calculosControles(RiesgoList: any) {
+		this.calcularDiseñoControl(RiesgoList);
 	}
-	calcularDiseñoControl() {
+	calcularDiseñoControl(RiesgoList: any) {
 		this.service.getControlesList().subscribe(data => {
 			this.ControlList = data;
 			for (let i = 0; i < this.ControlList.length; ++i) {
@@ -335,10 +358,10 @@ export class MapaResidualComponent implements OnInit {
 				this.valorDiseñoDeControl = 0;
 			}
 			this.ControlList = data;
-			this.calcularEstrategiaMonitoreo(this.ControlList);
+			this.calcularEstrategiaMonitoreo(this.ControlList, RiesgoList);
 		});
 	}
-	calcularEstrategiaMonitoreo(ControlList: any) {
+	calcularEstrategiaMonitoreo(ControlList: any, RiesgoList: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
 			if (ControlList[i].disenoControl == 'No Efectivo' || ControlList[i].disenoControl == 'Requiere Mejora'
 				|| ControlList[i].disenoControl == 'No se identifico control') {
@@ -351,12 +374,12 @@ export class MapaResidualComponent implements OnInit {
 				ControlList[i].estrategiaMonitoreo = "Hasta recorrido";
 			}
 		}
-		this.calcularCalificacionControl(ControlList);
+		this.calcularCalificacionControl(ControlList, RiesgoList);
 		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
 		//console.log(ControlList);
 	}
 
-	calcularCalificacionControl(ControlList: any) {
+	calcularCalificacionControl(ControlList: any, RiesgoList: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
 			if (ControlList[i].tipoControl == 'No efectivo') {
 				ControlList[i].calificacionControl = 0;
@@ -396,41 +419,41 @@ export class MapaResidualComponent implements OnInit {
 			ControlList[i].calificacionControl = this.valorCalificacionControl;
 			this.valorCalificacionControl = 0;
 		}
-		this.calcularCoberturaPonderadaPorControl(ControlList);
+		this.calcularCoberturaPonderadaPorControl(ControlList, RiesgoList);
 		//console.log("Lista de controles despues de calcular la calificación del control: ");
 		//console.log(ControlList);
 
 	}
-	calcularCoberturaPonderadaPorControl(ControlList: any) {
+	calcularCoberturaPonderadaPorControl(ControlList: any, RiesgoList: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
 			if (ControlList[i].evaluacionFuncionalidad == 'No efectivo') {
-				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5) / 100));
+				ControlList[i].coberturaPonderada = (Math.round((ControlList[i].calificacionControl * ControlList[i].cobertura * 0.5) / 100));
 			}
 			else {
-				ControlList[i].coberturaPonderada = (Math.ceil((ControlList[i].calificacionControl * ControlList[i].cobertura) / 100));
+				ControlList[i].coberturaPonderada = (Math.round((ControlList[i].calificacionControl * ControlList[i].cobertura) / 100));
 			}
 		}
 		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
 		//console.log(ControlList);
-		this.calcularCoberturaTotalControles(ControlList);
+		this.calcularCoberturaTotalControles(ControlList, RiesgoList);
 	}
-	calcularCoberturaTotalControles(ControlList: any, ) {
+	calcularCoberturaTotalControles(ControlList: any, RiesgoList: any) {
 		//Recorrer todas las listas, para encontrar todos los controles asociados que aparezcan en la matriz
-		for (let i = 0; i < this.RiesgoList.length; ++i) {
+		for (let i = 0; i < RiesgoList.length; ++i) {
 			for (let k = 0; k < this.CausaList.length; ++k) {
 				for (let j = 0; j < ControlList.length; ++j) {
 					//Si los ID´s del riesgo, causa y control inherentes como asociados son iguales, entonces se suma la cobertura ponderada
 					//de los controles adjuntos a la variable "coberturaTotalControles"
-					if ((this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado2
-						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado4
-						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado6
-						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado8
-						|| this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado10)
-						&& (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
-							|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
-							|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
-							|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
-							|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10)
+					if ((RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado || RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado2
+						|| RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado3 || RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado4
+						|| RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado5 || RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado6
+						|| RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado7 || RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado8
+						|| RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado9 || RiesgoList[i].idRiesgo === this.CausaList[k].idRiesgoAsociado10)
+						&& (RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
+							|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
+							|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+							|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
+							|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10)
 						&& (ControlList[j].idControl === this.CausaList[k].idControlAsociado || ControlList[j].idControl === this.CausaList[k].idControlAsociado2
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado3 || ControlList[j].idControl === this.CausaList[k].idControlAsociado4
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado5 || ControlList[j].idControl === this.CausaList[k].idControlAsociado6
@@ -443,11 +466,11 @@ export class MapaResidualComponent implements OnInit {
 						//Ciclo for aquí dentro de los controles, para llenar con la variable "coberturaTotalControles"
 						//solo si el id del riesgo es igual al id del riesgo asociado, luego resetear la variable "coberturaTotalControles"
 						for (let l = 0; l < ControlList.length; ++l) {
-							if (this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado2
-								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado4
-								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado6
-								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
-								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
+							if (RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado || RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado2
+								|| RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado3 || RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado4
+								|| RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado5 || RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado6
+								|| RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
+								|| RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
 								ControlList[l].coberturaTotal = this.coberturaTotalControles;
 							}
 						}
@@ -457,10 +480,10 @@ export class MapaResidualComponent implements OnInit {
 			//Resetar la variable "coberturaTotalControles" para que no se sumen todas las coberturas ponderadas de los controles
 			this.coberturaTotalControles = 0;
 		}
-		this.calcularNivelCobertura(ControlList);
+		this.calcularNivelCobertura(ControlList, RiesgoList);
 	}
 
-	calcularNivelCobertura(ControlList: any) {
+	calcularNivelCobertura(ControlList: any, RiesgoList: any) {
 		//Recorrer losta de los controles
 		for (let j = 0; j < ControlList.length; ++j) {
 			//Si la cobertura total 0-20%, cobetura = Ausencia de control
@@ -484,67 +507,140 @@ export class MapaResidualComponent implements OnInit {
 				ControlList[j].nivelCobertura = "Total";
 			}
 		}
-		this.calcularGravedadRiesgoResidual(ControlList);
-		console.log("Legue aqui: ");
-		console.log(ControlList);
+		this.calcularGravedadRiesgoResidual(ControlList, RiesgoList);
 	}
-	
-	calcularGravedadRiesgoResidual(ControlList: any) {
+
+	calcularGravedadRiesgoResidual(ControlList: any, RiesgoList: any) {
 		//Recorrer lista de los controles
 		//Recorrer lista de los riesgos
-		for (let i = 0; i < this.RiesgoList.length; ++i) {
+		for (let i = 0; i < RiesgoList.length; ++i) {
 			for (let j = 0; j < ControlList.length; ++j) {
 				//Si el id del riesgo es igual al id del riesgo asociado, luego comparar si el nivelRiesgo es alto
-				if (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10) {
+				if (RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
+					|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
+					|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+					|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
+					|| RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10
+					&& RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) {
 					//Si el nivel de riesgo inherente es "MA"
-					if (this.RiesgoList[i].nivelRiesgo === "MA") {
+					if (RiesgoList[i].nivelRiesgo === "MA") {
 						//Switch con los casos para el nivel de riesgo inherente "MA"
 						switch (ControlList[j].nivelCobertura) {
 							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								console.log("Macro aqui: " + this._Activatedroute.snapshot.paramMap.get('macro'));
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMuyAltoTotal = this.riesgoMuyAltoTotal + RiesgoList[i].idRiesgo;
 								this.chartOptions.series[0]['data'][0] = {
 									x: 0,
 									y: 0,
-									value: 75,
-									name: "Wow",
+									value: 0,
+									name: this.riesgoMuyAltoTotal,
 									description: ""
 								};
 								break;
 							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
+								RiesgoList[i].gravedadRiesgoResidual = "M";
+								this.riesgoMuyAltoAlto = this.riesgoMuyAltoAlto + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][5] = {
+									x: 1,
+									y: 0,
+									value: 50,
+									name: this.riesgoMuyAltoAlto,
+									description: ""
+								};
 								break;
 							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "A";
+								RiesgoList[i].gravedadRiesgoResidual = "A";
+								this.riesgoMuyAltoMedio = this.riesgoMuyAltoMedio + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][10] = {
+									x: 2,
+									y: 0,
+									value: 75,
+									name: this.riesgoMuyAltoMedio,
+									description: ""
+								};
 								break;
 							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MA";
+								RiesgoList[i].gravedadRiesgoResidual = "MA";
+								this.riesgoMuyAltoBajo = this.riesgoMuyAltoBajo + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][15] = {
+									x: 3,
+									y: 0,
+									value: 100,
+									name: this.riesgoMuyAltoBajo,
+									description: ""
+								}
 								break;
 							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MA";
+								RiesgoList[i].gravedadRiesgoResidual = "MA";
+								this.riesgoMuyAltoAusenciaControl = this.riesgoMuyAltoAusenciaControl + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][20] = {
+									x: 4,
+									y: 0,
+									value: 100,
+									name: this.riesgoMuyAltoAusenciaControl,
+									description: ""
+								}
 						}
 					}
 					//Si el nivel de riesgo inherente es "A"
-					else if (this.RiesgoList[i].nivelRiesgo === "A") {
+					else if (RiesgoList[i].nivelRiesgo === "A") {
 						//Switch con los casos para el nivel de riesgo inherente "A"
 						switch (ControlList[j].nivelCobertura) {
 							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoAltoTotal = this.riesgoAltoTotal + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][1] = {
+									x: 0,
+									y: 1,
+									value: 0,
+									name: this.riesgoAltoTotal,
+									description: ""
+								}
 								break;
 							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "B";
+								RiesgoList[i].gravedadRiesgoResidual = "B";
+								this.riesgoAltoAlto = this.riesgoAltoAlto + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][6] = {
+									x: 1,
+									y: 1,
+									value: 25,
+									name: this.riesgoAltoAlto,
+									description: ""
+								}
 								break;
 							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
+								RiesgoList[i].gravedadRiesgoResidual = "M";
+								this.riesgoAltoMedio = this.riesgoAltoMedio + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][11] = {
+									x: 2,
+									y: 1,
+									value: 50,
+									name: this.riesgoAltoMedio,
+									description: ""
+								}
 								break;
 							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "A";
+								RiesgoList[i].gravedadRiesgoResidual = "A";
+								this.riesgoAltoBajo = this.riesgoAltoBajo + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][16] = {
+									x: 3,
+									y: 1,
+									value: 75,
+									name: this.riesgoAltoBajo,
+									description: ""
+								}
 								break;
 							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "A";
+								RiesgoList[i].gravedadRiesgoResidual = "A";
+								this.riesgoAltoAusenciaControl = this.riesgoAltoAusenciaControl + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][21] = {
+									x: 4,
+									y: 1,
+									value: 100,
+									name: this.riesgoAltoAusenciaControl,
+									description: ""
+								}
 						}
 					}
 					//Si el nivel de riesgo inherente es "M"
@@ -552,69 +648,442 @@ export class MapaResidualComponent implements OnInit {
 						//Switch con los casos para el nivel de riesgo inherente "M"
 						switch (ControlList[j].nivelCobertura) {
 							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMedioTotal = this.riesgoMedioTotal + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][2] = {
+									x: 0,
+									y: 2,
+									value: 0,
+									name: this.riesgoMedioTotal,
+									description: ""
+								}
 								break;
 							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMedioAlto = this.riesgoMedioAlto + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][7] = {
+									x: 1,
+									y: 2,
+									value: 0,
+									name: this.riesgoMedioAlto,
+									description: ""
+								}
 								break;
 							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "B";
+								RiesgoList[i].gravedadRiesgoResidual = "B";
+								this.riesgoMedioMedio = this.riesgoMedioMedio + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][12] = {
+									x: 2,
+									y: 2,
+									value: 25,
+									name: this.riesgoMedioMedio,
+									description: ""
+								}
 								break;
 							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
+								RiesgoList[i].gravedadRiesgoResidual = "M";
+								this.riesgoMedioBajo = this.riesgoMedioBajo + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][17] = {
+									x: 3,
+									y: 2,
+									value: 50,
+									name: this.riesgoMedioBajo,
+									description: ""
+								}
 								break;
 							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
+								RiesgoList[i].gravedadRiesgoResidual = "M";
+								this.riesgoMedioAusenciaControl = this.riesgoMedioAusenciaControl + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][22] = {
+									x: 4,
+									y: 2,
+									value: 50,
+									name: this.riesgoMedioAusenciaControl,
+									description: ""
+								}
 						}
 					}
 					//Si el nivel de riesgo inherente es "B"
-					else if (this.RiesgoList[i].nivelRiesgo === "B") {
-					//Switch con los casos para el nivel de riesgo inherente "B"
-					switch (ControlList[j].nivelCobertura) {
-						case "Total":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Alto":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Medio":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Bajo":
-							this.RiesgoList[i].gravedadRiesgoResidual = "B";
-							break;
-						case "Ausencia de control":
-							this.RiesgoList[i].gravedadRiesgoResidual = "B";
+					else if (RiesgoList[i].nivelRiesgo === "B") {
+						//Switch con los casos para el nivel de riesgo inherente "B"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoBajoTotal = this.riesgoBajoTotal + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][3] = {
+									x: 0,
+									y: 3,
+									value: 0,
+									name: this.riesgoBajoTotal,
+									description: ""
+								}
+								break;
+							case "Alto":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoBajoAlto = this.riesgoBajoAlto + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][8] = {
+									x: 1,
+									y: 3,
+									value: 0,
+									name: this.riesgoBajoAlto,
+									description: ""
+								}
+								break;
+							case "Medio":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoBajoMedio = this.riesgoBajoMedio + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][13] = {
+									x: 2,
+									y: 3,
+									value: 25,
+									name: this.riesgoBajoMedio,
+									description: ""
+								}
+								break;
+							case "Bajo":
+								RiesgoList[i].gravedadRiesgoResidual = "B";
+								this.riesgoBajoBajo = this.riesgoBajoBajo + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][18] = {
+									x: 3,
+									y: 3,
+									value: 25,
+									name: this.riesgoBajoBajo,
+									description: ""
+								}
+								break;
+							case "Ausencia de control":
+								RiesgoList[i].gravedadRiesgoResidual = "B";
+								this.riesgoBajoAusenciaControl = this.riesgoBajoAusenciaControl + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][23] = {
+									x: 4,
+									y: 3,
+									value: 25,
+									name: this.riesgoBajoAusenciaControl,
+									description: ""
+								}
+						}
 					}
-				}
-				//Si el nivel de riesgo inherente es "MB"
-				else if (this.RiesgoList[i].nivelRiesgo === "MB") {
-					//Switch con los casos para el nivel de riesgo inherente "MA"
-					switch (ControlList[j].nivelCobertura) {
-						case "Total":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Alto":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Medio":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Bajo":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Ausencia de control":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+					//Si el nivel de riesgo inherente es "MB"
+					else if (RiesgoList[i].nivelRiesgo === "MB") {
+						//Switch con los casos para el nivel de riesgo inherente "MA"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMuyBajoTotal = this.riesgoMuyBajoTotal + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][4] = {
+									x: 0,
+									y: 4,
+									value: 0,
+									name: this.riesgoMuyBajoTotal,
+									description: ""
+								}
+								break;
+							case "Alto":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMuyBajoAlto = this.riesgoMuyBajoAlto + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][9] = {
+									x: 1,
+									y: 4,
+									value: 0,
+									name: this.riesgoMuyBajoAlto,
+									description: ""
+								}
+								break;
+							case "Medio":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMuyBajoMedio = this.riesgoMuyBajoMedio + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][14] = {
+									x: 2,
+									y: 4,
+									value: 0,
+									name: this.riesgoMuyBajoMedio,
+									description: ""
+								}
+								break;
+							case "Bajo":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMuyBajoBajo = this.riesgoMuyBajoBajo + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][19] = {
+									x: 3,
+									y: 4,
+									value: 0,
+									name: this.riesgoMuyBajoBajo,
+									description: ""
+								}
+								break;
+							case "Ausencia de control":
+								RiesgoList[i].gravedadRiesgoResidual = "MB";
+								this.riesgoMuyBajoAusenciaControl = this.riesgoMuyBajoAusenciaControl + RiesgoList[i].idRiesgo;
+								this.chartOptions.series[0]['data'][24] = {
+									x: 4,
+									y: 4,
+									value: 0,
+									name: this.riesgoMuyBajoAusenciaControl,
+									description: ""
+								}
+						}
 					}
-				}
+					//Si riesgoMuyAltoTotal es nulo
+					if (this.riesgoMuyAltoTotal === "") {
+						this.chartOptions.series[0]['data'][0] = {
+							x: 0,
+							y: 0,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoAltoTotal es nulo
+					if (this.riesgoAltoTotal === "") {
+						this.chartOptions.series[0]['data'][1] = {
+							x: 0,
+							y: 1,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMedioTotal es nulo
+					if (this.riesgoMedioTotal === "") {
+						this.chartOptions.series[0]['data'][2] = {
+							x: 0,
+							y: 2,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoBajoTotal es nulo
+					if (this.riesgoBajoTotal === "") {
+						this.chartOptions.series[0]['data'][3] = {
+							x: 0,
+							y: 3,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyBajoTotal es nulo
+					if (this.riesgoMuyBajoTotal === "") {
+						this.chartOptions.series[0]['data'][4] = {
+							x: 0,
+							y: 4,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyAltoAlto es nulo
+					if (this.riesgoMuyAltoAlto === "") {
+						this.chartOptions.series[0]['data'][5] = {
+							x: 1,
+							y: 0,
+							value: 50,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoAltoAlto es nulo
+					if (this.riesgoAltoAlto === "") {
+						this.chartOptions.series[0]['data'][6] = {
+							x: 1,
+							y: 1,
+							value: 25,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMedioAlto es nulo
+					if (this.riesgoMedioAlto === "") {
+						this.chartOptions.series[0]['data'][7] = {
+							x: 1,
+							y: 2,
+							value: 15,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoBajoAlto es nulo
+					if (this.riesgoBajoAlto === "") {
+						this.chartOptions.series[0]['data'][8] = {
+							x: 1,
+							y: 3,
+							value: 10,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyBajoAlto es nulo
+					if (this.riesgoMuyBajoAlto === "") {
+						this.chartOptions.series[0]['data'][9] = {
+							x: 1,
+							y: 4,
+							value: 5,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyAltoMedio es nulo
+					if (this.riesgoMuyAltoMedio === "") {
+						this.chartOptions.series[0]['data'][10] = {
+							x: 2,
+							y: 0,
+							value: 75,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoAltoMedio es nulo
+					if (this.riesgoAltoMedio === "") {
+						this.chartOptions.series[0]['data'][11] = {
+							x: 2,
+							y: 1,
+							value: 50,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMedioMedio es nulo
+					if (this.riesgoMedioMedio === "") {
+						this.chartOptions.series[0]['data'][12] = {
+							x: 2,
+							y: 2,
+							value: 25,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoBajoMedio es nulo
+					if (this.riesgoBajoMedio === "") {
+						this.chartOptions.series[0]['data'][13] = {
+							x: 2,
+							y: 3,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyBajoMedio es nulo
+					if (this.riesgoMuyBajoMedio === "") {
+						this.chartOptions.series[0]['data'][14] = {
+							x: 2,
+							y: 4,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyAltoBajo es nulo
+					if (this.riesgoMuyAltoBajo === "") {
+						this.chartOptions.series[0]['data'][15] = {
+							x: 3,
+							y: 0,
+							value: 100,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoAltoBajo es nulo
+					if (this.riesgoAltoBajo === "") {
+						this.chartOptions.series[0]['data'][16] = {
+							x: 3,
+							y: 1,
+							value: 75,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMedioBajo es nulo
+					if (this.riesgoMedioBajo === "") {
+						this.chartOptions.series[0]['data'][17] = {
+							x: 3,
+							y: 2,
+							value: 50,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoBajoBajo es nulo
+					if (this.riesgoBajoBajo === "") {
+						this.chartOptions.series[0]['data'][18] = {
+							x: 3,
+							y: 3,
+							value: 25,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyBajoBajo es nulo
+					if (this.riesgoMuyBajoBajo === "") {
+						this.chartOptions.series[0]['data'][19] = {
+							x: 3,
+							y: 4,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyAltoAusenciaControl es nulo
+					if (this.riesgoMuyAltoAusenciaControl === "") {
+						this.chartOptions.series[0]['data'][20] = {
+							x: 4,
+							y: 0,
+							value: 100,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoAltoAusenciaControl es nulo
+					if (this.riesgoAltoAusenciaControl === "") {
+						this.chartOptions.series[0]['data'][21] = {
+							x: 4,
+							y: 1,
+							value: 75,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMedioAusenciaControl es nulo
+					if (this.riesgoMedioAusenciaControl === "") {
+						this.chartOptions.series[0]['data'][22] = {
+							x: 4,
+							y: 2,
+							value: 50,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoBajoAusenciaControl es nulo
+					if (this.riesgoBajoAusenciaControl === "") {
+						this.chartOptions.series[0]['data'][23] = {
+							x: 4,
+							y: 3,
+							value: 25,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
+					//Si riesgoMuyBajoAusenciaControl es nulo
+					if (this.riesgoMuyBajoAusenciaControl === "") {
+						this.chartOptions.series[0]['data'][24] = {
+							x: 4,
+							y: 4,
+							value: 0,
+							name: "",
+							description: "No existen riesgos para este cuadrante"
+						};
+					}
 				}
 			}
 		}
-		this.chartOptions.tooltip.formatter =  function (this: any) {
+		console.log("Lista reisgos final")
+		console.log(RiesgoList)
+		this.RiesgosFinales = RiesgoList;
+		this.chartOptions.tooltip.formatter = function (this: any) {
 			/*Return con todos los datos del riesgo
 			return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
 			this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>'; */
-			return 'ID de los riesgos: <b>' + this.point.name
+			return 'ID de los riesgos: <b>' + this.point.name + '' + this.point.description + '</b>';
 		}
 		Highcharts.chart('container', this.chartOptions);
 	}
@@ -623,14 +1092,14 @@ export class MapaResidualComponent implements OnInit {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			for (let i = 0; i < this.RiesgoList.length; i++) {
-					//Sino existen macros para la lista de riesgos
-				if (this.RiesgoList[i].macroProceso != this._Activatedroute.snapshot.paramMap.get('macro')){
+				//Sino existen macros para la lista de riesgos
+				if (this.RiesgoList[i].macroProceso != this._Activatedroute.snapshot.paramMap.get('macro')) {
 					++this.contRiesgosSinMacro;
 				}
 			}
-			if(this.contRiesgosSinMacro === this.RiesgoList.length){
-			console.log("Contador: " + this.contRiesgosSinMacro);
-			console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
+			if (this.contRiesgosSinMacro === this.RiesgoList.length) {
+				console.log("Contador: " + this.contRiesgosSinMacro);
+				console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
 			}
 		});
 	}
