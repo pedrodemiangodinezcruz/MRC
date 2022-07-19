@@ -103,7 +103,6 @@ export class MapaRiesgoComponent implements OnInit {
 		},
 
 		series: [{
-			//name: 'Riesgo Inherente',
 			borderWidth: 1,
 			data: [],
 			dataLabels: {
