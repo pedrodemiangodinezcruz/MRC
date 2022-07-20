@@ -30,6 +30,8 @@ import { TablaCausaComponent } from './body/tabla-causa/tabla-causa.component';
 import { ListaRiesgosComponent } from './body/lista-riesgos/lista-riesgos.component';
 import { InicioComponent } from './body/inicio/inicio.component';
 import { CriteriosDefinicionComponent } from './body/criterios-definicion/criterios-definicion.component';
+import { EstadisticasCoberturaComponent } from './body/estadisticas-cobertura/estadisticas-cobertura.component';
+import { EstadisticasRiesgoResidualComponent } from './body/estadisticas-riesgo-residual/estadisticas-riesgo-residual.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { CriteriosDefinicionComponent } from './body/criterios-definicion/criter
     TablaCausaComponent,
     ListaRiesgosComponent,
     InicioComponent,
-    CriteriosDefinicionComponent
+    CriteriosDefinicionComponent,
+    EstadisticasCoberturaComponent,
+    EstadisticasRiesgoResidualComponent
   ],
   imports: [
     BrowserModule,

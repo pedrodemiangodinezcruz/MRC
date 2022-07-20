@@ -6,6 +6,8 @@ import { MatrizComponent } from './body/matriz/matriz.component';
 import { MapaResidualComponent } from './body/mapa-residual/mapa-residual.component';
 import { CriteriosComponent } from './body/criterios/criterios.component';
 import { EstadisticasComponent } from './body/estadisticas/estadisticas.component';
+import { EstadisticasCoberturaComponent } from './body/estadisticas-cobertura/estadisticas-cobertura.component';
+import { EstadisticasRiesgoResidualComponent } from './body/estadisticas-riesgo-residual/estadisticas-riesgo-residual.component';
 import { MapaRiesgoComponent } from './body/mapa-riesgo/mapa-riesgo.component';
 import { ParetoComponent } from './body/pareto/pareto.component';
 import { CausasComponent } from './body/causas/causas.component';
@@ -24,6 +26,10 @@ const routes: Routes = [
 {path: 'controles', component: ControlesComponent},
 {path: 'criterios', component: CriteriosComponent},
 {path: 'estadisticas', component: EstadisticasComponent},
+{path: 'estadisticasCobertura', component: EstadisticasCoberturaComponent},
+{path: 'estadisticasCobertura/:macro', component: EstadisticasCoberturaComponent},
+{path: 'estadisticasRiesgoResidual', component: EstadisticasRiesgoResidualComponent},
+{path: 'estadisticasRiesgoResidual/:macro', component: EstadisticasRiesgoResidualComponent},
 {path: 'estadisticas/:macro', component: EstadisticasComponent},
 {path: 'mapaResidual', component: MapaResidualComponent},
 {path: 'mapaResidual/:macro', component: MapaResidualComponent},
