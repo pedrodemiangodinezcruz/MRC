@@ -49,7 +49,8 @@ export class EstadisticasComponent implements OnInit {
 				type: 'pie'
 			},
 			title: {
-				text: 'Diagrama de pastel del macroproceso de: <strong> ' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong>',
+				text: 'Diagrama de pastel mostrando la frencancia de los '
+				+ 'riesgos inherentes asociados al macroproceso: <strong> ' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong>',
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
