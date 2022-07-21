@@ -35,7 +35,7 @@ export class EstadisticasRiesgoResidualComponent implements OnInit {
 				type: 'pie'
 			},
 			title: {
-				text: 'Diagrama 3 de pastel del macroproceso: <strong>' +  this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando la frecuencia de los niveles de riesgo'
+				text: 'Diagrama de pastel del macroproceso: <strong>' +  this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando la frecuencia de los tipos de riesgos residuales'
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -65,11 +65,11 @@ export class EstadisticasRiesgoResidualComponent implements OnInit {
 			series: [{
 				name: 'Porcentaje',
 				data: [
-					{ name: 'Total', y: 46.41 },
-					{ name: 'Alto', y: 13.84 },
-					{ name: 'Medio', y: 9.85 },
-					{ name: 'Bajo', y: 15.23 },
-					{ name: 'Ausencia de control', y: 14.67 }
+					{ name: 'Total', y: 0 },
+					{ name: 'Alto', y: 0 },
+					{ name: 'Medio', y: 0 },
+					{ name: 'Bajo', y: 0 },
+					{ name: 'Ausencia de control', y: 0 }
 				]
 			}]
 		};
@@ -90,7 +90,7 @@ export class EstadisticasRiesgoResidualComponent implements OnInit {
 			{Nombre: "Contratación al Retiro"},
 			{Nombre: "Procesos Criticos fuera de Macros"}
 		];
-		this.residualPastel.series[0]['data'] = [ { name: 'MA', y: 46.41 }, { name: 'A', y: 13.84 }, { name: 'M', y: 9.85 }, { name: 'B', y: 15.23 }, { name: 'MB', y: 14.67 }];
+		this.residualPastel.series[0]['data'] = [ { name: 'MA', y: 0 }, { name: 'A', y: 0 }, { name: 'M', y: 0 }, { name: 'B', y: 0 }, { name: 'MB', y: 0 }];
 	  }
 	 
 					

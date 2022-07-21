@@ -46,7 +46,7 @@ export class EstadisticasCoberturaComponent implements OnInit {
 			type: 'pie'
 		},
 		title: {
-			text: 'Diagrama de pastel del macroproceso: <strong>' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando la frecuencia de los niveles de riesgo',
+			text: 'Diagrama de pastel del macroproceso: <strong>' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando las fecuencias de las coberturas de los controles',
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -64,7 +64,7 @@ export class EstadisticasCoberturaComponent implements OnInit {
 				dataLabels: {
 					enabled: true,
 					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-					distance: -50,
+					distance: -65,
 					filter: {
 						property: 'percentage',
 						operator: '>',
@@ -76,57 +76,6 @@ export class EstadisticasCoberturaComponent implements OnInit {
 		series: [{
 			name: 'Porcentaje',
 			data: [
-				{ name: 'MMMM', y: 46.41 },
-				{ name: 'A', y: 13.84 },
-				{ name: 'M', y: 9.85 },
-				{ name: 'B', y: 15.23 },
-				{ name: 'MB', y: 14.67 }
-			]
-		}]
-	};
-	public residualPastel: any = {
-		chart: {
-			plotBackgroundColor: null,
-			plotBorderWidth: null,
-			plotShadow: false,
-			type: 'pie'
-		},
-		title: {
-			text: 'Diagrama 3 de pastel del macroproceso: <strong>' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando la frecuencia de los niveles de riesgo'
-		},
-		tooltip: {
-			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		},
-		accessibility: {
-			point: {
-				valueSuffix: '%'
-			}
-		},
-		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				colors: ['rgb(0,176,80)', 'rgb(128,216,40)', 'rgb(255,255,0)', 'rgb(255,128,0)', 'rgb(255,0,0)'],
-				dataLabels: {
-					enabled: true,
-					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-					distance: -50,
-					filter: {
-						property: 'percentage',
-						operator: '>',
-						value: 4
-					}
-				}
-			}
-		},
-		series: [{
-			name: 'Porcentaje',
-			data: [
-				{ name: 'Total', y: 46.41 },
-				{ name: 'Alto', y: 13.84 },
-				{ name: 'Medio', y: 9.85 },
-				{ name: 'Bajo', y: 15.23 },
-				{ name: 'Ausencia de control', y: 14.67 }
 			]
 		}]
 	};
@@ -148,7 +97,7 @@ export class EstadisticasCoberturaComponent implements OnInit {
 			{ Nombre: "Contratación al Retiro" },
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
-		this.coberturaPastel.series[0]['data'] = [{ name: 'MA', y: 46.41 }, { name: 'A', y: 13.84 }, { name: 'M', y: 9.85 }, { name: 'B', y: 15.23 }, { name: 'MB', y: 14.67 }];
+		this.coberturaPastel.series[0]['data'] = [{ name: 'Total', y: 0 }, { name: 'Alto', y: 0 }, { name: 'Medio', y: 0 }, { name: 'Bajo', y: 0 }, { name: 'Ausencia de Control', y: 0 }];
 	}
 
 
@@ -274,27 +223,6 @@ export class EstadisticasCoberturaComponent implements OnInit {
 				}
 			}
 		}
-		this.coberturaPastel.series[0]['data'][0] = {
-			name: 'MA',
-			y: this.riesgosInherentesMuyAltos
-		};
-		this.coberturaPastel.series[0]['data'][1] = {
-			name: 'A',
-			y: this.riesgosInherentesAltos
-		};
-		this.coberturaPastel.series[0]['data'][2] = {
-			name: 'M',
-			y: this.riesgosInherentesMedios
-		}
-		this.coberturaPastel.series[0]['data'][3] = {
-			name: 'B',
-			y: this.riesgosInherentesBajos
-		}
-		this.coberturaPastel.series[0]['data'][4] = {
-			name: 'MB',
-			y: this.riesgosInherentesMuyBajos
-		}
-		Highcharts.chart('container', this.coberturaPastel);
 		RiesgoList = data;
 	}
 
@@ -484,49 +412,78 @@ export class EstadisticasCoberturaComponent implements OnInit {
 			//Resetar la variable "coberturaTotalControles" para que no se sumen todas las coberturas ponderadas de los controles
 			this.coberturaTotalControles = 0;
 		}
-		this.verificarRiesgosAsociadosPorMacro(ControlList, this.RiesgoList);
-	}
-
-	verificarRiesgosAsociadosPorMacro(ControlList: any, RiesgoList: any) {
-		for (let i = 0; i < RiesgoList.length; ++i) {
-			for (let j = 0; j < ControlList.length; ++j) {
-				if (RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
-					//this.calcularNivelCobertura(ControlList);
-				}
-			}
-		}
+		this.calcularNivelCobertura(ControlList);
 	}
 
 	calcularNivelCobertura(ControlList: any) {
 		//Recorrer losta de los controles
 		for (let j = 0; j < ControlList.length; ++j) {
-
-			//Si la cobertura total 0-20%, cobetura = Ausencia de control
-			if (ControlList[j].coberturaTotal <= 20) {
-				ControlList[j].nivelCobertura = "Ausencia de control";
-				++this.ausenciasDeControl;
-			}
-			//Si la cobertura total 20-40%, cobetura = Bajo
-			else if (ControlList[j].coberturaTotal > 20 && ControlList[j].coberturaTotal <= 40) {
-				ControlList[j].nivelCobertura = "Bajo";
-				++this.controlesBajos;
-			}
-			//Si la cobertura total 40-60%, cobetura = Medio
-			else if (ControlList[j].coberturaTotal > 40 && ControlList[j].coberturaTotal <= 60) {
-				ControlList[j].nivelCobertura = "Medio";
-				++this.controlesMedios;
-			}
-			//Si la cobertura total 60-80%, cobetura = Alto
-			else if (ControlList[j].coberturaTotal > 60 && ControlList[j].coberturaTotal <= 80) {
-				ControlList[j].nivelCobertura = "Alto";
-				++this.controlesAltos;
-			}
-			//Si la cobertura total 80-100%, cobetura = Total
-			else if (ControlList[j].coberturaTotal > 80 && ControlList[j].coberturaTotal <= 100) {
-				ControlList[j].nivelCobertura = "Total";
-				++this.controlesTotales;
+			//Ver si recorrer la liesta de riesgos para ver cualtes estan en el macro proceso
+			for (let i = 0; i < this.RiesgoList.length; ++i) {
+				if (this.RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
+					if (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10) {
+						//Si la cobertura total 0-20%, cobetura = Ausencia de control
+						if (ControlList[j].coberturaTotal <= 20) {
+							ControlList[j].nivelCobertura = "Ausencia de control";
+							++this.ausenciasDeControl;
+						}
+						//Si la cobertura total 20-40%, cobetura = Bajo
+						else if (ControlList[j].coberturaTotal > 20 && ControlList[j].coberturaTotal <= 40) {
+							ControlList[j].nivelCobertura = "Bajo";
+							++this.controlesBajos;
+						}
+						//Si la cobertura total 40-60%, cobetura = Medio
+						else if (ControlList[j].coberturaTotal > 40 && ControlList[j].coberturaTotal <= 60) {
+							ControlList[j].nivelCobertura = "Medio";
+							++this.controlesMedios;
+						}
+						//Si la cobertura total 60-80%, cobetura = Alto
+						else if (ControlList[j].coberturaTotal > 60 && ControlList[j].coberturaTotal <= 80) {
+							ControlList[j].nivelCobertura = "Alto";
+							++this.controlesAltos;
+						}
+						//Si la cobertura total 80-100%, cobetura = Total
+						else if (ControlList[j].coberturaTotal > 80 && ControlList[j].coberturaTotal <= 100) {
+							ControlList[j].nivelCobertura = "Total";
+							++this.controlesTotales;
+						}
+					}
+				}
 			}
 		}
+		if(this.controlesTotales > 0 || this.controlesAltos > 0 || this.controlesMedios > 0 || this.controlesBajos > 0 || this.ausenciasDeControl > 0){
+		this.coberturaPastel.series[0]['data'][0] = {
+			name: 'Total',
+			y: this.controlesTotales
+		};
+		this.coberturaPastel.series[0]['data'][1] = {
+			name: 'Alto',
+			y: this.controlesAltos
+		};
+		this.coberturaPastel.series[0]['data'][2] = {
+			name: 'Medio',
+			y: this.controlesMedios
+		};
+		this.coberturaPastel.series[0]['data'][3] = {
+			name: 'Bajo',
+			y: this.controlesBajos
+		};
+		this.coberturaPastel.series[0]['data'][4] = {
+			name: 'Ausencia de control',
+			y: this.ausenciasDeControl
+		};
+	}
+	else{
+		this.coberturaPastel.series[0]['data'][0] = {
+			name: 'No existen riesgos asociados a este macroproceso',
+			y: 10
+		};
+	}
+		Highcharts.chart('container', this.coberturaPastel);
 		this.calcularGravedadRiesgoResidual(ControlList);
 	}
 	calcularGravedadRiesgoResidual(ControlList: any) {
