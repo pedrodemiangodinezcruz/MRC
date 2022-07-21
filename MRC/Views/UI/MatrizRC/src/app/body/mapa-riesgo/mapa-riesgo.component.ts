@@ -178,6 +178,7 @@ export class MapaRiesgoComponent implements OnInit {
 	riesgoMuyBajoImportante: string = "";
 	riesgoMuyBajoCritico: string = "";
 	riesgoMuyBajoCatastrofico: string = "";
+	idRiesgosFormateados: string = "";
 
 	ngOnInit() {
 		this.refreshRiesgoList();
@@ -732,7 +733,8 @@ export class MapaRiesgoComponent implements OnInit {
 			this.chartOptions.tooltip.formatter = function (this: any) {
 				//return 'ID de los riesgos: <b>' + this.point.name + '</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
 				//this.point.value + '</b><br> Probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>' + '</b><br> Riesgo Inherente: <b>' + this.point.description + '</b>';
-				return 'ID de los riesgos: <b>' + this.point.name + '' + this.point.description + '</b>';
+				//this.idRiesgosFormateados = this.point.name.replace(/\n/g, " ")
+				return 'ID de los riesgos: <b>' + this.point.name + '<br>' + this.point.description + '</b>';
 			}
 			Highcharts.chart('container', this.chartOptions);
 		});

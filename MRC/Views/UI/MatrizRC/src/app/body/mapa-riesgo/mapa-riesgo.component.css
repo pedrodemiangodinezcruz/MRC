@@ -1,7 +1,8 @@
+
 .highcharts-figure,
 .highcharts-data-table table {
-    min-width: 50vw;
-	max-width: 60vw;
+    min-width: 70vw;
+	max-width: 90vw;
     margin: 1em auto;
 	margin-left: 5vw !important;
 }

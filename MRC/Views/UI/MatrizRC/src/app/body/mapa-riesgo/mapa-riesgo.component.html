@@ -1,5 +1,6 @@
-<div class="row" id="infoSeccion">
-	<div class="col-3">
+<div class="row " id="infoSeccion">
+	<div class="row">
+	<div class="col-12">
 		<table class="table table-bordered text-center">
 			<thead>
 				<tr>
@@ -26,16 +27,20 @@
 				</tr>
 				<tr>
 					<th scope="col" class="naranja">ID Riesgo</th>
-					<th scope="col" class="naranja">Impacto</th>
-					<th scope="col" class="naranja">Probabilidad</th>
+					<th scope="col" class="naranja">Descripción</th>
+					<th scope="col" class="naranja">Riesgo Inherente</th>
 				</tr>
 			</thead>
 			<tbody>
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamaLista = count;">
 					<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'); else noRiesgo">
 						<td>{{riesgoItem.idRiesgo}}</td>
-						<td>{{riesgoItem.impacto}}</td>
-						<td>{{riesgoItem.probabilidad}}</td>
+						<td>{{riesgoItem.descripcion}}</td>
+						<td 
+						[ngClass]="{'rojo' : riesgoItem.nivelRiesgo === 'MA','anaranjado':  riesgoItem.nivelRiesgo === 'A',
+							'medio' : riesgoItem.nivelRiesgo === 'M', 'bajo' : riesgoItem.nivelRiesgo === 'B', 'verdeImpacto' : riesgoItem.nivelRiesgo === 'MB'}">
+						{{riesgoItem.nivelRiesgo}}
+					</td>
 					</tr>
 					<ng-template #noRiesgo>
 						<tr *ngIf="RiesgoList.length === this.contRiesgosSinMacro && RiesgoList.length-1 === i ">
@@ -46,15 +51,18 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="col-9" id="mapa">
-		<figure class="highcharts-figure">
-			<div id="container"></div>
-			<p class="highcharts-description">
-				Mapa de calor inherente asignando del macroproceso 
-				<strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong> mostrando ID de
-				cada
-				riesgo.
-			</p>
-		</figure>
+	</div>
+	<div class="row">
+		<div class="col-12" id="mapa">
+			<figure class="highcharts-figure">
+				<div id="container"></div>
+				<p class="highcharts-description">
+					Mapa de calor inherente asignando del macroproceso 
+					<strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong> mostrando ID de
+					cada
+					riesgo.
+				</p>
+			</figure>
+	</div>
 	</div>
 </div>
