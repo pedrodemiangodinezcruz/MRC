@@ -29,9 +29,6 @@ export class EstadisticasCoberturaComponent implements OnInit {
 	valorDiseñoDeControl: number = 0;
 	valorCalificacionControl: number = 0;
 	coberturaTotalControles: number = 0;
-	riesgoInherente: boolean = true;
-	residual: boolean = false;
-	cobertura: boolean = false;
 
 	constructor(public _Activatedroute: ActivatedRoute, private service: SharedService) { }
 
@@ -85,7 +82,6 @@ export class EstadisticasCoberturaComponent implements OnInit {
 		this.refreshControlList();
 		this.refreshCausaList();
 		this.calculosControles();
-		this.riesgoInherente = true;
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
