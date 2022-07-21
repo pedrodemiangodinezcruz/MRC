@@ -79,7 +79,7 @@ export class ParetoComponent implements OnInit {
 			}
 		}],
 		series: [{
-			color: 'rgb(237,28,36)',
+			color: 'rgb(201, 223, 238)',
 			type: 'pareto',
 			name: 'Pareto',
 			yAxis: 1,
@@ -90,7 +90,7 @@ export class ParetoComponent implements OnInit {
 				valueSuffix: '%'
 			}
 		}, {
-			color: 'rgb(46,157,89)',
+			color: 'rgb(0, 100, 175)',
 			name: 'Frecuencia',
 			type: 'column',
 			zIndex: 2,

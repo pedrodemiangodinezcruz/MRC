@@ -52,12 +52,24 @@ export class MapaRiesgoComponent implements OnInit {
 
 		xAxis: {
 			categories: ['Marginal', 'Débil', 'Importante', 'Crítico', 'Catastrófico'],
-			title: ['Impacto'],
+			title: {
+				text: '<strong>Impacto</strong>',
+				style: {
+					fontSize: '18px',
+					color: "#fffff"
+				},
+			}
 		},
 
 		yAxis: {
 			categories: ['Muy Alta', 'Alta', 'Media', 'Baja', 'Muy Baja'],
-			title: ['Probabilidad'],
+			title: {
+				text: '<strong>Probabilidad<strong>',
+				style: {
+					fontSize: '18px',
+					color: "#fffff"
+				},
+			},
 			reversed: true
 		},
 
@@ -478,7 +490,7 @@ export class MapaRiesgoComponent implements OnInit {
 							y: 4,
 							value: 50,
 							name: this.riesgoMuyBajoImportante,
-							description:this.RiesgoList[i].nivelRiesgo
+							description: ""
 						};
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Muy Baja' && (this.RiesgoList[i].impacto == 'Crítico')) {

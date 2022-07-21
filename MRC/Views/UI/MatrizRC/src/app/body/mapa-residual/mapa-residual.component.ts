@@ -25,8 +25,6 @@ export class MapaResidualComponent implements OnInit {
 			marginTop: 60,
 			marginBottom: 90,
 			plotBorderWidth: 1,
-
-
 		},
 
 		title: {
@@ -35,13 +33,25 @@ export class MapaResidualComponent implements OnInit {
 
 		xAxis: {
 			categories: ['Total', 'Alto', 'Medio', 'Bajo', 'Ausencia de control'],
-			title: ['COBERTURA DEL CONJUNTO DE CONTROLES'],
-
+			title: {
+				text: '<strong>Cobertura del conjunto de controles</strong>',
+				style: {
+					fontSize: '18px',
+					color: "#fffff"
+				},
+			},
 		},
 
 		yAxis: {
+			///Ver como cambiar lo de las categoriascolor: 'rbg(205, 25, 55)',
 			categories: ['MA', 'A', 'M', 'B', 'MB'],
-			title: ['RIESGO RESIDUAL'],
+			title: {
+				text: '<strong>Riesgo Residual</strong>',
+				style: {
+					fontSize: '18px',
+					color: "#fffff"
+				},
+			},
 			reversed: true
 		},
 
@@ -110,7 +120,7 @@ export class MapaResidualComponent implements OnInit {
 		responsive: {
 			rules: [{
 				condition: {
-					maxWidth: 800
+					maxWidth: 900
 				},
 				chartOptions: {
 					yAxis: {
@@ -735,7 +745,7 @@ export class MapaResidualComponent implements OnInit {
 								this.chartOptions.series[0]['data'][13] = {
 									x: 2,
 									y: 3,
-									value: 25,
+									value: 0,
 									name: this.riesgoBajoMedio,
 									description: ""
 								}
