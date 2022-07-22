@@ -445,6 +445,9 @@ export class MatrizComponent implements OnInit {
 								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
 								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
 								ControlList[l].coberturaTotal = this.coberturaTotalControles;
+								/*if(ControlList[l].coberturaTotal > 100){
+									ControlList[l] = "Revisar cobertura Individual por control";
+								}*/
 							}
 						}
 					}

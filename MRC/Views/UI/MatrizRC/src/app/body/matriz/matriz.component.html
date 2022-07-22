@@ -331,22 +331,28 @@
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.estrategiaMonitoreo}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
-							<td [attr.contenteditable]="contenteditable"  [ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">{{controlItem.evaluacionFuncionalidad}}</td>
+							<td [attr.contenteditable]="contenteditable"
+								[ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">
+								{{controlItem.evaluacionFuncionalidad}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.calificacionControl}}%</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.coberturaPonderada}}%</td>
-							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+							<td [ngClass]="{'rojo-alerta' : controlItem.coberturaTotal > 100}"
+								*ngIf="controlItem.coberturaTotal > 100"
+								[className]="esFomulado ? 'formulado' : 'inactivo'">
+								Revisar cobertura Inidivudal por Control</td>
+							<td id="formulado"  *ngIf="controlItem.coberturaTotal <= 100" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.coberturaTotal}}%</td>
-							<td  [className]="esFomulado ? 'formulado' : 'inactivo'"
-							[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','bajo':  controlItem.nivelCobertura === 'Alto',
+							<td [className]="esFomulado ? 'formulado' : 'inactivo'"
+								[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','bajo':  controlItem.nivelCobertura === 'Alto',
 							'medio' : controlItem.nivelCobertura === 'Medio', 'anaranjado' : controlItem.nivelCobertura === 'Bajo', 'rojo' : controlItem.nivelCobertura === 'Ausencia de control'}">
 								{{controlItem.nivelCobertura}}</td>
-							<td  [className]="esFomulado ? 'formulado' : 'inactivo'"
-							[ngClass]="{'verdeImpacto' : riesgoItem.gravedadRiesgoResidual === 'MB','bajo':  riesgoItem.gravedadRiesgoResidual === 'B',
-							'medio' : riesgoItem.gravedadRiesgoResidual === 'M', 'anaranjado' : riesgoItem.gravedadRiesgoResidual === 'A', 'rojo' : riesgoItem.gravedadRiesgoResidual === 'MA'}"
-							>{{riesgoItem.gravedadRiesgoResidual}}</td>
+							<td [className]="esFomulado ? 'formulado' : 'inactivo'"
+								[ngClass]="{'verdeImpacto' : riesgoItem.gravedadRiesgoResidual === 'MB','bajo':  riesgoItem.gravedadRiesgoResidual === 'B',
+							'medio' : riesgoItem.gravedadRiesgoResidual === 'M', 'anaranjado' : riesgoItem.gravedadRiesgoResidual === 'A', 'rojo' : riesgoItem.gravedadRiesgoResidual === 'MA'}">
+								{{riesgoItem.gravedadRiesgoResidual}}</td>
 							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 							<td [attr.contenteditable]="contenteditable">
 								{{controlItem.observaciones}}</td>
