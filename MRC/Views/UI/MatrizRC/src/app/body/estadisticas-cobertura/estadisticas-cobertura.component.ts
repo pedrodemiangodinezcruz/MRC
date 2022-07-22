@@ -57,7 +57,7 @@ export class EstadisticasCoberturaComponent implements OnInit {
 			pie: {
 				allowPointSelect: true,
 				cursor: 'pointer',
-				colors: ['rgb(255,0,0)', 'rgb(255,128,0)', 'rgb(255,255,0)', 'rgb(128,216,40)', 'rgb(0,176,80)'],
+				colors: ['rgb(0,176,80)', 'rgb(255,128,0)', 'rgb(255,255,0)', 'rgb(128,216,40)', 'rgb(255,0,0)'],
 				dataLabels: {
 					enabled: true,
 					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
