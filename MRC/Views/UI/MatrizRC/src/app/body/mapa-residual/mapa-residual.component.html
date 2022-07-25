@@ -33,41 +33,19 @@
 			</thead>
 			<tbody>
 				<!--Contenedor sobre todas las causas y controles que coincidan con un mismo ID de riesgo asociado-->
-				<ng-container
-					*ngFor="let riesgoItem of RiesgosFinales; let i = index; let tamanoListaRiesgo = count; let par = even">
-					<ng-container
-						*ngFor="let controlItem of ControlList; let k = index; let tamanoListaControl = count; let parCausa = even">
-						<ng-container
-							*ngFor="let causaItem of CausaList; let j = index; let tamanoListaCausa = count; let parControl = even">
-							<tr *ngIf="((riesgoItem.idRiesgo === causaItem.idRiesgoAsociado || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado2
-					|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado3 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado4
-					|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado5 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado6
-					|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado7 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado8 
-					|| riesgoItem.idRiesgo === causaItem.idRiesgoAsociado9 || riesgoItem.idRiesgo === causaItem.idRiesgoAsociado10)
-					&& (riesgoItem.idRiesgo === controlItem.idRiesgoAsociado || riesgoItem.idRiesgo ===  controlItem.idRiesgoAsociado2 
-					|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado3 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado4 
-					|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado5 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado6
-					|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado7 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado8 
-					|| riesgoItem.idRiesgo === controlItem.idRiesgoAsociado9 || riesgoItem.idRiesgo === controlItem.idRiesgoAsociado10)
-					&& (controlItem.idControl === causaItem.idControlAsociado || controlItem.idControl === causaItem.idControlAsociado2 
-					|| controlItem.idControl ===  causaItem.idControlAsociado3 || controlItem.idControl ===  causaItem.idControlAsociado4 
-					|| controlItem.idControl ===  causaItem.idControlAsociado5 || controlItem.idControl === causaItem.idControlAsociado6 
-					|| controlItem.idControl === causaItem.idControlAsociado7 || controlItem.idControl === causaItem.idControlAsociado8 
-					|| controlItem.idControl === causaItem.idControlAsociado9 || controlItem.idControl === causaItem.idControlAsociado10))
-					&& RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro');">
+				<ng-container *ngFor="let riesgoItem of riesgosUnicos; let i = index; let tamanoListaRiesgo = count; let par = even">
 					<!--else noRiesgo-->
-								<td>{{riesgoItem.idRiesgo}}</td>
-								<td>{{controlItem.nivelCobertura}}</td>
-								<td>{{riesgoItem.nivelRiesgo}}</td>
-							</tr>
-							<!--<ng-template #noRiesgo>
-								<tr *ngIf="((i == tamanoListaRiesgo - 1) && (j  == tamanoListaCausa - 1) && (k  == tamanoListaControl - 1))">
+					<tr *ngIf="(riesgoItem.macroproceso == this._Activatedroute.snapshot.paramMap.get('macro')); else noRiesgo">
+						<td>{{riesgoItem.idRiesgo}}</td>
+						<td>{{riesgoItem.nivelCTC}}</td>
+						<td>{{riesgoItem.riesgoInherente}}</td>
+					</tr>
+					<ng-template #noRiesgo>
+								<tr *ngIf="(i == tamanoListaRiesgo - 1)">
 									<td colspan="3">No existen riesgos asociados al Macroproceso
 										<strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong></td>
 								</tr>
-							</ng-template>-->
-						</ng-container>
-					</ng-container>
+							</ng-template>
 				</ng-container>
 			</tbody>
 		</table>

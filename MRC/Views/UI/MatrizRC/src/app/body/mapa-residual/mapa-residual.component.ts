@@ -19,7 +19,7 @@ export class MapaResidualComponent implements OnInit {
 		return axis.categories[point[isY ? 'y' : 'x']];
 	}
 
-	public chartOptions: any = {
+	public mapaResidual: any = {
 		chart: {
 			type: 'heatmap',
 			marginTop: 60,
@@ -122,7 +122,7 @@ export class MapaResidualComponent implements OnInit {
 				condition: {
 					maxWidth: 900
 				},
-				chartOptions: {
+				mapaResidual: {
 					yAxis: {
 						labels: {
 							formatter: function format(this: any) {
@@ -139,7 +139,10 @@ export class MapaResidualComponent implements OnInit {
 
 	constructor(private service: SharedService, public _Activatedroute: ActivatedRoute) { }
 	RiesgoList: any = [];
+	idRiesgosUnicos: any = [];
+	riesgosUnicos: any = [];
 	RiesgosFinales: any = [];
+	RiesgosMapa: any = [];
 	ControlList: any = [];
 	CausaList: any = [];
 	valorDiseñoDeControl: number = 0;
@@ -173,10 +176,9 @@ export class MapaResidualComponent implements OnInit {
 	riesgoMuyBajoAusenciaControl: string = "";
 
 	ngOnInit() {
-		this.refreshRiesgoList();
 		this.refreshControlList();
 		this.refreshCausaList();
-		this.buscarRiesgosSinMacro();
+		this.refreshRiesgoList();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
@@ -189,7 +191,7 @@ export class MapaResidualComponent implements OnInit {
 			{ Nombre: "Procesos Criticos fuera de Macros" }
 		];
 
-		this.chartOptions.series[0]['data'] = [{ x: 0, y: 0, value: 0, name: "" }, { x: 0, y: 1, value: 0, name: "" }, { x: 0, y: 2, value: 0, name: "" }, { x: 0, y: 3, value: 0, name: "" },
+		this.mapaResidual.series[0]['data'] = [{ x: 0, y: 0, value: 0, name: "" }, { x: 0, y: 1, value: 0, name: "" }, { x: 0, y: 2, value: 0, name: "" }, { x: 0, y: 3, value: 0, name: "" },
 		{ x: 0, y: 4, value: 0, name: "" }, { x: 1, y: 0, value: 50, name: "" }, { x: 1, y: 1, value: 25, name: "" }, { x: 1, y: 2, value: 0, name: "" }, { x: 1, y: 3, value: 0, name: "" },
 		{ x: 1, y: 4, value: 0, name: "" }, { x: 2, y: 0, value: 75, name: "" }, { x: 2, y: 1, value: 50, name: "" }, { x: 2, y: 2, value: 25, name: "" }, { x: 2, y: 3, value: 0, name: "" },
 		{ x: 2, y: 4, value: 0, name: "" }, { x: 3, y: 0, value: 100, name: "" }, { x: 3, y: 1, value: 75, name: "" }, { x: 3, y: 2, value: 50, name: "" }, { x: 3, y: 3, value: 25, name: "" },
@@ -202,15 +204,15 @@ export class MapaResidualComponent implements OnInit {
 	refreshControlList() {
 		this.service.getControlesList().subscribe(data => {
 			this.ControlList = data;
-			console.log("Lista de controles");
-			console.log(this.ControlList);
+			//console.log("Lista de controles");
+			//console.log(this.ControlList);
 		});
 	}
 	refreshCausaList() {
 		this.service.getCausasList().subscribe(datos => {
 			this.CausaList = datos;
-			console.log("Lista de causas");
-			console.log(this.CausaList);
+			//console.log("Lista de causas");
+			//console.log(this.CausaList);
 		});
 	}
 	calcularTipoRiesgo() {
@@ -494,7 +496,7 @@ export class MapaResidualComponent implements OnInit {
 	}
 
 	calcularNivelCobertura(ControlList: any, RiesgoList: any) {
-		//Recorrer losta de los controles
+		//Recorrer lista de los controles
 		for (let j = 0; j < ControlList.length; ++j) {
 			//Si la cobertura total 0-20%, cobetura = Ausencia de control
 			if (ControlList[j].coberturaTotal <= 20) {
@@ -540,57 +542,97 @@ export class MapaResidualComponent implements OnInit {
 								console.log("Macro aqui: " + this._Activatedroute.snapshot.paramMap.get('macro'));
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMuyAltoTotal = this.riesgoMuyAltoTotal + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][0] = {
+								this.mapaResidual.series[0]['data'][0] = {
 									x: 0,
 									y: 0,
 									value: 0,
 									name: this.riesgoMuyAltoTotal,
 									description: ""
 								};
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Alto":
 								RiesgoList[i].gravedadRiesgoResidual = "M";
 								this.riesgoMuyAltoAlto = this.riesgoMuyAltoAlto + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][5] = {
+								this.mapaResidual.series[0]['data'][5] = {
 									x: 1,
 									y: 0,
 									value: 50,
 									name: this.riesgoMuyAltoAlto,
 									description: ""
 								};
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Medio":
 								RiesgoList[i].gravedadRiesgoResidual = "A";
 								this.riesgoMuyAltoMedio = this.riesgoMuyAltoMedio + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][10] = {
+								this.mapaResidual.series[0]['data'][10] = {
 									x: 2,
 									y: 0,
 									value: 75,
 									name: this.riesgoMuyAltoMedio,
 									description: ""
 								};
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Bajo":
 								RiesgoList[i].gravedadRiesgoResidual = "MA";
 								this.riesgoMuyAltoBajo = this.riesgoMuyAltoBajo + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][15] = {
+								this.mapaResidual.series[0]['data'][15] = {
 									x: 3,
 									y: 0,
 									value: 100,
 									name: this.riesgoMuyAltoBajo,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Ausencia de control":
 								RiesgoList[i].gravedadRiesgoResidual = "MA";
 								this.riesgoMuyAltoAusenciaControl = this.riesgoMuyAltoAusenciaControl + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][20] = {
+								this.mapaResidual.series[0]['data'][20] = {
 									x: 4,
 									y: 0,
 									value: 100,
 									name: this.riesgoMuyAltoAusenciaControl,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 						}
 					}
 					//Si el nivel de riesgo inherente es "A"
@@ -600,57 +642,97 @@ export class MapaResidualComponent implements OnInit {
 							case "Total":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoAltoTotal = this.riesgoAltoTotal + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][1] = {
+								this.mapaResidual.series[0]['data'][1] = {
 									x: 0,
 									y: 1,
 									value: 0,
 									name: this.riesgoAltoTotal,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Alto":
 								RiesgoList[i].gravedadRiesgoResidual = "B";
 								this.riesgoAltoAlto = this.riesgoAltoAlto + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][6] = {
+								this.mapaResidual.series[0]['data'][6] = {
 									x: 1,
 									y: 1,
 									value: 25,
 									name: this.riesgoAltoAlto,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Medio":
 								RiesgoList[i].gravedadRiesgoResidual = "M";
 								this.riesgoAltoMedio = this.riesgoAltoMedio + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][11] = {
+								this.mapaResidual.series[0]['data'][11] = {
 									x: 2,
 									y: 1,
 									value: 50,
 									name: this.riesgoAltoMedio,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Bajo":
 								RiesgoList[i].gravedadRiesgoResidual = "A";
 								this.riesgoAltoBajo = this.riesgoAltoBajo + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][16] = {
+								this.mapaResidual.series[0]['data'][16] = {
 									x: 3,
 									y: 1,
 									value: 75,
 									name: this.riesgoAltoBajo,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Ausencia de control":
 								RiesgoList[i].gravedadRiesgoResidual = "A";
 								this.riesgoAltoAusenciaControl = this.riesgoAltoAusenciaControl + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][21] = {
+								this.mapaResidual.series[0]['data'][21] = {
 									x: 4,
 									y: 1,
 									value: 100,
 									name: this.riesgoAltoAusenciaControl,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 						}
 					}
 					//Si el nivel de riesgo inherente es "M"
@@ -660,57 +742,97 @@ export class MapaResidualComponent implements OnInit {
 							case "Total":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMedioTotal = this.riesgoMedioTotal + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][2] = {
+								this.mapaResidual.series[0]['data'][2] = {
 									x: 0,
 									y: 2,
 									value: 0,
 									name: this.riesgoMedioTotal,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Alto":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMedioAlto = this.riesgoMedioAlto + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][7] = {
+								this.mapaResidual.series[0]['data'][7] = {
 									x: 1,
 									y: 2,
 									value: 0,
 									name: this.riesgoMedioAlto,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Medio":
 								RiesgoList[i].gravedadRiesgoResidual = "B";
 								this.riesgoMedioMedio = this.riesgoMedioMedio + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][12] = {
+								this.mapaResidual.series[0]['data'][12] = {
 									x: 2,
 									y: 2,
 									value: 25,
 									name: this.riesgoMedioMedio,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Bajo":
 								RiesgoList[i].gravedadRiesgoResidual = "M";
 								this.riesgoMedioBajo = this.riesgoMedioBajo + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][17] = {
+								this.mapaResidual.series[0]['data'][17] = {
 									x: 3,
 									y: 2,
 									value: 50,
 									name: this.riesgoMedioBajo,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Ausencia de control":
 								RiesgoList[i].gravedadRiesgoResidual = "M";
 								this.riesgoMedioAusenciaControl = this.riesgoMedioAusenciaControl + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][22] = {
+								this.mapaResidual.series[0]['data'][22] = {
 									x: 4,
 									y: 2,
 									value: 50,
 									name: this.riesgoMedioAusenciaControl,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 						}
 					}
 					//Si el nivel de riesgo inherente es "B"
@@ -720,57 +842,97 @@ export class MapaResidualComponent implements OnInit {
 							case "Total":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoBajoTotal = this.riesgoBajoTotal + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][3] = {
+								this.mapaResidual.series[0]['data'][3] = {
 									x: 0,
 									y: 3,
 									value: 0,
 									name: this.riesgoBajoTotal,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Alto":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoBajoAlto = this.riesgoBajoAlto + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][8] = {
+								this.mapaResidual.series[0]['data'][8] = {
 									x: 1,
 									y: 3,
 									value: 0,
 									name: this.riesgoBajoAlto,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Medio":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoBajoMedio = this.riesgoBajoMedio + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][13] = {
+								this.mapaResidual.series[0]['data'][13] = {
 									x: 2,
 									y: 3,
 									value: 0,
 									name: this.riesgoBajoMedio,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Bajo":
 								RiesgoList[i].gravedadRiesgoResidual = "B";
 								this.riesgoBajoBajo = this.riesgoBajoBajo + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][18] = {
+								this.mapaResidual.series[0]['data'][18] = {
 									x: 3,
 									y: 3,
 									value: 25,
 									name: this.riesgoBajoBajo,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Ausencia de control":
 								RiesgoList[i].gravedadRiesgoResidual = "B";
 								this.riesgoBajoAusenciaControl = this.riesgoBajoAusenciaControl + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][23] = {
+								this.mapaResidual.series[0]['data'][23] = {
 									x: 4,
 									y: 3,
 									value: 25,
 									name: this.riesgoBajoAusenciaControl,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 						}
 					}
 					//Si el nivel de riesgo inherente es "MB"
@@ -780,62 +942,102 @@ export class MapaResidualComponent implements OnInit {
 							case "Total":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMuyBajoTotal = this.riesgoMuyBajoTotal + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][4] = {
+								this.mapaResidual.series[0]['data'][4] = {
 									x: 0,
 									y: 4,
 									value: 0,
 									name: this.riesgoMuyBajoTotal,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Alto":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMuyBajoAlto = this.riesgoMuyBajoAlto + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][9] = {
+								this.mapaResidual.series[0]['data'][9] = {
 									x: 1,
 									y: 4,
 									value: 0,
 									name: this.riesgoMuyBajoAlto,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Medio":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMuyBajoMedio = this.riesgoMuyBajoMedio + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][14] = {
+								this.mapaResidual.series[0]['data'][14] = {
 									x: 2,
 									y: 4,
 									value: 0,
 									name: this.riesgoMuyBajoMedio,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Bajo":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMuyBajoBajo = this.riesgoMuyBajoBajo + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][19] = {
+								this.mapaResidual.series[0]['data'][19] = {
 									x: 3,
 									y: 4,
 									value: 0,
 									name: this.riesgoMuyBajoBajo,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 								break;
 							case "Ausencia de control":
 								RiesgoList[i].gravedadRiesgoResidual = "MB";
 								this.riesgoMuyBajoAusenciaControl = this.riesgoMuyBajoAusenciaControl + RiesgoList[i].idRiesgo;
-								this.chartOptions.series[0]['data'][24] = {
+								this.mapaResidual.series[0]['data'][24] = {
 									x: 4,
 									y: 4,
 									value: 0,
 									name: this.riesgoMuyBajoAusenciaControl,
 									description: ""
 								}
+								var val = {
+									idRiesgo: RiesgoList[i].idRiesgo,
+									riesgoInherente: RiesgoList[i].nivelRiesgo,
+									macroproceso: RiesgoList[i].macroProceso,
+									nivelCTC: ControlList[j].nivelCobertura,
+									gravedadRiesgoResidual: RiesgoList[i].gravedadRiesgoResidual
+								}
+								this.RiesgosMapa.push(val);
 						}
 					}
 					//Si riesgoMuyAltoTotal es nulo
 					if (this.riesgoMuyAltoTotal === "") {
-						this.chartOptions.series[0]['data'][0] = {
+						this.mapaResidual.series[0]['data'][0] = {
 							x: 0,
 							y: 0,
 							value: 0,
@@ -845,7 +1047,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoAltoTotal es nulo
 					if (this.riesgoAltoTotal === "") {
-						this.chartOptions.series[0]['data'][1] = {
+						this.mapaResidual.series[0]['data'][1] = {
 							x: 0,
 							y: 1,
 							value: 0,
@@ -855,7 +1057,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMedioTotal es nulo
 					if (this.riesgoMedioTotal === "") {
-						this.chartOptions.series[0]['data'][2] = {
+						this.mapaResidual.series[0]['data'][2] = {
 							x: 0,
 							y: 2,
 							value: 0,
@@ -865,7 +1067,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoBajoTotal es nulo
 					if (this.riesgoBajoTotal === "") {
-						this.chartOptions.series[0]['data'][3] = {
+						this.mapaResidual.series[0]['data'][3] = {
 							x: 0,
 							y: 3,
 							value: 0,
@@ -875,7 +1077,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyBajoTotal es nulo
 					if (this.riesgoMuyBajoTotal === "") {
-						this.chartOptions.series[0]['data'][4] = {
+						this.mapaResidual.series[0]['data'][4] = {
 							x: 0,
 							y: 4,
 							value: 0,
@@ -885,7 +1087,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyAltoAlto es nulo
 					if (this.riesgoMuyAltoAlto === "") {
-						this.chartOptions.series[0]['data'][5] = {
+						this.mapaResidual.series[0]['data'][5] = {
 							x: 1,
 							y: 0,
 							value: 50,
@@ -895,7 +1097,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoAltoAlto es nulo
 					if (this.riesgoAltoAlto === "") {
-						this.chartOptions.series[0]['data'][6] = {
+						this.mapaResidual.series[0]['data'][6] = {
 							x: 1,
 							y: 1,
 							value: 25,
@@ -905,7 +1107,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMedioAlto es nulo
 					if (this.riesgoMedioAlto === "") {
-						this.chartOptions.series[0]['data'][7] = {
+						this.mapaResidual.series[0]['data'][7] = {
 							x: 1,
 							y: 2,
 							value: 15,
@@ -915,7 +1117,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoBajoAlto es nulo
 					if (this.riesgoBajoAlto === "") {
-						this.chartOptions.series[0]['data'][8] = {
+						this.mapaResidual.series[0]['data'][8] = {
 							x: 1,
 							y: 3,
 							value: 10,
@@ -925,7 +1127,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyBajoAlto es nulo
 					if (this.riesgoMuyBajoAlto === "") {
-						this.chartOptions.series[0]['data'][9] = {
+						this.mapaResidual.series[0]['data'][9] = {
 							x: 1,
 							y: 4,
 							value: 5,
@@ -935,7 +1137,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyAltoMedio es nulo
 					if (this.riesgoMuyAltoMedio === "") {
-						this.chartOptions.series[0]['data'][10] = {
+						this.mapaResidual.series[0]['data'][10] = {
 							x: 2,
 							y: 0,
 							value: 75,
@@ -945,7 +1147,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoAltoMedio es nulo
 					if (this.riesgoAltoMedio === "") {
-						this.chartOptions.series[0]['data'][11] = {
+						this.mapaResidual.series[0]['data'][11] = {
 							x: 2,
 							y: 1,
 							value: 50,
@@ -955,7 +1157,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMedioMedio es nulo
 					if (this.riesgoMedioMedio === "") {
-						this.chartOptions.series[0]['data'][12] = {
+						this.mapaResidual.series[0]['data'][12] = {
 							x: 2,
 							y: 2,
 							value: 25,
@@ -965,7 +1167,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoBajoMedio es nulo
 					if (this.riesgoBajoMedio === "") {
-						this.chartOptions.series[0]['data'][13] = {
+						this.mapaResidual.series[0]['data'][13] = {
 							x: 2,
 							y: 3,
 							value: 0,
@@ -975,7 +1177,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyBajoMedio es nulo
 					if (this.riesgoMuyBajoMedio === "") {
-						this.chartOptions.series[0]['data'][14] = {
+						this.mapaResidual.series[0]['data'][14] = {
 							x: 2,
 							y: 4,
 							value: 0,
@@ -985,7 +1187,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyAltoBajo es nulo
 					if (this.riesgoMuyAltoBajo === "") {
-						this.chartOptions.series[0]['data'][15] = {
+						this.mapaResidual.series[0]['data'][15] = {
 							x: 3,
 							y: 0,
 							value: 100,
@@ -995,7 +1197,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoAltoBajo es nulo
 					if (this.riesgoAltoBajo === "") {
-						this.chartOptions.series[0]['data'][16] = {
+						this.mapaResidual.series[0]['data'][16] = {
 							x: 3,
 							y: 1,
 							value: 75,
@@ -1005,7 +1207,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMedioBajo es nulo
 					if (this.riesgoMedioBajo === "") {
-						this.chartOptions.series[0]['data'][17] = {
+						this.mapaResidual.series[0]['data'][17] = {
 							x: 3,
 							y: 2,
 							value: 50,
@@ -1015,7 +1217,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoBajoBajo es nulo
 					if (this.riesgoBajoBajo === "") {
-						this.chartOptions.series[0]['data'][18] = {
+						this.mapaResidual.series[0]['data'][18] = {
 							x: 3,
 							y: 3,
 							value: 25,
@@ -1025,7 +1227,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyBajoBajo es nulo
 					if (this.riesgoMuyBajoBajo === "") {
-						this.chartOptions.series[0]['data'][19] = {
+						this.mapaResidual.series[0]['data'][19] = {
 							x: 3,
 							y: 4,
 							value: 0,
@@ -1035,7 +1237,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyAltoAusenciaControl es nulo
 					if (this.riesgoMuyAltoAusenciaControl === "") {
-						this.chartOptions.series[0]['data'][20] = {
+						this.mapaResidual.series[0]['data'][20] = {
 							x: 4,
 							y: 0,
 							value: 100,
@@ -1045,7 +1247,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoAltoAusenciaControl es nulo
 					if (this.riesgoAltoAusenciaControl === "") {
-						this.chartOptions.series[0]['data'][21] = {
+						this.mapaResidual.series[0]['data'][21] = {
 							x: 4,
 							y: 1,
 							value: 75,
@@ -1055,7 +1257,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMedioAusenciaControl es nulo
 					if (this.riesgoMedioAusenciaControl === "") {
-						this.chartOptions.series[0]['data'][22] = {
+						this.mapaResidual.series[0]['data'][22] = {
 							x: 4,
 							y: 2,
 							value: 50,
@@ -1065,7 +1267,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoBajoAusenciaControl es nulo
 					if (this.riesgoBajoAusenciaControl === "") {
-						this.chartOptions.series[0]['data'][23] = {
+						this.mapaResidual.series[0]['data'][23] = {
 							x: 4,
 							y: 3,
 							value: 25,
@@ -1075,7 +1277,7 @@ export class MapaResidualComponent implements OnInit {
 					}
 					//Si riesgoMuyBajoAusenciaControl es nulo
 					if (this.riesgoMuyBajoAusenciaControl === "") {
-						this.chartOptions.series[0]['data'][24] = {
+						this.mapaResidual.series[0]['data'][24] = {
 							x: 4,
 							y: 4,
 							value: 0,
@@ -1086,32 +1288,31 @@ export class MapaResidualComponent implements OnInit {
 				}
 			}
 		}
-		console.log("Lista reisgos final")
-		console.log(RiesgoList)
-		this.RiesgosFinales = RiesgoList;
-		this.chartOptions.tooltip.formatter = function (this: any) {
+		//Remover riesgos repetidos en el array de RiesgosFinales
+		this.riesgosUnicos = this.RiesgosMapa.filter((element: { idRiesgo: any; }) => {
+			const isDuplicate = this.idRiesgosUnicos.includes(element.idRiesgo);
+
+			if (!isDuplicate) {
+				this.idRiesgosUnicos.push(element.idRiesgo);
+				return true;
+			}
+
+			return false;
+		});
+		console.log("Lista riesgos final");
+		console.log(this.RiesgosMapa);
+		console.log("Lista arregloSinRepetidos");
+		console.log(this.riesgosUnicos);
+		//this.RiesgosFinales = RiesgoList;
+		this.mapaResidual.tooltip.formatter = function (this: any) {
 			/*Return con todos los datos del riesgo
 			return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
 			this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>'; */
 			return 'ID de los riesgos: <b>' + this.point.name + '' + this.point.description + '</b>';
 		}
-		Highcharts.chart('container', this.chartOptions);
+		Highcharts.chart('container', this.mapaResidual);
 	}
 
-	buscarRiesgosSinMacro() {
-		this.service.getRiesgoList().subscribe(data => {
-			this.RiesgoList = data;
-			for (let i = 0; i < this.RiesgoList.length; i++) {
-				//Sino existen macros para la lista de riesgos
-				if (this.RiesgoList[i].macroProceso != this._Activatedroute.snapshot.paramMap.get('macro')) {
-					++this.contRiesgosSinMacro;
-				}
-			}
-			if (this.contRiesgosSinMacro === this.RiesgoList.length) {
-				console.log("Contador: " + this.contRiesgosSinMacro);
-				console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
-			}
-		});
-	}
+
 }
 
