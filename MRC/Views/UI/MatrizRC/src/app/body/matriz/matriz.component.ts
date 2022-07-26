@@ -66,11 +66,22 @@ export class MatrizComponent implements OnInit {
 	gravedadRiesgoResidual: string | undefined;
 
 
-	ngOnInit(): void {
+	//ngOnInit(): void {
+		async ngOnInit() {
 		this.refreshRiesgoList();
 		this.refreshControlList();
 		this.refreshCausaList();
 		this.calculosControles();
+		/*(function repeat(){
+			let i = 0;
+			if (++i > 5) return;
+			//this.calculosControles();
+			setTimeout(function(){
+			  console.log("waited for: " + i + " seconds");
+			  repeat();
+			}, 1000);
+		  })();*/
+		  
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;

@@ -176,6 +176,7 @@ export class MapaResidualComponent implements OnInit {
 	riesgoMuyBajoAusenciaControl: string = "";
 
 	ngOnInit() {
+		this.buscarRiesgosSinMacros();
 		this.refreshControlList();
 		this.refreshCausaList();
 		this.refreshRiesgoList();
@@ -1395,6 +1396,21 @@ export class MapaResidualComponent implements OnInit {
 			return 'ID de los riesgos: <b>' + this.point.name + ' ' + this.point.description + '</b>';
 		}
 		Highcharts.chart('container', this.mapaResidual);
+	}
+	buscarRiesgosSinMacros() {
+		this.service.getRiesgoList().subscribe(data => {
+			this.RiesgoList = data;
+			for (let i = 0; i < this.RiesgoList.length; i++) {
+				//Sino existen macros para la lista de riesgos
+				if (this.RiesgoList[i].macroProceso != this._Activatedroute.snapshot.paramMap.get('macro')) {
+					++this.contRiesgosSinMacro;
+				}
+			}
+			if (this.contRiesgosSinMacro === this.RiesgoList.length) {
+				console.log("Contador: " + this.contRiesgosSinMacro);
+				console.log("No existen riesgos para el macro: " + this._Activatedroute.snapshot.paramMap.get('macro'));
+			}
+		});
 	}
 
 

@@ -34,18 +34,16 @@
 			<tbody>
 				<!--Contenedor sobre todas las causas y controles que coincidan con un mismo ID de riesgo asociado-->
 				<ng-container *ngFor="let riesgoItem of riesgosUnicos; let i = index; let tamanoListaRiesgo = count; let par = even">
-					<!--else noRiesgo-->
 					<tr *ngIf="(riesgoItem.macroproceso == this._Activatedroute.snapshot.paramMap.get('macro')); else noRiesgo">
 						<td>{{riesgoItem.idRiesgo}}</td>
 						<td>{{riesgoItem.nivelCTC}}</td>
 						<td>{{riesgoItem.riesgoInherente}}</td>
 					</tr>
 					<ng-template #noRiesgo>
-								<tr *ngIf="(i == tamanoListaRiesgo )">
-									<td colspan="3">No existen riesgos asociados al Macroproceso
-										<strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong></td>
-								</tr>
-							</ng-template>
+						<tr *ngIf="RiesgoList.length === this.contRiesgosSinMacro && RiesgoList.length-1 === i ">
+						<td colspan="3">No existen riesgos asociados al Macroproceso <strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong></td>
+					</tr>
+				</ng-template>
 				</ng-container>
 			</tbody>
 		</table>
