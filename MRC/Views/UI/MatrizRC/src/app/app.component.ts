@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';;
-import * as Highcharts from 'highcharts';
 import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
@@ -11,11 +10,9 @@ import { Subject } from 'rxjs';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-	dtOptions: DataTables.Settings = {};
 	RiesgoList: any = [];
 	ControlList: any = [];
 	title = 'MatrizRC';
-	dtTrigger: Subject<any> = new Subject<any>();
 
 
 	constructor(private service: SharedService, private httpClient: HttpClient) {
@@ -45,15 +42,9 @@ export class AppComponent implements OnInit {
 
 	ngOnInit():void {
 		
-		this.dtOptions = {
-			pagingType: 'full_numbers',
-			pageLength: 2
-		};
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
-			// Calling the DT trigger to manually render the table
-			this.dtTrigger.next({});
-			console.log("Valores: " + data)
+			//console.log("Valores: " + data)
 		});
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
@@ -71,10 +62,6 @@ export class AppComponent implements OnInit {
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
 		this.refreshRiesgoList();
-	}
-	ngOnDestroy(): void {
-		// Do not forget to unsubscribe the event
-		this.dtTrigger.unsubscribe();
 	}
 	addClick() {
 		this.ActivarAltaRiesgo = true;
