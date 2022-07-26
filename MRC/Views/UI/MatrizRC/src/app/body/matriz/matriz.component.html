@@ -336,14 +336,22 @@
 								{{controlItem.evaluacionFuncionalidad}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.calificacionControl}}%</td>
-							<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
+							<td [ngClass]="{'rojo-alerta' : controlItem.cobertura > 100}"
+								*ngIf="controlItem.cobertura > 100"
+								[className]="esFomulado ? 'formulado' : 'inactivo'">
+								La suma de las coberturas individuales por control no puede ser mayor a 100<br>
+								<a href="/controles">Ir a controles</a></td>
+								<td id="formulado" *ngIf="controlItem.cobertura <= 100"
+								[className]="esFomulado ? 'formulado' : 'inactivo'">
+								{{controlItem.cobertura}}%</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.coberturaPonderada}}%</td>
 							<td [ngClass]="{'rojo-alerta' : controlItem.coberturaTotal > 100}"
 								*ngIf="controlItem.coberturaTotal > 100"
 								[className]="esFomulado ? 'formulado' : 'inactivo'">
 								Revisar cobertura Inidivudal por Control</td>
-							<td id="formulado"  *ngIf="controlItem.coberturaTotal <= 100" [className]="esFomulado ? 'formulado' : 'inactivo'">
+							<td id="formulado" *ngIf="controlItem.coberturaTotal <= 100"
+								[className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.coberturaTotal}}%</td>
 							<td [className]="esFomulado ? 'formulado' : 'inactivo'"
 								[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','bajo':  controlItem.nivelCobertura === 'Alto',

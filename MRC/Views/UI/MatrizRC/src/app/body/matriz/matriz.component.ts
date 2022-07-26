@@ -45,6 +45,7 @@ export class MatrizComponent implements OnInit {
 	valorDiseñoDeControl: number = 0;
 	valorCalificacionControl: number = 0;
 	coberturaTotalControles: number = 0;
+	coberturaConjuntaInidivudal: number = 0;
 	ActivarAltaRiesgo: boolean = false;
 	ActivarEdicionRiesgo: boolean = false;
 	Id: string | undefined;
@@ -72,16 +73,10 @@ export class MatrizComponent implements OnInit {
 		this.refreshControlList();
 		this.refreshCausaList();
 		this.calculosControles();
-		/*(function repeat(){
-			let i = 0;
-			if (++i > 5) return;
-			//this.calculosControles();
-			setTimeout(function(){
-			  console.log("waited for: " + i + " seconds");
-			  repeat();
-			}, 1000);
-		  })();*/
-		  
+		//Calcular los controles cada 10 segundos para actualizar los datos
+		setInterval(() => {
+			this.calculosControles();
+		} , 10000);
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
@@ -447,6 +442,7 @@ export class MatrizComponent implements OnInit {
 						//console.log("Cobertura ponderada del control " + ControlList[j].idControl + ": " + ControlList[j].coberturaPonderada);
 						//Sumer la cobertura ponderada de los controles asociados a un riesgo a la variable "coberturaTotalControles"
 						this.coberturaTotalControles = this.coberturaTotalControles + ControlList[j].coberturaPonderada;
+						this.coberturaConjuntaInidivudal = this.coberturaConjuntaInidivudal + ControlList[j].cobertura;
 						//Ciclo for aquí dentro de los controles, para llenar con la variable "coberturaTotalControles"
 						//solo si el id del riesgo es igual al id del riesgo asociado, luego resetear la variable "coberturaTotalControles"
 						for (let l = 0; l < ControlList.length; ++l) {
@@ -456,6 +452,9 @@ export class MatrizComponent implements OnInit {
 								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
 								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
 								ControlList[l].coberturaTotal = this.coberturaTotalControles;
+								if(this.coberturaConjuntaInidivudal > 100){
+								ControlList[l].cobertura = 101;
+								}
 								/*if(ControlList[l].coberturaTotal > 100){
 									ControlList[l] = "Revisar cobertura Individual por control";
 								}*/
@@ -466,6 +465,7 @@ export class MatrizComponent implements OnInit {
 			}
 			//Resetar la variable "coberturaTotalControles" para que no se sumen todas las coberturas ponderadas de los controles
 			this.coberturaTotalControles = 0;
+			this.coberturaConjuntaInidivudal = 0;
 		}
 		this.calcularNivelCobertura(ControlList, ListaControlSinFiltrado);
 	}
