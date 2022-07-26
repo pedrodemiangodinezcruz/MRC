@@ -1,56 +1,30 @@
 <div class="row " id="infoSeccion">
 	<div class="row">
-	<div class="col-12">
-		<table class="table table-bordered text-center">
-			<thead>
-				<tr>
-					<th scope="col" colspan="3" class="anaranjado">
-						<p class="text-center fw-bold" style="color: white;">Macroproceso adjunto</p>
-						<div class="form-floating mb-3">
-							<select class="form-select" id="seleccionProceso" name="macroproceso"
-								[(ngModel)]="macroproceso" aria-label="Default select example"
-								onchange="location = this.value;">
-								<option *ngFor="let macro of macroproceso" [value]="'mapaRiesgo/' + macro.Nombre">
-									{{macro.Nombre}}</option>
-							</select>
-							<label for="floatingSelect" style="color: black;">Seleccione el macroproceso al que guste ver su pareto adjunto
-							</label>
-						</div>
-					</th>
-				</tr>
-				<tr>
-					<th scope="col" colspan="3" class="anaranjado" style="color: white;">RIESGO INHERENTE</th>
-				</tr>
-				<tr>
-				<tr>
-					<th scope="col" colspan="3"></th>
-				</tr>
-				<tr>
-					<th scope="col" class="naranja">ID Riesgo</th>
-					<th scope="col" class="naranja">Descripción</th>
-					<th scope="col" class="naranja">Riesgo Inherente</th>
-				</tr>
-			</thead>
-			<tbody>
-				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamaLista = count;">
-					<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'); else noRiesgo">
-						<td>{{riesgoItem.idRiesgo}}</td>
-						<td>{{riesgoItem.descripcion}}</td>
-						<td 
-						[ngClass]="{'rojo' : riesgoItem.nivelRiesgo === 'MA','anaranjado':  riesgoItem.nivelRiesgo === 'A',
-							'medio' : riesgoItem.nivelRiesgo === 'M', 'bajo' : riesgoItem.nivelRiesgo === 'B', 'verdeImpacto' : riesgoItem.nivelRiesgo === 'MB'}">
-						{{riesgoItem.nivelRiesgo}}
-					</td>
+		<div class="col-12">
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr>
+						<th scope="col" colspan="3" class="anaranjado">
+							<p class="text-center fw-bold" style="color: white;">Macroproceso adjunto</p>
+							<div class="form-floating mb-3">
+								<select class="form-select" id="seleccionProceso" name="macroproceso"
+									[(ngModel)]="macroproceso" aria-label="Default select example"
+									onchange="location = this.value;">
+									<option *ngFor="let macro of macroproceso" [value]="'mapaRiesgo/' + macro.Nombre">
+										{{macro.Nombre}}</option>
+								</select>
+								<label for="floatingSelect" style="color: black;">Seleccione el macroproceso al que guste ver su pareto adjunto
+								</label>
+							</div>
+						</th>
 					</tr>
-					<ng-template #noRiesgo>
-						<tr *ngIf="RiesgoList.length === this.contRiesgosSinMacro && RiesgoList.length-1 === i ">
-						<td colspan="3">No existen riesgos asociados al Macroproceso <strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong></td>
+					<tr>
+						<th scope="col" colspan="3" class="anaranjado" style="color: white;">RIESGO INHERENTE</th>
 					</tr>
-				</ng-template>
-			</ng-container>
-			</tbody>
-		</table>
-	</div>
+					<tr>
+				</thead>
+			</table>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-12" id="mapa">
@@ -65,4 +39,39 @@
 			</figure>
 	</div>
 	</div>
+	<div class="row">
+		<div class="col-12">
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr>
+					<tr>
+						<th scope="col" colspan="3"></th>
+					</tr>
+					<tr>
+						<th scope="col" class="naranja">ID Riesgo</th>
+						<th scope="col" class="naranja">Descripción</th>
+						<th scope="col" class="naranja">Riesgo Inherente</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamaLista = count;">
+						<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'); else noRiesgo">
+							<td>{{riesgoItem.idRiesgo}}</td>
+							<td>{{riesgoItem.descripcion}}</td>
+							<td 
+							[ngClass]="{'rojo' : riesgoItem.nivelRiesgo === 'MA','anaranjado':  riesgoItem.nivelRiesgo === 'A',
+								'medio' : riesgoItem.nivelRiesgo === 'M', 'bajo' : riesgoItem.nivelRiesgo === 'B', 'verdeImpacto' : riesgoItem.nivelRiesgo === 'MB'}">
+							{{riesgoItem.nivelRiesgo}}
+						</td>
+						</tr>
+						<ng-template #noRiesgo>
+							<tr *ngIf="RiesgoList.length === this.contRiesgosSinMacro && RiesgoList.length-1 === i ">
+							<td colspan="3">No existen riesgos asociados al Macroproceso <strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong></td>
+						</tr>
+					</ng-template>
+				</ng-container>
+				</tbody>
+			</table>
+		</div>
+		</div>
 </div>

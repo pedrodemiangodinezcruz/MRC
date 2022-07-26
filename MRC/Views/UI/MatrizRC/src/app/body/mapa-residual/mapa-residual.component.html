@@ -41,7 +41,7 @@
 						<td>{{riesgoItem.riesgoInherente}}</td>
 					</tr>
 					<ng-template #noRiesgo>
-								<tr *ngIf="(i == tamanoListaRiesgo - 1)">
+								<tr *ngIf="(i == tamanoListaRiesgo )">
 									<td colspan="3">No existen riesgos asociados al Macroproceso
 										<strong>"{{this._Activatedroute.snapshot.paramMap.get('macro')}}"</strong></td>
 								</tr>

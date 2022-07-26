@@ -850,9 +850,9 @@ export class MapaResidualComponent implements OnInit {
 			return false;
 		});
 		/*console.log("Lista riesgos final");
-		console.log(this.RiesgosMapa);
+		console.log(this.RiesgosMapa);*/
 		console.log("Lista arregloSinRepetidos");
-		console.log(this.riesgosUnicos);*/
+		console.log(this.riesgosUnicos);
 		//Poblar el mapa de riesgos residuales
 		for (let i = 0; i < this.riesgosUnicos.length; ++i) {
 				//Verificar el maroproceso de cada riesgo
@@ -940,7 +940,7 @@ export class MapaResidualComponent implements OnInit {
 								}
 								break;
 							case "Medio":
-								this.riesgoAltoMedio = this.riesgoAltoMedio + this.riesgosUnicos[i];
+								this.riesgoAltoMedio = this.riesgoAltoMedio + this.riesgosUnicos[i].idRiesgo;
 								this.mapaResidual.series[0]['data'][11] = {
 									x: 2,
 									y: 1,
