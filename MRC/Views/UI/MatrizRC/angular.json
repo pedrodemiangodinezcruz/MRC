@@ -30,7 +30,6 @@
               "src/assets/estilos/graficoPastel.css",
               "src/assets/estilos/header.css",
               "src/assets/estilos/mapasCalor.css",
-              "src/assets/estilos/pareto.css",
               "src/assets/estilos/sidebars.css",
               "src/assets/estilos/tablas.css",
               "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",

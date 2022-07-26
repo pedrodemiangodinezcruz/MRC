@@ -1,90 +1,118 @@
-.encabezado{
-    background-color: rgb(68, 114, 196) !important;
-    color: white;
-    }
-.morado{
-        background-color: rgb(0, 0, 106) !important;
-        color: white;
+.encabezado {
+	background-color: rgb(68, 114, 196) !important;
+	color: white;
 }
-.naranja{
-    background-color: rgb(222, 132, 0) !important;
-    color: white;
+
+.morado {
+	background-color: rgb(0, 0, 106) !important;
+	color: white;
 }
-.gris{
-    background-color: gray !important;
-    color: white;
-    
+
+.naranja {
+	background-color: rgb(222, 132, 0) !important;
+	color: white;
 }
-.azul-marino{
-    background-color: rgb(48, 84, 150) !important;
-    color: white;
-    
+
+.gris {
+	background-color: gray !important;
+	color: white;
+
 }
-.verde{
-    background-color: rgb(48, 153, 51) !important;
-    color: white;
-    
+
+.azul-marino {
+	background-color: rgb(48, 84, 150) !important;
+	color: white;
+
 }
-.anaranjado{
-    background-color: rgb(222, 192, 0) !important;
-    color: white;
+
+.verde {
+	background-color: rgb(48, 153, 51) !important;
+	color: white;
+
 }
-.medio{
-background-color: yellow !important;
+
+.anaranjado {
+	background-color: rgb(222, 192, 0) !important;
+	color: white;
 }
-.bajo{
-background-color: rgb(109, 241, 109) !important;
+
+.medio {
+	background-color: yellow !important;
 }
-.categoria{
-    background-color: rgb(221, 241, 247) !important;
-    
+
+.bajo {
+	background-color: rgb(109, 241, 109) !important;
 }
-.sub-seccion{
-    background-color: rgb(48, 84, 150) !important;
-    text-align: left;
-    color: white;
+
+.categoria {
+	background-color: rgb(221, 241, 247) !important;
+
 }
-.headers{
-    background-color: rgb(0, 32, 96) !important;
-    color: white;
+
+.sub-seccion {
+	background-color: rgb(48, 84, 150) !important;
+	text-align: left;
+	color: white;
 }
-.sub-total{
-    background-color: rgb(248, 203, 173) !important;
+
+.headers {
+	background-color: rgb(0, 32, 96) !important;
+	color: white;
 }
-.total{
-    background-color: rgb(169, 208, 142) !important;
+
+.sub-total {
+	background-color: rgb(248, 203, 173) !important;
 }
-#alineada{
- text-align: center !important;
- vertical-align: middle !important;
+
+.total {
+	background-color: rgb(169, 208, 142) !important;
 }
-table{
-    vertical-align: middle;
-	
+
+#alineada {
+	text-align: center !important;
+	vertical-align: middle !important;
 }
-th,td{
+
+table {
+	vertical-align: middle;
+
+}
+
+th,
+td {
 	border-color: rgba(133, 139, 129, 0.623) !important;
 }
-.link{
-    color: white; 
-    text-decoration: none;
+
+.link {
+	color: white;
+	text-decoration: none;
 }
-.link:hover{
-    color: white; 
-    text-decoration: none;
+
+.link:hover {
+	color: white;
+	text-decoration: none;
 }
+
 .row>* {
-    padding-left: 0 !important;
+	padding-left: 0 !important;
 }
 
 a {
- text-decoration: none;
+	text-decoration: none;
 }
-#botonGuardar{
-    display: none;
+
+#botonGuardar {
+	display: none;
 }
-#infoSeccion{
-	float: right; 
-	width: 80.8%; 
-	
+
+#infoSeccion {
+	float: right;
+	width: 80.8%;
+}
+
+html,body {
+	/*font-family: 'Archivo Narrow', sans-serif;*/
+	/*font-family: 'Ibarra Real Nova', serif;*/
+	font-family: 'IBM Plex Sans', sans-serif;
+	/*font-family: 'Sarabun', sans-serif;*/
 }

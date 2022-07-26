@@ -102,7 +102,7 @@ export class ParetoComponent implements OnInit {
 
 	ngOnInit() {
 		this.refreshCausasList();
-		this.refreshRiesgoList();
+		this.poblarPareto();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
@@ -232,7 +232,7 @@ export class ParetoComponent implements OnInit {
 			console.log(this.descripciones);*/
 		});
 	}
-	refreshRiesgoList() {
+	poblarPareto() {
 		//Obtener lista de riesgos y lista de causas
 		this.service.getRiesgoList().subscribe(riesgos => {
 			this.service.getCausasList().subscribe(causas => {

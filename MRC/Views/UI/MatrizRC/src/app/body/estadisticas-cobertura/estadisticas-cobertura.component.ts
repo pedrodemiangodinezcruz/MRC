@@ -43,7 +43,7 @@ export class EstadisticasCoberturaComponent implements OnInit {
 			type: 'pie'
 		},
 		title: {
-			text: 'Diagrama de pastel del macroproceso: <strong>' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando las fecuencias de las coberturas de los controles',
+			text: 'Diagrama de pastel del macroproceso: <strong>' + this._Activatedroute.snapshot.paramMap.get('macro') + '</strong> mostrando las fecuencias de las coberturas de los conjuntos de los controles',
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

@@ -1,4 +1,14 @@
-.imagen{
+.sideMenu{
 	float: right; 
-	width: 80.9%; 
+	width: 75%;
+	 
+}
+.iconos{
+	margin-top: 10vh;
+}
+.textoCriterio{
+	margin-left: 6vh;
+}
+.textoInstructivo{
+	margin-left: 4.5vh;
 }
