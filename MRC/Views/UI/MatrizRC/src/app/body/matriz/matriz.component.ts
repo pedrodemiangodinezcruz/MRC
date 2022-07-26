@@ -76,7 +76,7 @@ export class MatrizComponent implements OnInit {
 		//Calcular los controles cada 10 segundos para actualizar los datos
 		setInterval(() => {
 			this.calculosControles();
-		} , 10000);
+		} , 7000);
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
