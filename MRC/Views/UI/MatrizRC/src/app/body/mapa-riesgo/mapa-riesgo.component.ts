@@ -224,15 +224,6 @@ export class MapaRiesgoComponent implements OnInit {
 
 		});
 	}
-	/*
-	var val = {
-								idRiesgo: this.RiesgoList[i].idRiesgo,
-								nivelRiesgoInherente: this.RiesgoList[i].nivelRiesgo,
-							};
-							this.RiesgoListPorMacro.push(val);
-							//console.log("Lista de riesgos inherentes por macro");
-				//console.log(this.RiesgoListPorMacro);
-	*/
 	obtenerRiesgoInherente() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
@@ -385,6 +376,7 @@ export class MapaRiesgoComponent implements OnInit {
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Crítico')) {
 						this.RiesgoList[i].nivelRiesgo = "MA";
+						//Linea prueba  this.riesgoMedioCritico = this.riesgoMedioCritico + "<br>" + this.RiesgoList[i].idRiesgo;
 						this.riesgoMedioCritico = this.riesgoMedioCritico + " " + this.RiesgoList[i].idRiesgo;
 						this.chartOptions.series[0]['data'][17] = {
 							x: 3,
@@ -746,7 +738,7 @@ export class MapaRiesgoComponent implements OnInit {
 				//return 'ID de los riesgos: <b>' + this.point.name + '</b><br>Impacto: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>Valor: <b>' +
 				//this.point.value + '</b><br> Probabilidad: <b>' + getPointCategoryName(this.point, 'y') + '</b>' + '</b><br> Riesgo Inherente: <b>' + this.point.description + '</b>';
 				//this.idRiesgosFormateados = this.point.name.replace(/\n/g, " ")
-				return 'ID de los riesgos: <b>' + this.point.name + '<br>' + this.point.description + '</b>';
+				return 'ID de los riesgos: <b>' + this.point.name + ' ' + this.point.description + '</b>';
 			}
 			Highcharts.chart('container', this.chartOptions);
 		});

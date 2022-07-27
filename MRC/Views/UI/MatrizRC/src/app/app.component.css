@@ -7,7 +7,9 @@ li:hover {
 .d-flex {
 	background-color: rgb(201, 223, 238, 0.7) !important;
 }
-
+.fs-4 {
+	margin-left: 1vw !important;
+}
 .text-black:hover {
 	color: white !important;
 }

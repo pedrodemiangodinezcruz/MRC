@@ -46,7 +46,7 @@ export class MapaResidualComponent implements OnInit {
 			///Ver como cambiar lo de las categoriascolor: 'rbg(205, 25, 55)',
 			categories: ['MA', 'A', 'M', 'B', 'MB'],
 			title: {
-				text: '<strong>Riesgo Residual</strong>',
+				text: '<strong>Riesgo Inherente</strong>',
 				style: {
 					fontSize: '18px',
 					color: "#fffff"
@@ -841,9 +841,9 @@ export class MapaResidualComponent implements OnInit {
 		}
 		//Remover riesgos repetidos en el array de RiesgosFinales
 		this.riesgosUnicos = this.RiesgosMapa.filter((element: { idRiesgo: any; }) => {
-			const isDuplicate = this.idRiesgosUnicos.includes(element.idRiesgo);
+			const esDuplicado = this.idRiesgosUnicos.includes(element.idRiesgo);
 
-			if (!isDuplicate) {
+			if (!esDuplicado) {
 				this.idRiesgosUnicos.push(element.idRiesgo);
 				return true;
 			}
@@ -883,7 +883,6 @@ export class MapaResidualComponent implements OnInit {
 								};
 								break;
 							case "Medio":
-								RiesgoList[i].gravedadRiesgoResidual = "A";
 								this.riesgoMuyAltoMedio = this.riesgoMuyAltoMedio + " " + this.riesgosUnicos[i].idRiesgo;
 								this.mapaResidual.series[0]['data'][10] = {
 									x: 2,
@@ -894,7 +893,6 @@ export class MapaResidualComponent implements OnInit {
 								};
 								break;
 							case "Bajo":
-								RiesgoList[i].gravedadRiesgoResidual = "MA";
 								this.riesgoMuyAltoBajo = this.riesgoMuyAltoBajo + " " + this.riesgosUnicos[i].idRiesgo;
 								this.mapaResidual.series[0]['data'][15] = {
 									x: 3,
@@ -905,7 +903,6 @@ export class MapaResidualComponent implements OnInit {
 								}
 								break;
 							case "Ausencia de control":
-								RiesgoList[i].gravedadRiesgoResidual = "MA";
 								this.riesgoMuyAltoAusenciaControl = this.riesgoMuyAltoAusenciaControl + " " + this.riesgosUnicos[i].idRiesgo;
 								this.mapaResidual.series[0]['data'][20] = {
 									x: 4,
@@ -1393,7 +1390,8 @@ export class MapaResidualComponent implements OnInit {
 			/*Return con todos los datos del riesgo
 			return 'Cobertura: <b>' + getPointCategoryName(this.point, 'x') + '</b> <br>ID de los riesgos: <b>' +
 			this.point.value + '</b><br> Con un riesgo residual: <b>' + getPointCategoryName(this.point, 'y') + '</b>'; */
-			return 'ID de los riesgos: <b>' + this.point.name + ' ' + this.point.description + '</b>';
+			//Print this.point.name
+			return 'ID de los riesgos: <b>' + this.point.name + '<br> ' + this.point.description + '</b>';
 		}
 		Highcharts.chart('container', this.mapaResidual);
 	}
