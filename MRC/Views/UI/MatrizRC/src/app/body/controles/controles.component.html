@@ -72,13 +72,24 @@
 						</div>-->
 					</div>
 				</th>
-				<th scope="col" colspan="27"></th>
+				<th scope="col" colspan="16"></th>
+				<th scope="col">
+					<div class="d-flex flex-row columLarga"></div>
+				</th>
+				<th scope="col" colspan="6"></th>
+				<th scope="col">
+					<div class="d-flex flex-row columLarga"></div>
+				</th>
+				<th scope="col"></th>
+				<th scope="col">
+					<div class="d-flex flex-row columLarga"></div>
+				</th>
 			</tr>
 			<tr>
 				<th scope="col" class="azul-marino" rowspan="2">ID del Control</th>
 				<th scope="col" class="azul-marino" rowspan="2">ID de los riesgos adjuntos al control</th>
 				<th scope="col" class="azul-marino" rowspan="2">General/Proceso</th>
-				<th  class="azul-marino" rowspan="2" >Descripción del Control</th>
+				<th class="azul-marino" rowspan="2">Descripción del Control</th>
 				<th scope="col" class="azul-marino" rowspan="2">Evidencia del Control</th>
 				<th scope="col" class="verde" rowspan="2">1. Segregación de Funciones</th>
 				<th scope="col" class="verde" rowspan="2">2. Documentación (Política, procedimiento, manual,
@@ -115,64 +126,68 @@
 			<ng-container *ngFor="let controlItem of ControlList">
 				<!-- Modal para la edicion de control -->
 				<div class="modal fade" [attr.id]="'editar' + controlItem.Id" tabindex="-1"
-				aria-labelledby="modalRiesgoLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title fs-5 fw-bold" >Llene los campos para
-								editar el control {{controlItem.idControl}} </h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<app-control-riesgo [control]="control" *ngIf="ActivarEdicionControl"></app-control-riesgo>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--Modal para verificar si esta seguro de eliminar un control-->
-			<div class="modal fade" [attr.id]="'eliminar' + controlItem.Id">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Advertencia</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="col-12 alert alert-danger  align-items-center" role="alert">
-								<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-									aria-label="Danger:" style="float: left;">
-									<use xlink:href="#exclamation-triangle-fill" />
-								</svg>
-								<div>
-									¿Estas seguro de querer eliminar el control {{controlItem.idControl}}?
-								</div>
+					aria-labelledby="modalRiesgoLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title fs-5 fw-bold">Llene los campos para
+									editar el control {{controlItem.idControl}} </h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<app-control-riesgo [control]="control" *ngIf="ActivarEdicionControl">
+								</app-control-riesgo>
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-primary"
-								data-bs-dismiss="modal">Cerrar</button>
-							<button type="button" class="btn btn-danger"
-								(click)="eliminarControl(controlItem)">Eliminar
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-									<path
-										d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-								</svg>
-							</button>
-						</div>
 					</div>
 				</div>
+				<!--Modal para verificar si esta seguro de eliminar un control-->
+				<div class="modal fade" [attr.id]="'eliminar' + controlItem.Id">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Advertencia</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="col-12 alert alert-danger  align-items-center" role="alert">
+									<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+										aria-label="Danger:" style="float: left;">
+										<use xlink:href="#exclamation-triangle-fill" />
+									</svg>
+									<div>
+										¿Estas seguro de querer eliminar el control {{controlItem.idControl}}?
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline-primary"
+									data-bs-dismiss="modal">Cerrar</button>
+								<button type="button" class="btn btn-danger"
+									(click)="eliminarControl(controlItem)">Eliminar
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+										class="bi bi-trash3" viewBox="0 0 16 16">
+										<path
+											d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<tr>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.idControl}}</td>
-					<td [attr.contenteditable]="contenteditable">{{controlItem.idRiesgoAsociado}} {{controlItem.idRiesgoAsociado2}} {{controlItem.idRiesgoAsociado3}}
-						{{controlItem.idRiesgoAsociado4}} {{controlItem.idRiesgoAsociado5}} {{controlItem.idRiesgoAsociado6}} {{controlItem.idRiesgoAsociado7}} 
-						{{controlItem.idRiesgoAsociado8}} {{controlItem.idRiesgoAsociado9}} {{controlItem.idRiesgoAsociado10}}
+					<td [attr.contenteditable]="contenteditable">{{controlItem.idRiesgoAsociado}}
+						{{controlItem.idRiesgoAsociado2}} {{controlItem.idRiesgoAsociado3}}
+						{{controlItem.idRiesgoAsociado4}} {{controlItem.idRiesgoAsociado5}}
+						{{controlItem.idRiesgoAsociado6}} {{controlItem.idRiesgoAsociado7}}
+						{{controlItem.idRiesgoAsociado8}} {{controlItem.idRiesgoAsociado9}}
+						{{controlItem.idRiesgoAsociado10}}
 					</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.general}}</td>
-					<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.descripcion}}</td>
+					<td [attr.contenteditable]="contenteditable" >{{controlItem.descripcion}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.evidencia}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.segregacion}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.documentacion}}</td>
@@ -185,23 +200,30 @@
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsable}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsabilidadControl}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.generacionEvidencia}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.disenoControl}}</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.disenoControl}}
+					</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
-					<td [attr.contenteditable]="contenteditable"  class="columMediana">{{controlItem.disenoPrueba}}</td>
-					<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">{{controlItem.evaluacionFuncionalidad}}</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+						{{controlItem.estrategiaMonitoreo}}</td>
+					<td [attr.contenteditable]="contenteditable">{{controlItem.disenoPrueba}}</td>
+					<td [attr.contenteditable]="contenteditable"
+						[ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">
+						{{controlItem.evaluacionFuncionalidad}}</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+						{{controlItem.calificacionControl}}%</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaPonderada}}%</td>
-					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.coberturaTotal}}%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+						{{controlItem.coberturaPonderada}}%</td>
+					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
+						{{controlItem.coberturaTotal}}%</td>
 					<td [className]="esFomulado ? 'formulado' : 'inactivo'"
-					[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','verde':  controlItem.nivelCobertura === 'Alto',
-							'medio' : controlItem.nivelCobertura === 'Medio', 'anaranjado' : controlItem.nivelCobertura === 'Bajo', 'rojo' : controlItem.nivelCobertura === 'Ausencia de control'}"
-					>{{controlItem.nivelCobertura}}</td>
-					<td [attr.contenteditable]="contenteditable" class="columMediana">{{controlItem.descripcionTratamiento}}</td>
+						[ngClass]="{'verdeImpacto' : controlItem.nivelCobertura === 'Total','verde':  controlItem.nivelCobertura === 'Alto',
+							'medio' : controlItem.nivelCobertura === 'Medio', 'anaranjado' : controlItem.nivelCobertura === 'Bajo', 'rojo' : controlItem.nivelCobertura === 'Ausencia de control'}">
+						{{controlItem.nivelCobertura}}</td>
+					<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.responsableTratamiento}}</td>
-					<td [attr.contenteditable]="contenteditable" class="columMediana">{{controlItem.observaciones}}</td>
+					<td [attr.contenteditable]="contenteditable">{{controlItem.observaciones}}</td>
 					<td scope="col">
 						<!--(click)="editarRiesgo()" para lo gray y set editable-->
 						<button type="button" class="btn btn-success" (click)="editClick(controlItem)"
@@ -219,7 +241,7 @@
 					</td>
 					<td scope="col">
 						<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-						[attr.data-bs-target]="'#eliminar' + controlItem.Id">Eliminar Control
+							[attr.data-bs-target]="'#eliminar' + controlItem.Id">Eliminar Control
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-trash3" viewBox="0 0 16 16">
 								<path
@@ -233,66 +255,64 @@
 	</table>
 	<!--Modales de alta, edición y eliminacion de control-->
 
-<div class="modal" id="altaControl">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Estatus de solicitud</h5>
-				<a href="/controles">
-				<button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
-			</a>
+	<div class="modal" id="altaControl">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Estatus de solicitud</h5>
+					<a href="/controles">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</a>
+				</div>
+				<div class="modal-body">
+					<div class="col-12 alert alert-success  align-items-center" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+							style="float: left;">
+							<use xlink:href="#check-circle-fill" />
+						</svg>
+						<div>
+							Control, dado de alta exitosamente
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="/controles">
+							<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ok</button>
+						</a>
+					</div>
+				</div>
 			</div>
-			<div class="modal-body">
-				<div class="col-12 alert alert-success  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-						aria-label="Success:" style="float: left;">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Control, dado de alta exitosamente
+		</div>
+	</div>
+
+	<div class="modal" id="editarControl">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Estatus de solicitud</h5>
+					<a href="/controles">
+						<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</a>
+				</div>
+				<div class="modal-body">
+					<div class="col-12 alert alert-success  align-items-center" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"
+							style="float: left;">
+							<use xlink:href="#check-circle-fill" />
+						</svg>
+						<div>
+							Control, editado exitosamente
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<a href="/controles">
-					<button type="button"  class="btn btn-outline-primary"
-						data-bs-dismiss="modal">Ok</button>
+						<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Ok</button>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="modal" id="editarControl">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Estatus de solicitud</h5>
-				<a href="/controles">
-				<button type="button" class="btn-close" href="/" data-bs-dismiss="modal"
-					aria-label="Close"></button>
-					</a>
-			</div>
-			<div class="modal-body">
-				<div class="col-12 alert alert-success  align-items-center" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-						aria-label="Success:" style="float: left;">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Control, editado exitosamente
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="/controles">
-				<button type="button" class="btn btn-outline-primary"
-					data-bs-dismiss="modal">Ok</button>
-				</a>
-			</div>
-		</div>
-	</div>
-</div>
 
 	<!--Control eliminado exitosamente modal-->
 	<div class="modal" id="">
