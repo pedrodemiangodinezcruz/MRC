@@ -333,7 +333,7 @@
 							<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.estrategiaMonitoreo}}</td>
-							<td [attr.contenteditable]="contenteditable" class="columLarga">Ver qué poner AQUI</td>
+							<td [attr.contenteditable]="contenteditable" class="columLarga">{{controlItem.disenoPrueba}}</td>
 							<td [attr.contenteditable]="contenteditable"
 								[ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">
 								{{controlItem.evaluacionFuncionalidad}}</td>

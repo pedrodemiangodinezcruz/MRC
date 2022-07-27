@@ -189,7 +189,7 @@
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlClave}}</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.estrategiaMonitoreo}}</td>
-					<td [attr.contenteditable]="contenteditable">{{controlItem.disenoPrueba}}</td>
+					<td [attr.contenteditable]="contenteditable"  class="columMediana">{{controlItem.disenoPrueba}}</td>
 					<td [attr.contenteditable]="contenteditable" [ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">{{controlItem.evaluacionFuncionalidad}}</td>
 					<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">{{controlItem.calificacionControl}}%</td>
 					<td [attr.contenteditable]="contenteditable">{{controlItem.cobertura}}%</td>
