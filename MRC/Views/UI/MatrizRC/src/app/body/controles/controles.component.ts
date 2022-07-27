@@ -71,6 +71,7 @@ export class ControlesComponent implements OnInit {
 	controlFraude: string | undefined;
 	cobertura: number | undefined;
 	estrategiaMonitoreo: string | undefined;
+	disenoPrueba: string | undefined;
 	responsableTratamiento: string | undefined;
 	descripcionTratamiento: string | undefined;
 	evaluacionFuncionalidad: string | undefined;
@@ -117,6 +118,7 @@ export class ControlesComponent implements OnInit {
 		this.controlFraude = this.control.controlFraude;
 		this.cobertura = this.control.cobertura;
 		this.estrategiaMonitoreo = this.control.estrategiaMonitoreo;
+		this.disenoPrueba = this.control.disenoPrueba;
 		this.responsableTratamiento = this.control.responsableTratamiento;
 		this.descripcionTratamiento = this.control.descripcionTratamiento;
 		this.evaluacionFuncionalidad = this.control.evaluacionFuncionalidad;
@@ -179,6 +181,7 @@ export class ControlesComponent implements OnInit {
 			controlFraude: this.controlFraude,
 			cobertura: this.cobertura,
 			estrategiaMonitoreo: this.estrategiaMonitoreo,
+			disenoPrueba: this.disenoPrueba,
 			responsableTratamiento: this.responsableTratamiento,
 			descripcionTratamiento: this.descripcionTratamiento,
 			evaluacionFuncionalidad: this.evaluacionFuncionalidad,
@@ -380,7 +383,9 @@ export class ControlesComponent implements OnInit {
 				ControlList[j].nivelCobertura = "Total";
 			}
 		}
-
+		//Print controlList
+		console.log("Lista de controles despues todos los calculos: ");
+		console.log(ControlList);
 	}
 
 

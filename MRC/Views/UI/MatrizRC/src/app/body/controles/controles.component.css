@@ -11,6 +11,12 @@ td.columLarga {
 	padding-top: 20%;
 	padding-bottom: 15%;
   }
+  td.columMediana {
+	display: list-item;
+	width: 17vw;
+	overflow: hidden;
+	border: none;
+  }
 .columPequeña{
 	width: 9em;
 }

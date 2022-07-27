@@ -50,5 +50,6 @@ namespace MRC.Models
         public string NivelCobertura { get; set; }
         public string CausasAdjuntas { get; set; }
         public string Observaciones { get; set; }
+        public string DisenoPrueba { get; set; }
     }
 }

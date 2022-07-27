@@ -142,7 +142,10 @@
 						</div>
 					</div>
 				</th>
-				<th scope="col" colspan="25"></th>
+				<th scope="col" colspan="24"></th>
+				<th scope="col">
+					<div class="d-flex flex-row columLarga"></div>
+				</th>
 				<th scope="col">
 					<div class="d-flex flex-row columLarga"></div>
 				</th>
@@ -330,7 +333,7 @@
 							<td [attr.contenteditable]="contenteditable">{{controlItem.controlFraude}}</td>
 							<td id="formulado" [className]="esFomulado ? 'formulado' : 'inactivo'">
 								{{controlItem.estrategiaMonitoreo}}</td>
-							<td [attr.contenteditable]="contenteditable">{{controlItem.descripcionTratamiento}}</td>
+							<td [attr.contenteditable]="contenteditable" class="columLarga">Ver qué poner AQUI</td>
 							<td [attr.contenteditable]="contenteditable"
 								[ngClass]="{'rojo-alerta' : controlItem.evaluacionFuncionalidad === 'No efectivo'}">
 								{{controlItem.evaluacionFuncionalidad}}</td>
