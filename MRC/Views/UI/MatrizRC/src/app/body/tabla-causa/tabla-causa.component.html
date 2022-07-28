@@ -11,17 +11,17 @@
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idRiesgoAsociado" value="{{causa.idRiesgoAsociado}}"
 				aria-label="Default select example">
-				<option  value="N/A">N/A</option>
+				<option value="N/A">N/A</option>
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado">
-						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>	
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
 					</ng-container>
 				</ng-container>
 			</select>
 			<label for="floatingSelect">Seleccione el ID del riesgo asociado</label>
 		</div>
 	</div>
-	<div class="col-4"  *ngIf="causa.Anadir == 0">
+	<div class="col-4" *ngIf="causa.Anadir == 0">
 		<p class="text-center fw-bold">&nbsp;</p>
 		<button type="button" class="btn btn-success" (click)="desplegarNuevoRiesgo()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
@@ -34,7 +34,7 @@
 			Agregar otro riesgo
 		</button>
 	</div>
-	<div class="col-4"  *ngIf="causa.Anadir != 0">
+	<div class="col-4" *ngIf="causa.Anadir != 0">
 		<p class="text-center fw-bold">&nbsp;</p>
 		<button type="button" class="btn btn-success" (click)="desplegarNuevoRiesgo()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
@@ -52,8 +52,8 @@
 	<div class="col-auto" *ngIf="(nuevoRiesgo > 0) && (nuevoRiesgo  < this.RiesgoList.length);else demasiadosRiesgos">
 		<p class="text-center fw-bold">Riesgo 2 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado2" name="impacto" value="{{causa.idRiesgoAsociado2}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado2" name="impacto"
+				value="{{causa.idRiesgoAsociado2}}" aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado2">
 						<!--<option  *ngIf="riesgoItem.idRiesgo === causa.idRiesgoAsociado"></option>-->
@@ -68,8 +68,8 @@
 	<div class="col-auto" *ngIf="(nuevoRiesgo > 1) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 3 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado3" name="impacto" value="{{causa.idRiesgoAsociado3}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado3" name="impacto"
+				value="{{causa.idRiesgoAsociado3}}" aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado3">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
@@ -82,8 +82,8 @@
 	<div class="col-auto" *ngIf="(nuevoRiesgo > 2) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 4 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado4" name="impacto" value="{{causa.idRiesgoAsociado4}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado4" name="impacto"
+				value="{{causa.idRiesgoAsociado4}}" aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado4">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
@@ -96,8 +96,8 @@
 	<div class="col-auto" *ngIf="(nuevoRiesgo > 3) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 5 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado5" name="impacto" value="{{causa.idRiesgoAsociado5}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado5" name="impacto"
+				value="{{causa.idRiesgoAsociado5}}" aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado5">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
@@ -111,8 +111,8 @@
 	<div class="col-auto" *ngIf="(nuevoRiesgo > 4) && (nuevoRiesgo  < this.RiesgoList.length);">
 		<p class="text-center fw-bold">Riesgo 6 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idRiesgoAsociado6" name="impacto" value="{{causa.idRiesgoAsociado6}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado6" name="impacto"
+				value="{{causa.idRiesgoAsociado6}}" aria-label="Default select example">
 				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
 					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado6">
 						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
@@ -123,9 +123,71 @@
 			<label for="floatingSelect">Seleccione</label>
 		</div>
 	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 5) && (nuevoRiesgo  < this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 7 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado7" name="impacto"
+				value="{{causa.idRiesgoAsociado7}}" aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamLista = count">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado7">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+</div>
+<div class="row" *ngIf="(nuevoRiesgo > 6) && (nuevoRiesgo  < this.RiesgoList.length);">
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 6) && (nuevoRiesgo  < this.RiesgoList.length);else demasiadosRiesgos">
+		<p class="text-center fw-bold">Riesgo 8 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado8" name="impacto"
+				value="{{causa.idRiesgoAsociado2}}" aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList;  let i = index; let tamLista = count;">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado8">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 7) && (nuevoRiesgo  < this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 9 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado9" name="impacto"
+				value="{{causa.idRiesgoAsociado3}}" aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList;  let i = index; let tamLista = count;">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado9">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="col-auto" *ngIf="(nuevoRiesgo > 8) && (nuevoRiesgo  < this.RiesgoList.length);">
+		<p class="text-center fw-bold">Riesgo 10 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idRiesgoAsociado10" name="impacto"
+				value="{{causa.idRiesgoAsociado4}}" aria-label="Default select example">
+				<ng-container *ngFor="let riesgoItem of RiesgoList;  let i = index; let tamLista = count;">
+					<ng-container *ngIf="riesgoItem.idRiesgo !== causa.IdRiesgoAsociado10">
+						<option value="{{riesgoItem.idRiesgo}}">{{riesgoItem.idRiesgo}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
 </div>
 <div class="row text-center">
-	<ng-template  #demasiadosRiesgos>
+	<ng-template #demasiadosRiesgos>
 		<div class="col text-center" *ngIf="(nuevoRiesgo > 0)">
 			<div class="modal-body">
 				<div class="col-12 alert alert-danger  align-items-center" role="alert">
@@ -142,13 +204,28 @@
 		</div>
 	</ng-template>
 </div>
+<div class="row text-center" *ngIf="(nuevoRiesgo > 9)">
+	<div class="col text-center">
+		<div class="modal-body">
+			<div class="col-12 alert alert-danger  align-items-center" role="alert">
+				<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
+					style="float: left;">
+					<use xlink:href="#exclamation-triangle-fill" />
+				</svg>
+				<div>
+					No se pueden adjuntar más de {{nuevoRiesgo}} riesgos a una única causa
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="row">
 	<div class="col">
 		<p class="text-center fw-bold">Id del control asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idControlAsociado" value="{{causa.idControlAsociado}}"
 				aria-label="Default select example">
-				<option  value="N/A">N/A</option>
+				<option value="N/A">N/A</option>
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
 					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
@@ -158,7 +235,7 @@
 			<label for="floatingSelect">Seleccione el ID del control asociado</label>
 		</div>
 	</div>
-	<div class="col-4"  *ngIf="causa.Anadir == 0">
+	<div class="col-4" *ngIf="causa.Anadir == 0">
 		<p class="text-center fw-bold">&nbsp;</p>
 		<button type="button" class="btn btn-success" (click)="desplegarNuevoControl()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
@@ -171,7 +248,7 @@
 			Agregar otro control
 		</button>
 	</div>
-	<div class="col-4"  *ngIf="causa.Anadir != 0">
+	<div class="col-4" *ngIf="causa.Anadir != 0">
 		<p class="text-center fw-bold">&nbsp;</p>
 		<button type="button" class="btn btn-success" (click)="desplegarNuevoControl()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square"
@@ -186,7 +263,8 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-auto" *ngIf="(nuevoControl > 0) && (nuevoControl  < this.ControlList.length);else demasiadosControles">
+	<div class="col-auto"
+		*ngIf="(nuevoControl > 0) && (nuevoControl  < this.ControlList.length);else demasiadosControles">
 		<p class="text-center fw-bold">Control 2 asociado</p>
 		<div class="form-floating mb-3">
 			<select class="form-select" [(ngModel)]="idControlAsociado2" name="impacto"
@@ -204,8 +282,8 @@
 	<div class="col-auto" *ngIf="(nuevoControl > 1) && (nuevoControl  < this.ControlList.length);">
 		<p class="text-center fw-bold">Control 3 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idControlAsociado3" name="impacto" value="{{causa.idControlAsociado3}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idControlAsociado3" name="impacto"
+				value="{{causa.idControlAsociado3}}" aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
 					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado3">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
@@ -219,8 +297,8 @@
 	<div class="col-auto" *ngIf="(nuevoControl > 2) && (nuevoControl  < this.ControlList.length);">
 		<p class="text-center fw-bold">Control 4 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idControlAsociado4" name="impacto" value="{{causa.idControlAsociado4}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idControlAsociado4" name="impacto"
+				value="{{causa.idControlAsociado4}}" aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
 					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado4">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
@@ -234,8 +312,8 @@
 	<div class="col-auto" *ngIf="(nuevoControl > 3) && (nuevoControl  < this.ControlList.length);">
 		<p class="text-center fw-bold">Control 5 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idControlAsociado5" name="impacto" value="{{causa.idControlAsociado5}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idControlAsociado5" name="impacto"
+				value="{{causa.idControlAsociado5}}" aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
 					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado5">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
@@ -249,8 +327,8 @@
 	<div class="col-auto" *ngIf="(nuevoControl > 4) && (nuevoControl  < this.ControlList.length);">
 		<p class="text-center fw-bold">Control 6 asociado</p>
 		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="idControlAsociado6" name="impacto" value="{{causa.idControlAsociado6}}"
-				aria-label="Default select example">
+			<select class="form-select" [(ngModel)]="idControlAsociado6" name="impacto"
+				value="{{causa.idControlAsociado6}}" aria-label="Default select example">
 				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
 					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado6">
 						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
@@ -261,10 +339,41 @@
 			<label for="floatingSelect">Seleccione</label>
 		</div>
 	</div>
-</div>
-<div class="row text-center">
-	<ng-template  #demasiadosControles>
-		<div class="col text-center" *ngIf="(nuevoControl > 0)">
+	<div class="col-auto" *ngIf="(nuevoControl > 5) && (nuevoControl  < this.ControlList.length);">
+		<p class="text-center fw-bold">Control 7 asociado</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="idControlAsociado7" name="impacto"
+				value="{{causa.idControlAsociado7}}" aria-label="Default select example">
+				<ng-container *ngFor="let controlItem of ControlList; let i = index; let tamLista = count">
+					<ng-container *ngIf="controlItem.idControl !== causa.IdControlAsociado7">
+						<option value="{{controlItem.idControl}}">{{controlItem.idControl}}</option>
+						<option *ngIf="i == tamLista-1" value="">N/A</option>
+					</ng-container>
+				</ng-container>
+			</select>
+			<label for="floatingSelect">Seleccione</label>
+		</div>
+	</div>
+	<div class="row text-center">
+		<ng-template #demasiadosControles>
+			<div class="col text-center" *ngIf="(nuevoControl > 0)">
+				<div class="modal-body">
+					<div class="col-12 alert alert-danger  align-items-center" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
+							style="float: left;">
+							<use xlink:href="#exclamation-triangle-fill" />
+						</svg>
+						<div>
+							No existen más de {{nuevoControl}} controles en el sistema para adjuntar<br>
+							<a href="/controles" style="color: red;">Ir a lista de controles</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</div>
+	<div class="row text-center" *ngIf="(nuevoControl > 9)">
+		<div class="col text-center">
 			<div class="modal-body">
 				<div class="col-12 alert alert-danger  align-items-center" role="alert">
 					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"
@@ -272,16 +381,14 @@
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						No existen más de {{nuevoControl}} controles en el sistema para adjuntar<br>
-						<a href="/controles" style="color: red;">Ir a lista de controles</a>
+						No se pueden adjuntar más de {{nuevoControl}} controles a una única causa<br>
 					</div>
 				</div>
 			</div>
 		</div>
-	</ng-template>
-</div>
+	</div>
 
-<!--
+	<!--
 	<div class="col">
 		<p class="text-center fw-bold">Id del control asociado</p>
 		<div class="form-floating mb-3">
@@ -296,19 +403,19 @@
 		</div>
 	</div>
 	-->
-<div class="row">
-	<div class="modal-footer">
-		<a href="/metodologia" *ngIf="causa.Anadir == 0">
-		<button type="button"  class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
-			(click)="closeClick()">Cerrar</button>
-		</a>
-		<a href="/causas" *ngIf="causa.Anadir != 0">
-			<button type="button" *ngIf="causa.Anadir != 0" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
-			(click)="closeClick()">Cerrar</button>
-		</a>
-		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir == 0" (click)="anadirCausa()"
-			data-bs-toggle="modal" data-bs-target="#altaCausa">Añadir Causa</button>
-		<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir != 0" (click)="updateCausa()"
-			data-bs-toggle="modal" data-bs-target="#editarControl">Editar Causa</button>
+	<div class="row">
+		<div class="modal-footer">
+			<a href="/metodologia" *ngIf="causa.Anadir == 0">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="editBoton"
+					(click)="closeClick()">Cerrar</button>
+			</a>
+			<a href="/causas" *ngIf="causa.Anadir != 0">
+				<button type="button" *ngIf="causa.Anadir != 0" class="btn btn-danger" data-bs-dismiss="modal"
+					id="editBoton" (click)="closeClick()">Cerrar</button>
+			</a>
+			<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir == 0" (click)="anadirCausa()"
+				data-bs-toggle="modal" data-bs-target="#altaCausa">Añadir Causa</button>
+			<button type="submit" class="btn btn-primary" *ngIf="causa.Anadir != 0" (click)="updateCausa()"
+				data-bs-toggle="modal" data-bs-target="#editarControl">Editar Causa</button>
+		</div>
 	</div>
-</div>
