@@ -962,7 +962,7 @@ export class MapaResidualComponent implements OnInit {
 								this.mapaResidual.series[0]['data'][21] = {
 									x: 4,
 									y: 1,
-									value: 100,
+									value: 75,
 									name: this.riesgoAltoAusenciaControl,
 									description: ""
 								}
@@ -1209,7 +1209,7 @@ export class MapaResidualComponent implements OnInit {
 						this.mapaResidual.series[0]['data'][7] = {
 							x: 1,
 							y: 2,
-							value: 15,
+							value: 0,
 							name: "",
 							description: "No existen riesgos para este cuadrante"
 						};
@@ -1219,7 +1219,7 @@ export class MapaResidualComponent implements OnInit {
 						this.mapaResidual.series[0]['data'][8] = {
 							x: 1,
 							y: 3,
-							value: 10,
+							value: 0,
 							name: "",
 							description: "No existen riesgos para este cuadrante"
 						};
@@ -1229,7 +1229,7 @@ export class MapaResidualComponent implements OnInit {
 						this.mapaResidual.series[0]['data'][9] = {
 							x: 1,
 							y: 4,
-							value: 5,
+							value: 0,
 							name: "",
 							description: "No existen riesgos para este cuadrante"
 						};

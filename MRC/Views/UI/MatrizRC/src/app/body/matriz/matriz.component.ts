@@ -70,13 +70,17 @@ export class MatrizComponent implements OnInit {
 	//ngOnInit(): void {
 		async ngOnInit() {
 		this.refreshRiesgoList();
+		/*Calcular los riesgos cada 8 segundos para actualizar los datos
+		setInterval(() => {
+			this.refreshRiesgoList();
+		} , 8000);*/
 		this.refreshControlList();
 		this.refreshCausaList();
 		this.calculosControles();
-		//Calcular los controles cada 7 segundos para actualizar los datos
+		//Calcular los controles cada 8 segundos para actualizar los datos
 		setInterval(() => {
 			this.calculosControles();
-		} , 7000);
+		} , 8000);
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
