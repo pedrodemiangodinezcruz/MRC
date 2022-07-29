@@ -365,6 +365,7 @@ export class MapaRiesgoComponent implements OnInit {
 					}
 					else if (this.RiesgoList[i].probabilidad == 'Media' && (this.RiesgoList[i].impacto == 'Importante')) {
 						this.RiesgoList[i].nivelRiesgo = "M";
+						//Aqui cambio 
 						this.riesgoMedioImportante = this.riesgoMedioImportante + " " + this.RiesgoList[i].idRiesgo;
 						this.chartOptions.series[0]['data'][12] = {
 							x: 2,

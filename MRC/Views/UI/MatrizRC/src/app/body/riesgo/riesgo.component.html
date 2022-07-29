@@ -274,7 +274,7 @@
 	<div class="col">
 		<p class="text-center fw-bolder">ID del Riesgo</p>
 		<div class="form-floating">
-			<input type="text" [(ngModel)]="idRiesgo" class="form-control" name="idRiesgo" value="{{riesgo.idRiesgo}}">
+			<input type="text" [(ngModel)]="idRiesgo" class="form-control" name="idRiesgo" value="{{riesgo.idRiesgo}}" required>
 			<label for="floatingInput">ID Riesgo</label>
 		</div>
 	</div>
@@ -348,6 +348,51 @@
 		</div>
 	</div>-->
 </div>
+<p class="text-center fw-bolder fs-5">Gravedad de riesgo inherente</p>
+<div class="row alert alert-success">
+	<div class="col">
+		<p class="text-center fw-bold">Riesgo de Fraude</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="riesgoFraude" value="{{riesgo.riesgoFraude}}" name="riesgoFraude"
+				aria-label="Default select example">
+				<option selected>...</option>
+				<option value="Sí">Sí</option>
+				<option value="No">No</option>
+			</select>
+			<label for="floatingSelect">Seleccione una opción</label>
+		</div>
+	</div>
+	<div class="col">
+		<p class="text-center fw-bold">Probabilidad</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="probabilidad" value="{{riesgo.probabilidad}}" name="probabilidad"
+				aria-label="Default select example">
+				<option selected>...</option>
+				<option value="Muy Alta">Muy Alta</option>
+				<option value="Alta">Alta</option>
+				<option value="Media">Media</option>
+				<option value="Baja">Baja</option>
+				<option value="Muy Baja">Muy Baja</option>
+			</select>
+			<label for="floatingSelect">Seleccione una opción</label>
+		</div>
+	</div>
+	<div class="col">
+		<p class="text-center fw-bold">Impacto</p>
+		<div class="form-floating mb-3">
+			<select class="form-select" [(ngModel)]="impacto" name="impacto" value="{{riesgo.impacto}}"
+				aria-label="Default select example">
+				<option selected>...</option>
+				<option value="Marginal">Marginal</option>
+				<option value="Débil">Débil</option>
+				<option value="Importante">Importante</option>
+				<option value="Crítico">Crítico</option>
+				<option value="Catastrófico">Catastrofico</option>
+			</select>
+			<label for="floatingSelect">Seleccione una opción</label>
+		</div>
+	</div>
+</div>
 <p class="text-center fw-bolder fs-5">Importancia relativa</p>
 <div class="row">
 	<div class="col">
@@ -396,50 +441,7 @@
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col">
-		<p class="text-center fw-bold">Riesgo de Fraude</p>
-		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="riesgoFraude" value="{{riesgo.riesgoFraude}}" name="riesgoFraude"
-				aria-label="Default select example">
-				<option selected>...</option>
-				<option value="Sí">Sí</option>
-				<option value="No">No</option>
-			</select>
-			<label for="floatingSelect">Seleccione una opción</label>
-		</div>
-	</div>
-	<div class="col">
-		<p class="text-center fw-bold">Probabilidad</p>
-		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="probabilidad" value="{{riesgo.probabilidad}}" name="probabilidad"
-				aria-label="Default select example">
-				<option selected>...</option>
-				<option value="Muy Alta">Muy Alta</option>
-				<option value="Alta">Alta</option>
-				<option value="Media">Media</option>
-				<option value="Baja">Baja</option>
-				<option value="Muy Baja">Muy Baja</option>
-			</select>
-			<label for="floatingSelect">Seleccione una opción</label>
-		</div>
-	</div>
-	<div class="col">
-		<p class="text-center fw-bold">Impacto</p>
-		<div class="form-floating mb-3">
-			<select class="form-select" [(ngModel)]="impacto" name="impacto" value="{{riesgo.impacto}}"
-				aria-label="Default select example">
-				<option selected>...</option>
-				<option value="Marginal">Marginal</option>
-				<option value="Débil">Débil</option>
-				<option value="Importante">Importante</option>
-				<option value="Crítico">Crítico</option>
-				<option value="Catastrófico">Catastrofico</option>
-			</select>
-			<label for="floatingSelect">Seleccione una opción</label>
-		</div>
-	</div>
-</div>
+
 <!--
 <div class="row">
 	<div class="col-8" style="display: block;" *ngIf="riesgo.Anadir === 0">
