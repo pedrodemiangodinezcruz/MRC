@@ -8,9 +8,14 @@ import { SharedService } from 'src/app/shared.service';
 	styleUrls: ['./riesgo.component.css']
 })
 export class RiesgoComponent implements OnInit {
+	myScriptElement: HTMLScriptElement;
 
 
-	constructor(private service: SharedService) { }
+	constructor(private service: SharedService) { 
+		this.myScriptElement = document.createElement('script');
+		this.myScriptElement.src = '../../assets/js/selectsProcesos.js';
+		document.head.appendChild(this.myScriptElement);
+	}
 	@Input() riesgo: any;
 	@Input() causas: any;
 	RiesgoList: any = [];
