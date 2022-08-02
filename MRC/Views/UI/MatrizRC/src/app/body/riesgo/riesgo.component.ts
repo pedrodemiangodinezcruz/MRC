@@ -13,7 +13,7 @@ export class RiesgoComponent implements OnInit {
 
 	constructor(private service: SharedService) { 
 		this.myScriptElement = document.createElement('script');
-		this.myScriptElement.src = '../../assets/js/selectsProcesos.js';
+		this.myScriptElement.src = '../..assets/js/selectsProcesos.js';
 		document.head.appendChild(this.myScriptElement);
 	}
 	@Input() riesgo: any;
