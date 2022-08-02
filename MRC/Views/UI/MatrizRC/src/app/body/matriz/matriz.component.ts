@@ -41,6 +41,7 @@ export class MatrizComponent implements OnInit {
 	filtroPorDescripcionRiesgo: string = "";
 	filtroPorDescripcionControl: string = "";
 	filtroPorProbabilidadRiesgo: string = "";
+	actualizarCalculos: number = 0;
 	ocurrencias: number = 1;
 	valorDiseñoDeControl: number = 0;
 	valorCalificacionControl: number = 0;
@@ -77,9 +78,12 @@ export class MatrizComponent implements OnInit {
 		this.refreshControlList();
 		this.refreshCausaList();
 		this.calculosControles();
-		//Calcular los controles cada 8 segundos para actualizar los datos
+		//Calcular los controles cada 8 segundos para actualizar los datos (Solo dos veces, para permitir las busquedas filtradas)
 		setInterval(() => {
-			this.calculosControles();
+			if (this.actualizarCalculos <= 1) {
+				this.calculosControles();
+				this.actualizarCalculos++;
+			}
 		} , 8000);
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
@@ -206,13 +210,14 @@ export class MatrizComponent implements OnInit {
 				}
 			}
 			this.RiesgoList = data;
-			this.calcularNivelRiesgoInherente(this.RiesgoList, data);
+			this.ListaRiesgosSinFiltrado = data;
+			this.calcularNivelRiesgoInherente(this.RiesgoList, this.ListaRiesgosSinFiltrado);
 			//console.log("Lista de riesgos");
 			//console.log(this.RiesgoList);
 		});
 	}
 	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
-	calcularNivelRiesgoInherente(RiesgoList: any, data: any) {
+	calcularNivelRiesgoInherente(RiesgoList: any, ListaRiesgosSinFiltrado: any) {
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
 			if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
 				RiesgoList[i].nivelRiesgo = "A";
@@ -264,7 +269,7 @@ export class MatrizComponent implements OnInit {
 			}
 
 		}
-		RiesgoList = data;
+		//RiesgoList = data;
 		console.log("Lista de riesgos");
 		console.log(RiesgoList);
 	}
