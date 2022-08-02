@@ -42,6 +42,7 @@ export class ParetoComponent implements OnInit {
 	datos: any = [];
 	contador: number = 0;
 	causasDuplicadas: any = [];
+	causasFinales: any = [];
 	anteriorCausa: string = "";
 	descripcion: string | undefined;
 
@@ -102,7 +103,8 @@ export class ParetoComponent implements OnInit {
 
 	ngOnInit() {
 		this.refreshCausasList();
-		this.poblarPareto();
+		//this.poblarPareto();
+		this.pareto();
 		this.macroproceso = [
 			{ Nombre: "Concepto al Producto" },
 			{ Nombre: "Compra al Pago" },
@@ -232,6 +234,7 @@ export class ParetoComponent implements OnInit {
 			console.log(this.descripciones);*/
 		});
 	}
+	//Metodo para poblar el pareto con TODAS las cuasas repetidas en la Matriz, sin contar causas duplicadas en los riesgos
 	poblarPareto() {
 		//Obtener lista de riesgos y lista de causas
 		this.service.getRiesgoList().subscribe(riesgos => {
@@ -327,6 +330,136 @@ export class ParetoComponent implements OnInit {
 					  for (let i = 0; i < this.causasPorRepeticion.length; ++i) {
 						  this.options.xAxis['categories'].push(this.causasPorRepeticion[i].descripcion);
 						  this.options.series[1]['data'].push(this.causasPorRepeticion[i].repeticiones);
+					  }
+					Highcharts.chart('container', this.options);
+				});
+			});
+		});
+	}
+	//Metodo para poblar el pareto con TODAS las cuasas repetidas en la Matriz, contando causas duplicadas en los riesgos
+	pareto() {
+		//Obtener lista de riesgos y lista de causas
+		this.service.getRiesgoList().subscribe(riesgos => {
+			this.service.getCausasList().subscribe(causas => {
+				this.service.getControlesList().subscribe(controles => {
+					this.ControlList = controles;
+					this.RiesgoList = riesgos;
+					this.CausasList = causas;
+					//Recorrer listas de causas, riesgos y controles para contar las causas repetidas
+					for (let i = 0; i < this.RiesgoList.length; i++) {
+						for (let k = 0; k < this.ControlList.length; k++) {
+							for (let j = 0; j < this.CausasList.length; j++) {
+								//If que verifica que la lista se llene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
+								//la causa coincida con un riesgo en el sistem
+								if ((this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'))
+									&& (this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado
+										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado2 || this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado3
+										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado4 || this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado5
+										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado6 || this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado7
+										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado8 || this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado9
+										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado10)
+									&& (this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado2
+										|| this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado4
+										|| this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado6
+										|| this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado8
+										|| this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === this.ControlList[k].idRiesgoAsociado10)
+									&& (this.ControlList[k].idControl === this.CausasList[j].idControlAsociado || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado2
+										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado3 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado4
+										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado5 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado6
+										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado7 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado8
+										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado9 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado10)) {
+									let causas = {
+										riesgo: this.RiesgoList[i].idRiesgo,
+										descripcion: this.CausasList[j].descripcion,
+									};
+									//Llenar los resultados en el arreglos CausasPorMacroProceso
+									this.causasPorMacroproceso.push(causas);
+								}
+							}
+						}
+					}
+					//Ordenar el arreglo para contar duplicados, primero si existen causas en los macroprocesos
+					if (this.causasPorMacroproceso.length != 0) {
+						//Para contar las causas duplicadas, primer ordenar el arreglo (Por descripción)
+						this.causasPorMacroproceso.sort((elemento: any, elemento2: any) => {
+							if (elemento.descripcion > elemento2.descripcion) {
+								return 1;
+							}
+
+							if (elemento.descripcion < elemento2.descripcion) {
+								return -1;
+							}
+
+							return 0;
+						});
+					}
+					//Sino
+					else {
+						this.options.title['text'] = 'No existen causas para el Macroproceso: ' + this._Activatedroute.snapshot.paramMap.get('macro')
+						//this.options.xAxis['categories'].push(['No existen causas para el Macroproceso: ' + this._Activatedroute.snapshot.paramMap.get('macro')])
+						this.options.series[1]['data'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+					}
+					console.log("Array ordenado alfabeticamente de las multiples causas por los riesgos: ");
+					console.log(this.causasPorMacroproceso);
+					//Contar el  número de repeticiones de la descripcion de las causas en this.causasPorMacroproceso
+					this.causasPorMacroproceso.forEach((element: any) => {
+						this.contador = 0;
+						this.causasPorMacroproceso.forEach((element2:any) => {
+							if (element.descripcion === element2.descripcion && element.riesgo == element2.riesgo) {
+								this.contador++;
+							}
+						}
+						);
+						//Llenar el arreglo de los duplicados con las repeticiones y la descripcion de las causas
+						var val ={
+							idRiesgo: element.riesgo,
+							repeticiones: this.contador,
+							descripcion: element.descripcion
+						}
+						this.causasDuplicadas.push(val);
+					}
+					);
+					console.log("Array de las causas con su número de repeticiones: ");
+					console.log(this.causasDuplicadas);
+					//Quitar los duplicados del arreglo this.causasDuplicadas
+					this.causasPorRepeticion = this.causasDuplicadas.filter((value: any, index: any) => {
+						const _value = JSON.stringify(value);
+						return index === this.causasDuplicadas.findIndex((resultados: any) => {
+						  return JSON.stringify(resultados) === _value;
+						});
+					  });
+					  console.log("Array de los resultados sin duplicados: ");
+					  console.log(this.causasPorRepeticion);
+					  //Llenar el arreglo de los resultados con el número de repeticiones correcto (Solo 1 por riesgo)
+					  this.causasPorRepeticion.forEach((element: any) => {
+						this.contador = 1;
+						this.causasPorRepeticion.forEach((element2:any) => {
+							if (element.descripcion === element2.descripcion && element.idRiesgo !== element2.idRiesgo) {
+								this.contador++;
+							}
+						}
+						);
+						//Llenar el arreglo de los duplicados con las repeticiones correctas y la descripcion de las causas
+						var val ={
+							repeticiones: this.contador,
+							descripcion: element.descripcion
+						}
+						this.causasFinales.push(val);
+					}
+					);
+					//Quitar los duplicados del arreglo this.causasFinales
+					this.causasFinales = this.causasFinales.filter((value: any, index: any) => {
+						const _value = JSON.stringify(value);
+						return index === this.causasFinales.findIndex((resultados: any) => {
+						  return JSON.stringify(resultados) === _value;
+						});
+					  });
+					console.log("Array de los resultados finales: ");
+					  console.log(this.causasFinales);
+					  //Poblar el pareto con los datos
+					  for (let i = 0; i < this.causasFinales.length; ++i) {
+						  this.options.xAxis['categories'].push(this.causasFinales[i].descripcion);
+						  this.options.series[1]['data'].push(this.causasFinales[i].repeticiones);
 					  }
 					Highcharts.chart('container', this.options);
 				});
