@@ -146,6 +146,7 @@ export class ListaRiesgosComponent implements OnInit {
 	calcularTipoRiesgo() {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
+			this.ListaRiesgosSinFiltrado = data;
 			for (let i = 0; i < this.RiesgoList.length; ++i) {
 				if (this.RiesgoList[i].tipoEvento == 'Gobierno, Político y Económico' || this.RiesgoList[i].tipoEvento == 'Modelo de Negocios y Estrategias'
 					|| this.RiesgoList[i].tipoEvento == 'Mercado, Industria y Competidores') {
@@ -174,13 +175,13 @@ export class ListaRiesgosComponent implements OnInit {
 			}
 			//this.RiesgoList = data;
 			//this.ListaRiesgosSinFiltrado = data;
-			this.calcularNivelRiesgoInherente();
+			this.calcularNivelRiesgoInherente(this.ListaRiesgosSinFiltrado);
 			//console.log("Lista de riesgos");
 			//console.log(this.RiesgoList);
 		});
 	}
 	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
-	calcularNivelRiesgoInherente() {
+	calcularNivelRiesgoInherente(ListaRiesgosSinFiltrado: any) {
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
 			if (this.RiesgoList[i].probabilidad == 'Muy Alta' && (this.RiesgoList[i].impacto == 'Marginal' || this.RiesgoList[i].impacto == 'Débil')) {
 				this.RiesgoList[i].nivelRiesgo = "A";
