@@ -37,7 +37,9 @@
 					<tr *ngIf="(riesgoItem.macroproceso == this._Activatedroute.snapshot.paramMap.get('macro')); else noRiesgo">
 						<td>{{riesgoItem.idRiesgo}}</td>
 						<td>{{riesgoItem.nivelCTC}}</td>
-						<td>{{riesgoItem.riesgoInherente}}</td>
+						<td [ngClass]="{'rojo' : riesgoItem.riesgoInherente === 'MA','anaranjado':  riesgoItem.riesgoInherente === 'A',
+						'medio' : riesgoItem.riesgoInherente === 'M', 'bajo' : riesgoItem.riesgoInherente === 'B', 'verdeImpacto' : riesgoItem.riesgoInherente === 'MB'}">
+						{{riesgoItem.riesgoInherente}}</td>
 					</tr>
 					<ng-template #noRiesgo>
 						<tr *ngIf="RiesgoList.length === this.contRiesgosSinMacro && RiesgoList.length-1 === i ">

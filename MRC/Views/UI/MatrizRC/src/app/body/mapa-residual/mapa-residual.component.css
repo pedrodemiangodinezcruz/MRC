@@ -39,3 +39,76 @@
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+
+.verde {
+	background-color: rgb(48, 153, 51) !important;
+}
+
+.verdeImpacto {
+	background-color: rgb(48, 153, 51) !important;
+	color: black !important;
+}
+
+
+.rojo {
+	background-color: #dc3545 !important;
+}
+
+.anaranjado {
+	background-color: rgb(222, 192, 0) !important;
+	color: black;
+}
+
+.medio {
+	background-color: yellow !important;
+}
+
+.bajo {
+	background-color: rgb(146, 208, 80) !important;
+}
+.verdeImpacto:hover {
+	background-color: rgb(48, 153, 51) !important;
+	color: black;
+	font-weight: 900
+}
+
+.rojo:hover {
+	background-color: #dc3545 !important;
+	color: black;
+	font-weight: 900;
+}
+
+.anaranjado:hover {
+	background-color: rgb(222, 192, 0) !important;
+	color: black;
+	font-weight: 900;
+}
+
+.medio:hover {
+	background-color: yellow !important;
+	color: black;
+	font-weight: 900;
+}
+
+.bajo:hover {
+	background-color: rgb(146, 208, 80) !important;
+	color: black;
+	font-weight: 900;
+}
+.sinControl{
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+}
+.sinControl:hover{
+    background-color: #fff3cd;
+    border-color: #000000;
+	font-weight: 800;
+}
+.rojo-alerta{
+	color: yellow;
+	background-color: red;
+	font-weight: 600;
+}
+.rojo-alerta:hover{
+	font-weight: 800;
+}
