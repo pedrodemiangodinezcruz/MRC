@@ -202,10 +202,16 @@ export class ControlesComponent implements OnInit {
 	eliminarControl(item: any) {
 		console.log(item);
 		console.log("ID BD del control a eliminar " + item.Id);
-		this.service.borrarRiesgo(item.Id).subscribe(data => {
+		if(confirm('Are you sure??')){
+			this.service.borrarControl(item.ID).subscribe(data=>{
+			  alert(data.toString());
+			  this.refreshControlList();
+			})
+		  }
+		/*this.service.borrarControl(item.Id).subscribe(data => {
 			alert(data.toString());
 			this.refreshControlList();
-		})
+		})*/
 	}
 
 	refreshControlList() {
