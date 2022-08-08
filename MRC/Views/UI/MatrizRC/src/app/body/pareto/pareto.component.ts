@@ -302,14 +302,14 @@ export class ParetoComponent implements OnInit {
 					//Contar el  número de repeticiones de la descripcion de las causas en this.causasPorMacroproceso
 					this.causasPorMacroproceso.forEach((element: any) => {
 						this.contador = 0;
-						this.causasPorMacroproceso.forEach((element2:any) => {
+						this.causasPorMacroproceso.forEach((element2: any) => {
 							if (element.descripcion === element2.descripcion) {
 								this.contador++;
 							}
 						}
 						);
 						//Llenar el arreglo de los duplicados con las repeticiones y la descripcion de las causas
-						var val ={
+						var val = {
 							repeticiones: this.contador,
 							descripcion: element.descripcion
 						}
@@ -322,15 +322,15 @@ export class ParetoComponent implements OnInit {
 					this.causasPorRepeticion = this.causasDuplicadas.filter((value: any, index: any) => {
 						const _value = JSON.stringify(value);
 						return index === this.causasDuplicadas.findIndex((resultados: any) => {
-						  return JSON.stringify(resultados) === _value;
+							return JSON.stringify(resultados) === _value;
 						});
-					  });
-					  console.log("Array de los resultados sin duplicados: ");
-					  console.log(this.causasPorRepeticion);
-					  for (let i = 0; i < this.causasPorRepeticion.length; ++i) {
-						  this.options.xAxis['categories'].push(this.causasPorRepeticion[i].descripcion);
-						  this.options.series[1]['data'].push(this.causasPorRepeticion[i].repeticiones);
-					  }
+					});
+					console.log("Array de los resultados sin duplicados: ");
+					console.log(this.causasPorRepeticion);
+					for (let i = 0; i < this.causasPorRepeticion.length; ++i) {
+						this.options.xAxis['categories'].push(this.causasPorRepeticion[i].descripcion);
+						this.options.series[1]['data'].push(this.causasPorRepeticion[i].repeticiones);
+					}
 					Highcharts.chart('container', this.options);
 				});
 			});
@@ -404,14 +404,14 @@ export class ParetoComponent implements OnInit {
 					//Contar el  número de repeticiones de la descripcion de las causas en this.causasPorMacroproceso
 					this.causasPorMacroproceso.forEach((element: any) => {
 						this.contador = 0;
-						this.causasPorMacroproceso.forEach((element2:any) => {
+						this.causasPorMacroproceso.forEach((element2: any) => {
 							if (element.descripcion === element2.descripcion && element.riesgo == element2.riesgo) {
 								this.contador++;
 							}
 						}
 						);
 						//Llenar el arreglo de los duplicados con las repeticiones y la descripcion de las causas
-						var val ={
+						var val = {
 							idRiesgo: element.riesgo,
 							repeticiones: this.contador,
 							descripcion: element.descripcion
@@ -425,22 +425,22 @@ export class ParetoComponent implements OnInit {
 					this.causasPorRepeticion = this.causasDuplicadas.filter((value: any, index: any) => {
 						const _value = JSON.stringify(value);
 						return index === this.causasDuplicadas.findIndex((resultados: any) => {
-						  return JSON.stringify(resultados) === _value;
+							return JSON.stringify(resultados) === _value;
 						});
-					  });
-					  console.log("Array de los resultados sin duplicados: ");
-					  console.log(this.causasPorRepeticion);
-					  //Llenar el arreglo de los resultados con el número de repeticiones correcto (Solo 1 por riesgo)
-					  this.causasPorRepeticion.forEach((element: any) => {
+					});
+					console.log("Array de los resultados sin duplicados: ");
+					console.log(this.causasPorRepeticion);
+					//Llenar el arreglo de los resultados con el número de repeticiones correcto (Solo 1 por riesgo)
+					this.causasPorRepeticion.forEach((element: any) => {
 						this.contador = 1;
-						this.causasPorRepeticion.forEach((element2:any) => {
+						this.causasPorRepeticion.forEach((element2: any) => {
 							if (element.descripcion === element2.descripcion && element.idRiesgo !== element2.idRiesgo) {
 								this.contador++;
 							}
 						}
 						);
 						//Llenar el arreglo de los duplicados con las repeticiones correctas y la descripcion de las causas
-						var val ={
+						var val = {
 							repeticiones: this.contador,
 							descripcion: element.descripcion
 						}
@@ -451,16 +451,16 @@ export class ParetoComponent implements OnInit {
 					this.causasFinales = this.causasFinales.filter((value: any, index: any) => {
 						const _value = JSON.stringify(value);
 						return index === this.causasFinales.findIndex((resultados: any) => {
-						  return JSON.stringify(resultados) === _value;
+							return JSON.stringify(resultados) === _value;
 						});
-					  });
+					});
 					console.log("Array de los resultados finales: ");
-					  console.log(this.causasFinales);
-					  //Poblar el pareto con los datos
-					  for (let i = 0; i < this.causasFinales.length; ++i) {
-						  this.options.xAxis['categories'].push(this.causasFinales[i].descripcion);
-						  this.options.series[1]['data'].push(this.causasFinales[i].repeticiones);
-					  }
+					console.log(this.causasFinales);
+					//Poblar el pareto con los datos
+					for (let i = 0; i < this.causasFinales.length; ++i) {
+						this.options.xAxis['categories'].push(this.causasFinales[i].descripcion);
+						this.options.series[1]['data'].push(this.causasFinales[i].repeticiones);
+					}
 					Highcharts.chart('container', this.options);
 				});
 			});
