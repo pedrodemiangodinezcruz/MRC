@@ -27,14 +27,10 @@ namespace MRC
         public void ConfigureServices(IServiceCollection services)
         {
             //Enable CORS
-            /*services.AddCors(c =>
+            services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });*/
-            services.AddCors();
-
-            services.AddMvc().
-                AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().WithMethods("POST","PUT", "DELETE", "GET").AllowAnyHeader());
+            });
 
             //JSON Serializer
             services.AddControllersWithViews()
@@ -49,23 +45,25 @@ namespace MRC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(options => options.AllowAnyOrigin().WithMethods("POST", "PUT", "DELETE", "GET").AllowAnyHeader());
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
