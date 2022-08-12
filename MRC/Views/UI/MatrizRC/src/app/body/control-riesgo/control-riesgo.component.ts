@@ -7,6 +7,7 @@ import { SharedService } from 'src/app/shared.service';
 	styleUrls: ['./control-riesgo.component.css']
 })
 export class ControlRiesgoComponent implements OnInit {
+	//Uso de javascript formulario "Para filtrar los procesos, como los suprocesos adyacentes a un macroproceso automaticamente"
 	myScriptElement: HTMLScriptElement;
 	constructor(private service: SharedService) {
 		this.myScriptElement = document.createElement('script');
@@ -66,6 +67,7 @@ export class ControlRiesgoComponent implements OnInit {
 	
 
 	ngOnInit(): void {
+		//Refresca la lista de controles y riesgos de la BD
 		this.refreshControlList();
 		this.refreshRiesgoList();
 		this.Id = this.control.Id;
@@ -165,6 +167,7 @@ export class ControlRiesgoComponent implements OnInit {
 	}
 
 	desplegarNuevoRiesgo() {
+		//Aumentar la variable nuevoRiesgo para delimitar el limite de riesgos asociados a un control (Máximo 10)
 		this.nuevoRiesgo = this.nuevoRiesgo+1;
 	}
 	updateControl() {

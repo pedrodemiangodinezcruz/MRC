@@ -84,6 +84,7 @@ export class ControlesComponent implements OnInit {
 
 
 	ngOnInit(): void {
+		//Refresar la lista de controles de la BD al incializar el componente
 		this.refreshControlList();
 		this.Id = this.control.Id;
 		this.macroProceso = this.control.macroProceso;
@@ -225,9 +226,9 @@ export class ControlesComponent implements OnInit {
 				if (this.ControlList[i].evaluacionFuncionalidad == 0) {
 					this.ControlList[i].disenoControl = "No se identifico control";
 				}
+				//Aumentar el valor del Diseño de Control según el valor de la "evaluación de controles"
 				else if (this.ControlList[i].segregacion == 'Sí') {
 					++this.valorDiseñoDeControl;
-					//console.log("Coincidencia " + i + ": " + this.valorDiseñoDeControl);
 				}
 				if (this.ControlList[i].documentacion == 'Sí') {
 					++this.valorDiseñoDeControl;
@@ -247,7 +248,6 @@ export class ControlesComponent implements OnInit {
 				if (this.ControlList[i].generacionEvidencia == 'Sí') {
 					++this.valorDiseñoDeControl;
 				}
-				//console.log("Número de 'SÍ' en: " + this.ControlList[i].idControl + ": " + this.valorDiseñoDeControl);
 				//Switch para todos los casos del diseño de control
 				switch (this.valorDiseñoDeControl) {
 					case 0:
@@ -284,6 +284,7 @@ export class ControlesComponent implements OnInit {
 	}
 	calcularEstrategiaMonitoreo(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
+			//If´s para todos los casos de la estrategia de monitoreo
 			if (ControlList[i].disenoControl == 'No Efectivo' || ControlList[i].disenoControl == 'Requiere Mejora'
 				|| ControlList[i].disenoControl == 'No se identifico control') {
 				ControlList[i].estrategiaMonitoreo = "Hasta que concluya plan de acción";
@@ -296,8 +297,6 @@ export class ControlesComponent implements OnInit {
 			}
 		}
 		this.calcularCalificacionControl(ControlList , ListaControlSinFiltrado);
-		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
-		//console.log(ControlList);
 	}
 	calcularCalificacionControl(ControlList: any, ListaControlSinFiltrado: any) {
 		for (let i = 0; i < ControlList.length; ++i) {
@@ -319,6 +318,7 @@ export class ControlesComponent implements OnInit {
 			if (ControlList[i].generacionEvidencia == 'Sí') {
 				this.valorCalificacionControl = this.valorCalificacionControl + 7;
 			}
+			//Switch para sumar todos los casos de la calificación de control
 			switch (ControlList[i].tipoControl) {
 				case "Detectivo":
 					this.valorCalificacionControl = this.valorCalificacionControl + 10;
@@ -339,8 +339,6 @@ export class ControlesComponent implements OnInit {
 			ControlList[i].calificacionControl = this.valorCalificacionControl;
 			this.valorCalificacionControl = 0;
 		}
-		//console.log("Lista de controles despues de calcular la calificación del control: ");
-		//console.log(ControlList);
 		this.calcularCoberturaPonderadaPorControl(ControlList , ListaControlSinFiltrado);
 	}
 
@@ -353,8 +351,6 @@ export class ControlesComponent implements OnInit {
 				ControlList[i].coberturaPonderada = (Math.round((ControlList[i].calificacionControl * ControlList[i].cobertura)/100));
 			}
 		}
-		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
-		//console.log(ControlList);
 		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
 	}
 	calcularCoberturaTotalControles(ControlList: any, ListaControlSinFiltrado: any) {
@@ -396,7 +392,9 @@ export class ControlesComponent implements OnInit {
 
 
 
-	//Funcion para filtrar los controles
+	//Funcion para filtrar los controles por descripción
+	//Recibe el valor del input y la lista de controles
+	//Devuelve la lista de controles filtrada por medio de la descripción del control incluyendo minusculas y mayusculas
 	FilterFn() {
 		var filtroPorIdControl = this.filtroPorIdControl;
 		var filtroPorDescripcionControl = this.filtroPorDescripcionControl;
@@ -410,7 +408,7 @@ export class ControlesComponent implements OnInit {
 				)
 		});
 	}
-	//Funcion para ordenar los controles
+	//Funcion para ordenar los controles de formar ascendente o descendente alfabeticamente
 	sortResultControl(prop: any, asc: any) {
 		this.ControlList = this.ListaControlSinFiltrado.sort(function (a: any, b: any) {
 			if (asc) {

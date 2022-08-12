@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 })
 
 export class MetodologiaComponent {
+	//Script manejador de secciónes por ID de las tablas
 	myScriptElement: HTMLScriptElement;
     constructor() { 
 	this.myScriptElement = document.createElement('script');

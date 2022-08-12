@@ -7,12 +7,11 @@ import { Subject } from 'rxjs';
 	templateUrl: './causas.component.html',
 	styleUrls: ['./causas.component.css']
 })
-export class CausasComponent implements OnInit, OnDestroy {
+export class CausasComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	ocultarBoton: boolean = true;
 	mostarBoton: boolean = false;
 	contenteditable = false;
-	dtTrigger: Subject<any> = new Subject<any>();
 
 	editarCausa() {
 		this.ocultarBoton = !this.ocultarBoton;
@@ -58,17 +57,9 @@ export class CausasComponent implements OnInit, OnDestroy {
 
 
 	ngOnInit(): void {
+		//Refrescar lista de cuasas y controles de la BD
 		this.refreshCausasList();
 		this.refreshControlesList();
-		/*this.dtOptions = {
-			pagingType: 'full_numbers',
-			pageLength: 2
-		};
-			this.service.getRiesgoList().subscribe(data => {
-			this.CausasList = data;
-			this.dtTrigger.next({});
-			console.log("Valores: " + data);
-		});*/
 		this.Id = this.causa.Id;
 		this.idRiesgoAsociado = this.causa.idRiesgoAsociado;
 		this.idRiesgoAsociado2 = this.causa.idRiesgoAsociado2;
@@ -93,9 +84,6 @@ export class CausasComponent implements OnInit, OnDestroy {
 		this.descripcion = this.causa.descripcion;
 
 	}
-	ngOnDestroy(): void {
-		this.dtTrigger.unsubscribe();
-	}
 	addClick() {
 		this.ActivarAltaCausa = true;
 		this.causa = {
@@ -118,7 +106,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 	}
 
 
-
+	//Refrescar lista de causas de la BD
 	eliminarCausa(item: any) {
 		console.log("ID BD de la causa a eliminar " + item.Id);
 		this.service.borrarCausa(item.Id).subscribe(res => {
@@ -126,7 +114,7 @@ export class CausasComponent implements OnInit, OnDestroy {
 		})
 		this.refreshCausasList();
 	}
-
+	//Refrescar lista de causas de la BD
 	refreshCausasList() {
 		this.service.getCausasList().subscribe(datos => {
 			this.CausasList = datos;
@@ -143,6 +131,8 @@ export class CausasComponent implements OnInit, OnDestroy {
 			console.log(this.ControlList);
 		});
 	}
+	//Metodo para filtrar la lista de las causas por el id del riesgo asociado
+	//incluyendo minusculas y mayusculas
 	FilterIdRiesgo() {
 		var filtroPorIdRiesgosAsociados = this.filtroPorIdRiesgosAsociados;
 
@@ -169,6 +159,8 @@ export class CausasComponent implements OnInit, OnDestroy {
 					filtroPorIdRiesgosAsociados.toString().trim().toLowerCase())
 		});
 	}
+	//Metodo para filtrar la lista de las causas por el id del control asociado
+	//incluyendo minusculas y mayusculas
 	FilterIdControl() {
 		var filtroPorIdControlAsociado = this.filtroPorIdControlAsociado;
 
@@ -195,6 +187,8 @@ export class CausasComponent implements OnInit, OnDestroy {
 					filtroPorIdControlAsociado.toString().trim().toLowerCase())
 		});
 	}
+	//Metodo para filtrar la lista de las causas por el nombre de la causa
+	//incluyendo minusculas y mayusculas
 	FilterDescripcion() {
 		var filtroPorDescripcionCausa = this.filtroPorDescripcionCausa;
 

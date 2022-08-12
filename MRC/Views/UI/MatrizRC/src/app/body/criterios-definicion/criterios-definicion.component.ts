@@ -32,6 +32,7 @@ export class CriteriosDefinicionComponent implements OnInit {
 
 
 	ngOnInit(): void {
+		//Refrescar la lista de criterios cada vez que se carga la página
 		this.refreshCriteriosList();
 		this.Id = this.criterio.Id;
 		this.financieroCatastrofico = this.criterio.financieroCatastrofico;

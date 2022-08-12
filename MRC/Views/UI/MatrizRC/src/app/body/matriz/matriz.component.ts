@@ -25,8 +25,6 @@ export class MatrizComponent implements OnInit {
 	guardarRiesgo() {
 		this.mostarBoton = this.mostarBoton;
 	}
-	//Show es matriz
-	//app-edit es riesgo
 
 	constructor(private service: SharedService) { }
 
@@ -69,7 +67,7 @@ export class MatrizComponent implements OnInit {
 
 
 	//ngOnInit(): void {
-		async ngOnInit() {
+	async ngOnInit() {
 		this.refreshRiesgoList();
 		/*Calcular los riesgos cada 8 segundos para actualizar los datos
 		setInterval(() => {
@@ -84,7 +82,7 @@ export class MatrizComponent implements OnInit {
 				this.calculosControles();
 				this.actualizarCalculos++;
 			}
-		} , 8000);
+		}, 8000);
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
@@ -212,11 +210,8 @@ export class MatrizComponent implements OnInit {
 			this.RiesgoList = data;
 			this.ListaRiesgosSinFiltrado = data;
 			this.calcularNivelRiesgoInherente(this.RiesgoList, this.ListaRiesgosSinFiltrado);
-			//console.log("Lista de riesgos");
-			//console.log(this.RiesgoList);
 		});
 	}
-	/*VER CÓMO ACTUALIZAR LOS VALORES EN TIEMPO REAL */
 	calcularNivelRiesgoInherente(RiesgoList: any, ListaRiesgosSinFiltrado: any) {
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
 			if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
@@ -269,7 +264,6 @@ export class MatrizComponent implements OnInit {
 			}
 
 		}
-		//RiesgoList = data;
 		console.log("Lista de riesgos");
 		console.log(RiesgoList);
 	}
@@ -292,7 +286,6 @@ export class MatrizComponent implements OnInit {
 				}
 				else if (this.ControlList[i].segregacion == 'Sí') {
 					++this.valorDiseñoDeControl;
-					//console.log("Coincidencia " + i + ": " + this.valorDiseñoDeControl);
 				}
 				if (this.ControlList[i].documentacion == 'Sí') {
 					++this.valorDiseñoDeControl;
@@ -312,7 +305,6 @@ export class MatrizComponent implements OnInit {
 				if (this.ControlList[i].generacionEvidencia == 'Sí') {
 					++this.valorDiseñoDeControl;
 				}
-				//console.log("Número de 'SÍ' en: " + this.ControlList[i].idControl + ": " + this.valorDiseñoDeControl);
 				//Switch para todos los casos del diseño de control
 				switch (this.valorDiseñoDeControl) {
 					case 0:
@@ -361,8 +353,6 @@ export class MatrizComponent implements OnInit {
 			}
 		}
 		this.calcularCalificacionControl(ControlList, ListaControlSinFiltrado);
-		//console.log("Lista de controles despues de calcular estrategia de monitoreo: ");
-		//console.log(ControlList);
 	}
 
 	calcularCalificacionControl(ControlList: any, ListaControlSinFiltrado: any) {
@@ -406,8 +396,6 @@ export class MatrizComponent implements OnInit {
 			this.valorCalificacionControl = 0;
 		}
 		this.calcularCoberturaPonderadaPorControl(ControlList, ListaControlSinFiltrado);
-		//console.log("Lista de controles despues de calcular la calificación del control: ");
-		//console.log(ControlList);
 
 	}
 	calcularCoberturaPonderadaPorControl(ControlList: any, ListaControlSinFiltrado: any) {
@@ -419,8 +407,6 @@ export class MatrizComponent implements OnInit {
 				ControlList[i].coberturaPonderada = (Math.round((ControlList[i].calificacionControl * ControlList[i].cobertura) / 100));
 			}
 		}
-		//console.log("Lista de controles despues de calcular coberturaPonderada: ");
-		//console.log(ControlList);
 		this.calcularCoberturaTotalControles(ControlList, ListaControlSinFiltrado);
 	}
 
@@ -447,9 +433,7 @@ export class MatrizComponent implements OnInit {
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado5 || ControlList[j].idControl === this.CausaList[k].idControlAsociado6
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado7 || ControlList[j].idControl === this.CausaList[k].idControlAsociado8
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado9 || ControlList[j].idControl === this.CausaList[k].idControlAsociado10)) {
-						//console.log("Id del control con el mismo riesgo asociado y causa: " + ControlList[j].idControl);
-						//console.log("Cobertura ponderada del control " + ControlList[j].idControl + ": " + ControlList[j].coberturaPonderada);
-						//Sumer la cobertura ponderada de los controles asociados a un riesgo a la variable "coberturaTotalControles"
+						//Sumar la cobertura ponderada de los controles asociados a un riesgo a la variable "coberturaTotalControles"
 						this.coberturaTotalControles = this.coberturaTotalControles + ControlList[j].coberturaPonderada;
 						this.coberturaConjuntaInidivudal = this.coberturaConjuntaInidivudal + ControlList[j].cobertura;
 						//Ciclo for aquí dentro de los controles, para llenar con la variable "coberturaTotalControles"
@@ -461,12 +445,9 @@ export class MatrizComponent implements OnInit {
 								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado8
 								|| this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[l].idRiesgoAsociado10) {
 								ControlList[l].coberturaTotal = this.coberturaTotalControles;
-								if(this.coberturaConjuntaInidivudal > 100){
-								ControlList[l].cobertura = 101;
+								if (this.coberturaConjuntaInidivudal > 100) {
+									ControlList[l].cobertura = 101;
 								}
-								/*if(ControlList[l].coberturaTotal > 100){
-									ControlList[l] = "Revisar cobertura Individual por control";
-								}*/
 							}
 						}
 					}
@@ -578,44 +559,44 @@ export class MatrizComponent implements OnInit {
 					}
 					//Si el nivel de riesgo inherente es "B"
 					else if (this.RiesgoList[i].nivelRiesgo === "B") {
-					//Switch con los casos para el nivel de riesgo inherente "B"
-					switch (ControlList[j].nivelCobertura) {
-						case "Total":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Alto":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Medio":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Bajo":
-							this.RiesgoList[i].gravedadRiesgoResidual = "B";
-							break;
-						case "Ausencia de control":
-							this.RiesgoList[i].gravedadRiesgoResidual = "B";
+						//Switch con los casos para el nivel de riesgo inherente "B"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Alto":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Medio":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Bajo":
+								this.RiesgoList[i].gravedadRiesgoResidual = "B";
+								break;
+							case "Ausencia de control":
+								this.RiesgoList[i].gravedadRiesgoResidual = "B";
+						}
 					}
-				}
-				//Si el nivel de riesgo inherente es "MB"
-				else if (this.RiesgoList[i].nivelRiesgo === "MB") {
-					//Switch con los casos para el nivel de riesgo inherente "MA"
-					switch (ControlList[j].nivelCobertura) {
-						case "Total":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Alto":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Medio":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Bajo":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-							break;
-						case "Ausencia de control":
-							this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+					//Si el nivel de riesgo inherente es "MB"
+					else if (this.RiesgoList[i].nivelRiesgo === "MB") {
+						//Switch con los casos para el nivel de riesgo inherente "MA"
+						switch (ControlList[j].nivelCobertura) {
+							case "Total":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Alto":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Medio":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Bajo":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+								break;
+							case "Ausencia de control":
+								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+						}
 					}
-				}
 
 				}
 			}
@@ -631,6 +612,7 @@ export class MatrizComponent implements OnInit {
 		});
 	}
 
+	//Función para obtener la lista de MRC filtrada por ID de riesgo, descripción, probabilidad y descripcion de control
 	FilterFn() {
 		var filtroPorIdRiesgo = this.filtroPorIdRiesgo;
 		var filtroPorDescripcionRiesgo = this.filtroPorDescripcionRiesgo;
@@ -659,6 +641,7 @@ export class MatrizComponent implements OnInit {
 		});
 	}
 
+	//Ordenación de la lista de MRC de manera ascendente o descendente alfabeticamente
 	sortResult(prop: any, asc: any) {
 		this.RiesgoList = this.ListaRiesgosSinFiltrado.sort(function (a: any, b: any) {
 			if (asc) {

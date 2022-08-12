@@ -4,7 +4,7 @@ import { Macroproceso } from './macroproceso';
 import { SharedService } from 'src/app/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
-//import { getEnabledCategories } from 'trace_events';
+
 
 
 declare var require: any;
