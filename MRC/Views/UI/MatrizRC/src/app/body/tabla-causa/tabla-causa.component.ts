@@ -43,6 +43,7 @@ export class TablaCausaComponent implements OnInit {
 	nuevoControl:  number = 0;
 
 	ngOnInit(): void {
+		//Refrescar la lista de causas, riesgos y controles cada que se iniciene la pagina
 		this.refreshRiesgoList();
 		this.refreshCausasList();
 		this.refreshControlList();
@@ -68,9 +69,6 @@ export class TablaCausaComponent implements OnInit {
 		this.idControlAsociado9 = this.causa.idControlAsociado9;
 		this.idControlAsociado10 = this.causa.idControlAsociado10;
 		this.descripcion = this.causa.descripcion;
-		//console.log(this.causa.Id);
-		//this.numRiesgos = this.refreshRiesgoList();
-		//console.log("Total riesgos" + this.numRiesgos)
 
 	}
 

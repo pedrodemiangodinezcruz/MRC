@@ -11,7 +11,8 @@ export class RiesgoComponent implements OnInit {
 	myScriptElement: HTMLScriptElement;
 
 
-	constructor(private service: SharedService) { 
+	constructor(private service: SharedService) {
+		//Script creado para seleccionar los procesos y subprocesos del formulario de riesgos basado en los macroprocesos y procesos seleccionados
 		this.myScriptElement = document.createElement('script');
 		this.myScriptElement.src = '../../assets/js/selectsProcesos.js';
 		document.head.appendChild(this.myScriptElement);
