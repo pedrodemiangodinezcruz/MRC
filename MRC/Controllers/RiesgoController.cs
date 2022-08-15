@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using MRC.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace MRC.Controllers
 {
