@@ -12,7 +12,7 @@ export class CriteriosDefinicionComponent implements OnInit {
 	
 	@Input() criterio: any;
 	CriteriosList: any = [];
-	Id: number = 1;
+	Id: number = 0;
 	Anadir: number = 0;
 	financieroCatastrofico: string | undefined;
 	financieroCritico: string | undefined;

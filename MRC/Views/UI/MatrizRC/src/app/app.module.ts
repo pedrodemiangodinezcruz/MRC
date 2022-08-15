@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HighchartsChartComponent } from 'highcharts-angular';
 import { DataTablesModule } from "angular-datatables";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +8,9 @@ import { BodyComponent } from './body/body.component';
 import { HeaderComponent } from './header/header.component';
 import { MetodologiaComponent } from './body/metodologia/metodologia.component';
 import{SharedService} from './shared.service';
+import {AutosizeModule} from 'ngx-autosize';
+
+
 
 
 
@@ -63,6 +65,7 @@ import { EstadisticasRiesgoResidualComponent } from './body/estadisticas-riesgo-
 	AppRoutingModule,
 	FormsModule,
 	ReactiveFormsModule,
+	AutosizeModule,
 	HttpClientModule,
 	DataTablesModule
   ],

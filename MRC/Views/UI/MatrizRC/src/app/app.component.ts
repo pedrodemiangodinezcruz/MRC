@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';;
 import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import {AutosizeModule} from 'ngx-autosize';
 
 
 @Component({
@@ -29,7 +30,6 @@ export class AppComponent implements OnInit {
 	subproceso: string | undefined;
 	idRiesgo: string | undefined;
 	descripcion: string | undefined;
-	//causa: string | undefined;
 	consecuencia: string | undefined;
 	tipoEvento: string | undefined;
 	tipoRiesgo: string | undefined;
@@ -44,14 +44,12 @@ export class AppComponent implements OnInit {
 		
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
-			//console.log("Valores: " + data)
 		});
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
 		this.subproceso = this.riesgo.subproceso;
 		this.idRiesgo = this.riesgo.idRiesgo;
 		this.descripcion = this.riesgo.descripcion;
-		//this.causa = this.riesgo.causa;
 		this.consecuencia = this.riesgo.consecuencia;
 		this.tipoEvento = this.riesgo.tipoEvento;
 		this.tipoRiesgo = this.riesgo.tipoRiesgo;

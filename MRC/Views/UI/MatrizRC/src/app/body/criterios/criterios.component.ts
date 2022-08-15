@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
+
+
 @Component({
 	selector: 'app-criterios',
 	templateUrl: './criterios.component.html',
@@ -49,7 +51,6 @@ export class CriteriosComponent implements OnInit {
 		this.operacionalImportante = this.criterio.operacionalImportante;
 		this.operacionalDebil = this.criterio.operacionalDebil;
 		this.operacionalMarginal = this.criterio.operacionalMarginal;
-		console.log(this.criterio.Id);
 	}
 
 	closeClick() {
@@ -62,8 +63,6 @@ export class CriteriosComponent implements OnInit {
 		console.log(item.Id)
 	}
 	
-	
-
 	refreshCriteriosList() {
 		this.service.getCriteriosList().subscribe(datos => {
 			this.CriteriosList = datos;
