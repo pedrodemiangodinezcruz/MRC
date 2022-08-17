@@ -29,7 +29,8 @@ namespace MRC
             //Enable CORS
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().
+                ().AllowAnyHeader());
             });
 
             //JSON Serializer
