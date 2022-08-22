@@ -40,6 +40,7 @@ export class RiesgoComponent implements OnInit {
 	probabilidad: string = "";
 	impacto: string = "";
 	nivelRiesgo: string = "";
+	estadoActivo: string = "Activo";
 	mostarDiv: boolean = false;
 
 
@@ -64,6 +65,7 @@ export class RiesgoComponent implements OnInit {
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
 		this.nivelRiesgo = this.riesgo.nivelRiesgo;
+		this.estadoActivo = this.riesgo.estadoActivo;
 		console.log("Id Riesgo a cambiar" + this.idRiesgo);
 		console.log("Id Riesgo BD " + this.Id);
 	}
@@ -88,7 +90,8 @@ export class RiesgoComponent implements OnInit {
 			riesgoFraude: this.riesgoFraude,
 			probabilidad: this.probabilidad,
 			impacto: this.impacto,
-			nivelRiesgo: this.nivelRiesgo
+			nivelRiesgo: this.nivelRiesgo,
+			estadoActivo: "Activo",
 		};
 		console.log(this.idRiesgo);
 		console.log(val);
@@ -115,7 +118,8 @@ export class RiesgoComponent implements OnInit {
 			riesgoFraude: this.riesgoFraude,
 			probabilidad: this.probabilidad,
 			impacto: this.impacto,
-			nivelRiesgo: this.nivelRiesgo
+			nivelRiesgo: this.nivelRiesgo,
+			estadoActivo: "Activo",
 		};
 		console.log(this.idRiesgo);
 		console.log("Id a cambiar" + this.Id);
@@ -136,6 +140,8 @@ export class RiesgoComponent implements OnInit {
 	refreshRiesgoList() {
 		this.service.getRiesgoList().subscribe(res => {
 			this.RiesgoList = res;
+			console.log("Lista de riesgos");
+			console.log(this.RiesgoList);
 		});
 	}
 

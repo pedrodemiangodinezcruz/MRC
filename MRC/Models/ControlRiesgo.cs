@@ -51,5 +51,6 @@ namespace MRC.Models
         public string CausasAdjuntas { get; set; }
         public string Observaciones { get; set; }
         public string DisenoPrueba { get; set; }
+        public string EstadoActivo { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, 
                     idControlAsociado2, idControlAsociado3, idControlAsociado4, idControlAsociado5,
                     idControlAsociado6, idControlAsociado7, idControlAsociado8, idControlAsociado9,
-                    idControlAsociado10, descripcion FROM dbo.Causa";
+                    idControlAsociado10, estadoActivo descripcion FROM dbo.Causa";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;
@@ -61,7 +61,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, 
                     idControlAsociado2, idControlAsociado3, idControlAsociado4, idControlAsociado5,
                     idControlAsociado6, idControlAsociado7, idControlAsociado8, idControlAsociado9,
-                    idControlAsociado10, descripcion ) values 
+                    idControlAsociado10, descripcion, estadoActivo ) values 
                      (
                         '" + causa.IdRiesgoAsociado + @"'
                         ,'" + causa.IdRiesgoAsociado2 + @"'
@@ -84,6 +84,7 @@ namespace MRC.Controllers
                         ,'" + causa.IdControlAsociado9 + @"'
                         ,'" + causa.IdControlAsociado10 + @"'
                         ,'" + causa.Descripcion + @"'
+                        ,'" + causa.EstadoActivo + @"'
                        )
                     ";
 
@@ -132,6 +133,7 @@ namespace MRC.Controllers
                     ,idControlAsociado9 = '" + causa.IdControlAsociado9 + @"'
                     ,idControlAsociado10 = '" + causa.IdControlAsociado10 + @"'
                     ,descripcion =  '" + causa.Descripcion + @"'
+                    ,estadoActivo =  '" + causa.EstadoActivo + @"'
                     where Id = " + causa.Id + @"
                     ";
 

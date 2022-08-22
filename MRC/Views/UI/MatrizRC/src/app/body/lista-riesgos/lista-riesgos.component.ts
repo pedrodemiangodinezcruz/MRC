@@ -36,6 +36,7 @@ export class ListaRiesgosComponent implements OnInit {
 	Id: string | undefined;
 	macroProceso: string | undefined;
 	proceso: string | undefined;
+	subProceso: string = "";
 	idRiesgo: string | undefined;
 	descripcion: string | undefined;
 	causa: string | undefined;
@@ -49,12 +50,14 @@ export class ListaRiesgosComponent implements OnInit {
 	probabilidad: number | undefined;
 	impacto: string | undefined;
 	nivelRiesgo: string | undefined;
+	estadoActivo: string | undefined;
 
 	ngOnInit(): void {
 		this.refreshRiesgoList();
 		this.Id = this.riesgo.Id;
 		this.macroProceso = this.riesgo.macroProceso;
 		this.proceso = this.riesgo.proceso;
+		this.subProceso = this.riesgo.subProceso;
 		this.idRiesgo = this.riesgo.idRiesgo;
 		this.descripcion = this.riesgo.descripcion;
 		this.causa = this.riesgo.causa;
@@ -68,6 +71,7 @@ export class ListaRiesgosComponent implements OnInit {
 		this.probabilidad = this.riesgo.probabilidad;
 		this.impacto = this.riesgo.impacto;
 		this.nivelRiesgo = this.riesgo.nivelRiesgo;
+		this.estadoActivo = this.riesgo.estadoActivo;
 	}
 
 	addClick() {
@@ -77,6 +81,7 @@ export class ListaRiesgosComponent implements OnInit {
 			Id: 0,
 			macroProceso: "",
 			proceso: "",
+			subProceso: "",
 			idRiesgo: "",
 			descripcion: "",
 			causa: "",
@@ -89,7 +94,8 @@ export class ListaRiesgosComponent implements OnInit {
 			riesgoFraude: "",
 			probabilidad: 0,
 			impacto: "",
-			nivelRiesgo: ""
+			nivelRiesgo: "",
+			estadoActivo: ""
 		}
 	}
 	closeClick() {
@@ -110,6 +116,7 @@ export class ListaRiesgosComponent implements OnInit {
 			idRiesgo: this.idRiesgo,
 			macroProceso: this.macroProceso,
 			proceso: this.proceso,
+			subProceso: this.subProceso,
 			descripcion: this.descripcion,
 			causa: this.causa,
 			consecuencia: this.consecuencia,
@@ -121,7 +128,8 @@ export class ListaRiesgosComponent implements OnInit {
 			riesgoFraude: this.riesgoFraude,
 			probabilidad: this.probabilidad,
 			impacto: this.impacto,
-			nivelRiesgo: this.nivelRiesgo
+			nivelRiesgo: this.nivelRiesgo,
+			estadoActivo: "Activo"
 		};
 		this.service.anadirRiesgo(val).subscribe(res => {
 			alert(res.toString());
@@ -131,12 +139,36 @@ export class ListaRiesgosComponent implements OnInit {
 
 
 	eliminarRiesgo(item: any) {
-		//console.log(item);
-		console.log("ID BD del riesgo a eliminar " + item.Id);
-		this.service.borrarRiesgo(item.Id).subscribe(data => {
-			alert(data.toString());
-			this.refreshRiesgoList();
-		})
+		this.riesgo = item;
+		this.ActivarEdicionRiesgo = true;
+		console.log(item.idRiesgo)
+		var val = {
+			Id: this.Id,
+			idRiesgo: this.idRiesgo,
+			macroProceso: this.macroProceso,
+			proceso: this.proceso,
+			subProceso: this.subProceso,
+			descripcion: this.descripcion,
+			causa: this.causa,
+			consecuencia: this.consecuencia,
+			tipoEvento: this.tipoEvento,
+			tipoRiesgo: this.tipoRiesgo,
+			iff: this.iff,
+			icc: this.icc,
+			ios: this.ios,
+			riesgoFraude: this.riesgoFraude,
+			probabilidad: this.probabilidad,
+			impacto: this.impacto,
+			nivelRiesgo: this.nivelRiesgo,
+			estadoActivo: "Inactivo"
+		};
+		console.log(this.idRiesgo);
+		console.log("Id a cambiar" + this.Id);
+		console.log(val);
+		this.service.editarRiesgo(val).subscribe(res => {
+			//alert(res.toString());
+		});
+		this.refreshRiesgoList();
 	}
 
 	refreshRiesgoList() {
@@ -147,6 +179,8 @@ export class ListaRiesgosComponent implements OnInit {
 		this.service.getRiesgoList().subscribe(data => {
 			this.RiesgoList = data;
 			this.ListaRiesgosSinFiltrado = data;
+			console.log("Lista de riesgos");
+			console.log(this.RiesgoList);
 			for (let i = 0; i < this.RiesgoList.length; ++i) {
 				if (this.RiesgoList[i].tipoEvento == 'Gobierno, Político y Económico' || this.RiesgoList[i].tipoEvento == 'Modelo de Negocios y Estrategias'
 					|| this.RiesgoList[i].tipoEvento == 'Mercado, Industria y Competidores') {

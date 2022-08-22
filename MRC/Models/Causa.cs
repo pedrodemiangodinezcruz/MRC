@@ -29,5 +29,6 @@ namespace MRC.Models
         public string IdControlAsociado9 { get; set; }
         public string IdControlAsociado10 { get; set; }
         public string Descripcion { get; set; }
+        public string EstadoActivo { get; set; }
     }
 }

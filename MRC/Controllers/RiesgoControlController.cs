@@ -33,7 +33,7 @@ namespace MRC.Controllers
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl, controlClave,
                     controlFraude, estrategiaMonitoreo, cobertura, estrategia, responsableTratamiento, descripcionTratamiento, evaluacionFuncionalidad,
                     calificacionControl, coberturaPonderada , coberturaTotal , nivelCobertura, 
-                    causasAdjuntas, observaciones, disenoPrueba FROM dbo.controlRiesgo";
+                    causasAdjuntas, observaciones, disenoPrueba, estadoActivo FROM dbo.controlRiesgo";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;
@@ -65,7 +65,7 @@ namespace MRC.Controllers
                     frecuenciaAdecuada, responsable, responsabilidadControl, generacionEvidencia, disenoControl,
                     controlClave, controlFraude, cobertura, estrategiaMonitoreo, responsableTratamiento,
                     descripcionTratamiento, evaluacionFuncionalidad, calificacionControl, coberturaPonderada, coberturaTotal, nivelCobertura,
-                    causasAdjuntas, observaciones, disenoPrueba) values 
+                    causasAdjuntas, observaciones, disenoPrueba, estadoActivo) values 
                      (
                         '" + controlRiesgo.IdRiesgoAsociado + @"'
                         ,'" + controlRiesgo.IdRiesgoAsociado2 + @"'
@@ -110,6 +110,7 @@ namespace MRC.Controllers
                         ,'" + controlRiesgo.CausasAdjuntas + @"'
                         ,'" + controlRiesgo.Observaciones + @"'
                         ,'" + controlRiesgo.DisenoPrueba + @"'
+                        ,'" + controlRiesgo.EstadoActivo + @"'
                        )
                     ";
 
@@ -180,6 +181,7 @@ namespace MRC.Controllers
                         ,causasAdjuntas='" + controlRiesgo.CausasAdjuntas + @"'
                         ,observaciones ='" + controlRiesgo.Observaciones + @"'
                         ,disenoPrueba ='" + controlRiesgo.DisenoPrueba + @"'
+                        ,estadoActivo ='" + controlRiesgo.EstadoActivo + @"'
                         where Id = " + controlRiesgo.Id + @"
                     ";
 
