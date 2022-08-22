@@ -1,30 +1,15 @@
 <div class="col" id="infoSeccion" class="select">
-	<p class="text-center fw-bold" >Gráfico de Pareto de causas	</p>
+	<p class="text-center fw-bold">Gráfico de Pareto de causas </p>
 	<div class="form-floating mb-3">
-	 <!--<select class="form-select" id="seleccionProceso" name="macroproceso" [(ngModel)]="employee" aria-label="Default select example"
-		onchange="location = this.value;">
-		<option selected>...</option>
-		<option value="/emp.Name">Concepto al Producto</option>
-		<option value="/Compra al Pago">Compra al Pago</option>
-		<option value="/abastoPareto">Demanda al Abasto</option>
-		<option value="/pedidoPareto">Pedido al Cobro</option>
-		<option value="/mantenimientoPareto">Mantenimiento a la Liquidación</option>
-		<option value="/inversionPareto">Inversión a la Desinversión</option>
-		<option value="finanzasPareto">Finanzas a la Administración</option>
-		<option value="/contratacionPareto">Contratación al Retiro</option>
-		<option value="/procesosPareto">Procesos Criticos fuera de Macros</option>
-	  </select>--> 
-	  <select class="form-select" id="seleccionProceso" name="macroproceso" [(ngModel)]="macroproceso" aria-label="Default select example"
-		onchange="location = this.value;">
-		<option *ngFor="let macro of macroproceso" [value]="'pareto/' + macro.Nombre">{{macro.Nombre}}</option>
-	  </select>
-	  <label for="floatingSelect">Seleccione el macroproceso al que guste ver su pareto adjunto
-	  </label>
-	  
+		<select class="form-select" id="seleccionProceso" name="macroproceso" [(ngModel)]="macroproceso"
+			aria-label="Default select example" onchange="location = this.value;">
+			<option *ngFor="let macro of macroproceso" [value]="'pareto/' + macro.Nombre">{{macro.Nombre}}</option>
+		</select>
+		<label for="floatingSelect">Seleccione el macroproceso al que guste ver su pareto adjunto
+		</label>
 	</div>
-	  <div id="container" class="pareto"></div>
-	  <p class="highcharts-description">
+	<div id="container" class="pareto"></div>
+	<p class="highcharts-description">
 		<strong style="margin-left: 45%;">CAUSAS</strong>
-	  </p>
-	
-  </div>
+	</p>
+</div>
