@@ -55,7 +55,7 @@
 				</thead>
 				<tbody>
 					<ng-container *ngFor="let riesgoItem of RiesgoList; let i = index; let tamaLista = count;">
-						<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'); else noRiesgo">
+						<tr *ngIf="RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro') && RiesgoList[i].estadoActivo === 'Activo'; else noRiesgo">
 							<td>{{riesgoItem.idRiesgo}}</td>
 							<td>{{riesgoItem.descripcion}}</td>
 							<td 

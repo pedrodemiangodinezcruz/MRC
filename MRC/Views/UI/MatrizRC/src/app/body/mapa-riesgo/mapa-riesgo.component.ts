@@ -229,7 +229,8 @@ export class MapaRiesgoComponent implements OnInit {
 			this.RiesgoList = data;
 			for (let i = 0; i < this.RiesgoList.length; i++) {
 				//Si existen riesgos asociados al macroproceso correspondiente
-				if (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')) {
+				if (this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro')
+				&& this.RiesgoList[i].estadoActivo === 'Activo') {
 					if (this.RiesgoList[i].probabilidad == 'Muy Alta' && this.RiesgoList[i].impacto == 'Marginal') {
 						this.RiesgoList[i].nivelRiesgo = "A";
 						this.riesgoMuyAltoMarginal = this.riesgoMuyAltoMarginal + " " + this.RiesgoList[i].idRiesgo;

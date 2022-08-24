@@ -856,8 +856,9 @@ export class MapaResidualComponent implements OnInit {
 		console.log(this.riesgosUnicos);
 		//Poblar el mapa de riesgos residuales
 		for (let i = 0; i < this.riesgosUnicos.length; ++i) {
-				//Verificar el maroproceso de cada riesgo
-				if (this.riesgosUnicos[i].macroproceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
+				//Verificar el maroproceso de cada riesgo y si está activo el riesgo
+				if (this.riesgosUnicos[i].macroproceso == this._Activatedroute.snapshot.paramMap.get('macro')
+				&& this.RiesgoList[i].estadoActivo === 'Activo') {
 					//Si el nivel de riesgo inherente es "MA"
 					if (this.riesgosUnicos[i].riesgoInherente === "MA") {
 						//Switch con los casos para el nivel de riesgo inherente "MA"
