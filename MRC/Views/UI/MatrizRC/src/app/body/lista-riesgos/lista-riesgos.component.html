@@ -98,7 +98,7 @@
 		<tbody class="table-group-divider">
 			<!--Contenedor sobre todos los riesgos en la lista de riesgos llamada desde la API-->
 			<ng-container *ngFor="let riesgoItem of RiesgoList">
-				<tr>
+				<tr  *ngIf="riesgoItem.estadoActivo === 'Activo'">
 					<!--Modal para la edicion de riesgo -->
 					<div class="modal fade" [attr.id]="'editar' + riesgoItem.idRiesgo" tabindex="-1"
 						aria-labelledby="modalRiesgoLabel" aria-hidden="true">

@@ -95,7 +95,7 @@ export class ListaRiesgosComponent implements OnInit {
 			probabilidad: 0,
 			impacto: "",
 			nivelRiesgo: "",
-			estadoActivo: ""
+			estadoActivo: "Activo"
 		}
 	}
 	closeClick() {
@@ -144,7 +144,7 @@ export class ListaRiesgosComponent implements OnInit {
 		console.log(item.idRiesgo)
 		var val = {
 			Id: item.Id,
-			idRiesgo: item.idRiesgo,
+			idRiesgo: "NULL",
 			macroProceso: item.macroProceso,
 			proceso: item.proceso,
 			subProceso: item.subProceso,
@@ -162,8 +162,8 @@ export class ListaRiesgosComponent implements OnInit {
 			nivelRiesgo: item.nivelRiesgo,
 			estadoActivo: "Inactivo"
 		};
-		console.log(this.idRiesgo);
-		console.log("Id a cambiar" + this.Id);
+		console.log(item.idRiesgo);
+		console.log("Id a cambiar: " + item.Id);
 		console.log(val);
 		this.service.editarRiesgo(val).subscribe(res => {
 			//alert(res.toString());

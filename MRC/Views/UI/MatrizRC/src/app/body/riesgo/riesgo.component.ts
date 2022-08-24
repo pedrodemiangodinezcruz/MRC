@@ -66,8 +66,8 @@ export class RiesgoComponent implements OnInit {
 		this.impacto = this.riesgo.impacto;
 		this.nivelRiesgo = this.riesgo.nivelRiesgo;
 		this.estadoActivo = this.riesgo.estadoActivo;
-		console.log("Id Riesgo a cambiar" + this.idRiesgo);
-		console.log("Id Riesgo BD " + this.Id);
+		//console.log("Id Riesgo a cambiar" + this.idRiesgo);
+		//console.log("Id Riesgo BD " + this.Id);
 	}
 
 	desplegarNuevaCausa() {

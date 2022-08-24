@@ -73,7 +73,7 @@ namespace MRC.Controllers
                         ,'" + riesgo.Impacto + @"'
                         ,'" + riesgo.NivelRiesgo+ @"'
                         ,'" + riesgo.GravedadRiesgoResidual + @"'
-                        ,'" + riesgo.EstadoActivo + @"
+                        ,'" + riesgo.EstadoActivo + @"'
                        )
                     ";
 
