@@ -159,7 +159,8 @@ export class EstadisticasComponent implements OnInit {
 
 	calcularNivelRiesgoInherente(RiesgoList: any, data: any) {
 		for (let i = 0; i < RiesgoList.length; ++i) {
-			if (RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
+			if (RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')
+			 && RiesgoList[i].estadoActivo === 'Activo') {
 				if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
 					RiesgoList[i].nivelRiesgo = "A";
 					++this.riesgosInherentesAltos;

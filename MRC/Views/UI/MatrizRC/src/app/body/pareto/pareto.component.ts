@@ -265,7 +265,11 @@ export class ParetoComponent implements OnInit {
 										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado3 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado4
 										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado5 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado6
 										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado7 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado8
-										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado9 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado10)) {
+										|| this.ControlList[k].idControl === this.CausasList[j].idControlAsociado9 || this.ControlList[k].idControl === this.CausasList[j].idControlAsociado10)
+									&& (this.RiesgoList[i].estadoActivo === 'Activo')
+									&& (this.ControlList[i].estadoActivo === 'Activo')
+									&& (this.CausasList[i].estadoActivo === 'Activo')
+									) {
 									let causas = {
 										//riesgo: this.RiesgoList[i].idRiesgo,
 										descripcion: this.CausasList[j].descripcion,

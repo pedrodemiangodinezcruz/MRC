@@ -152,7 +152,8 @@ export class EstadisticasCoberturaComponent implements OnInit {
 
 	calcularNivelRiesgoInherente(RiesgoList: any, data: any) {
 		for (let i = 0; i < RiesgoList.length; ++i) {
-			if (RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
+			if (RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')
+				&& RiesgoList[i].estadoActivo === 'Activo') {
 				if (RiesgoList[i].probabilidad == 'Muy Alta' && (RiesgoList[i].impacto == 'Marginal' || RiesgoList[i].impacto == 'Débil')) {
 					RiesgoList[i].nivelRiesgo = "A";
 					++this.riesgosInherentesAltos;
@@ -416,7 +417,9 @@ export class EstadisticasCoberturaComponent implements OnInit {
 		for (let j = 0; j < ControlList.length; ++j) {
 			//Ver si recorrer la liesta de riesgos para ver cualtes estan en el macro proceso
 			for (let i = 0; i < this.RiesgoList.length; ++i) {
-				if (this.RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
+				if (this.RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')
+					&& (this.RiesgoList[i].estadoActivo === 'Activo')
+					&& (this.ControlList[j].estadoActivo === 'Activo')) {
 					if (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
 						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
 						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
@@ -451,34 +454,34 @@ export class EstadisticasCoberturaComponent implements OnInit {
 				}
 			}
 		}
-		if(this.controlesTotales > 0 || this.controlesAltos > 0 || this.controlesMedios > 0 || this.controlesBajos > 0 || this.ausenciasDeControl > 0){
-		this.coberturaPastel.series[0]['data'][0] = {
-			name: 'Total',
-			y: this.controlesTotales
-		};
-		this.coberturaPastel.series[0]['data'][1] = {
-			name: 'Alto',
-			y: this.controlesAltos
-		};
-		this.coberturaPastel.series[0]['data'][2] = {
-			name: 'Medio',
-			y: this.controlesMedios
-		};
-		this.coberturaPastel.series[0]['data'][3] = {
-			name: 'Bajo',
-			y: this.controlesBajos
-		};
-		this.coberturaPastel.series[0]['data'][4] = {
-			name: 'Ausencia de control',
-			y: this.ausenciasDeControl
-		};
-	}
-	else{
-		this.coberturaPastel.series[0]['data'][0] = {
-			name: 'No existen riesgos asociados a este macroproceso',
-			y: 10
-		};
-	}
+		if (this.controlesTotales > 0 || this.controlesAltos > 0 || this.controlesMedios > 0 || this.controlesBajos > 0 || this.ausenciasDeControl > 0) {
+			this.coberturaPastel.series[0]['data'][0] = {
+				name: 'Total',
+				y: this.controlesTotales
+			};
+			this.coberturaPastel.series[0]['data'][1] = {
+				name: 'Alto',
+				y: this.controlesAltos
+			};
+			this.coberturaPastel.series[0]['data'][2] = {
+				name: 'Medio',
+				y: this.controlesMedios
+			};
+			this.coberturaPastel.series[0]['data'][3] = {
+				name: 'Bajo',
+				y: this.controlesBajos
+			};
+			this.coberturaPastel.series[0]['data'][4] = {
+				name: 'Ausencia de control',
+				y: this.ausenciasDeControl
+			};
+		}
+		else {
+			this.coberturaPastel.series[0]['data'][0] = {
+				name: 'No existen riesgos asociados a este macroproceso',
+				y: 10
+			};
+		}
 		Highcharts.chart('container', this.coberturaPastel);
 		this.calcularGravedadRiesgoResidual(ControlList);
 	}

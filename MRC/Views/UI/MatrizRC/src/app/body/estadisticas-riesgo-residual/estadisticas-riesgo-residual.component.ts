@@ -53,7 +53,7 @@ export class EstadisticasRiesgoResidualComponent implements OnInit {
 			pie: {
 				allowPointSelect: true,
 				cursor: 'pointer',
-				colors: ['rgb(255,0,0)','rgb(255,128,0)', 'rgb(255,255,0)', 'rgb(128,216,40)', 'rgb(0,176,80)'],
+				colors: ['rgb(255,0,0)', 'rgb(255,128,0)', 'rgb(255,255,0)', 'rgb(128,216,40)', 'rgb(0,176,80)'],
 				dataLabels: {
 					enabled: true,
 					format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
@@ -436,146 +436,148 @@ export class EstadisticasRiesgoResidualComponent implements OnInit {
 		//Recorrer lista de los controles
 		//Recorrer lista de los riesgos
 		for (let i = 0; i < this.RiesgoList.length; ++i) {
-				if (this.RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
-			for (let j = 0; j < ControlList.length; ++j) {
-				//Si el id del riesgo es igual al id del riesgo asociado, luego comparar si el nivelRiesgo es alto
-				if (this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
-					|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10) {
-					//Si el nivel de riesgo inherente es "MA"
-					if (this.RiesgoList[i].nivelRiesgo === "MA") {
-						//Switch con los casos para el nivel de riesgo inherente "MA"
-						switch (ControlList[j].nivelCobertura) {
-							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
-								++this.riesgosResidualesMedios;
-								break;
-							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "A";
-								++this.riesgosResidualesAltos;
-								break;
-							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MA";
-								++this.riesgosResidualesMuyAltos;
-								break;
-							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MA";
-								++this.riesgosResidualesMuyAltos;
+			if (this.RiesgoList[i].macroProceso == this._Activatedroute.snapshot.paramMap.get('macro')) {
+				for (let j = 0; j < ControlList.length; ++j) {
+					//Si el id del riesgo es igual al id del riesgo asociado, luego comparar si el nivelRiesgo es alto
+					if ((this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado2
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado3 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado4
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado5 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado6
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado7 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado8
+						|| this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado9 || this.RiesgoList[i].idRiesgo === ControlList[j].idRiesgoAsociado10)
+						&& (this.RiesgoList[i].estadoActivo === 'Activo')
+						&& (this.ControlList[j].estadoActivo === 'Activo')) {
+						//Si el nivel de riesgo inherente es "MA"
+						if (this.RiesgoList[i].nivelRiesgo === "MA") {
+							//Switch con los casos para el nivel de riesgo inherente "MA"
+							switch (ControlList[j].nivelCobertura) {
+								case "Total":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Alto":
+									this.RiesgoList[i].gravedadRiesgoResidual = "M";
+									++this.riesgosResidualesMedios;
+									break;
+								case "Medio":
+									this.RiesgoList[i].gravedadRiesgoResidual = "A";
+									++this.riesgosResidualesAltos;
+									break;
+								case "Bajo":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MA";
+									++this.riesgosResidualesMuyAltos;
+									break;
+								case "Ausencia de control":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MA";
+									++this.riesgosResidualesMuyAltos;
+							}
 						}
-					}
-					//Si el nivel de riesgo inherente es "A"
-					else if (this.RiesgoList[i].nivelRiesgo === "A") {
-						//Switch con los casos para el nivel de riesgo inherente "A"
-						switch (ControlList[j].nivelCobertura) {
-							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "B";
-								++this.riesgosResidualesBajos;
-								break;
-							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
-								++this.riesgosResidualesMedios;
-								break;
-							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "A";
-								++this.riesgosResidualesAltos;
-								break;
-							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "A";
-								++this.riesgosResidualesAltos;
+						//Si el nivel de riesgo inherente es "A"
+						else if (this.RiesgoList[i].nivelRiesgo === "A") {
+							//Switch con los casos para el nivel de riesgo inherente "A"
+							switch (ControlList[j].nivelCobertura) {
+								case "Total":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Alto":
+									this.RiesgoList[i].gravedadRiesgoResidual = "B";
+									++this.riesgosResidualesBajos;
+									break;
+								case "Medio":
+									this.RiesgoList[i].gravedadRiesgoResidual = "M";
+									++this.riesgosResidualesMedios;
+									break;
+								case "Bajo":
+									this.RiesgoList[i].gravedadRiesgoResidual = "A";
+									++this.riesgosResidualesAltos;
+									break;
+								case "Ausencia de control":
+									this.RiesgoList[i].gravedadRiesgoResidual = "A";
+									++this.riesgosResidualesAltos;
+							}
 						}
-					}
-					//Si el nivel de riesgo inherente es "M"
-					else if (this.RiesgoList[i].nivelRiesgo === "M") {
-						//Switch con los casos para el nivel de riesgo inherente "M"
-						switch (ControlList[j].nivelCobertura) {
-							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "B";
-								++this.riesgosResidualesBajos;
-								break;
-							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
-								++this.riesgosResidualesMedios;
-								break;
-							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "M";
-								++this.riesgosResidualesMedios;
+						//Si el nivel de riesgo inherente es "M"
+						else if (this.RiesgoList[i].nivelRiesgo === "M") {
+							//Switch con los casos para el nivel de riesgo inherente "M"
+							switch (ControlList[j].nivelCobertura) {
+								case "Total":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Alto":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Medio":
+									this.RiesgoList[i].gravedadRiesgoResidual = "B";
+									++this.riesgosResidualesBajos;
+									break;
+								case "Bajo":
+									this.RiesgoList[i].gravedadRiesgoResidual = "M";
+									++this.riesgosResidualesMedios;
+									break;
+								case "Ausencia de control":
+									this.RiesgoList[i].gravedadRiesgoResidual = "M";
+									++this.riesgosResidualesMedios;
+							}
 						}
-					}
-					//Si el nivel de riesgo inherente es "B"
-					else if (this.RiesgoList[i].nivelRiesgo === "B") {
-						//Switch con los casos para el nivel de riesgo inherente "B"
-						switch (ControlList[j].nivelCobertura) {
-							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "B";
-								++this.riesgosResidualesBajos;
-								break;
-							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "B";
-								++this.riesgosResidualesBajos;
+						//Si el nivel de riesgo inherente es "B"
+						else if (this.RiesgoList[i].nivelRiesgo === "B") {
+							//Switch con los casos para el nivel de riesgo inherente "B"
+							switch (ControlList[j].nivelCobertura) {
+								case "Total":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Alto":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Medio":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Bajo":
+									this.RiesgoList[i].gravedadRiesgoResidual = "B";
+									++this.riesgosResidualesBajos;
+									break;
+								case "Ausencia de control":
+									this.RiesgoList[i].gravedadRiesgoResidual = "B";
+									++this.riesgosResidualesBajos;
+							}
 						}
-					}
-					//Si el nivel de riesgo inherente es "MB"
-					else if (this.RiesgoList[i].nivelRiesgo === "MB") {
-						//Switch con los casos para el nivel de riesgo inherente "MA"
-						switch (ControlList[j].nivelCobertura) {
-							case "Total":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Alto":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Medio":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Bajo":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
-								break;
-							case "Ausencia de control":
-								this.RiesgoList[i].gravedadRiesgoResidual = "MB";
-								++this.riesgosResidualesMuyBajos;
+						//Si el nivel de riesgo inherente es "MB"
+						else if (this.RiesgoList[i].nivelRiesgo === "MB") {
+							//Switch con los casos para el nivel de riesgo inherente "MA"
+							switch (ControlList[j].nivelCobertura) {
+								case "Total":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Alto":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Medio":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Bajo":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+									break;
+								case "Ausencia de control":
+									this.RiesgoList[i].gravedadRiesgoResidual = "MB";
+									++this.riesgosResidualesMuyBajos;
+							}
 						}
-					}
 
+					}
 				}
 			}
 		}
-		}
 		if (this.riesgosResidualesMuyAltos > 0 || this.riesgosResidualesAltos > 0 ||
-			this.riesgosResidualesMedios > 0 || this.riesgosResidualesBajos > 0 || 
+			this.riesgosResidualesMedios > 0 || this.riesgosResidualesBajos > 0 ||
 			this.riesgosResidualesMuyBajos > 0) {
 			this.residualPastel.series[0]['data'][0] = {
 				name: 'MA',
