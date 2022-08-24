@@ -31,7 +31,7 @@ namespace MRC.Controllers
                     idRiesgoAsociado8, idRiesgoAsociado9, idRiesgoAsociado10, idControlAsociado, 
                     idControlAsociado2, idControlAsociado3, idControlAsociado4, idControlAsociado5,
                     idControlAsociado6, idControlAsociado7, idControlAsociado8, idControlAsociado9,
-                    idControlAsociado10, estadoActivo descripcion FROM dbo.Causa";
+                    idControlAsociado10, descripcion, estadoActivo FROM dbo.Causa";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("MRCAppCon");
             SqlDataReader myReader;

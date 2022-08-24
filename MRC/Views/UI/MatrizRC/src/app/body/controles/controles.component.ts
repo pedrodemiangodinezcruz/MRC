@@ -81,6 +81,7 @@ export class ControlesComponent implements OnInit {
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
 	disenoPrueba: string | undefined;
+	estadoActivo: string | undefined;
 
 
 	ngOnInit(): void {
@@ -129,6 +130,7 @@ export class ControlesComponent implements OnInit {
 		this.causasAdjuntas = this.control.causasAdjuntas;
 		this.observaciones = this.control.observaciones;
 		this.disenoPrueba = this.control.disenoPrueba;
+		this.estadoActivo = this.control.estadoActivo;
 
 		console.log(this.control.idControl);
 
@@ -192,6 +194,7 @@ export class ControlesComponent implements OnInit {
 			causasAdjuntas: this.causasAdjuntas,
 			observaciones: this.observaciones,
 			disenoPrueba: this.disenoPrueba,
+			estadoActivo: "Activo"
 		};
 		this.service.anadirControl(val).subscribe(res => {
 			//alert(res.toString());
@@ -203,16 +206,55 @@ export class ControlesComponent implements OnInit {
 	eliminarControl(item: any) {
 		console.log(item);
 		console.log("ID BD del control a eliminar " + item.Id);
-		if(confirm('Are you sure??')){
-			this.service.borrarControl(item.ID).subscribe(data=>{
-			  alert(data.toString());
-			  this.refreshControlList();
-			})
-		  }
-		/*this.service.borrarControl(item.Id).subscribe(data => {
-			alert(data.toString());
-			this.refreshControlList();
-		})*/
+		var val = {
+			Id: item.Id,
+			macroProceso: item.macroProceso,
+			proceso: item.proceso,
+			idRiesgoAsociado: item.idRiesgoAsociado,
+			idRiesgoAsociado2: item.idRiesgoAsociado2,
+			idRiesgoAsociado3: item.idRiesgoAsociado3,
+			idRiesgoAsociado4: item.idRiesgoAsociado4,
+			idRiesgoAsociado5: item.idRiesgoAsociado5,
+			idRiesgoAsociado6: item.idRiesgoAsociado6,
+			idRiesgoAsociado7: item.idRiesgoAsociado7,
+			idRiesgoAsociado8: item.idRiesgoAsociado8,
+			idRiesgoAsociado9: item.idRiesgoAsociado9,
+			idRiesgoAsociado10: item.idRiesgoAsociado10,
+			idControl: "NULL",
+			general: item.general,
+			descripcion: item.descripcion,
+			evidencia: item.evidencia,
+			segregacion: item.segregacion,
+			documentacion: item.documentacion,
+			tipoControl: item.tipoControl,
+			naturalezaAdecuada: item.naturalezaAdecuada,
+			naturalezaControl: item.naturalezaControl,
+			tipoAdecuado: item.tipoAdecuado,
+			frecuenciaControl: item.frecuenciaControl,
+			frecuenciaAdecuada: item.frecuenciaAdecuada,
+			responsable: item.responsable,
+			responsabilidadControl: item.responsabilidadControl,
+			generacionEvidencia: item.generacionEvidencia,
+			controlClave: item.controlClave,
+			controlFraude: item.controlFraude,
+			cobertura: item.cobertura,
+			estrategiaMonitoreo: item.estrategiaMonitoreo,
+			responsableTratamiento: item.responsableTratamiento,
+			descripcionTratamiento: item.descripcionTratamiento,
+			evaluacionFuncionalidad: item.evaluacionFuncionalidad,
+			calificacionControl: item.calificacionControl,
+			coberturaPonderada: item.coberturaPonderada,
+			coberturaTotal: item.coberturaTotal,
+			nivelCobertura: item.nivelCobertura,
+			causasAdjuntas: item.causasAdjuntas,
+			observaciones: item.observaciones,
+			disenoPrueba: item.disenoPrueba,
+			estadoActivo: "Inactivo"
+		};
+		console.log(val);
+		this.service.editarControl(val).subscribe(res => {
+			
+		});
 	}
 
 	refreshControlList() {

@@ -63,6 +63,7 @@ export class ControlRiesgoComponent implements OnInit {
 	causasAdjuntas: string | undefined;
 	observaciones: string | undefined;
 	disenoPrueba: string | undefined;
+	estadoActivo: string | undefined;
 	nuevoRiesgo:  number = 0;
 	
 
@@ -113,6 +114,7 @@ export class ControlRiesgoComponent implements OnInit {
 		this.causasAdjuntas = this.control.causasAdjuntas;
 		this.observaciones = this.control.observaciones;
 		this.disenoPrueba = this.control.disenoPrueba;
+		this.estadoActivo = this.control.estadoActivo;
 	}
 
 	anadirControl() {
@@ -159,6 +161,7 @@ export class ControlRiesgoComponent implements OnInit {
 			causasAdjuntas: this.causasAdjuntas,
 			observaciones: this.observaciones,
 			disenoPrueba: this.disenoPrueba,
+			estadoActivo: "Activo"
 		};
 		this.service.anadirControl(val).subscribe(res => {
 			//alert(res.toString());
@@ -214,6 +217,7 @@ export class ControlRiesgoComponent implements OnInit {
 			causasAdjuntas: this.causasAdjuntas,
 			observaciones: this.observaciones,
 			disenoPrueba: this.disenoPrueba,
+			estadoActivo: this.estadoActivo
 		};
 		console.log(this.idControl);
 		console.log("Id a cambiar" + this.Id);
