@@ -140,7 +140,8 @@ export class TablaCausaComponent implements OnInit {
 			idControlAsociado8: this.idControlAsociado8,
 			idControlAsociado9: this.idControlAsociado9,
 			idControlAsociado10: this.idControlAsociado10,
-			descripcion: this.descripcion
+			descripcion: this.descripcion,
+			estadoActivo: this.estadoActivo
 		};
 		console.log(this.Id);
 		console.log("Id a cambiar: " + this.Id);
