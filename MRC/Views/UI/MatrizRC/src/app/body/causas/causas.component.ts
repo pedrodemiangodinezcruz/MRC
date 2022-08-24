@@ -53,6 +53,7 @@ export class CausasComponent implements OnInit {
 	idControlAsociado9: string | undefined;
 	idControlAsociado10: string | undefined;
 	descripcion: string | undefined;
+	estadoActivo: string | undefined;
 
 
 
@@ -82,6 +83,7 @@ export class CausasComponent implements OnInit {
 		this.idControlAsociado9 = this.causa.idControlAsociado9;
 		this.idControlAsociado10 = this.causa.idControlAsociado10;
 		this.descripcion = this.causa.descripcion;
+		this.estadoActivo = this.causa.estadoActivo;
 
 	}
 	addClick() {
@@ -91,7 +93,8 @@ export class CausasComponent implements OnInit {
 			Id: "",
 			idRiesgoAsociado: "",
 			idControlAsociado: "",
-			descripcion: ""
+			descripcion: "",
+			estadoActivo: "Activo"
 		}
 	}
 	closeClick() {
@@ -109,10 +112,36 @@ export class CausasComponent implements OnInit {
 	//Refrescar lista de causas de la BD
 	eliminarCausa(item: any) {
 		console.log("ID BD de la causa a eliminar " + item.Id);
-		this.service.borrarCausa(item.Id).subscribe(res => {
+		var val = {
+			Id: item.Id,
+			idRiesgoAsociado: item.idRiesgoAsociado,
+			idRiesgoAsociado2: item.idRiesgoAsociado2,
+			idRiesgoAsociado3: item.idRiesgoAsociado3,
+			idRiesgoAsociado4: item.idRiesgoAsociado4,
+			idRiesgoAsociado5: item.idRiesgoAsociado5,
+			idRiesgoAsociado6: item.idRiesgoAsociado6,
+			idRiesgoAsociado7: item.idRiesgoAsociado7,
+			idRiesgoAsociado8: item.idRiesgoAsociado8,
+			idRiesgoAsociado9: item.idRiesgoAsociado9,
+			idRiesgoAsociado10: item.idRiesgoAsociado10,
+			idControlAsociado: item.idControlAsociado,
+			idControlAsociado2: item.idControlAsociado2,
+			idControlAsociado3: item.idControlAsociado3,
+			idControlAsociado4: item.idControlAsociado4,
+			idControlAsociado5: item.idControlAsociado5,
+			idControlAsociado6: item.idControlAsociado6,
+			idControlAsociado7: item.idControlAsociado7,
+			idControlAsociado8: item.idControlAsociado8,
+			idControlAsociado9: item.idControlAsociado9,
+			idControlAsociado10: item.idControlAsociado10,
+			descripcion: item.descripcion,
+			estadoActivo: "Inactivo"
+		};
+		console.log("Id a cambiar: " + item.Id);
+		console.log(val);
+		this.service.editarCausa(val).subscribe(res => {
 			//alert(res.toString());
-		})
-		this.refreshCausasList();
+		});
 	}
 	//Refrescar lista de causas de la BD
 	refreshCausasList() {

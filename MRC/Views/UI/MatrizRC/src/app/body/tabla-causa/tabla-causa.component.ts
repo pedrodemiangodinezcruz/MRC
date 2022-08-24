@@ -39,6 +39,7 @@ export class TablaCausaComponent implements OnInit {
 	idControlAsociado9: string | undefined;
 	idControlAsociado10: string | undefined;
 	descripcion: string | undefined;
+	estadoActivo: string | undefined;
 	nuevoRiesgo:  number = 0;
 	nuevoControl:  number = 0;
 
@@ -69,7 +70,7 @@ export class TablaCausaComponent implements OnInit {
 		this.idControlAsociado9 = this.causa.idControlAsociado9;
 		this.idControlAsociado10 = this.causa.idControlAsociado10;
 		this.descripcion = this.causa.descripcion;
-
+		this.estadoActivo = this.causa.estadoActivo;
 	}
 
 	desplegarNuevoRiesgo() {
