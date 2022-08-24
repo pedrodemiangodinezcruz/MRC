@@ -109,6 +109,7 @@ export class TablaCausaComponent implements OnInit {
 		idControlAsociado9: this.idControlAsociado9,
 		idControlAsociado10: this.idControlAsociado10,
 		descripcion: this.descripcion,
+		estadoActivo: "Activo"
 		};
 		this.service.anadirCausa(val).subscribe(res => {
 			//console.log(res.toString());
