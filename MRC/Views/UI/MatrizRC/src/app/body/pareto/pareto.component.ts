@@ -269,7 +269,7 @@ export class ParetoComponent implements OnInit {
 									&& (this.RiesgoList[i].estadoActivo === 'Activo')
 									&& (this.ControlList[i].estadoActivo === 'Activo')
 									&& (this.CausasList[i].estadoActivo === 'Activo')
-									) {
+								) {
 									let causas = {
 										//riesgo: this.RiesgoList[i].idRiesgo,
 										descripcion: this.CausasList[j].descripcion,
@@ -315,7 +315,8 @@ export class ParetoComponent implements OnInit {
 						//Llenar el arreglo de los duplicados con las repeticiones y la descripcion de las causas
 						var val = {
 							repeticiones: this.contador,
-							descripcion: element.descripcion
+							descripcion: element.descripcion,
+							estadoActivo: element.estadoActivo
 						}
 						this.causasDuplicadas.push(val);
 					}
@@ -356,6 +357,9 @@ export class ParetoComponent implements OnInit {
 								//If que verifica que la lista se llene con el macroProceso establecido en la ruta y que el ID del Riesgo Asociado desde 
 								//la causa coincida con un riesgo en el sistem
 								if ((this.RiesgoList[i].macroProceso === this._Activatedroute.snapshot.paramMap.get('macro'))
+								&& (this.RiesgoList[i].estadoActivo === 'Activo')
+								&& (this.ControlList[k].estadoActivo === 'Activo')
+								&& (this.CausasList[j].estadoActivo === 'Activo')
 									&& (this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado
 										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado2 || this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado3
 										|| this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado4 || this.RiesgoList[i].idRiesgo == this.CausasList[j].idRiesgoAsociado5
@@ -375,6 +379,7 @@ export class ParetoComponent implements OnInit {
 									let causas = {
 										riesgo: this.RiesgoList[i].idRiesgo,
 										descripcion: this.CausasList[j].descripcion,
+										estadoActivo: this.CausasList[j].estadoActivo
 									};
 									//Llenar los resultados en el arreglos CausasPorMacroProceso
 									this.causasPorMacroproceso.push(causas);
@@ -418,7 +423,8 @@ export class ParetoComponent implements OnInit {
 						var val = {
 							idRiesgo: element.riesgo,
 							repeticiones: this.contador,
-							descripcion: element.descripcion
+							descripcion: element.descripcion,
+							estadoActivo: element.estadoActivo
 						}
 						this.causasDuplicadas.push(val);
 					}
@@ -438,7 +444,8 @@ export class ParetoComponent implements OnInit {
 					this.causasPorRepeticion.forEach((element: any) => {
 						this.contador = 1;
 						this.causasPorRepeticion.forEach((element2: any) => {
-							if (element.descripcion === element2.descripcion && element.idRiesgo !== element2.idRiesgo) {
+							if ((element.descripcion === element2.descripcion) && (element.idRiesgo !== element2.idRiesgo)
+								&& (element.estadoActivo === 'Activo')) {
 								this.contador++;
 							}
 						}
@@ -446,7 +453,8 @@ export class ParetoComponent implements OnInit {
 						//Llenar el arreglo de los duplicados con las repeticiones correctas y la descripcion de las causas
 						var val = {
 							repeticiones: this.contador,
-							descripcion: element.descripcion
+							descripcion: element.descripcion,
+							estadoActivo: element.estadoActivo
 						}
 						this.causasFinales.push(val);
 					}
@@ -462,8 +470,10 @@ export class ParetoComponent implements OnInit {
 					console.log(this.causasFinales);
 					//Poblar el pareto con los datos
 					for (let i = 0; i < this.causasFinales.length; ++i) {
-						this.options.xAxis['categories'].push(this.causasFinales[i].descripcion);
-						this.options.series[1]['data'].push(this.causasFinales[i].repeticiones);
+						if (this.causasFinales[i].estadoActivo === 'Activo') {
+							this.options.xAxis['categories'].push(this.causasFinales[i].descripcion);
+							this.options.series[1]['data'].push(this.causasFinales[i].repeticiones);
+						}
 					}
 					Highcharts.chart('container', this.options);
 				});
