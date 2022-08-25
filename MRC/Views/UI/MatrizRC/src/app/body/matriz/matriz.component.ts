@@ -432,7 +432,11 @@ export class MatrizComponent implements OnInit {
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado3 || ControlList[j].idControl === this.CausaList[k].idControlAsociado4
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado5 || ControlList[j].idControl === this.CausaList[k].idControlAsociado6
 							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado7 || ControlList[j].idControl === this.CausaList[k].idControlAsociado8
-							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado9 || ControlList[j].idControl === this.CausaList[k].idControlAsociado10)) {
+							|| ControlList[j].idControl === this.CausaList[k].idControlAsociado9 || ControlList[j].idControl === this.CausaList[k].idControlAsociado10)
+						&& (this.RiesgoList[i].estadoActivo === 'Activo')
+						&& (this.ControlList[j].estadoActivo === 'Activo')
+						&& (this.CausaList[k].estadoActivo === 'Activo')
+						) {
 						//Sumar la cobertura ponderada de los controles asociados a un riesgo a la variable "coberturaTotalControles"
 						this.coberturaTotalControles = this.coberturaTotalControles + ControlList[j].coberturaPonderada;
 						this.coberturaConjuntaInidivudal = this.coberturaConjuntaInidivudal + ControlList[j].cobertura;
