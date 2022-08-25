@@ -413,6 +413,9 @@
 						&& ((riesgoItem.idRiesgo !== (controlItem.idRiesgoAsociado || controlItem.idRiesgoAsociado2 || controlItem.idRiesgoAsociado3
 						|| controlItem.idRiesgoAsociado4 || controlItem.idRiesgoAsociado5 || controlItem.idRiesgoAsociado6 || controlItem.idRiesgoAsociado7 
 						|| controlItem.idRiesgoAsociado8 || controlItem.idRiesgoAsociado9 || controlItem.idRiesgoAsociado10 )))
+						&& (riesgoItem.estadoActivo === 'Activo')
+						&& (controlItem.estadoActivo === 'Activo')
+						&& (causaItem.estadoActivo === 'Activo')
 						&& ((controlItem.idControl === (causaItem.idControlAsociado || causaItem.idControlAsociado2 || causaItem.idControlAsociado3
 						|| causaItem.idControlAsociad4 || causaItem.idControlAsociad5 || causaItem.idControlAsociad6 || causaItem.idControlAsociado7
 						|| causaItem.idControlAsociad8 || causaItem.idControlAsociad9 || causaItem.idControlAsociad10))
