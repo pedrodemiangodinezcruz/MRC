@@ -436,7 +436,7 @@ export class MatrizComponent implements OnInit {
 						&& (this.RiesgoList[i].estadoActivo === 'Activo')
 						&& (this.ControlList[j].estadoActivo === 'Activo')
 						&& (this.CausaList[k].estadoActivo === 'Activo')
-						) {
+					) {
 						//Sumar la cobertura ponderada de los controles asociados a un riesgo a la variable "coberturaTotalControles"
 						this.coberturaTotalControles = this.coberturaTotalControles + ControlList[j].coberturaPonderada;
 						this.coberturaConjuntaInidivudal = this.coberturaConjuntaInidivudal + ControlList[j].cobertura;
